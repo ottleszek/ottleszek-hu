@@ -19,4 +19,8 @@
     <Folder Include="Controllers\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\WillBeThere.Shared\WillBeThere.Shared.csproj" />
+  </ItemGroup>
+
 </Project>

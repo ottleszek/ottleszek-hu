@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using WillBeThere.Backend.Context;
 
 namespace WillBeThere.Backend.Extensions
 {
@@ -18,13 +19,13 @@ namespace WillBeThere.Backend.Extensions
                  )
             );
         }
-        /*
+        
         public static void ConfigureInMemoryContext(this IServiceCollection services)
         {
-            string dbName = "Kreta" + Guid.NewGuid();
-            services.AddDbContext<KretaInMemoryContext>(
+            string dbName = "WillBeThere" + Guid.NewGuid();
+            services.AddDbContext<WillBeThereInMemoryContext>(
                 options => options.UseInMemoryDatabase(databaseName: dbName)
             );
-        }*/
+        }
     }
 }

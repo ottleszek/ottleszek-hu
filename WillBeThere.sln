@@ -5,6 +5,8 @@ VisualStudioVersion = 17.9.34723.18
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WillBeThere.Backend", "WillBeThere.Backend\WillBeThere.Backend\WillBeThere.Backend.csproj", "{4ED9165C-1EAD-48D3-A6BC-D1EF3B9C37DC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WillBeThere.Shared", "WillBeThere.Shared\WillBeThere.Shared.csproj", "{EEDB9F52-6DBB-4A8F-9771-A1DEC6B68FC8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{4ED9165C-1EAD-48D3-A6BC-D1EF3B9C37DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4ED9165C-1EAD-48D3-A6BC-D1EF3B9C37DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4ED9165C-1EAD-48D3-A6BC-D1EF3B9C37DC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EEDB9F52-6DBB-4A8F-9771-A1DEC6B68FC8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EEDB9F52-6DBB-4A8F-9771-A1DEC6B68FC8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EEDB9F52-6DBB-4A8F-9771-A1DEC6B68FC8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EEDB9F52-6DBB-4A8F-9771-A1DEC6B68FC8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

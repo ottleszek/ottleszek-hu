@@ -17,6 +17,7 @@ builder.Services.AddControllers().AddJsonOptions(options =>
 });
 
 builder.Services.ConfigureCors();
+builder.Services.ConfigureInMemoryContext();
 
 var app = builder.Build();
 
