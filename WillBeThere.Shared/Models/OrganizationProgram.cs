@@ -12,15 +12,14 @@
             IsDeffered = false;
             OrganizationOwnerId = Guid.Empty;
             ProgramOwnerId = Guid.Empty;
-            ProgramCategoryId = Guid.Empty;
             AddressId = Guid.Empty;
             Organization = new Organization();
             ProgramOwner = new RegisteredUser();
-            ProgramCategory=new ProgramCategory();
+            ProgramCategories=new List<ProgramCategory>();
             
         }
 
-        public OrganizationProgram(Guid id, string title, DateTime start, DateTime? end, bool isPublic, bool isDeffered, Guid orgranizationOwnerId, Guid prgromOwnerId, Guid programCategoryId, Guid? addressId)
+        public OrganizationProgram(Guid id, string title, DateTime start, DateTime? end, bool isPublic, bool isDeffered, Guid orgranizationOwnerId, Guid prgromOwnerId, Guid? addressId)
         {
             Id = id;
             Title = title;
@@ -30,11 +29,10 @@
             IsDeffered = isDeffered;
             OrganizationOwnerId = orgranizationOwnerId;
             ProgramOwnerId = prgromOwnerId;
-            ProgramCategoryId = programCategoryId;
             AddressId = addressId;
             Organization=new Organization();
             ProgramOwner=new RegisteredUser();
-            ProgramCategory = new ProgramCategory();
+            ProgramCategories = new List<ProgramCategory>();
         }
 
         public Guid Id { get; set; }
@@ -45,12 +43,11 @@
         public bool IsDeffered { get; set; }
         public Guid OrganizationOwnerId { get; set; }
         public Guid ProgramOwnerId {  get; set; }
-        public Guid ProgramCategoryId { get; set; }
         public Guid? AddressId { get; set; }
         public virtual Organization Organization { get; set; }
         public virtual RegisteredUser ProgramOwner { get; set; }
-        public virtual ProgramCategory ProgramCategory { get; set; }
         public virtual Address? Address { get; set; }
-        public virtual ICollection<Participation>? Participation { get; set; }
+        public virtual ICollection<Participation>? Participations { get; set; }
+        public virtual ICollection<ProgramCategory> ProgramCategories { get; set; }
     }
 }

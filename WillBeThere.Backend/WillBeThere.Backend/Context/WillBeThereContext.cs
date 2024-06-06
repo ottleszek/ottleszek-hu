@@ -41,16 +41,16 @@ namespace WillBeThere.Backend.Context
                 .WithOne(a => a.PublicSpace)
                 .HasForeignKey(ps => ps.PublicScapeID)
                 .IsRequired(true);
-            // 1:N ProgramCategory - OrganizationProgram
-            modelBuilder.Entity<ProgramCategory>()
-                .HasMany(pc => pc.OrganizationPrograms)
-                .WithOne(op => op.ProgramCategory)
-                .HasForeignKey(pc => pc.ProgramCategoryId)
+            // N:M ProgramCategory - OrganizationProgram == OrganizationProgramCategories
+            modelBuilder.Entity<OrganizationProgramCategories>()
+                .HasOne(opc => opc.OrganizationProgram)
+                .WithMany(op => op.ProgramCategories)
+                .HasForeignKey(opc => opc.)
                 .IsRequired(true);
             // N:M OeganizationProgram - RegisteredUser == Participation
             modelBuilder.Entity<Participation>()
                 .HasOne(ope => ope.OrganizationProgram)
-                .WithMany(op => op.Participation)
+                .WithMany(op => op.Participations)
                 .HasForeignKey(ope => ope.OrganizationProgramId)
                 .IsRequired(true);
             modelBuilder.Entity<Participation>()
