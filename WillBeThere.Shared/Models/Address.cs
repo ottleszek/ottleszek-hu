@@ -33,7 +33,6 @@
         public int Floor { get; set; }
         public int Door { get; set; }
         public int PostalCode { get; set; }
-        public bool HasId => Id !=Guid.Empty;
         public virtual PublicSpace? PublicSpace { get; set; }
         public virtual List<OrganizationProgram>? OrganizationPrograms { get; set;}
     }

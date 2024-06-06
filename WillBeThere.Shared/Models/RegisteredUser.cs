@@ -8,6 +8,7 @@ namespace WillBeThere.Shared.Models
             Id = Guid.Empty;
             FirstName = string.Empty;
             LastName = string.Empty;
+
         }
 
         public RegisteredUser(Guid id, string firstName, string lastName)
@@ -21,7 +22,8 @@ namespace WillBeThere.Shared.Models
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public virtual List<OrganizationProgram>? OrganizationPrograms { get; set; }
+        public virtual ICollection<Participation>? RegisteredUserPaticipations { get; set; }
+        public virtual OrganizationAdminUser? OrganizationAdminUser { get; set; }
         public string HungrianName => $"{LastName} {FirstName}";
-        public bool HasId => Id != Guid.Empty;
     }
 }

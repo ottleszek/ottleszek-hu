@@ -4,6 +4,6 @@
     {
         public string GetDbSetName() => new TEntity().GetType().Name;
         public Guid Id { get; set; }
-        public bool HasId { get; }
+        public bool HasId => Id != Guid.Empty;
     }
 }

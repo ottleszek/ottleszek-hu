@@ -1,4 +1,5 @@
 using System.Text.Json.Serialization;
+using WillBeThere.Backend.Context;
 using WillBeThere.Backend.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -24,6 +25,15 @@ var app = builder.Build();
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
+    // InMemory database data
+    using (var scope = app.Services.CreateAsyncScope())
+    {
+        var dbContext = scope.ServiceProvider.GetRequiredService<WillBeThereInMemoryContext>();
+
+        // InMemory test data
+        dbContext.Database.EnsureCreated();
+    }
+
     app.UseSwagger();
     app.UseSwaggerUI();
 }

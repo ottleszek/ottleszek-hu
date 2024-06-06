@@ -10,15 +10,17 @@
             End = null;
             IsPublic = false;
             IsDeffered = false;
-            OrgranizationId = Guid.Empty;
-            RegisteredUserId = Guid.Empty;
+            OrganizationOwnerId = Guid.Empty;
+            ProgramOwnerId = Guid.Empty;
             ProgramCategoryId = Guid.Empty;
             AddressId = Guid.Empty;
-            Orgranization = new Organization();
-            RegisteredUser = new RegisteredUser();
+            Organization = new Organization();
+            ProgramOwner = new RegisteredUser();
+            ProgramCategory=new ProgramCategory();
+            
         }
 
-        public OrganizationProgram(Guid id, string title, DateTime start, DateTime? end, bool isPublic, bool isDeffered, Guid orgranizationId, Guid registeredUserId, Guid? programCategoryId, Guid? addressId)
+        public OrganizationProgram(Guid id, string title, DateTime start, DateTime? end, bool isPublic, bool isDeffered, Guid orgranizationOwnerId, Guid prgromOwnerId, Guid programCategoryId, Guid? addressId)
         {
             Id = id;
             Title = title;
@@ -26,12 +28,13 @@
             End = end;
             IsPublic = isPublic;
             IsDeffered = isDeffered;
-            OrgranizationId = orgranizationId;
-            RegisteredUserId = registeredUserId;
+            OrganizationOwnerId = orgranizationOwnerId;
+            ProgramOwnerId = prgromOwnerId;
             ProgramCategoryId = programCategoryId;
             AddressId = addressId;
-            Orgranization=new Organization();
-            RegisteredUser=new RegisteredUser();
+            Organization=new Organization();
+            ProgramOwner=new RegisteredUser();
+            ProgramCategory = new ProgramCategory();
         }
 
         public Guid Id { get; set; }
@@ -40,15 +43,14 @@
         public DateTime? End { get; set; }
         public bool IsPublic { get; set; }
         public bool IsDeffered { get; set; }
-        public Guid OrgranizationId { get; set; }
-        public Guid RegisteredUserId {  get; set; }
-        public Guid? ProgramCategoryId { get; set; }
+        public Guid OrganizationOwnerId { get; set; }
+        public Guid ProgramOwnerId {  get; set; }
+        public Guid ProgramCategoryId { get; set; }
         public Guid? AddressId { get; set; }
-        public virtual Organization Orgranization { get; set; }
-        public virtual RegisteredUser RegisteredUser { get; set; }
-        public virtual ProgramCategory? ProgramCategory { get; set; }
+        public virtual Organization Organization { get; set; }
+        public virtual RegisteredUser ProgramOwner { get; set; }
+        public virtual ProgramCategory ProgramCategory { get; set; }
         public virtual Address? Address { get; set; }
-
-        public bool HasId => Id !=Guid.Empty;
+        public virtual ICollection<Participation>? Participation { get; set; }
     }
 }

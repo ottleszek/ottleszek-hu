@@ -17,6 +17,5 @@
         public Guid Id { get; set; }
         public string Name { get; set; }
         public virtual List<OrganizationProgram>? OrganizationPrograms { get; set; }
-        public bool HasId => Id != Guid.Empty;
     }
 }
