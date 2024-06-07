@@ -4,7 +4,7 @@ namespace WillBeThere.Backend.Context
 {
     public class WillBeThereInMemoryContext : WillBeThereContext
     {
-        public WillBeThereInMemoryContext(DbContextOptions options) : base(options)
+        public WillBeThereInMemoryContext(DbContextOptions<WillBeThereInMemoryContext> options) : base(options)
         {
         }
 

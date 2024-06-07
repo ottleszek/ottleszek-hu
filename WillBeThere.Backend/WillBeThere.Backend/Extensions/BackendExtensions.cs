@@ -27,5 +27,11 @@ namespace WillBeThere.Backend.Extensions
                 options => options.UseInMemoryDatabase(databaseName: dbName)
             );
         }
+
+        public static void ConfigureMysqlContext(this IServiceCollection services)
+        {
+            string connectionString = "server=localhost;userid=root;password=;database=willbethere;port=3307";
+            services.AddDbContext<WillBeThereMysqlContext>(options => options.UseMySQL(connectionString));
+        }
     }
 }

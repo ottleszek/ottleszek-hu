@@ -14,6 +14,10 @@ namespace WillBeThere.Backend.Context
         public DbSet<PublicSpace> PublicSpace { get; set; }
         public DbSet<ProgramCategory> ProgramCategory { get; set; }
         public DbSet<Organization> Organization { get; set; }
+        public DbSet<OrganizationProgramCategories> OrganizationProgramCategories { get; set; }
+        public DbSet<RegisteredUser> RegisteredUser { get; set; }
+        public DbSet<OrganizationAdminUser> OrganizationAdminUser { get; set; }
+        public DbSet<Participation> Participation { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -45,12 +49,17 @@ namespace WillBeThere.Backend.Context
             modelBuilder.Entity<OrganizationProgramCategories>()
                 .HasOne(opc => opc.OrganizationProgram)
                 .WithMany(op => op.ProgramCategories)
-                .HasForeignKey(opc => opc.)
+                .HasForeignKey(opc => opc.OrganizationProgramId)
+                .IsRequired(true);
+            modelBuilder.Entity<OrganizationProgramCategories>()
+                .HasOne(opc => opc.ProgramCategory)
+                .WithMany(pc => pc.OrganizationPrograms)
+                .HasForeignKey(opc => opc.OrganizationProgramId)
                 .IsRequired(true);
             // N:M OeganizationProgram - RegisteredUser == Participation
             modelBuilder.Entity<Participation>()
                 .HasOne(ope => ope.OrganizationProgram)
-                .WithMany(op => op.Participations)
+                .WithMany(op => op.ProgrammeParticipants)
                 .HasForeignKey(ope => ope.OrganizationProgramId)
                 .IsRequired(true);
             modelBuilder.Entity<Participation>()

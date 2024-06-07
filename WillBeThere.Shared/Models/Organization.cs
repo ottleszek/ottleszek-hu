@@ -25,7 +25,6 @@
         public string Description { get; set; }
         public string Url { get; set; }
         public string Website { get; set; }
-        public Guid OrgranizationRigth {  get; set; }
         public virtual List<OrganizationProgram>? Programs { get; set; }
         public virtual List<OrganizationAdminUser>? OranizationAdminUsers { get; set; }
     }

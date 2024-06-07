@@ -16,6 +16,6 @@
 
         public Guid Id { get; set; }
         public string Name { get; set; }
-        public virtual List<OrganizationProgram>? OrganizationPrograms { get; set; }
+        public virtual ICollection<OrganizationProgramCategories>? OrganizationPrograms { get; set; }
     }
 }
