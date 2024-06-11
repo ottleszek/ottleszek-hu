@@ -21,7 +21,6 @@ namespace WillBeThere.Shared.Models
         public Guid Id { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        public virtual List<OrganizationProgram>? OrganizationPrograms { get; set; }
         public virtual ICollection<Participation>? RegisteredUserPaticipations { get; set; }
         public virtual OrganizationAdminUser? OrganizationAdminUser { get; set; }
         public string HungrianName => $"{LastName} {FirstName}";

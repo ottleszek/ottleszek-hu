@@ -13,9 +13,7 @@
             OrganizationOwnerId = Guid.Empty;
             ProgramOwnerId = Guid.Empty;
             AddressId = Guid.Empty;
-            Organization = new Organization();
-            ProgramOwner = new RegisteredUser();
-            ProgramCategories=new List<OrganizationProgramCategories>();
+            Organization = null;
             
         }
 
@@ -30,9 +28,6 @@
             OrganizationOwnerId = orgranizationOwnerId;
             ProgramOwnerId = prgromOwnerId;
             AddressId = addressId;
-            Organization=new Organization();
-            ProgramOwner=new RegisteredUser();
-            ProgramCategories = new List<OrganizationProgramCategories>();
         }
 
         public Guid Id { get; set; }
@@ -44,10 +39,9 @@
         public Guid OrganizationOwnerId { get; set; }
         public Guid ProgramOwnerId {  get; set; }
         public Guid? AddressId { get; set; }
-        public virtual Organization Organization { get; set; }
-        public virtual RegisteredUser ProgramOwner { get; set; }
+        public virtual Organization? Organization { get; set; }
+        public virtual OrganizationAdminUser? UserOwner { get; set; }
         public virtual Address? Address { get; set; }
-        public virtual ICollection<Participation>? ProgrammeParticipants { get; set; }
-        public virtual ICollection<OrganizationProgramCategories> ProgramCategories { get; set; }
+        public virtual ICollection<Participation>? ProgramParticipants { get; set; }
     }
 }

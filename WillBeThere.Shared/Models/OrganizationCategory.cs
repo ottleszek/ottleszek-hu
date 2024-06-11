@@ -1,14 +1,14 @@
 ﻿namespace WillBeThere.Shared.Models
 {
-    public class ProgramCategory : IDbEntity<ProgramCategory>
+    public class OrganizationCategory : IDbEntity<OrganizationCategory>
     {
-        public ProgramCategory(Guid id, string name)
+        public OrganizationCategory(Guid id, string name)
         {
             Id = id;
             Name = name;
         }
 
-        public ProgramCategory()
+        public OrganizationCategory()
         {
             Id = Guid.Empty;
             Name = string.Empty;
@@ -16,6 +16,6 @@
 
         public Guid Id { get; set; }
         public string Name { get; set; }
-        public virtual ICollection<OrganizationProgramCategories>? OrganizationPrograms { get; set; }
+        public virtual ICollection<Organization>? Organizations { get; set; }
     }
 }

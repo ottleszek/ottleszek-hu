@@ -25,7 +25,9 @@
         public string Description { get; set; }
         public string Url { get; set; }
         public string Website { get; set; }
-        public virtual List<OrganizationProgram>? Programs { get; set; }
-        public virtual List<OrganizationAdminUser>? OranizationAdminUsers { get; set; }
+        public Guid? OrganizationCategoryId { get; set; }
+        public virtual OrganizationCategory? OrganizationCategory { get; set; }
+        public virtual List<OrganizationProgram>? OrganizationPrograms { get; set; }
+        public virtual List<OrganizationAdminUser>? OrganizationAdminUsers { get; set; }
     }
 }
