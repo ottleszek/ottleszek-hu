@@ -30,7 +30,7 @@ namespace WillBeThere.Backend.Context
             // 1:N OrganizationAdminUser - OrganizationProgram
             modelBuilder.Entity<OrganizationAdminUser>()
                 .HasMany(oau => oau.OrganizationPrograms)
-                .WithOne(op => op.UserOwner)
+                .WithOne(op => op.ProgramOwner)
                 .HasForeignKey(op => op.ProgramOwnerId)
                 .IsRequired(true);
             // 1:N Address - OrganizationPrograms

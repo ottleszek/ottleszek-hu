@@ -40,7 +40,7 @@
         public Guid ProgramOwnerId {  get; set; }
         public Guid? AddressId { get; set; }
         public virtual Organization? Organization { get; set; }
-        public virtual OrganizationAdminUser? UserOwner { get; set; }
+        public virtual OrganizationAdminUser? ProgramOwner { get; set; }
         public virtual Address? Address { get; set; }
         public virtual ICollection<Participation>? ProgramParticipants { get; set; }
     }
