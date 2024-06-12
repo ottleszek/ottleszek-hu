@@ -22,6 +22,8 @@ namespace WillBeThere.Backend.Controllers
 
         // GET: api/TModel/
         [HttpGet]
+        [ProducesDefaultResponseType]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
         public virtual async Task<IActionResult> SelectAllAsync()
         {
             List<TModel>? entities = new();
@@ -31,7 +33,7 @@ namespace WillBeThere.Backend.Controllers
                 entities = await _repo.FindAll<TModel>().ToListAsync();
                 return Ok(entities.Select(entity => _assambler.ToDto(entity)));
             }
-            return BadRequest("Az adatok elérhetetlenek!");
+            return NoContent();
         }
 
         // GET: api/TModel/1
