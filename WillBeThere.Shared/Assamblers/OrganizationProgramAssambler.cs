@@ -17,8 +17,7 @@ namespace WillBeThere.Shared.Assamblers
                 IsPublic = model.IsPublic,
                 OrganizationOwnerId = model.OrganizationOwnerId,
                 ProgramOwnerId = model.ProgramOwnerId,
-                AddressId = model.AddressId,
-
+                AddressId = model.AddressId,                
             };
         }
 

@@ -5,20 +5,17 @@ using WillBeThere.Shared.Responses;
 
 namespace WillBeThere.Backend.Repos
 {
-    public abstract class RepositoryBase<TDbContext> : IDataBroker
+    public class RepositoryBase<TDbContext> : IDataBroker
         where TDbContext : DbContext
     {
-        private readonly IDbContextFactory<TDbContext>? _dbContextFactory;
-
-
-        public RepositoryBase(IDbContextFactory<TDbContext>? dbContextFactory)
+        private readonly TDbContext? _dbContext;
+        public RepositoryBase(TDbContext? dbContext)
         {
-            _dbContextFactory = dbContextFactory;
+            _dbContext = dbContext;
         }
 
         public IQueryable<TEntity> FindAll<TEntity>() where TEntity : class, IDbEntity<TEntity>, new()
         {
-
             DbSet<TEntity>? dbSet=GetDbSet<TEntity>();
             if (dbSet is null)
                 return Enumerable.Empty<TEntity>().AsQueryable().AsNoTracking();
@@ -127,12 +124,9 @@ namespace WillBeThere.Backend.Repos
         {
             try
             {
-                if (_dbContextFactory is null)
+                if (_dbContext is null)
                     return null;
-                TDbContext? dbContext = _dbContextFactory.CreateDbContext();
-                if (dbContext is null)
-                    return null;
-                return dbContext.Set<TEntity>();
+                return _dbContext.Set<TEntity>();
             }
             catch (Exception ) { }
             return null;
@@ -140,14 +134,11 @@ namespace WillBeThere.Backend.Repos
 
         private TDbContext? GetDbContext<TEntity>() where TEntity : class, IDbEntity<TEntity>, new()
         {
-            try
-            {
-                if (_dbContextFactory is null)
-                    return null;
-                return _dbContextFactory.CreateDbContext();
-            }
-            catch (Exception ) { }
-            return null;
+
+            if (_dbContext is null)
+                return null;
+            else
+                return _dbContext;
         }
     }
 }

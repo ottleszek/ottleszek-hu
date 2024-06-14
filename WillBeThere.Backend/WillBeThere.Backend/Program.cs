@@ -20,6 +20,9 @@ builder.Services.AddControllers().AddJsonOptions(options =>
 builder.Services.ConfigureCors();
 builder.Services.ConfigureInMemoryContext();
 builder.Services.ConfigureMysqlContext();
+builder.Services.ConfigureAssamblers();
+builder.Services.ConfigureRepos();
+builder.Services.ConfigureServices();
 
 var app = builder.Build();
 

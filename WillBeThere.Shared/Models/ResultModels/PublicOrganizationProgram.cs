@@ -7,6 +7,7 @@
         public string Description { get; set; } = string.Empty;
         public DateTime Start { get; set; }
         public DateTime? End { get; set; }
+        public Guid OrganizationId { get; set; }
         public string Organization { get; set; } = string.Empty ;
         public string Address { get; set; } = string.Empty;
 

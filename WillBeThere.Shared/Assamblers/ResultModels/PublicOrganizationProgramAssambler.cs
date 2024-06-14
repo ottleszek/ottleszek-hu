@@ -16,12 +16,23 @@ namespace WillBeThere.Shared.Assamblers.ResultModels
                 End = model.End,
                 Address = model.Address,
                 Organization = model.Organization,
+                OrganizationId = model.OrganizationId,
             };
         }
 
         public override PublicOrganizationProgram ToModel(PublicOrganizationProgramDto dto)
         {
-            throw new NotImplementedException();
+            return new PublicOrganizationProgram
+            {
+                Id = dto.Id,
+                Title = dto.Title,
+                Description = dto.Description,
+                Start = dto.Start,
+                End = dto.End,
+                Address = dto.Address,
+                Organization = dto.Organization,
+                OrganizationId = dto.OrganizationId,
+            };
         }
     }
 }
