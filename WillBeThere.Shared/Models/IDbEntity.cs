@@ -1,9 +1,9 @@
 ﻿namespace WillBeThere.Shared.Models
 {
-    public interface IDbEntity<TEntity> where TEntity : class, new()
+    public interface IDbEntity<TEntity> : IIdEntity 
+        where TEntity : class, new()
     {
         public string GetDbSetName() => new TEntity().GetType().Name;
-        public Guid Id { get; set; }
-        public bool HasId => Id != Guid.Empty;
+
     }
 }
