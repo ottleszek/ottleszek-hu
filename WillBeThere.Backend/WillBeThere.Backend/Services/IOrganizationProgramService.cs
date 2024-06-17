@@ -4,6 +4,6 @@ namespace WillBeThere.Backend.Services
 {
     public interface IOrganizationProgramService
     {
-        public IQueryable<PublicOrganizationProgram> GetPublicOrganizationPrograms();
+        public IQueryable<PublicOrganizationProgram>? GetPublicOrganizationsPrograms();
     }
 }

@@ -1,4 +1,5 @@
 ﻿using WillBeThere.Shared.Dtos;
+using WillBeThere.Shared.Extensions;
 using WillBeThere.Shared.Models;
 
 namespace WillBeThere.Shared.Assamblers
@@ -7,22 +8,12 @@ namespace WillBeThere.Shared.Assamblers
     {
         public override OrganizationAdminUserDto ToDto(OrganizationAdminUser model)
         {
-            return new OrganizationAdminUserDto
-            {
-                Id = model.Id,
-                AdminId = model.AdminId,
-                OrganizationId = model.OrganizationId,
-            };
+            return model.ToDto();
         }
 
         public override OrganizationAdminUser ToModel(OrganizationAdminUserDto dto)
         {
-            return new OrganizationAdminUser
-            {
-                Id = dto.Id,
-                AdminId = dto.AdminId,
-                OrganizationId = dto.OrganizationId,
-            };
+            return dto.ToModel();
         }
     }
 }

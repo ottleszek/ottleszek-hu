@@ -12,7 +12,7 @@ namespace WillBeThere.Backend.Services
             _wrapRepo = wrapRepo;
         }
 
-        public IQueryable<PublicOrganizationProgram>? GetPublicOrganizationPrograms()
+        public IQueryable<PublicOrganizationProgram>? GetPublicOrganizationsPrograms()
         {
             if (_wrapRepo == null || _wrapRepo.OrganizationProgramRepo is null || _wrapRepo.AddressRepo is null || _wrapRepo.OrganizationRepo is null || _wrapRepo.PublicSpaceRepo is null)
                 return null;
@@ -32,6 +32,8 @@ namespace WillBeThere.Backend.Services
                                 End = op.End,
                                 OrganizationId = o.Id,
                                 Organization = o.Name,
+                                Address = a,
+                                PublicSpaceName = ps.Name,
                             };
                 return query;
             }
