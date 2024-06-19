@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WillBeThere.Backend", "Will
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WillBeThere.Shared", "WillBeThere.Shared\WillBeThere.Shared.csproj", "{EEDB9F52-6DBB-4A8F-9771-A1DEC6B68FC8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WillBeThereTest", "WillBeThereTest\WillBeThereTest.csproj", "{2DB70571-E950-481F-B240-963EAB649FED}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{EEDB9F52-6DBB-4A8F-9771-A1DEC6B68FC8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EEDB9F52-6DBB-4A8F-9771-A1DEC6B68FC8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EEDB9F52-6DBB-4A8F-9771-A1DEC6B68FC8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2DB70571-E950-481F-B240-963EAB649FED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2DB70571-E950-481F-B240-963EAB649FED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2DB70571-E950-481F-B240-963EAB649FED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2DB70571-E950-481F-B240-963EAB649FED}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

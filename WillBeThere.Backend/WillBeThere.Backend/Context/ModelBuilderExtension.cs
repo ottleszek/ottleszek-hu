@@ -42,44 +42,41 @@ namespace WillBeThere.Backend.Context
             Guid organizationId11= Guid.NewGuid();
             Guid organizationId12 = Guid.NewGuid();
 
-            Guid OrganizationProgramCategoryId1 = Guid.NewGuid();
-            Guid OrganizationProgramCategoryId2 = Guid.NewGuid();
-            Guid OrganizationProgramCategoryId3 = Guid.NewGuid();
-            Guid OrganizationProgramCategoryId4 = Guid.NewGuid();
-            Guid OrganizationProgramCategoryId5 = Guid.NewGuid();
-            Guid OrganizationProgramCategoryId6 = Guid.NewGuid();
-            Guid OrganizationProgramCategoryId7 = Guid.NewGuid();
-            Guid OrganizationProgramCategoryId8 = Guid.NewGuid();
-            Guid OrganizationProgramCategoryId9 = Guid.NewGuid();
-            Guid OrganizationProgramCategoryId10 = Guid.NewGuid();
-            Guid OrganizationProgramCategoryId11 = Guid.NewGuid();
-            Guid OrganizationProgramCategoryId12 = Guid.NewGuid();
-
             Guid registeredUserId1 = Guid.NewGuid();
             Guid registeredUserId2 = Guid.NewGuid();
             Guid registeredUserId3 = Guid.NewGuid();
             Guid registeredUserId4 = Guid.NewGuid();
             Guid registeredUserId5 = Guid.NewGuid();
+            Guid registeredUserId6 = Guid.NewGuid();
 
             Guid organizationAdminUserId1=Guid.NewGuid();
             Guid organizationAdminUserId2 = Guid.NewGuid();
             Guid organizationAdminUserId3 = Guid.NewGuid();
             Guid organizationAdminUserId4 = Guid.NewGuid();
+            Guid organizationAdminUserId5 = Guid.NewGuid();
+            Guid organizationAdminUserId6 = Guid.NewGuid();
 
             Guid organizationProgramId1 = Guid.NewGuid();
             Guid organizationProgramId2 = Guid.NewGuid();
             Guid organizationProgramId3 = Guid.NewGuid();
             Guid organizationProgramId4 = Guid.NewGuid();
+            Guid organizationProgramId5 = Guid.NewGuid();
+            Guid organizationProgramId6 = Guid.NewGuid();
+            Guid organizationProgramId7 = Guid.NewGuid();
+            Guid organizationProgramId8 = Guid.NewGuid();
+            Guid organizationProgramId9 = Guid.NewGuid();
+            Guid organizationProgramId10 = Guid.NewGuid();
+            Guid organizationProgramId11 = Guid.NewGuid();
 
             Guid participationId1= Guid.NewGuid();
             Guid participationId2 = Guid.NewGuid();
             Guid participationId3 = Guid.NewGuid();
             Guid participationId4 = Guid.NewGuid();
-            Guid participationId5 = Guid.NewGuid();            
+            Guid participationId5 = Guid.NewGuid();
             #endregion
 
-            List<PublicSpace> publicSpaces = new()
             #region PublicSpace
+            List<PublicSpace> publicSpaces = new()
             {
                 new PublicSpace
                 {
@@ -109,8 +106,8 @@ namespace WillBeThere.Backend.Context
             };
             #endregion
 
-            List<Address> addresses = new()
             #region Addresses
+            List<Address> addresses = new()
             {
                 new Address
                 {
@@ -160,8 +157,8 @@ namespace WillBeThere.Backend.Context
             };
             #endregion
 
-            List<OrganizationCategory> programCategories = new()
             #region OrganizationCategies
+            List<OrganizationCategory> programCategories = new()
             {
                 new OrganizationCategory
                 {
@@ -196,8 +193,8 @@ namespace WillBeThere.Backend.Context
             };
             #endregion
 
-            List<Organization> organizations = new()
             #region Organizations
+            List<Organization> organizations = new()
             {
                 new Organization
                 {
@@ -298,8 +295,8 @@ namespace WillBeThere.Backend.Context
             };
             #endregion
 
-            List<RegisteredUser> registeredUsers = new()
             #region RegisteredUsers
+            List<RegisteredUser> registeredUsers = new()
             {
                 new RegisteredUser 
                 {
@@ -332,12 +329,20 @@ namespace WillBeThere.Backend.Context
                     FirstName="Anikó",
                     LastName="Szászi",
                 },
+                new RegisteredUser
+                {
+                    Id=registeredUserId6,
+                    FirstName="Zsuzsanna",
+                    LastName="Szabóné",
+                },
             };
             #endregion
 
-            List<OrganizationProgram> organizationPrograms = new()
             #region OrganizationProgram
+            List<OrganizationProgram> organizationPrograms = new()
             {
+                #region Public program
+                // Egy hónappal ezelőtt
                 new OrganizationProgram
                 {
                     Id = organizationProgramId1,
@@ -349,8 +354,9 @@ namespace WillBeThere.Backend.Context
                     IsPublic=true,
                     AddressId=addressId2,
                     OrganizationOwnerId=organizationId5,
-                    ProgramOwnerId=organizationAdminUserId1,                                        
+                    ProgramOwnerId=organizationAdminUserId4,                                        
                 },
+                //Egy nappal ezelőtt
                 new OrganizationProgram
                 {
                     Id = organizationProgramId2,
@@ -362,8 +368,9 @@ namespace WillBeThere.Backend.Context
                     IsPublic=true,
                     AddressId=addressId5,
                     OrganizationOwnerId=organizationId11,
-                    ProgramOwnerId=organizationAdminUserId2,
+                    ProgramOwnerId=organizationAdminUserId6,
                 },
+                // Öt nap mulva
                 new OrganizationProgram
                 {
                     Id = organizationProgramId3,
@@ -375,37 +382,176 @@ namespace WillBeThere.Backend.Context
                     IsPublic=true,
                     AddressId=addressId2,
                     OrganizationOwnerId=organizationId3,
+                    ProgramOwnerId=organizationAdminUserId1,
+                },
+                // Két hónap múlva
+                new OrganizationProgram
+                {
+                    Id = organizationProgramId4,
+                    Start=DateTime.Today.AddMonths(2).AddDays(15).Add(new TimeSpan(15,0,0)),
+                    End=DateTime.Today.AddMonths(2).AddDays(15).Add(new TimeSpan(21,0,0)),
+                    Title="Ciklus show",
+                    Description="Lányoknak...",
+                    IsDeffered=false,
+                    IsPublic=true,
+                    AddressId=addressId5,
+                    OrganizationOwnerId=organizationId9,
                     ProgramOwnerId=organizationAdminUserId3,
+                },
+                // Épp most
+                new OrganizationProgram
+                {
+                    Id = organizationProgramId5,
+                    Start=DateTime.Today.AddHours(-3).Add(new TimeSpan(0,0,0)),
+                    End=DateTime.Today.AddHours(2).Add(new TimeSpan(0,30,0)),
+                    Title="Táncház",
+                    Description="Délalföldi",
+                    IsDeffered=false,
+                    IsPublic=true,
+                    AddressId=addressId3,
+                    OrganizationOwnerId=organizationId7,
+                    ProgramOwnerId=organizationAdminUserId5,
+                },
+                #endregion
+                // Nem publikius programok
+                // Két hónappal ezelőtt
+                new OrganizationProgram
+                {
+                    Id = organizationProgramId6,
+                    Start=DateTime.Today.AddMonths(-2).AddDays(5).Add(new TimeSpan(18,0,0)),
+                    End=null,
+                    Title="Férfi sátor",
+                    Description="Férfiaknak",
+                    IsDeffered=false,
+                    IsPublic=false,
+                    AddressId=addressId2,
+                    OrganizationOwnerId=organizationId4,
+                    ProgramOwnerId=organizationAdminUserId1,
+                },
+                // Egy hónappal ezelőtt
+                new OrganizationProgram
+                {
+                    Id = organizationProgramId7,
+                    Start=DateTime.Today.AddMonths(-1).AddDays(1).Add(new TimeSpan(18,0,0)),
+                    End=null,
+                    Title="Férfi sátor",
+                    Description="Férfiaknak",
+                    IsDeffered=false,
+                    IsPublic=false,
+                    AddressId=addressId2,
+                    OrganizationOwnerId=organizationId4,
+                    ProgramOwnerId=organizationAdminUserId1,
+                },
+                // Egy hét múlva
+                new OrganizationProgram
+                {
+                    Id = organizationProgramId8,
+                    Start=DateTime.Today.AddDays(7).Add(new TimeSpan(18,0,0)),
+                    End=DateTime.Today.AddDays(7).Add(new TimeSpan(21,0,0)),
+                    Title="Férfi sátor",
+                    Description="Férfiaknak",
+                    IsDeffered=false,
+                    IsPublic=false,
+                    AddressId=addressId2,
+                    OrganizationOwnerId=organizationId4,
+                    ProgramOwnerId=organizationAdminUserId1,
+                },
+                // Éppen most
+                new OrganizationProgram
+                {
+                    Id = organizationProgramId9,
+                    Start=DateTime.Today.AddHours(-3).Add(new TimeSpan(0,0,0)),
+                    End=DateTime.Today.AddHours(1).Add(new TimeSpan(0,30,0)),
+                    Title="Családcsoport",
+                    Description="Családoknak",
+                    IsDeffered=false,
+                    IsPublic=false,
+                    AddressId=addressId2,
+                    OrganizationOwnerId=organizationId6,
+                    ProgramOwnerId=organizationAdminUserId6,
+                },
+                // Elhalasztott publikus
+                new OrganizationProgram
+                {
+                    Id = organizationProgramId10,
+                    Start=DateTime.Today.AddDays(20).Add(new TimeSpan(18,0,0)),
+                    End=DateTime.Today.AddDays(20).Add(new TimeSpan(20,0,0)),
+                    Title="Férfi sátor tréning",
+                    Description="Apasebek tréning.",
+                    IsDeffered=true,
+                    IsPublic=true,
+                    AddressId=addressId2,
+                    OrganizationOwnerId=organizationId3,
+                    ProgramOwnerId=organizationAdminUserId1,
+                },
+                // Elhaslasztott nem publikus
+                new OrganizationProgram
+                {
+                    Id = organizationProgramId11,
+                    Start=DateTime.Today.AddDays(10).Add(new TimeSpan(18,0,0)),
+                    End=DateTime.Today.AddDays(10).Add(new TimeSpan(21,0,0)),
+                    Title="Férfi sátor",
+                    Description="Férfiaknak",
+                    IsDeffered=true,
+                    IsPublic=false,
+                    AddressId=addressId2,
+                    OrganizationOwnerId=organizationId4,
+                    ProgramOwnerId=organizationAdminUserId1,
                 },
             };
             #endregion
 
-            List<OrganizationAdminUser> organizationAdminUsers = new()
             #region OrganizationAdminUsers
-            {
+            List<OrganizationAdminUser> organizationAdminUsers = new()
+            { 
                 new OrganizationAdminUser
                 {
-                    Id=organizationAdminUserId1,
-                    OrganizationId=organizationId11,
-                    AdminId = registeredUserId2,
+                    // Gyálaréti Fréfi sátor - Jenei Kornél
+                    Id = organizationAdminUserId1,
+                    OrganizationId = organizationId3,
+                    AdminId = registeredUserId4,
                 },
                 new OrganizationAdminUser
                 {
+                    // Magyarországi Férfi sátor
                     Id=organizationAdminUserId2,
+                    OrganizationId=organizationId4,
+                    AdminId = registeredUserId4,
+                },
+                new OrganizationAdminUser
+                {
+                    // Családpaszoráció - Gyurisné Hutter Katalin
+                    Id=organizationAdminUserId3,
+                    OrganizationId=organizationId10,
+                    AdminId = registeredUserId3,
+                },
+                new OrganizationAdminUser
+                {
+                    // Gyálaréti meditációs csoport - Szászi Balázs
+                    Id=organizationAdminUserId4,
                     OrganizationId=organizationId5,
                     AdminId = registeredUserId3,
                 },
                 new OrganizationAdminUser
                 {
-                    Id=organizationAdminUserId3,
-                    OrganizationId=organizationId4,
-                    AdminId = registeredUserId1,
+                    // Gyálaréti művelődési ház - Jenei Kornél
+                    Id = organizationAdminUserId5,
+                    OrganizationId = organizationId7,
+                    AdminId = registeredUserId4,
                 },
+                new OrganizationAdminUser
+                {
+                    // Családcsoport - Szabóné Zsuzsa
+                    Id = organizationAdminUserId6,
+                    OrganizationId = organizationId6,
+                    AdminId = registeredUserId6,
+                },
+
             };
             #endregion
 
-            List<Participation> participations = new()
             #region Participations
+            List<Participation> participations = new()
             {
                 new Participation
                 {
