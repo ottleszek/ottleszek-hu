@@ -6,7 +6,7 @@ Projektben kifejlesztett szoftverrendszer elnevezése: ottleszek.hu
 Projekt komponensei: ottleszek.hu mobil alkalmazás, ahol szervezetek, közösségek programjaira lehet jelentkezni, webalkalmazás ahol a szervezetek, közösségek programjait lehet menedzselni, és asztali alkalmazás, amelyben konfigurálni lehet a különböző szervezeteknek, közösségeknek telepített rendszert.
 
 Projekt címe: ottleszek.hu.
-
+Tervezés: [tervezés](https://docs.google.com/document/d/1gcjRp7dbRdMds0OcjO-c_sIwI4CkIbl1PithPjRy2JQ/edit?usp=sharing).
 
 ## 1. Összefüggések és célok.
 
