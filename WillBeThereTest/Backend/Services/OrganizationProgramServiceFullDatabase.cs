@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using System.Linq;
 using WillBeThere.Backend.Context;
 using WillBeThere.Backend.Repos;
 using WillBeThere.Backend.Repos.WillBeThere;
@@ -86,7 +87,9 @@ namespace WillBeThereTest.Backend.Services
             Assert.That(list, Has.Some.Matches<PublicOrganizationProgram>(pop => pop.Id == FullDatabase.OrganizationProgramId3),"A jövőbeli programok között nem az elvárt program található!");
             Assert.That(list, Has.Some.Matches<PublicOrganizationProgram>(pop => pop.Id == FullDatabase.OrganizationProgramId4), "A jövőbeli programok között nem az elvárt program található!");
 
-            List<OrganizationProgram> expectedList = FullDatabase.OrganizationPrograms.Where(op => op.Id == FullDatabase.OrganizationProgramId3 || op.Id == FullDatabase.OrganizationProgramId4).ToList();
+            /*List<OrganizationProgram> expectedList = FullDatabase.OrganizationPrograms.Where(op => op.Id == FullDatabase.OrganizationProgramId3 || op.Id == FullDatabase.OrganizationProgramId4).ToList();*/
+            List<OrganizationProgram> expectedList = FullDatabase.OrganizationPrograms.Where(
+                op => op.Start > DateTime.Now && op.IsPublic && !op.IsDeffered).ToList();
             // Organization name           
             List<string> expectedOrganizationName = FullDatabase.Organizations.Where(o => expectedList.Select(op => op.OrganizationOwnerId).Contains(o.Id)).Select(o  => o.Name).ToList();
             Assert.That(list.Select(pop => pop.Organization), Is.EqualTo(expectedOrganizationName),"A jövőbeli programok szervezői nem a megfelelő szervezetek!");
