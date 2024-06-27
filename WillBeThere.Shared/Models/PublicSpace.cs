@@ -1,20 +1,23 @@
-﻿namespace WillBeThere.Shared.Models
+﻿using WillBeThere.Shared.Models.DbIds;
+
+namespace WillBeThere.Shared.Models
 {
     public class PublicSpace : IDbEntity<PublicSpace>
     {
-        public PublicSpace()
+        public PublicSpace() 
         {
-            Id = Guid.Empty;
+            Id=new DbId();
             Name = string.Empty;
         }
-        public PublicSpace(Guid id, string nameOfPublicSpace)
+        public PublicSpace(DbId id, string nameOfPublicSpace) 
         {
-            Id = id;
+            Id=id;
             Name = nameOfPublicSpace;
         }
 
-        public Guid Id { get; set; }
+        public DbId Id { get; set; }
         public string Name { get; set; } = string.Empty;
         public virtual List<Address>? Addresses { get; set; }
+
     }
 }

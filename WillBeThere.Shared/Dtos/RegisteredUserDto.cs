@@ -1,8 +1,10 @@
-﻿namespace WillBeThere.Shared.Dtos
+﻿using WillBeThere.Shared.Models.DbIds;
+
+namespace WillBeThere.Shared.Dtos
 {
     public class RegisteredUserDto
     {
-        public Guid Id { get; set; }
+        public DbId Id { get; set; } = new DbId();
         public string FirstName { get; set; } = string.Empty;
         public string LastName { get; set; } = string.Empty;
     }

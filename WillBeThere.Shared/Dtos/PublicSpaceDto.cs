@@ -1,8 +1,10 @@
-﻿namespace WillBeThere.Shared.Dtos
+﻿using WillBeThere.Shared.Models.DbIds;
+
+namespace WillBeThere.Shared.Dtos
 {
     public class PublicSpaceDto
     {
-        public Guid Id { get; set; }
+        public DbId Id { get; set; } = new DbId();
         public string Name { get; set; } = string.Empty;
     }
 }

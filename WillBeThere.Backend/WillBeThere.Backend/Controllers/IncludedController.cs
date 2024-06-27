@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using WillBeThere.Backend.Repos;
 using WillBeThere.Shared.Assamblers;
 using WillBeThere.Shared.DataBroker;
-using WillBeThere.Shared.Models;
+using WillBeThere.Shared.Models.DbIds;
 
 namespace WillBeThere.Backend.Controllers
 {

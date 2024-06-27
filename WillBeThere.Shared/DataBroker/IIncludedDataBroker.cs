@@ -1,5 +1,5 @@
 ﻿using WillBeThere.Backend.Repos;
-using WillBeThere.Shared.Models;
+using WillBeThere.Shared.Models.DbIds;
 
 namespace WillBeThere.Shared.DataBroker
 {

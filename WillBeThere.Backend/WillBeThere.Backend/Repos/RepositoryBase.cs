@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
-using WillBeThere.Shared.Models;
+using WillBeThere.Shared.Models.DbIds;
 using WillBeThere.Shared.Responses;
 
 namespace WillBeThere.Backend.Repos
@@ -14,20 +14,10 @@ namespace WillBeThere.Backend.Repos
             _dbContext = dbContext;
         }
 
-        public IQueryable<TEntity> FindAll<TEntity>() where TEntity : class, IDbEntity<TEntity>, new()
-        {
-            DbSet<TEntity>? dbSet=GetDbSet<TEntity>();
-            if (dbSet is null)
-                return Enumerable.Empty<TEntity>().AsQueryable().AsNoTracking();
-            return dbSet.AsNoTracking();
-        }
-        public IQueryable<TEntity> FindByCondition<TEntity>(Expression<Func<TEntity, bool>> expression) where TEntity : class, IDbEntity<TEntity>, new()
-        {
-            DbSet<TEntity>? dbSet = GetDbSet<TEntity>();
-            if (dbSet is null)
-                return Enumerable.Empty<TEntity>().AsQueryable().AsNoTracking();
-            return dbSet.Where(expression).AsNoTracking();
-        }
+        public async Task<List<TEntity>> SelectAll<TEntity>() where TEntity : class, IDbEntity<TEntity>, new() => await FindAll<TEntity>().ToListAsync();
+
+        public async Task<List<TEntity>> SelectAll<TEntity>(Expression<Func<TEntity, bool>> expression) where TEntity : class, IDbEntity<TEntity>, new() => await FindByCondition<TEntity>(expression).ToListAsync();
+
         public async Task<Response> UpdateAsync<TEntity>(TEntity entity) where TEntity : class, IDbEntity<TEntity>, new ()
         {
             Response response = new Response();
@@ -118,6 +108,21 @@ namespace WillBeThere.Backend.Repos
             response.Append($"{nameof(RepositoryBase<TDbContext>)} osztály, {nameof(CreateAsync)} metódusban hiba keletkezett");
             response.Append($"{entity} osztály hozzáadása az adatbázishoz nem sikerült!");
             return response;
+        }
+
+        public IQueryable<TEntity> FindAll<TEntity>() where TEntity : class, IDbEntity<TEntity>, new()
+        {
+            DbSet<TEntity>? dbSet = GetDbSet<TEntity>();
+            if (dbSet is null)
+                return Enumerable.Empty<TEntity>().AsQueryable().AsNoTracking();
+            return dbSet.AsNoTracking();
+        }
+        public IQueryable<TEntity> FindByCondition<TEntity>(Expression<Func<TEntity, bool>> expression) where TEntity : class, IDbEntity<TEntity>, new()
+        {
+            DbSet<TEntity>? dbSet = GetDbSet<TEntity>();
+            if (dbSet is null)
+                return Enumerable.Empty<TEntity>().AsQueryable().AsNoTracking();
+            return dbSet.Where(expression).AsNoTracking();
         }
 
         private DbSet<TEntity>? GetDbSet<TEntity>() where TEntity : class, IDbEntity<TEntity>, new()

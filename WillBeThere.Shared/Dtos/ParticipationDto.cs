@@ -1,10 +1,12 @@
-﻿namespace WillBeThere.Shared.Dtos
+﻿using WillBeThere.Shared.Models.DbIds;
+
+namespace WillBeThere.Shared.Dtos
 {
     public class ParticipationDto
     {
-        public Guid Id { get; set; }
-        public Guid RegisteredUserId { get; set; }
-        public Guid OrganizationProgramId { get; set; }
+        public DbId Id { get; set; } = new DbId();
+        public DbId RegisteredUserId { get; set; } = new DbId();
+        public DbId OrganizationProgramId { get; set; } =new DbId();
         public int Evaluation { get; set; }
     }
 }

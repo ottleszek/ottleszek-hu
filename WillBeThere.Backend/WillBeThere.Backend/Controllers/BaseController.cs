@@ -1,8 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using WillBeThere.Backend.Repos;
 using WillBeThere.Shared.Assamblers;
-using WillBeThere.Shared.Models;
+using WillBeThere.Shared.Models.DbIds;
 using WillBeThere.Shared.Responses;
 
 namespace WillBeThere.Backend.Controllers
@@ -30,7 +29,7 @@ namespace WillBeThere.Backend.Controllers
 
             if (_repo != null && _assambler is not null)
             {
-                entities = await _repo.FindAll<TModel>().ToListAsync();
+                entities = await _repo.SelectAll<TModel>();
                 return Ok(entities.Select(entity => _assambler.ToDto(entity)));
             }
             return NoContent();
@@ -38,12 +37,12 @@ namespace WillBeThere.Backend.Controllers
 
         // GET: api/TModel/1
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetByIdAsync(Guid id)
+        public async Task<IActionResult> GetByIdAsync(DbId id)
         {
             TModel? entity = new();
             if (_repo is not null && _assambler is not null)
             {
-                entity = await _repo.FindByCondition<TModel>(entity => entity.Id == id).FirstOrDefaultAsync();
+                entity = await _repo.SelectAll<TModel>(entity => entity.Id == id).FirstOrDefaultAsync();
                 if (entity != null)
                     return Ok(_assambler.ToDto(entity));
                 else
@@ -71,7 +70,7 @@ namespace WillBeThere.Backend.Controllers
 
         // DELETE: api/TModel/1
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteAsync(Guid id)
+        public async Task<IActionResult> DeleteAsync(DbId id)
         {
             ControllerResponse response = new();
             if (_repo is not null)

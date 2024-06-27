@@ -1,25 +1,25 @@
-﻿
+﻿using WillBeThere.Shared.Models.DbIds;
+
 namespace WillBeThere.Shared.Models
 {
     public class OrganizationAdminUser : IDbEntity<OrganizationAdminUser>
     {
-        public OrganizationAdminUser()
+        public OrganizationAdminUser() 
         {
-            Id = Guid.Empty;
-            AdminId = Guid.Empty;
-            OrganizationId = Guid.Empty;
+            Id = new DbId();
+            AdminId = new();
+            OrganizationId = new();
         }
 
-        public OrganizationAdminUser(Guid id, Guid adminId, Guid organizationId)
+        public OrganizationAdminUser(DbId id, DbId adminId, DbId organizationId) 
         {
             Id = id;
             AdminId = adminId;
             OrganizationId = organizationId;
         }
-
-        public Guid Id { get; set; }
-        public Guid AdminId { get; set; }
-        public Guid OrganizationId { get; set; }
+        public DbId Id { get; set; }
+        public DbId AdminId { get; set; }
+        public DbId OrganizationId { get; set; }
         public virtual List<OrganizationProgram>? OrganizationPrograms { get; set; }
         public virtual RegisteredUser? Admin { get; set; }
         public virtual Organization? Organization { get; set; }

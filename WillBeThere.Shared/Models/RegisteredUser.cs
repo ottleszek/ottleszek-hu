@@ -1,28 +1,30 @@
-﻿
+﻿using WillBeThere.Shared.Models.DbIds;
+
 namespace WillBeThere.Shared.Models
 {
     public class RegisteredUser : IDbEntity<RegisteredUser>
     {
-        public RegisteredUser()
+        public RegisteredUser() 
         {
-            Id = Guid.Empty;
+            Id=new DbId();
             FirstName = string.Empty;
             LastName = string.Empty;
 
         }
 
-        public RegisteredUser(Guid id, string firstName, string lastName)
+        public RegisteredUser(DbId id, string firstName, string lastName) 
         {
             Id = id;
             FirstName = firstName;
             LastName = lastName;
         }
 
-        public Guid Id { get; set; }
+        public DbId Id { get ; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public virtual ICollection<Participation>? RegisteredUserPaticipations { get; set; }
         public virtual OrganizationAdminUser? OrganizationAdminUser { get; set; }
         public string HungrianName => $"{LastName} {FirstName}";
+
     }
 }

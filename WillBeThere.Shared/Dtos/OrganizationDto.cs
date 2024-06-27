@@ -1,12 +1,14 @@
-﻿namespace WillBeThere.Shared.Dtos
+﻿using WillBeThere.Shared.Models.DbIds;
+
+namespace WillBeThere.Shared.Dtos
 {
     public class OrganizationDto
     {
-        public Guid Id { get; set; }
+        public DbId Id { get; set; }= new DbId();
         public string Name { get; set; } =string.Empty;
         public string Description { get; set; } = string.Empty;
         public string Url { get; set; } = string.Empty;
         public string Website { get; set; } = string.Empty;
-        public Guid? OrganizationCategoryId { get; set; }
+        public DbId? OrganizationCategoryId { get; set; }
     }
 }
