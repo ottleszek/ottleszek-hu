@@ -4,6 +4,6 @@
     {
         public Guid Id { get; set; }
         public Guid EmptyId => Guid.Empty;
-        public bool HasId => Id != Guid.Empty;
+        public bool Exsist => Id != Guid.Empty;
     }
 }

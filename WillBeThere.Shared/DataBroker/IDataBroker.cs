@@ -6,12 +6,11 @@ namespace WillBeThere.Backend.Repos
 {
     public interface IDataBroker
     {
-        Task<List<TEntity>> SelectAll<TEntity>() where TEntity : class, IDbEntity<TEntity>, new();
-        Task<List<TEntity>> SelectAll<TEntity>(Expression<Func<TEntity, bool>> expression) where TEntity : class, IDbEntity<TEntity>, new();
-        Task<TEntity> GetById<TEntity>(DbId id) where TEntity : class, IDbEntity<TEntity>, new();
-        Task<Response> CreateAsync<TEntity>(TEntity entity) where TEntity : class, IDbEntity<TEntity>, new();
+        Task<List<TEntity>> SelectAsync<TEntity>() where TEntity : class, IDbEntity<TEntity>, new();   
+        Task<TEntity?> GetByIdAsync<TEntity>(DbId id) where TEntity : class, IDbEntity<TEntity>, new();
+        Task<Response> InsertAsync<TEntity>(TEntity entity) where TEntity : class, IDbEntity<TEntity>, new();
         Task<Response> UpdateAsync<TEntity>(TEntity entity) where TEntity : class, IDbEntity<TEntity>, new();
         Task<Response> DeleteAsync<TEntity>(DbId id) where TEntity : class, IDbEntity<TEntity>, new();
-        Task<Response> DeleteAsync<TEntity>(TEntity entity) where TEntity : class, IDbEntity<TEntity>, new();
+        Task<Response> DeleteAsync<TEntity>(TEntity? entity) where TEntity : class, IDbEntity<TEntity>, new();
     }
 }

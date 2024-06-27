@@ -1,11 +1,12 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
+using WillBeThere.Backend.Repos.WillBeThere;
 using WillBeThere.Shared.Models.DbIds;
 using WillBeThere.Shared.Responses;
 
 namespace WillBeThere.Backend.Repos
 {
-    public class RepositoryBase<TDbContext> : IDataBroker
+    public class RepositoryBase<TDbContext> : IDataBroker, IRepositoryBase
         where TDbContext : DbContext
     {
         private readonly TDbContext? _dbContext;
@@ -14,13 +15,15 @@ namespace WillBeThere.Backend.Repos
             _dbContext = dbContext;
         }
 
-        public async Task<List<TEntity>> SelectAll<TEntity>() where TEntity : class, IDbEntity<TEntity>, new() => await FindAll<TEntity>().ToListAsync();
-
-        public async Task<List<TEntity>> SelectAll<TEntity>(Expression<Func<TEntity, bool>> expression) where TEntity : class, IDbEntity<TEntity>, new() => await FindByCondition<TEntity>(expression).ToListAsync();
+        public async Task<List<TEntity>> SelectAsync<TEntity>() where TEntity : class, IDbEntity<TEntity>, new() => await FindAll<TEntity>().ToListAsync();
+        public async Task<TEntity?> GetByIdAsync<TEntity>(DbId id) where TEntity : class, IDbEntity<TEntity>, new()
+        {
+            return await FindByCondition<TEntity>(entity  => entity.Id == id).FirstOrDefaultAsync();
+        }
 
         public async Task<Response> UpdateAsync<TEntity>(TEntity entity) where TEntity : class, IDbEntity<TEntity>, new ()
         {
-            Response response = new Response();
+            Response response = new();
             try
             {
                 TDbContext? dbContext = GetDbContext<TEntity>();
@@ -42,35 +45,30 @@ namespace WillBeThere.Backend.Repos
             response.Append($"{entity} frissítése nem sikerült!");
             return response;
         }
-        public async Task<Response> DeleteAsync<TEntity>(Guid id) where TEntity : class, IDbEntity<TEntity>, new()
+
+
+        public async Task<Response> DeleteAsync<TEntity>(TEntity? entity) where TEntity : class, IDbEntity<TEntity>, new()
         {
-            Response response = new Response();
-
-            TEntity? entityToDelete = FindByCondition<TEntity>(e => e.Id == id).FirstOrDefault();
-
-            if (entityToDelete is null || (entityToDelete is not null && !entityToDelete.HasId))
-            {
-                if (entityToDelete is not null)
-                    response.Append($"{entityToDelete.Id} idével rendelkező entitás nem található!");
-                response.Append("Az entitás törlése nem sikerült!");
-            }
+            Response response = new();
+            if (entity is null)
+                response.Append("Az entitás nem létezik, így nem törölhető!");
+            else if (entity is TEntity && !entity.Id.Exsist)
+                response.Append("Az entitás azonosítása nem sikerült, így nem törölhető!");
             else
             {
                 try
                 {
-                    if (entityToDelete is not null)
+                    TDbContext? dbContext = GetDbContext<TEntity>();
+                    if (dbContext is null)
+                        response.Append($"Az adatbázis nem elérhető!");
+                    else
                     {
-                        TDbContext? dbContext = GetDbContext<TEntity>();
-                        if (dbContext is null)
-                            response.Append($"Az adatbázis nem elérhető!");
-                        else
-                        {
-                            dbContext.ChangeTracker.Clear();
-                            dbContext.Entry(entityToDelete).State = EntityState.Deleted;
-                            await dbContext.SaveChangesAsync();
-                            return response;
-                        }
+                        dbContext.ChangeTracker.Clear();
+                        dbContext.Entry(entity).State = EntityState.Deleted;
+                        await dbContext.SaveChangesAsync();
+                        return response;
                     }
+
                 }
                 catch (Exception e)
                 {
@@ -78,14 +76,20 @@ namespace WillBeThere.Backend.Repos
                 }
             }
             response.Append($"{nameof(RepositoryBase<TDbContext>)} osztály, {nameof(DeleteAsync)} metódusban hiba keletkezett");
-            if (entityToDelete is not null)
-                response.Append($"Az entitás id:{entityToDelete.Id}");
+            if (entity is not null)
+                response.Append($"Az entitás id:{entity.Id}");
             response.Append($"Az entitás törlése nem sikerült!");
             return response;
         }
-        public async Task<Response> CreateAsync<TEntity>(TEntity entity) where TEntity : class, IDbEntity<TEntity>, new()
+
+        public async Task<Response> DeleteAsync<TEntity>(DbId id) where TEntity : class, IDbEntity<TEntity>, new()
         {
-            Response response = new Response();
+            TEntity? entityToDelete = FindByCondition<TEntity>(e => e.Id == id).FirstOrDefault();
+            return await DeleteAsync<TEntity>(entityToDelete);           
+        }
+        public async Task<Response> InsertAsync<TEntity>(TEntity entity) where TEntity : class, IDbEntity<TEntity>, new()
+        {
+            Response response = new();
 
             DbSet<TEntity>? dbSet= GetDbSet<TEntity>();
             TDbContext? dbContext = GetDbContext<TEntity>();
@@ -105,7 +109,7 @@ namespace WillBeThere.Backend.Repos
                     response.Append(e.Message);
                 }
             }
-            response.Append($"{nameof(RepositoryBase<TDbContext>)} osztály, {nameof(CreateAsync)} metódusban hiba keletkezett");
+            response.Append($"{nameof(RepositoryBase<TDbContext>)} osztály, {nameof(InsertAsync)} metódusban hiba keletkezett");
             response.Append($"{entity} osztály hozzáadása az adatbázishoz nem sikerült!");
             return response;
         }

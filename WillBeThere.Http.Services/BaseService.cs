@@ -25,7 +25,7 @@ namespace WillBeThere.HttpService
             _assambler = assambler;
         }
 
-        public async Task<List<TEntity>> SelectAllAsync()
+        public async Task<List<TEntity>> SelectAsync()
         {
             if (_httpClient is not null)
             {
