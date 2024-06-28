@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using WillBeThere.Backend.Repos;
-using WillBeThere.Backend.Repos.WillBeThere;
 using WillBeThere.Shared.Assamblers;
 using WillBeThere.Shared.Models.DbIds;
 using WillBeThere.Shared.Responses;
@@ -84,23 +83,6 @@ namespace WillBeThere.Backend.Controllers
                     response.ClearAndAdd($"{response.Error}");
             }
             response.ClearAndAdd("Az adatok frissítés nem lehetséges!");
-            return BadRequest(response);
-        }
-
-        // DELETE: api/TModel/
-        [HttpDelete()]
-        public async Task<IActionResult> DeleteAsync([FromBody] TDto dto)
-        {
-            ControllerResponse response = new();
-            if (_repo is not null && _assambler is not null)
-            {
-                response = (ControllerResponse)await _repo.DeleteAsync<TModel>(_assambler.ToModel(dto));
-                if (!response.HasError)
-                    return Ok(response);
-                else
-                    response.ClearAndAdd($"{response.Error}");
-            }
-            response.ClearAndAdd("Az adatok törlése nem lehetséges!");
             return BadRequest(response);
         }
 

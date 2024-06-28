@@ -25,7 +25,7 @@ namespace WillBeThere.HttpService
             _assambler = assambler;
         }
 
-        public async Task<List<TEntity>> SelectAsync()
+        public async Task<List<TEntity>> SelectAsync() where TEntity : class, IDbEntity<TEntity>, new()
         {
             if (_httpClient is not null)
             {
@@ -45,6 +45,11 @@ namespace WillBeThere.HttpService
                 }
             }
             return new List<TEntity>();
+        }
+
+        Task<TEntity1> IDataBroker.GetByIdAsync<TEntity1>(DbId id)
+        {
+            throw new NotImplementedException();
         }
 
         public async Task<ControllerResponse> UpdateAsync(TEntity entity)
@@ -90,8 +95,18 @@ namespace WillBeThere.HttpService
             return defaultResponse;
         }
 
+        public async Task<ControllerResponse> DeleteAsync(TEntity entity)
+        {
+            if (entity.Id.Exsist)
+            {
+                return await DeleteAsync(entity.Id);
+            }
+            else
+                return new ControllerResponse($"A {entity} entitásnak nincs azonosítója, nem lehet törölni!");
+        }
 
-        public async Task<ControllerResponse> DeleteAsync(Guid id)
+
+        public async Task<ControllerResponse> DeleteAsync(DbId id)
         {
             ControllerResponse defaultResponse = new();
             if (_httpClient is not null)
@@ -178,6 +193,6 @@ namespace WillBeThere.HttpService
         private static string GetApiName()
         {
             return new TEntity().GetType().Name;
-        }     
+        }
     }
 }
