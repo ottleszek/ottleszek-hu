@@ -3,7 +3,6 @@ using WillBeThere.Backend.Repos;
 using WillBeThere.Backend.Repos.WillBeThere;
 using WillBeThere.Backend.Services;
 using WillBeThere.Shared.Models;
-using WillBeThere.Shared.Models.DbIds;
 using WillBeThere.Shared.Models.ResultModels;
 
 namespace WillBeThereTest.Backend.Services
@@ -76,8 +75,8 @@ namespace WillBeThereTest.Backend.Services
         {
 
             #region Organization progrm test data
-            DbId organizationProgramId1 = new DbId();
-            DbId organizationProgramId2 = new DbId();
+            Guid organizationProgramId1 = new Guid();
+            Guid organizationProgramId2 = new Guid();
 
             List<OrganizationProgram> organizationPrograms = new()
             {
@@ -147,9 +146,9 @@ namespace WillBeThereTest.Backend.Services
         {
 
             #region Organization progrm test data
-            DbId organizationProgramId1 = new DbId().NewId();
-            DbId organizationProgramId2 = new DbId().NewId();
-            DbId organizationProgramId3 = new DbId().NewId();
+            Guid organizationProgramId1 = new Guid();
+            Guid organizationProgramId2 = new Guid();
+            Guid organizationProgramId3 = new Guid();
 
                     List<OrganizationProgram> organizationPrograms = new()
             {

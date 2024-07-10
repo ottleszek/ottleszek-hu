@@ -1,4 +1,4 @@
-﻿using WillBeThere.Shared.Models.DbIds;
+﻿using WillBeThere.Shared.Models.Guids;
 
 namespace WillBeThere.Shared.Models
 {
@@ -6,20 +6,20 @@ namespace WillBeThere.Shared.Models
     {
         public OrganizationAdminUser() 
         {
-            Id = new DbId();
+            Id = Guid.Empty;
             AdminId = new();
             OrganizationId = new();
         }
 
-        public OrganizationAdminUser(DbId id, DbId adminId, DbId organizationId) 
+        public OrganizationAdminUser(Guid id, Guid adminId, Guid organizationId) 
         {
             Id = id;
             AdminId = adminId;
             OrganizationId = organizationId;
         }
-        public DbId Id { get; set; }
-        public DbId AdminId { get; set; }
-        public DbId OrganizationId { get; set; }
+        public Guid Id { get; set; }
+        public Guid AdminId { get; set; }
+        public Guid OrganizationId { get; set; }
         public virtual List<OrganizationProgram>? OrganizationPrograms { get; set; }
         public virtual RegisteredUser? Admin { get; set; }
         public virtual Organization? Organization { get; set; }

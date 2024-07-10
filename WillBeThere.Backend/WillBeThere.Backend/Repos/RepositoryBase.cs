@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
 using WillBeThere.Shared.DataBroker;
-using WillBeThere.Shared.Models.DbIds;
+using WillBeThere.Shared.Models.Guids;
 using WillBeThere.Shared.Responses;
 
 namespace WillBeThere.Backend.Repos
@@ -16,7 +16,7 @@ namespace WillBeThere.Backend.Repos
         }
 
         public async Task<List<TEntity>> SelectAsync<TEntity>() where TEntity : class, IDbEntity<TEntity>, new() => await FindAll<TEntity>().ToListAsync();
-        public async Task<TEntity?> GetByIdAsync<TEntity>(DbId id) where TEntity : class, IDbEntity<TEntity>, new()
+        public async Task<TEntity?> GetByIdAsync<TEntity>(Guid id) where TEntity : class, IDbEntity<TEntity>, new()
         {
             return await FindByCondition<TEntity>(entity  => entity.Id == id).FirstOrDefaultAsync();
         }
@@ -52,7 +52,7 @@ namespace WillBeThere.Backend.Repos
             Response response = new();
             if (entity is null)
                 response.Append("Az entitás nem létezik, így nem törölhető!");
-            else if (entity is TEntity && !entity.Id.Exsist)
+            else if (entity is TEntity && !entity.HasId)
                 response.Append("Az entitás azonosítása nem sikerült, így nem törölhető!");
             else
             {
@@ -82,7 +82,7 @@ namespace WillBeThere.Backend.Repos
             return response;
         }
 
-        public async Task<Response> DeleteAsync<TEntity>(DbId id) where TEntity : class, IDbEntity<TEntity>, new()
+        public async Task<Response> DeleteAsync<TEntity>(Guid id) where TEntity : class, IDbEntity<TEntity>, new()
         {
             TEntity? entityToDelete = FindByCondition<TEntity>(e => e.Id == id).FirstOrDefault();
             return await DeleteAsync<TEntity>(entityToDelete);           

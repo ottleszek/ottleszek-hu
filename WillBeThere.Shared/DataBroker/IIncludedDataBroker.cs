@@ -1,4 +1,4 @@
-﻿using WillBeThere.Shared.Models.DbIds;
+﻿using WillBeThere.Shared.Models.Guids;
 
 namespace WillBeThere.Shared.DataBroker
 {

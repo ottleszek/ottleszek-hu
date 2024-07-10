@@ -1,4 +1,4 @@
-﻿using WillBeThere.Shared.Models.DbIds;
+﻿using WillBeThere.Shared.Models.Guids;
 using WillBeThere.Shared.Responses;
 
 namespace WillBeThere.HttpService.DataService
@@ -8,10 +8,10 @@ namespace WillBeThere.HttpService.DataService
         where TEntityDto : class, new()
     {
         public Task<List<TEntity>> SelectAsync();
-        public Task<TEntity?> GetByIdAsync(DbId id);
+        public Task<TEntity?> GetByIdAsync(Guid id);
         public Task<Response> UpdateAsync(TEntity entity);
         public Task<Response> DeleteAsync(TEntity entity);
-        public Task<Response> DeleteAsync(DbId id);
+        public Task<Response> DeleteAsync(Guid id);
         public Task<Response> InsertAsync(TEntity entity);
     }
 }

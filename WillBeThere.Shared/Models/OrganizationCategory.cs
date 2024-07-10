@@ -1,4 +1,4 @@
-﻿using WillBeThere.Shared.Models.DbIds;
+﻿using WillBeThere.Shared.Models.Guids;
 
 namespace WillBeThere.Shared.Models
 {
@@ -6,16 +6,16 @@ namespace WillBeThere.Shared.Models
     {
         public OrganizationCategory()
         {
-            Id = new DbId();
+            Id = Guid.Empty;
             Name = string.Empty;
         }
-        public OrganizationCategory(DbId id, string name) 
+        public OrganizationCategory(Guid id, string name) 
         {
             Id = id;
             Name = name;
         }
 
-        public DbId Id { get ; set; }
+        public Guid Id { get ; set; }
         public string Name { get; set; }
         public virtual ICollection<Organization>? Organizations { get; set; }
 

@@ -1,6 +1,6 @@
-﻿namespace WillBeThere.Shared.Models.DbIds   
+﻿namespace WillBeThere.Shared.Models.Guids   
 {
-    internal interface IDbId
+    internal interface IGuid
     {
         public Guid Id { get; set; }
         public Guid EmptyId => Guid.Empty;

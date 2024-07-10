@@ -1,15 +1,14 @@
-﻿using WillBeThere.Shared.Models.DbIds;
-using WillBeThere.Shared.Responses;
-using WillBeThere.Shared.DataBroker;
+﻿using WillBeThere.Shared.Responses;
 using System.Diagnostics;
 using WillBeThere.Shared.Assamblers;
 using System.Net.Http.Json;
 using Newtonsoft.Json;
 using System.Net;
+using WillBeThere.Shared.Models.Guids;
 
 namespace WillBeThere.HttpService.HttpService
 {
-    public class BaseHttpService<TEntityDto> :  IDataBroker where TEntityDto : class, new()
+    public class BaseHttpService<TEntityDto> :  IBaseHttpService<TEntityDto> where TEntityDto : class, new()
     {
         protected readonly HttpClient? _httpClient;
 
@@ -44,13 +43,12 @@ namespace WillBeThere.HttpService.HttpService
             return new List<TEntity>();
         }
 
-
-        public Task<TEntity?> GetByIdAsync<TEntity>(DbId id) where TEntity : class, IDbEntity<TEntity>, new()
+        public Task<TEntity?> GetByIdAsync<TEntity>(Guid id) where TEntity : class, IDbEntity<TEntity>, new()
         {
             throw new NotImplementedException();
         }
 
-        public async Task<Response> DeleteAsync<TEntity>(DbId id) where TEntity : class, IDbEntity<TEntity>, new()
+        public async Task<Response> DeleteAsync<TEntity>(Guid id) where TEntity : class, IDbEntity<TEntity>, new()
         {
             Response defaultResponse = new();
             if (_httpClient is not null)
@@ -94,7 +92,7 @@ namespace WillBeThere.HttpService.HttpService
 
         public async Task<Response> DeleteAsync<TEntity>(TEntity? entity) where TEntity : class, IDbEntity<TEntity>, new()
         {
-            if (entity is not null && entity.Id.Exsist)
+            if (entity is not null && entity.HasId)
             {
                 return await DeleteAsync<TEntity>(entity.Id);
             }
@@ -195,7 +193,5 @@ namespace WillBeThere.HttpService.HttpService
         {
             return new TEntity().GetType().Name;
         }
-
-
     }
 }

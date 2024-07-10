@@ -1,4 +1,4 @@
-﻿using WillBeThere.Shared.Models.DbIds;
+﻿using WillBeThere.Shared.Models.Guids;
 
 namespace WillBeThere.Shared.Models
 {
@@ -6,7 +6,7 @@ namespace WillBeThere.Shared.Models
     {
         public OrganizationProgram() 
         {
-            Id=new DbId();
+            Id=Guid.Empty;
             Title = string.Empty;
             Description = string.Empty;
             Start = DateTime.Now;
@@ -20,7 +20,7 @@ namespace WillBeThere.Shared.Models
             
         }
 
-        public OrganizationProgram(DbId id, string title, string description, DateTime start, DateTime? end, bool isPublic, bool isDeffered, DbId organizationOwnerId, DbId programOwnerId, DbId? addressId) 
+        public OrganizationProgram(Guid id, string title, string description, DateTime start, DateTime? end, bool isPublic, bool isDeffered, Guid organizationOwnerId, Guid programOwnerId, Guid? addressId) 
         {
             Id= id;
             Title = title;
@@ -33,16 +33,16 @@ namespace WillBeThere.Shared.Models
             ProgramOwnerId = programOwnerId;
             AddressId = addressId;
         }
-        public DbId Id { get; set; }
+        public Guid Id { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
         public DateTime Start {  get; set; }
         public DateTime? End { get; set; }
         public bool IsPublic { get; set; }
         public bool IsDeffered { get; set; }
-        public DbId OrganizationOwnerId { get; set; }
-        public DbId ProgramOwnerId {  get; set; }
-        public DbId? AddressId { get; set; }
+        public Guid OrganizationOwnerId { get; set; }
+        public Guid ProgramOwnerId {  get; set; }
+        public Guid? AddressId { get; set; }
         public virtual Organization? Organization { get; set; }
         public virtual OrganizationAdminUser? ProgramOwner { get; set; }
         public virtual Address? Address { get; set; }

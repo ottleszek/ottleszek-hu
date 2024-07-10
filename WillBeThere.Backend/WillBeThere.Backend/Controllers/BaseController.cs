@@ -1,8 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using WillBeThere.Backend.Repos;
 using WillBeThere.Shared.Assamblers;
 using WillBeThere.Shared.DataBroker;
-using WillBeThere.Shared.Models.DbIds;
+using WillBeThere.Shared.Models.Guids;
 using WillBeThere.Shared.Responses;
 
 namespace WillBeThere.Backend.Controllers
@@ -38,7 +37,7 @@ namespace WillBeThere.Backend.Controllers
 
         // GET: api/TModel/1
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetByIdAsync(DbId id)
+        public async Task<IActionResult> GetByIdAsync(Guid id)
         {
             TModel? entity = new();
             if (_repo is not null && _assambler is not null)
@@ -89,7 +88,7 @@ namespace WillBeThere.Backend.Controllers
 
         // DELETE: api/TModel/1
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteAsync(DbId id)
+        public async Task<IActionResult> DeleteAsync(Guid id)
         {
             ControllerResponse response = new();
             if (_repo is not null)

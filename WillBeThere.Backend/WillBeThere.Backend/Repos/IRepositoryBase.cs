@@ -1,5 +1,5 @@
 ﻿using System.Linq.Expressions;
-using WillBeThere.Shared.Models.DbIds;
+using WillBeThere.Shared.Models.Guids;
 
 namespace WillBeThere.Backend.Repos
 {

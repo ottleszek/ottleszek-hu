@@ -1,4 +1,4 @@
-﻿using WillBeThere.Shared.Models.DbIds;
+﻿using WillBeThere.Shared.Models.Guids;
 
 namespace WillBeThere.Shared.Models
 {
@@ -6,7 +6,7 @@ namespace WillBeThere.Shared.Models
     {
         public Address() 
         {
-            Id=new DbId();
+            Id= Guid.Empty;
             Locality = string.Empty;
             PublicSpaceName = string.Empty;
             House = -1;
@@ -16,7 +16,7 @@ namespace WillBeThere.Shared.Models
             PublicScapeId = new();
         }
 
-        public Address(DbId id, DbId publicScapeID, string publicSpaceName, string locality, int house, int floor, int door, int postalCode) 
+        public Address(Guid id, Guid publicScapeID, string publicSpaceName, string locality, int house, int floor, int door, int postalCode) 
         {
             Id=id;
             PublicScapeId = publicScapeID;
@@ -28,8 +28,8 @@ namespace WillBeThere.Shared.Models
             PostalCode = postalCode;
         }
 
-        public DbId Id { get; set; }
-        public DbId PublicScapeId { get; set; }
+        public Guid Id { get; set; }
+        public Guid PublicScapeId { get; set; }
         public string PublicSpaceName { get; set; }
         public string Locality { get; set; }
         public int House { get; set; }

@@ -1,11 +1,6 @@
-﻿using Newtonsoft.Json;
-using System.Diagnostics;
-using System.Net.Http.Json;
-using System.Net;
-using WillBeThere.Shared.DataBroker;
-using WillBeThere.Shared.Models.DbIds;
+﻿using WillBeThere.HttpService.HttpService;
+using WillBeThere.Shared.Models.Guids;
 using WillBeThere.Shared.Responses;
-using WillBeThere.HttpService.HttpService;
 
 namespace WillBeThere.HttpService.DataService
 {
@@ -13,9 +8,9 @@ namespace WillBeThere.HttpService.DataService
         where TEntity : class, IDbEntity<TEntity>, new()
         where TEntityDto : class, new()
     {
-        protected IBaseHttpService _httpService;
+        protected IBaseHttpService<TEntityDto> _httpService;
 
-        public BaseDataService(IBaseHttpService httpService)
+        public BaseDataService(IBaseHttpService<TEntityDto> httpService)
         {
 
             _httpService = httpService;
@@ -23,10 +18,10 @@ namespace WillBeThere.HttpService.DataService
 
         public async Task<List<TEntity>> SelectAsync() 
         {
-            return await _httpService.SelectAsync<TEntity,TEntityDto>();
+            return await _httpService.SelectAsync<TEntity>();
         }
 
-        public async Task<TEntity?> GetByIdAsync(DbId id) 
+        public async Task<TEntity?> GetByIdAsync(Guid id) 
         {
             return await _httpService.GetByIdAsync<TEntity>(id);
         }
@@ -42,7 +37,7 @@ namespace WillBeThere.HttpService.DataService
         }
 
 
-        public async Task<Response> DeleteAsync(DbId id)
+        public async Task<Response> DeleteAsync(Guid id)
         {
            return await _httpService.DeleteAsync<TEntity>(id);
         }
@@ -51,9 +46,5 @@ namespace WillBeThere.HttpService.DataService
         {
             return await _httpService.InsertAsync<TEntity>(entity);
         }
-
-
-
-
     }
 }

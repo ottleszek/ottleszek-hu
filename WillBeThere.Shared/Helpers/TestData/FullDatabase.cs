@@ -1,75 +1,74 @@
 ﻿using WillBeThere.Shared.Models;
-using WillBeThere.Shared.Models.DbIds;
 
 namespace WillBeThere.Shared.Helpers.TestData
 {
     public static class FullDatabase
     {
         #region Ids
-        static DbId publicSpace1 = new DbId(new DbId(Guid.NewGuid()));
-        static DbId publicSpace2 = new DbId(Guid.NewGuid());
-        static DbId publicSpace3 = new DbId(Guid.NewGuid());
-        static DbId publicSpace4 = new DbId(Guid.NewGuid());
-        static DbId publicSpace5 = new DbId(Guid.NewGuid());
+        static Guid publicSpace1 = Guid.NewGuid();
+        static Guid publicSpace2 = Guid.NewGuid();
+        static Guid publicSpace3 = Guid.NewGuid();
+        static Guid publicSpace4 = Guid.NewGuid();
+        static Guid publicSpace5 = Guid.NewGuid();
 
-        static DbId addressId1 = new DbId(Guid.NewGuid());
-        static DbId addressId2 = new DbId(Guid.NewGuid());
-        static DbId addressId3 = new DbId(Guid.NewGuid());
-        static DbId addressId4 = new DbId(Guid.NewGuid());
-        static DbId addressId5 = new DbId(Guid.NewGuid());
-        static DbId addressId6 = new DbId(Guid.NewGuid());
+        static Guid addressId1 = Guid.NewGuid();
+        static Guid addressId2 = Guid.NewGuid();
+        static Guid addressId3 = Guid.NewGuid();
+        static Guid addressId4 = Guid.NewGuid();
+        static Guid addressId5 = Guid.NewGuid();
+        //static Guid addressId6 = Guid.NewGuid();
 
-        static DbId organizationCategoryId1 = new DbId(Guid.NewGuid());
-        static DbId organizationCategoryId2 = new DbId(Guid.NewGuid());
-        static DbId organizationCategoryId3 = new DbId(Guid.NewGuid());
-        static DbId organizationCategoryId4 = new DbId(Guid.NewGuid());
-        static DbId organizationCategoryId5 = new DbId(Guid.NewGuid());
-        static DbId organizationCategoryId6 = new DbId(Guid.NewGuid());
+        static Guid organizationCategoryId1 = Guid.NewGuid();
+        static Guid organizationCategoryId2 = Guid.NewGuid();
+        static Guid organizationCategoryId3 = Guid.NewGuid();
+        static Guid organizationCategoryId4 = Guid.NewGuid();
+        static Guid organizationCategoryId5 = Guid.NewGuid();
+        static Guid organizationCategoryId6 = Guid.NewGuid();
 
-        static DbId organizationId1 = new DbId(Guid.NewGuid());
-        static DbId organizationId2 = new DbId(Guid.NewGuid());
-        static DbId organizationId3 = new DbId(Guid.NewGuid());
-        static DbId organizationId4 = new DbId(Guid.NewGuid());
-        static DbId organizationId5 = new DbId(Guid.NewGuid());
-        static DbId organizationId6 = new DbId(Guid.NewGuid());
-        static DbId organizationId7 = new DbId(Guid.NewGuid());
-        static DbId organizationId8 = new DbId(Guid.NewGuid());
-        static DbId organizationId9 = new DbId(Guid.NewGuid());
-        static DbId organizationId10 = new DbId(Guid.NewGuid());
-        static DbId organizationId11 = new DbId(Guid.NewGuid());
-        static DbId organizationId12 = new DbId(Guid.NewGuid());
+        static Guid organizationId1 = Guid.NewGuid();
+        static Guid organizationId2 = Guid.NewGuid();
+        static Guid organizationId3 = Guid.NewGuid();
+        static Guid organizationId4 = Guid.NewGuid();
+        static Guid organizationId5 = Guid.NewGuid();
+        static Guid organizationId6 = Guid.NewGuid();
+        static Guid organizationId7 = Guid.NewGuid();
+        static Guid organizationId8 = Guid.NewGuid();
+        static Guid organizationId9 = Guid.NewGuid();
+        static Guid organizationId10 = Guid.NewGuid();
+        static Guid organizationId11 = Guid.NewGuid();
+        static Guid organizationId12 = Guid.NewGuid();
 
-        static DbId registeredUserId1 = new DbId(Guid.NewGuid());
-        static DbId registeredUserId2 = new DbId(Guid.NewGuid());
-        static DbId registeredUserId3 = new DbId(Guid.NewGuid());
-        static DbId registeredUserId4 = new DbId(Guid.NewGuid());
-        static DbId registeredUserId5 = new DbId(Guid.NewGuid());
-        static DbId registeredUserId6 = new DbId(Guid.NewGuid());
+        static Guid registeredUserId1 = Guid.NewGuid();
+        static Guid registeredUserId2 = Guid.NewGuid();
+        static Guid registeredUserId3 = Guid.NewGuid();
+        static Guid registeredUserId4 = Guid.NewGuid();
+        static Guid registeredUserId5 = Guid.NewGuid();
+        static Guid registeredUserId6 = Guid.NewGuid();
 
-        static DbId organizationAdminUserId1 = new DbId(Guid.NewGuid());
-        static DbId organizationAdminUserId2 = new DbId(Guid.NewGuid());
-        static DbId organizationAdminUserId3 = new DbId(Guid.NewGuid());
-        static DbId organizationAdminUserId4 = new DbId(Guid.NewGuid());
-        static DbId organizationAdminUserId5 = new DbId(Guid.NewGuid());
-        static DbId organizationAdminUserId6 = new DbId(Guid.NewGuid());
+        static Guid organizationAdminUserId1 = Guid.NewGuid();
+        static Guid organizationAdminUserId2 = Guid.NewGuid();
+        static Guid organizationAdminUserId3 = Guid.NewGuid();
+        static Guid organizationAdminUserId4 = Guid.NewGuid();
+        static Guid organizationAdminUserId5 = Guid.NewGuid();
+        static Guid organizationAdminUserId6 = Guid.NewGuid();
 
-        public static  DbId organizationProgramId1 = new DbId(Guid.NewGuid());
-        public static  DbId organizationProgramId2 = new DbId(Guid.NewGuid());
-        public static  DbId OrganizationProgramId3 = new DbId(Guid.NewGuid());
-        public static  DbId OrganizationProgramId4 = new DbId(Guid.NewGuid());
-        public static  DbId organizationProgramId5 = new DbId(Guid.NewGuid());
-        public static  DbId organizationProgramId6 = new DbId(Guid.NewGuid());
-        public static  DbId organizationProgramId7 = new DbId(Guid.NewGuid());
-        public static  DbId organizationProgramId8 = new DbId(Guid.NewGuid());
-        public static  DbId organizationProgramId9 = new DbId(Guid.NewGuid());
-        public static  DbId organizationProgramId10 = new DbId(Guid.NewGuid());
-        public static  DbId organizationProgramId11 = new DbId(Guid.NewGuid());
+        public static  Guid organizationProgramId1 = Guid.NewGuid();
+        public static  Guid organizationProgramId2 = Guid.NewGuid();
+        public static  Guid OrganizationProgramId3 = Guid.NewGuid();
+        public static  Guid OrganizationProgramId4 = Guid.NewGuid();
+        public static  Guid organizationProgramId5 = Guid.NewGuid();
+        public static  Guid organizationProgramId6 = Guid.NewGuid();
+        public static  Guid organizationProgramId7 = Guid.NewGuid();
+        public static  Guid organizationProgramId8 = Guid.NewGuid();
+        public static  Guid organizationProgramId9 = Guid.NewGuid();
+        public static  Guid organizationProgramId10 = Guid.NewGuid();
+        public static  Guid organizationProgramId11 = Guid.NewGuid();
 
-        static  DbId participationId1 = new DbId(Guid.NewGuid());
-        static  DbId participationId2 = new DbId(Guid.NewGuid());
-        static  DbId participationId3 = new DbId(Guid.NewGuid());
-        static  DbId participationId4 = new DbId(Guid.NewGuid());
-        static  DbId participationId5 = new DbId(Guid.NewGuid());
+        static  Guid participationId1 = Guid.NewGuid();
+        static  Guid participationId2 = Guid.NewGuid();
+        static  Guid participationId3 = Guid.NewGuid();
+        static  Guid participationId4 = Guid.NewGuid();
+        static  Guid participationId5 = Guid.NewGuid();
         #endregion
 
         #region PublicSpace

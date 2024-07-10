@@ -1,4 +1,4 @@
-﻿using WillBeThere.Shared.Models.DbIds;
+﻿using WillBeThere.Shared.Models.Guids;
 
 namespace WillBeThere.Shared.Models
 {
@@ -6,12 +6,12 @@ namespace WillBeThere.Shared.Models
     {
         public Participation()
         {
-            Id=new DbId();
-            RegisteredUserId = new DbId();
-            OrganizationProgramId = new DbId();
+            Id = Guid.Empty;
+            RegisteredUserId =Guid.Empty;
+            OrganizationProgramId = Guid.Empty;
             Evaluation = -1;
         }
-        public Participation(DbId id, DbId registeredUserID, DbId orgranizationProgramId, int evaluation) 
+        public Participation(Guid id, Guid registeredUserID, Guid orgranizationProgramId, int evaluation) 
         {
             Id=id;
             RegisteredUserId = registeredUserID;
@@ -19,9 +19,9 @@ namespace WillBeThere.Shared.Models
             Evaluation = evaluation;
         }
 
-        public DbId Id { get; set; }
-        public DbId RegisteredUserId { get; set; }
-        public DbId OrganizationProgramId { get; set; }
+        public Guid Id { get; set; }
+        public Guid RegisteredUserId { get; set; }
+        public Guid OrganizationProgramId { get; set; }
         public int Evaluation {  get; set; }
         public virtual RegisteredUser? Participant { get; set; }
         public virtual OrganizationProgram? OrganizationProgram { get; set; }

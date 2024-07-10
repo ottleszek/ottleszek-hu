@@ -1,4 +1,4 @@
-﻿using WillBeThere.Shared.Models.DbIds;
+﻿using WillBeThere.Shared.Models.Guids;
 
 namespace WillBeThere.Shared.Models
 {
@@ -6,7 +6,7 @@ namespace WillBeThere.Shared.Models
     {
         public Organization() 
         {
-            Id=new DbId();
+            Id=Guid.Empty;
             Name = string.Empty;
             Description = string.Empty;
             Url = string.Empty;
@@ -14,7 +14,7 @@ namespace WillBeThere.Shared.Models
             OrganizationCategoryId = new();
         }
 
-        public Organization(DbId id, string name, string description, string url, string website, DbId? organizationCategoryId) 
+        public Organization(Guid id, string name, string description, string url, string website, Guid? organizationCategoryId) 
         {
             Id=id;
             Name = name;
@@ -23,12 +23,12 @@ namespace WillBeThere.Shared.Models
             Website = website;
             OrganizationCategoryId = organizationCategoryId;
         }
-        public DbId Id { get; set; }
+        public Guid Id { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
         public string Url { get; set; }
         public string Website { get; set; }
-        public DbId? OrganizationCategoryId { get; set; }
+        public Guid? OrganizationCategoryId { get; set; }
         public virtual OrganizationCategory? OrganizationCategory { get; set; }
         public virtual List<OrganizationProgram>? OrganizationPrograms { get; set; }
         public virtual List<OrganizationAdminUser>? OrganizationAdminUsers { get; set; }

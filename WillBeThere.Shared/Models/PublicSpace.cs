@@ -1,4 +1,4 @@
-﻿using WillBeThere.Shared.Models.DbIds;
+﻿using WillBeThere.Shared.Models.Guids;
 
 namespace WillBeThere.Shared.Models
 {
@@ -6,16 +6,16 @@ namespace WillBeThere.Shared.Models
     {
         public PublicSpace() 
         {
-            Id=new DbId();
+            Id=Guid.Empty;
             Name = string.Empty;
         }
-        public PublicSpace(DbId id, string nameOfPublicSpace) 
+        public PublicSpace(Guid id, string nameOfPublicSpace) 
         {
             Id=id;
             Name = nameOfPublicSpace;
         }
 
-        public DbId Id { get; set; }
+        public Guid Id { get; set; }
         public string Name { get; set; } = string.Empty;
         public virtual List<Address>? Addresses { get; set; }
 
