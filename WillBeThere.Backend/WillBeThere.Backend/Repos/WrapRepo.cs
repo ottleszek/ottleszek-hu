@@ -37,13 +37,9 @@ namespace WillBeThere.Backend.Repos
         public IOrganizationRepo? OrganizationRepo => _organizationRepo;
         public IOrganizationAdminUserRepo? OrganizationAdminUserRepo => _organizationAdminUserRepo;
         public IOrganizationProgramRepo? OrganizationProgramRepo => _organizationProgramRepo;
-
         public IOrganizationCategoryRepo? OrganizationCategoryRepo => _organizationCategoryRepo;
-
         public IParticipationRepo? ParticipationRepo => _participationRepo;
-
         public IPublicSpaceRepo? PublicSpaceRepo => _publicSpaceRepo;
-
         public IRegisteredUserRepo? RegisteredUserRepo => _registeredUserRepo;
     }
 }

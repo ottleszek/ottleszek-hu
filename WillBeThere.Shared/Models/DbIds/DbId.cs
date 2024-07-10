@@ -14,12 +14,17 @@
 
         public DbId (Guid id)
         {
-            Id = id;
+            Id = id;            
         }
 
         public Guid Id { get; set; }
         public Guid EmptyId => Guid.Empty;
         public bool Exsist => Id != Guid.Empty;
+        public DbId NewId()
+        {
+            Guid id = Guid.NewGuid();
+            return new DbId(id);
+        }
 
         public override string ToString()
         {

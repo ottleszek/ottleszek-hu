@@ -6,6 +6,7 @@ using WillBeThere.Backend.Repos.WillBeThere;
 using WillBeThere.Backend.Services;
 using WillBeThere.Shared.Helpers.TestData;
 using WillBeThere.Shared.Models;
+using WillBeThere.Shared.Models.DbIds;
 using WillBeThere.Shared.Models.ResultModels;
 
 namespace WillBeThereTest.Backend.Services
@@ -33,7 +34,6 @@ namespace WillBeThereTest.Backend.Services
         private IOrganizationProgramService _organizationProgramService;
         public OrganizationProgramServiceFullDatabase()
         {
-
         }
         
         [SetUp]
@@ -47,6 +47,7 @@ namespace WillBeThereTest.Backend.Services
             _organizationProgramRepo = new OrganizationProgramRepo<WillBeThereInMemoryContext>(_context);
             _publicSpaceRepo =new PublicSpaceRepo<WillBeThereInMemoryContext>(_context);
             _registeredUserRepo = new RegisteredUserRepo<WillBeThereInMemoryContext>(_context);
+            _participationRepo = new ParticipationRepo<WillBeThereInMemoryContext>(_context);
 
             _wrapRepo = new WrapRepo(
                 _addressRepo,
@@ -94,7 +95,7 @@ namespace WillBeThereTest.Backend.Services
             List<string> expectedOrganizationName = FullDatabase.Organizations.Where(o => expectedList.Select(op => op.OrganizationOwnerId).Contains(o.Id)).Select(o  => o.Name).ToList();
             Assert.That(list.Select(pop => pop.Organization), Is.EqualTo(expectedOrganizationName),"A jövőbeli programok szervezői nem a megfelelő szervezetek!");
             // Addresses
-            List<Guid> expectedAddressIDs = FullDatabase.Addresses.Where(a => expectedList.Select(op => op.AddressId).Contains(a.Id)).Select(a => a.Id).ToList();
+            List<DbId> expectedAddressIDs = FullDatabase.Addresses.Where(a => expectedList.Select(op => op.AddressId).Contains(a.Id)).Select(a => a.Id).ToList();
             Assert.That(list.Select(pop => pop.Address.Id), Is.EqualTo(expectedAddressIDs), "A jövőbeli programok címei nem a megfelelőek");
         }
     }

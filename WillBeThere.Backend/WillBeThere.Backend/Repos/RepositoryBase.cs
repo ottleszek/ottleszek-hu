@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
-using WillBeThere.Backend.Repos.WillBeThere;
+using WillBeThere.Shared.DataBroker;
 using WillBeThere.Shared.Models.DbIds;
 using WillBeThere.Shared.Responses;
 

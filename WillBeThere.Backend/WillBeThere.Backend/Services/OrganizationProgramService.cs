@@ -21,7 +21,7 @@ namespace WillBeThere.Backend.Services
                 var query = from op in _wrapRepo.OrganizationProgramRepo.FindAll<OrganizationProgram>()
                             join a in _wrapRepo.AddressRepo.FindAll<Address>() on op.AddressId equals a.Id
                             join o in _wrapRepo.OrganizationRepo.FindAll<Organization>() on op.OrganizationOwnerId equals o.Id
-                            join ps in _wrapRepo.PublicSpaceRepo.FindAll<PublicSpace>() on a.PublicScapeID equals ps.Id
+                            join ps in _wrapRepo.PublicSpaceRepo.FindAll<PublicSpace>() on a.PublicScapeId equals ps.Id
                             where op.Start > DateTime.Now && op.IsPublic && !op.IsDeffered
                             select new PublicOrganizationProgram
                             {

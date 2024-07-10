@@ -1,41 +1,38 @@
-﻿using Newtonsoft.Json;
-using System.Diagnostics;
-using System.Net;
-using System.Net.Http.Json;
-using WillBeThere.Backend.Repos;
-using WillBeThere.Shared.Assamblers;
-using WillBeThere.Shared.Models.DbIds;
+﻿using WillBeThere.Shared.Models.DbIds;
 using WillBeThere.Shared.Responses;
+using WillBeThere.Shared.DataBroker;
+using System.Diagnostics;
+using WillBeThere.Shared.Assamblers;
+using System.Net.Http.Json;
+using Newtonsoft.Json;
+using System.Net;
 
-namespace WillBeThere.HttpService
+namespace WillBeThere.HttpService.HttpService
 {
-    public class BaseService<TEntity, TEntityDto> : IDataBroker, IBaseService
-        where TEntity : class, IDbEntity<TEntity>, new()
-        where TEntityDto : class, new()
+    public class BaseHttpService<TEntityDto> :  IDataBroker where TEntityDto : class, new()
     {
         protected readonly HttpClient? _httpClient;
-        protected Assambler<TEntity, TEntityDto> _assambler;
 
-        public BaseService(IHttpClientFactory? httpClientFactory, Assambler<TEntity, TEntityDto> assambler)
+        public BaseHttpService(IHttpClientFactory? httpClientFactory)
         {
             if (httpClientFactory is not null)
             {
                 _httpClient = httpClientFactory.CreateClient("KretaApi");
             }
-            _assambler = assambler;
         }
 
-        public async Task<List<TEntity>> SelectAsync() where TEntity : class, IDbEntity<TEntity>, new()
+        public async Task<List<TEntity>> SelectAsync<TEntity>() where TEntity : class, IDbEntity<TEntity>, new()
         {
+            Assambler<TEntity, TEntityDto> _assambler = new Assambler<TEntity, TEntityDto>();
             if (_httpClient is not null)
             {
                 try
                 {
-                    
-                    List<TEntityDto>? resultDto = await _httpClient.GetFromJsonAsync<List<TEntityDto>>($"api/{GetApiName()}");
+
+                    List<TEntityDto>? resultDto = await _httpClient.GetFromJsonAsync<List<TEntityDto>>($"api/{GetApiName<TEntity>()}");
                     if (resultDto is not null)
                     {
-                        List<TEntity> result = resultDto.Select(entity => _assambler.ToModel(entity) ).ToList();
+                        List<TEntity> result = resultDto.Select(entity => _assambler.ToModel(entity)).ToList();
                         return result;
                     }
                 }
@@ -47,77 +44,24 @@ namespace WillBeThere.HttpService
             return new List<TEntity>();
         }
 
-        Task<TEntity1> IDataBroker.GetByIdAsync<TEntity1>(DbId id)
+
+        public Task<TEntity?> GetByIdAsync<TEntity>(DbId id) where TEntity : class, IDbEntity<TEntity>, new()
         {
             throw new NotImplementedException();
         }
 
-        public async Task<ControllerResponse> UpdateAsync(TEntity entity)
+        public async Task<Response> DeleteAsync<TEntity>(DbId id) where TEntity : class, IDbEntity<TEntity>, new()
         {
-            ControllerResponse defaultResponse = new();
+            Response defaultResponse = new();
             if (_httpClient is not null)
             {
                 try
                 {
-                    HttpResponseMessage httpResponse = await _httpClient.PutAsJsonAsync($"api/{GetApiName()}", _assambler.ToDto(entity));
+                    HttpResponseMessage httpResponse = await _httpClient.DeleteAsync($"api/{GetApiName<TEntity>()}/{id}");
                     if (httpResponse.StatusCode == HttpStatusCode.BadRequest)
                     {
                         string content = await httpResponse.Content.ReadAsStringAsync();
-                        ControllerResponse? response = JsonConvert.DeserializeObject<ControllerResponse>(content);
-                        if (response is null)
-                        {
-                            defaultResponse.ClearAndAdd("A módosítás http kérés hibát okozott!");
-                        }
-                        else return response;
-                    }
-                    else if (!httpResponse.IsSuccessStatusCode)
-                    {
-                        httpResponse.EnsureSuccessStatusCode();
-                    }
-                    else
-                    {
-                        string content = await httpResponse.Content.ReadAsStringAsync();
-                        ControllerResponse? response = JsonConvert.DeserializeObject<ControllerResponse>(content);
-                        if (response is null)
-                        {
-                            defaultResponse.ClearAndAdd("A módosítás http kérés hibát okozott!");
-                        }
-                        else return response;
-                    }
-                }
-
-                catch (Exception ex)
-                {
-                    Debug.WriteLine(ex.Message);
-                }
-            }
-            defaultResponse.ClearAndAdd("Az adatok frissítés nem lehetséges!");
-            return defaultResponse;
-        }
-
-        public async Task<ControllerResponse> DeleteAsync(TEntity entity)
-        {
-            if (entity.Id.Exsist)
-            {
-                return await DeleteAsync(entity.Id);
-            }
-            else
-                return new ControllerResponse($"A {entity} entitásnak nincs azonosítója, nem lehet törölni!");
-        }
-
-
-        public async Task<ControllerResponse> DeleteAsync(DbId id)
-        {
-            ControllerResponse defaultResponse = new();
-            if (_httpClient is not null)
-            {
-                try
-                {
-                    HttpResponseMessage httpResponse = await _httpClient.DeleteAsync($"api/{GetApiName()}/{id}");
-                    if (httpResponse.StatusCode == HttpStatusCode.BadRequest)
-                    {
-                        string content = await httpResponse.Content.ReadAsStringAsync();
-                        ControllerResponse? response = JsonConvert.DeserializeObject<ControllerResponse>(content);
+                        Response? response = JsonConvert.DeserializeObject<ControllerResponse>(content);
                         if (response is null)
                         {
                             defaultResponse.ClearAndAdd("A törlés http kérés hibát okozott!");
@@ -131,7 +75,7 @@ namespace WillBeThere.HttpService
                     else
                     {
                         string content = await httpResponse.Content.ReadAsStringAsync();
-                        ControllerResponse? response = JsonConvert.DeserializeObject<ControllerResponse>(content);
+                        Response? response = JsonConvert.DeserializeObject<ControllerResponse>(content);
                         if (response is null)
                         {
                             defaultResponse.ClearAndAdd("A módosítás http kérés hibát okozott!");
@@ -148,14 +92,27 @@ namespace WillBeThere.HttpService
             return defaultResponse;
         }
 
-        public async Task<ControllerResponse> InsertAsync(TEntity entity)
+        public async Task<Response> DeleteAsync<TEntity>(TEntity? entity) where TEntity : class, IDbEntity<TEntity>, new()
         {
+            if (entity is not null && entity.Id.Exsist)
+            {
+                return await DeleteAsync<TEntity>(entity.Id);
+            }
+            else
+                return new Response($"A {entity} entitásnak nincs azonosítója, nem lehet törölni!");
+        }
+
+
+
+        public async Task<Response> InsertAsync<TEntity>(TEntity entity) where TEntity : class, IDbEntity<TEntity>, new()
+        {
+            Assambler<TEntity, TEntityDto> _assambler = new Assambler<TEntity, TEntityDto>();
             ControllerResponse defaultResponse = new();
             if (_httpClient is not null)
             {
                 try
                 {
-                    HttpResponseMessage httpResponse = await _httpClient.PostAsJsonAsync( $"api/{GetApiName()}", _assambler.ToDto(entity));
+                    HttpResponseMessage httpResponse = await _httpClient.PostAsJsonAsync($"api/{GetApiName<TEntity>()}", _assambler.ToDto(entity));
                     if (httpResponse.StatusCode == HttpStatusCode.BadRequest)
                     {
                         string content = await httpResponse.Content.ReadAsStringAsync();
@@ -190,9 +147,55 @@ namespace WillBeThere.HttpService
             return defaultResponse;
         }
 
-        private static string GetApiName()
+        public async Task<Response> UpdateAsync<TEntity>(TEntity entity) where TEntity : class, IDbEntity<TEntity>, new()
+        {
+            Response defaultResponse = new();
+            if (_httpClient is not null)
+            {
+                try
+                {
+                    Assambler<TEntity, TEntityDto> _assambler = new Assambler<TEntity, TEntityDto>();
+                    HttpResponseMessage httpResponse = await _httpClient.PutAsJsonAsync($"api/{GetApiName<TEntity>()}", _assambler.ToDto(entity));
+                    if (httpResponse.StatusCode == HttpStatusCode.BadRequest)
+                    {
+                        string content = await httpResponse.Content.ReadAsStringAsync();
+                        Response? response = JsonConvert.DeserializeObject<ControllerResponse>(content);
+                        if (response is null)
+                        {
+                            defaultResponse.ClearAndAdd("A módosítás http kérés hibát okozott!");
+                        }
+                        else return response;
+                    }
+                    else if (!httpResponse.IsSuccessStatusCode)
+                    {
+                        httpResponse.EnsureSuccessStatusCode();
+                    }
+                    else
+                    {
+                        string content = await httpResponse.Content.ReadAsStringAsync();
+                        Response? response = JsonConvert.DeserializeObject<ControllerResponse>(content);
+                        if (response is null)
+                        {
+                            defaultResponse.ClearAndAdd("A módosítás http kérés hibát okozott!");
+                        }
+                        else return response;
+                    }
+                }
+
+                catch (Exception ex)
+                {
+                    Debug.WriteLine(ex.Message);
+                }
+            }
+            defaultResponse.ClearAndAdd("Az adatok frissítés nem lehetséges!");
+            return defaultResponse;
+        }
+
+        private static string GetApiName<TEntity>() where TEntity : class, new()
         {
             return new TEntity().GetType().Name;
         }
+
+
     }
 }

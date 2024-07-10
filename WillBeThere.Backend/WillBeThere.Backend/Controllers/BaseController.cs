@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using WillBeThere.Backend.Repos;
 using WillBeThere.Shared.Assamblers;
+using WillBeThere.Shared.DataBroker;
 using WillBeThere.Shared.Models.DbIds;
 using WillBeThere.Shared.Responses;
 

@@ -2,7 +2,7 @@
 
 namespace WillBeThere.Backend.Repos.WillBeThere
 {
-    public interface IAddressRepo : IIncludedDataBroker
+    public interface IAddressRepo : IIncludedDataBroker, IRepositoryBase
     {
     }
 }
