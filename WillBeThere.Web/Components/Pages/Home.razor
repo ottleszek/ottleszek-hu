@@ -4,19 +4,24 @@
 
 <PageTitle>Publikus programok</PageTitle>
 <MudText Typo="Typo.h4 ">Publikus programok</MudText>
-@if (!isLoaded)
+@if (!_isLoaded)
 {
     <MudText>Publikus programok betöltése.</MudText>
 }
 else
 {
-    @if (numberOfPublicPrograms==0)
+    @if (_numberOfPublicPrograms==0)
     {
         <MudText>Nincs elérhető publikus program!</MudText>
     }
     else
     {
-        <MudDataGrid Items="@publicPrograms">
+        <MudDataGrid Items="@_publicPrograms" QuickFilter="@Filtring">
+            <ToolBarContent>
+                <MudText Typo="Typo.h6">Publikus programok</MudText>
+                <MudSpacer />
+                <MudTextField @bind-Value="@_filtringString" Placeholder="Szűrés" Adornment="Adornment.Start" Immediate="true" AdornmentIcon="@Icons.Material.Filled.Search" IconSize="Size.Medium" Class="mt-0" />
+            </ToolBarContent>
             <Columns>
                 <HierarchyColumn T="@PublicOrganizationProgram"/>
                 <PropertyColumn Property="pp => pp.Title" Title="Program címe"  />
@@ -32,19 +37,29 @@ else
             </MudCardContent>
             </ChildRowContent>
         </MudDataGrid>
-        <MudText Class="mt-4">Publikus programok száma: @numberOfPublicPrograms</MudText>
+        <MudText Class="mt-4">Publikus programok száma: @_numberOfPublicPrograms</MudText>
     }
 }
 
 @code {
-    private List<PublicOrganizationProgram>? publicPrograms = null;
+    private List<PublicOrganizationProgram>? _publicPrograms = null;
 
-    private bool isLoaded => publicPrograms is not null;
-    private int numberOfPublicPrograms => publicPrograms is not null ? publicPrograms.Count : 0;
+    private bool _isLoaded => _publicPrograms is not null;
+    private int _numberOfPublicPrograms => _publicPrograms is not null ? _publicPrograms.Count : 0;
+    private string _filtringString=string.Empty;
 
     protected async override Task OnInitializedAsync()
     {
-        publicPrograms = await service.GetAllPublicOrganizationProgramsAsync();
+        _publicPrograms = await service.GetAllPublicOrganizationProgramsAsync();
         await base.OnInitializedAsync();
     }
+
+    private Func<PublicOrganizationProgram, bool> Filtring => element =>
+    {
+        if (string.IsNullOrWhiteSpace(_filtringString))
+            return true;
+        if (element.Title.Contains(_filtringString, StringComparison.OrdinalIgnoreCase))
+            return true;
+        return false;        
+    };
 }
