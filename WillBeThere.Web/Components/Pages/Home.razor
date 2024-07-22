@@ -1,0 +1,53 @@
+﻿@page "/"
+@attribute [StreamRendering]
+@inject IPublicOrganizationHttpService service
+
+@using System.Web
+@using System.Text.RegularExpressions;
+
+<PageTitle>Publikus programok</PageTitle>
+<MudText Typo="Typo.h4 ">Publikus programok</MudText>
+@if (!isLoaded)
+{
+    <MudText>Publikus programok betöltése.</MudText>
+}
+else
+{
+    @if (numberOfPublicPrograms==0)
+    {
+        <MudText>Nincs elérhető publikus program!</MudText>
+    }
+    else
+    {
+        <MudDataGrid Items="@publicPrograms">
+            <Columns>
+                <HierarchyColumn T="@PublicOrganizationProgram"/>
+                <PropertyColumn Property="pp => pp.Title" Title="Program címe"  />
+                <PropertyColumn Property="pp => pp.Start " Format="yyyy.MM.dd HH:mm" Title="Kezdete" />
+                <PropertyColumn Property="pp => pp.End" Format="yyyy.MM.dd HH:mm" Title="Vége" />
+                <PropertyColumn Property="pp => pp.Organization" Title="Szervező" />
+            </Columns>
+            <ChildRowContent>
+                <MudCardContent>
+                    <MudText Style="font-size:12px">Program leírása: @context.Item.Description</MudText>
+                    <MudText Style="font-size:12px">Cím:</MudText>
+                    <MudText Class="ml-2"  Style="font-size:12px"><MultilineComponent Text="@context.Item.GetHungarianAddress()"></MultilineComponent></MudText>
+            </MudCardContent>
+            </ChildRowContent>
+        </MudDataGrid>
+        <MudText Class="mt-4">Publikus programok száma: @numberOfPublicPrograms</MudText>
+    }
+}
+
+@code {
+    private List<PublicOrganizationProgram>? publicPrograms = null;
+
+    private bool isLoaded => publicPrograms is not null;
+    private int numberOfPublicPrograms => publicPrograms is not null ? publicPrograms.Count : 0;
+
+    protected async override Task OnInitializedAsync()
+    {
+        publicPrograms = await service.GetAllPublicOrganizationProgramsAsync();
+        await base.OnInitializedAsync();
+    }
+}

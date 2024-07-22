@@ -33,7 +33,6 @@ namespace WillBeThereTest.Backend.Services
         private IOrganizationProgramService _organizationProgramService;
         public OrganizationProgramServiceFullDatabase()
         {
-
         }
         
         [SetUp]
@@ -47,6 +46,7 @@ namespace WillBeThereTest.Backend.Services
             _organizationProgramRepo = new OrganizationProgramRepo<WillBeThereInMemoryContext>(_context);
             _publicSpaceRepo =new PublicSpaceRepo<WillBeThereInMemoryContext>(_context);
             _registeredUserRepo = new RegisteredUserRepo<WillBeThereInMemoryContext>(_context);
+            _participationRepo = new ParticipationRepo<WillBeThereInMemoryContext>(_context);
 
             _wrapRepo = new WrapRepo(
                 _addressRepo,

@@ -150,7 +150,7 @@ namespace WillBeThereTest.Backend.Services
             Guid organizationProgramId2 = new Guid();
             Guid organizationProgramId3 = new Guid();
 
-            List<OrganizationProgram> organizationPrograms = new()
+                    List<OrganizationProgram> organizationPrograms = new()
             {
                 new OrganizationProgram
                 {

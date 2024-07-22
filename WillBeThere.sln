@@ -7,7 +7,15 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WillBeThere.Backend", "Will
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WillBeThere.Shared", "WillBeThere.Shared\WillBeThere.Shared.csproj", "{EEDB9F52-6DBB-4A8F-9771-A1DEC6B68FC8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WillBeThereTest", "WillBeThereTest\WillBeThereTest.csproj", "{2DB70571-E950-481F-B240-963EAB649FED}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WillBeThereTest", "WillBeThereTest\WillBeThereTest.csproj", "{2DB70571-E950-481F-B240-963EAB649FED}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WillBeThere.Web", "WillBeThere.Web\WillBeThere.Web.csproj", "{CE592382-D9B0-4B53-A73D-81BFFE20615E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{E525B7B5-FFB1-40F2-B279-7AF369A931E8}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WillBeThere.HttpService", "WillBeThere.Http.Services\WillBeThere.HttpService.csproj", "{1CEFF28E-B28F-4983-BC55-4905A50F72E3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Blazor.Components", "Blazor.Components\Blazor.Components.csproj", "{C624EC05-3CB9-40B9-A834-29E5AB4DAEBC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +35,18 @@ Global
 		{2DB70571-E950-481F-B240-963EAB649FED}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2DB70571-E950-481F-B240-963EAB649FED}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2DB70571-E950-481F-B240-963EAB649FED}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CE592382-D9B0-4B53-A73D-81BFFE20615E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CE592382-D9B0-4B53-A73D-81BFFE20615E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CE592382-D9B0-4B53-A73D-81BFFE20615E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CE592382-D9B0-4B53-A73D-81BFFE20615E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1CEFF28E-B28F-4983-BC55-4905A50F72E3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1CEFF28E-B28F-4983-BC55-4905A50F72E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1CEFF28E-B28F-4983-BC55-4905A50F72E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1CEFF28E-B28F-4983-BC55-4905A50F72E3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C624EC05-3CB9-40B9-A834-29E5AB4DAEBC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C624EC05-3CB9-40B9-A834-29E5AB4DAEBC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C624EC05-3CB9-40B9-A834-29E5AB4DAEBC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C624EC05-3CB9-40B9-A834-29E5AB4DAEBC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

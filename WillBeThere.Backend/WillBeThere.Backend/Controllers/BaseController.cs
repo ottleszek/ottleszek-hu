@@ -1,8 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using WillBeThere.Backend.Repos;
 using WillBeThere.Shared.Assamblers;
-using WillBeThere.Shared.Models;
+using WillBeThere.Shared.DataBroker;
+using WillBeThere.Shared.Models.Guids;
 using WillBeThere.Shared.Responses;
 
 namespace WillBeThere.Backend.Controllers
@@ -24,13 +23,13 @@ namespace WillBeThere.Backend.Controllers
         [HttpGet]
         [ProducesDefaultResponseType]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
-        public virtual async Task<IActionResult> SelectAllAsync()
+        public virtual async Task<IActionResult> SelectAsync()
         {
             List<TModel>? entities = new();
 
             if (_repo != null && _assambler is not null)
             {
-                entities = await _repo.FindAll<TModel>().ToListAsync();
+                entities = await _repo.SelectAsync<TModel>();
                 return Ok(entities.Select(entity => _assambler.ToDto(entity)));
             }
             return NoContent();
@@ -43,7 +42,7 @@ namespace WillBeThere.Backend.Controllers
             TModel? entity = new();
             if (_repo is not null && _assambler is not null)
             {
-                entity = await _repo.FindByCondition<TModel>(entity => entity.Id == id).FirstOrDefaultAsync();
+                entity = await _repo.GetByIdAsync<TModel>(id);
                 if (entity != null)
                     return Ok(_assambler.ToDto(entity));
                 else
@@ -52,9 +51,27 @@ namespace WillBeThere.Backend.Controllers
             return BadRequest("Az adatok elérhetetlenek!");
         }
 
+
+        // POST: api/TModel
+        [HttpPost()]
+        public async Task<IActionResult> InsertAsync([FromBody] TDto entity)
+        {
+            ControllerResponse response = new();
+            if (_repo is not null && _assambler is not null)
+            {
+                response = (ControllerResponse)await _repo.InsertAsync(_assambler.ToModel(entity));
+                if (!response.HasError)
+                    return Ok(response);
+                else
+                    response.ClearAndAdd($"{response.Error}");
+            }
+            response.ClearAndAdd("Az új adatok mentése nem lehetséges!");
+            return BadRequest(response);
+        }
+
         // PUT: api/TModel/
         [HttpPut()]
-        public async Task<ActionResult> UpdateAsync(TDto entity)
+        public async Task<ActionResult> UpdateAsync([FromBody] TDto entity)
         {
             ControllerResponse response = new();
             if (_repo is not null && _assambler is not null)
@@ -83,23 +100,6 @@ namespace WillBeThere.Backend.Controllers
                     response.ClearAndAdd($"{response.Error}");
             }        
             response.ClearAndAdd("Az adatok törlése nem lehetséges!");
-            return BadRequest(response);
-        }
-
-        // POST: api/TModel
-        [HttpPost()]
-        public async Task<IActionResult> InsertAsync(TDto entity)
-        {
-            ControllerResponse response = new();
-            if (_repo is not null && _assambler is not null)
-            {
-                response = (ControllerResponse) await _repo.CreateAsync(_assambler.ToModel(entity));
-                if (!response.HasError)
-                    return Ok(response);
-                else
-                    response.ClearAndAdd($"{response.Error}");
-            }
-            response.ClearAndAdd("Az új adatok mentése nem lehetséges!");
             return BadRequest(response);
         }
     }

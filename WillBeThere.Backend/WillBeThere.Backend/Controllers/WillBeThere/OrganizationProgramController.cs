@@ -28,8 +28,8 @@ namespace WillBeThere.Backend.Controllers.WillBeThere
             _publicOrganizationProgramAssambler = publicOrganizationProgramAssambler;
         }
 
-        // GET: /api/publicprograms
-        [HttpGet("OrganizationProgram/publicprograms")]
+        // GET: /api/OrganizationProgram/publicprograms
+        [HttpGet("publicprograms")]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(List<OrganizationProgramDto>))]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         public async Task<IActionResult> GetPublicPrograms()

@@ -1,9 +1,11 @@
-﻿namespace WillBeThere.Shared.Dtos
+﻿using WillBeThere.Shared.Models.Guids;
+
+namespace WillBeThere.Shared.Dtos
 {
     public class AddressDto
     {
-        public Guid Id { get; set; }
-        public Guid? PublicScapeID { get; set; }
+        public Guid Id { get; set; } = Guid.Empty;
+        public Guid PublicScapeID { get; set; } = Guid.Empty;
         public string PublicSpaceName { get; set; } = string.Empty;
         public string Locality { get; set; }= string.Empty;
         public int House { get; set; }

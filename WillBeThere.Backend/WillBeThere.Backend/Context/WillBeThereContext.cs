@@ -43,7 +43,7 @@ namespace WillBeThere.Backend.Context
             modelBuilder.Entity<PublicSpace>()
                 .HasMany(ps => ps.Addresses)
                 .WithOne(a => a.PublicSpace)
-                .HasForeignKey(ps => ps.PublicScapeID)
+                .HasForeignKey(ps => ps.PublicScapeId)
                 .IsRequired(true);
             // 1:N OrganizationCategory - Organization
             modelBuilder.Entity<OrganizationCategory>()

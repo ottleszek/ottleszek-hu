@@ -1,0 +1,9 @@
+﻿@using System.Web
+@using System.Text.RegularExpressions;
+
+@((MarkupString)Regex.Replace(HttpUtility.HtmlEncode(Text), "\r?\n|\r", "<br />"))
+
+@code {
+    [Parameter]
+    public string Text { get; set; } = default!;
+}

@@ -1,26 +1,28 @@
-﻿namespace WillBeThere.Shared.Models
+﻿using WillBeThere.Shared.Models.Guids;
+
+namespace WillBeThere.Shared.Models
 {
-    public class OrganizationProgram : IDbEntity<OrganizationProgram>
+    public class OrganizationProgram :  IDbEntity<OrganizationProgram>
     {
-        public OrganizationProgram()
+        public OrganizationProgram() 
         {
-            Id = Guid.Empty;
+            Id=Guid.Empty;
             Title = string.Empty;
             Description = string.Empty;
             Start = DateTime.Now;
             End = null;
             IsPublic = false;
             IsDeffered = false;
-            OrganizationOwnerId = Guid.Empty;
-            ProgramOwnerId = Guid.Empty;
-            AddressId = Guid.Empty;
+            OrganizationOwnerId = new();
+            ProgramOwnerId = new();
+            AddressId = new();
             Organization = null;
             
         }
 
-        public OrganizationProgram(Guid id, string title, string description, DateTime start, DateTime? end, bool isPublic, bool isDeffered, Guid organizationOwnerId, Guid programOwnerId, Guid? addressId)
+        public OrganizationProgram(Guid id, string title, string description, DateTime start, DateTime? end, bool isPublic, bool isDeffered, Guid organizationOwnerId, Guid programOwnerId, Guid? addressId) 
         {
-            Id = id;
+            Id= id;
             Title = title;
             Description = description;
             Start = start;
@@ -31,7 +33,6 @@
             ProgramOwnerId = programOwnerId;
             AddressId = addressId;
         }
-
         public Guid Id { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
@@ -46,5 +47,6 @@
         public virtual OrganizationAdminUser? ProgramOwner { get; set; }
         public virtual Address? Address { get; set; }
         public virtual ICollection<Participation>? ProgramParticipants { get; set; }
+
     }
 }

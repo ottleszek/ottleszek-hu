@@ -1,8 +1,10 @@
 ﻿namespace WillBeThere.Shared.Assamblers
 {
-    public abstract class Assambler<TModel, TDto>
+    public class Assambler<TModel, TDto> 
+        where TModel : class, new()
+        where TDto: class, new()
     {
-        public abstract TModel ToModel(TDto dto);
-        public abstract TDto ToDto(TModel model);
+        public virtual TModel ToModel(TDto dto) { return new TModel(); }
+        public virtual TDto ToDto(TModel model) { return new TDto(); }
     }
 }

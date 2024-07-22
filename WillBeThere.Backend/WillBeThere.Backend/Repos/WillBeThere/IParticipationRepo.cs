@@ -1,6 +1,8 @@
-﻿namespace WillBeThere.Backend.Repos.WillBeThere
+﻿using WillBeThere.Shared.DataBroker;
+
+namespace WillBeThere.Backend.Repos.WillBeThere
 {
-    public interface IParticipationRepo
+    public interface IParticipationRepo : IIncludedDataBroker, IRepositoryBase
     {
     }
 }

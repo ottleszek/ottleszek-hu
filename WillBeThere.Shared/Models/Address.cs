@@ -1,22 +1,25 @@
-﻿namespace WillBeThere.Shared.Models
-{     public class Address : IDbEntity<Address>
+﻿using WillBeThere.Shared.Models.Guids;
+
+namespace WillBeThere.Shared.Models
+{
+    public class Address : IDbEntity<Address>
     {
-        public Address()
+        public Address() 
         {
-            Id = Guid.Empty;
+            Id= Guid.Empty;
             Locality = string.Empty;
             PublicSpaceName = string.Empty;
             House = -1;
             Floor = -1;
             Door = -1;
             PostalCode = -1;
-            PublicScapeID = Guid.Empty;
+            PublicScapeId = new();
         }
 
-        public Address(Guid id, Guid? publicScapeID, string publicSpaceName, string locality, int house, int floor, int door, int postalCode)
+        public Address(Guid id, Guid publicScapeID, string publicSpaceName, string locality, int house, int floor, int door, int postalCode) 
         {
-            Id = id;
-            PublicScapeID = publicScapeID;
+            Id=id;
+            PublicScapeId = publicScapeID;
             PublicSpaceName = publicSpaceName;
             Locality = locality;
             House = house;
@@ -26,7 +29,7 @@
         }
 
         public Guid Id { get; set; }
-        public Guid? PublicScapeID { get; set; }
+        public Guid PublicScapeId { get; set; }
         public string PublicSpaceName { get; set; }
         public string Locality { get; set; }
         public int House { get; set; }

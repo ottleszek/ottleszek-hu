@@ -17,7 +17,7 @@ namespace WillBeThere.Shared.Extensions
                 Floor = model.Floor,
                 Door = model.Door,
                 PostalCode = model.PostalCode,
-                PublicScapeID = model.PublicScapeID,
+                PublicScapeID = model.PublicScapeId,
             };
         }
 
@@ -32,7 +32,7 @@ namespace WillBeThere.Shared.Extensions
                 Floor = dto.Floor,
                 Door = dto.Door,
                 PostalCode = dto.PostalCode,
-                PublicScapeID = dto.PublicScapeID,
+                PublicScapeId = dto.PublicScapeID,
             };
         }
     }

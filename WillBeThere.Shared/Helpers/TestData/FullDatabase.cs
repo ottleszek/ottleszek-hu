@@ -16,7 +16,7 @@ namespace WillBeThere.Shared.Helpers.TestData
         static Guid addressId3 = Guid.NewGuid();
         static Guid addressId4 = Guid.NewGuid();
         static Guid addressId5 = Guid.NewGuid();
-        static Guid addressId6 = Guid.NewGuid();
+        //static Guid addressId6 = Guid.NewGuid();
 
         static Guid organizationCategoryId1 = Guid.NewGuid();
         static Guid organizationCategoryId2 = Guid.NewGuid();
@@ -52,23 +52,23 @@ namespace WillBeThere.Shared.Helpers.TestData
         static Guid organizationAdminUserId5 = Guid.NewGuid();
         static Guid organizationAdminUserId6 = Guid.NewGuid();
 
-        public static Guid organizationProgramId1 = Guid.NewGuid();
-        public static Guid organizationProgramId2 = Guid.NewGuid();
-        public static Guid OrganizationProgramId3 = Guid.NewGuid();
-        public static Guid OrganizationProgramId4 = Guid.NewGuid();
-        public static Guid organizationProgramId5 = Guid.NewGuid();
-        public static Guid organizationProgramId6 = Guid.NewGuid();
-        public static Guid organizationProgramId7 = Guid.NewGuid();
-        public static Guid organizationProgramId8 = Guid.NewGuid();
-        public static Guid organizationProgramId9 = Guid.NewGuid();
-        public static Guid organizationProgramId10 = Guid.NewGuid();
-        public static Guid organizationProgramId11 = Guid.NewGuid();
+        public static  Guid organizationProgramId1 = Guid.NewGuid();
+        public static  Guid organizationProgramId2 = Guid.NewGuid();
+        public static  Guid OrganizationProgramId3 = Guid.NewGuid();
+        public static  Guid OrganizationProgramId4 = Guid.NewGuid();
+        public static  Guid organizationProgramId5 = Guid.NewGuid();
+        public static  Guid organizationProgramId6 = Guid.NewGuid();
+        public static  Guid organizationProgramId7 = Guid.NewGuid();
+        public static  Guid organizationProgramId8 = Guid.NewGuid();
+        public static  Guid organizationProgramId9 = Guid.NewGuid();
+        public static  Guid organizationProgramId10 = Guid.NewGuid();
+        public static  Guid organizationProgramId11 = Guid.NewGuid();
 
-        static Guid participationId1 = Guid.NewGuid();
-        static Guid participationId2 = Guid.NewGuid();
-        static Guid participationId3 = Guid.NewGuid();
-        static Guid participationId4 = Guid.NewGuid();
-        static Guid participationId5 = Guid.NewGuid();
+        static  Guid participationId1 = Guid.NewGuid();
+        static  Guid participationId2 = Guid.NewGuid();
+        static  Guid participationId3 = Guid.NewGuid();
+        static  Guid participationId4 = Guid.NewGuid();
+        static  Guid participationId5 = Guid.NewGuid();
         #endregion
 
         #region PublicSpace
@@ -110,7 +110,7 @@ namespace WillBeThere.Shared.Helpers.TestData
                     Id =addressId1,
                     PostalCode=6757,
                     Locality="Szeged",
-                    PublicScapeID=publicSpace1,
+                    PublicScapeId=publicSpace1,
                     PublicSpaceName = "Napraforgó utca",
                     House=1,
                 },
@@ -119,7 +119,7 @@ namespace WillBeThere.Shared.Helpers.TestData
                     Id =addressId2,
                     PostalCode=6757,
                     Locality="Szeged",
-                    PublicScapeID=publicSpace1,
+                    PublicScapeId=publicSpace1,
                     PublicSpaceName = "Koszorú utca",
                     House=49,
                 },
@@ -128,7 +128,7 @@ namespace WillBeThere.Shared.Helpers.TestData
                     Id =addressId3,
                     PostalCode=6757,
                     Locality="Szeged",
-                    PublicScapeID=publicSpace1,
+                    PublicScapeId=publicSpace1,
                     PublicSpaceName = "Koszorú utca",
                     House=33,
                 },
@@ -137,7 +137,7 @@ namespace WillBeThere.Shared.Helpers.TestData
                     Id =addressId4,
                     PostalCode=6710,
                     Locality="Szeged",
-                    PublicScapeID=publicSpace4,
+                    PublicScapeId=publicSpace4,
                     PublicSpaceName = "Kapisztrán",
                     House=50,
                 },
@@ -146,7 +146,7 @@ namespace WillBeThere.Shared.Helpers.TestData
                     Id =addressId5,
                     PostalCode=6720,
                     Locality="Szeged",
-                    PublicScapeID=publicSpace2,
+                    PublicScapeId=publicSpace2,
                     PublicSpaceName = "Dugonics",
                     House=12,
                 },
@@ -259,8 +259,8 @@ namespace WillBeThere.Shared.Helpers.TestData
                 new Organization
                 {
                     Id= organizationId9,
-                    Name="Szeged-Csanád egyházmegye Pasztorális helynökség",
-                    Description="Szeged-Csanád egyházmegye Pasztorális helynöksége",
+                    Name="Szeged-Csanád Egyházmegye Pasztorális helynökség",
+                    Description="Szeged-Csanád Egyházmegye Pasztorális helynöksége",
                     Url="pasztoralis-helynokseg.szeged-csanádi-egyhazmegye.ottleszek.hu",
                     OrganizationCategoryId=organizationCategoryId1,
                 },

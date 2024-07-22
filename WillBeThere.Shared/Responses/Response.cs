@@ -2,7 +2,12 @@
 {
     public class Response : ErrorStore
     {
-        public bool IsSuccess => !HasError;
+        public Response(string error)
+        {
+            Error = error;
+        }
         public Response() : base() { }
+
+        public bool IsSuccess => !HasError;
     }
 }
