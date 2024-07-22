@@ -22,7 +22,8 @@ namespace WillBeThere.Backend.Services
                             join a in _wrapRepo.AddressRepo.FindAll<Address>() on op.AddressId equals a.Id
                             join o in _wrapRepo.OrganizationRepo.FindAll<Organization>() on op.OrganizationOwnerId equals o.Id
                             join ps in _wrapRepo.PublicSpaceRepo.FindAll<PublicSpace>() on a.PublicScapeId equals ps.Id
-                            where op.Start > DateTime.Now && op.IsPublic && !op.IsDeffered
+                            where op.Start > DateTime.Now && op.IsPublic && !op.IsDeffered              
+                            orderby op.Start ascending
                             select new PublicOrganizationProgram
                             {
                                 Id = op.Id,

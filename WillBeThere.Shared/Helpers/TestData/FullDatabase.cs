@@ -259,8 +259,8 @@ namespace WillBeThere.Shared.Helpers.TestData
                 new Organization
                 {
                     Id= organizationId9,
-                    Name="Szeged-Csanád egyházmegye Pasztorális helynökség",
-                    Description="Szeged-Csanád egyházmegye Pasztorális helynöksége",
+                    Name="Szeged-Csanád Egyházmegye Pasztorális helynökség",
+                    Description="Szeged-Csanád Egyházmegye Pasztorális helynöksége",
                     Url="pasztoralis-helynokseg.szeged-csanádi-egyhazmegye.ottleszek.hu",
                     OrganizationCategoryId=organizationCategoryId1,
                 },

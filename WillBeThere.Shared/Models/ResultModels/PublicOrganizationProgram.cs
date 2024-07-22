@@ -12,5 +12,17 @@
         public Address Address { get; set; } =new Address() ;
         public string PublicSpaceName { get; set; } = string.Empty ;
 
+
+        public string GetHungarianAddress()
+        {
+            string addressNumber = $"{Address.House}.";
+            if (Address.Floor > 0)
+                addressNumber = $"{Address.House}/{Address.Floor}";
+            else if (Address.Floor > 0 && Address.Door > 0)
+                addressNumber = $"{Address.House}/{Address.Floor}/{Address.Door}";
+
+            return $"{Address.Locality}\n{Address.PublicSpaceName} {PublicSpaceName} {addressNumber} \n{Address.PostalCode} ";
+        }
+
     }
 }
