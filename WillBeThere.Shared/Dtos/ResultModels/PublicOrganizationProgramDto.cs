@@ -1,5 +1,4 @@
 ﻿using WillBeThere.Shared.Models;
-using WillBeThere.Shared.Models.Guids;
 
 namespace WillBeThere.Shared.Dtos.ResultModels
 {

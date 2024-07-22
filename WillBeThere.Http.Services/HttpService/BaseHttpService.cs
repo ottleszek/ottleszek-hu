@@ -16,7 +16,7 @@ namespace WillBeThere.HttpService.HttpService
         {
             if (httpClientFactory is not null)
             {
-                _httpClient = httpClientFactory.CreateClient("KretaApi");
+                _httpClient = httpClientFactory.CreateClient("WillBeThere");
             }
         }
 

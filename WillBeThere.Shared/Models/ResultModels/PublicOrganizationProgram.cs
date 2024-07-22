@@ -1,6 +1,4 @@
-﻿using WillBeThere.Shared.Models.Guids;
-
-namespace WillBeThere.Shared.Models.ResultModels
+﻿namespace WillBeThere.Shared.Models.ResultModels
 {
     public class PublicOrganizationProgram 
     {

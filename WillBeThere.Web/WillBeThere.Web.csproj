@@ -10,4 +10,9 @@
     <PackageReference Include="MudBlazor" Version="7.0.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\WillBeThere.Http.Services\WillBeThere.HttpService.csproj" />
+    <ProjectReference Include="..\WillBeThere.Shared\WillBeThere.Shared.csproj" />
+  </ItemGroup>
+
 </Project>

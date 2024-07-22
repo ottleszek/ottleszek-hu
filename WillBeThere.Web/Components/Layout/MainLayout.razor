@@ -27,7 +27,7 @@
         </MudDrawerContainer>
     </MudDrawer>
     <MudMainContent>
-        <MudContainer MaxWidth="MaxWidth.Large">
+        <MudContainer MaxWidth="MaxWidth.Large" Class="mt-4">
             @Body
         </MudContainer>
     </MudMainContent>
@@ -52,9 +52,11 @@
             },
             PaletteDark = new PaletteDark
             {
-                Primary = Colors.DeepPurple.Darken4,
+                Primary = Colors.Gray.Lighten1,
                 Secondary = Colors.Green.Accent4,
                 AppbarBackground = Colors.Red.Darken3,
+                TextPrimary=Colors.Green.Accent1,
+                TextSecondary=Colors.Green.Accent3,
             }
         };
 

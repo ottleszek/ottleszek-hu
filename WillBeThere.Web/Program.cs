@@ -1,5 +1,6 @@
 using MudBlazor.Services;
 using WillBeThere.Web.Components;
+using WillBeThere.Web.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,6 +9,10 @@ builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
 
 builder.Services.AddMudServices();
+
+builder.Services.ConfigureHttpCliens();
+builder.Services.ConfigureAssamblers();
+builder.Services.ConfigureServices();
 
 var app = builder.Build();
 
