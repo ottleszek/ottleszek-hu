@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using WillBeThere.Shared.Assamblers;
+using WillBeThere.Shared.Assemblers;
 using WillBeThere.Shared.DataBroker;
 using WillBeThere.Shared.Models.Guids;
 using WillBeThere.Shared.Responses;
@@ -10,10 +10,10 @@ namespace WillBeThere.Backend.Controllers
         where TModel : class, IDbEntity<TModel>, new()
         where TDto : class, new()
     {
-        protected readonly Assambler<TModel, TDto>? _assambler;
+        protected readonly IAssembler<TModel, TDto>? _assambler;
         protected readonly IDataBroker? _repo;
 
-        public BaseController(Assambler<TModel, TDto>? assambler, IDataBroker? repo)
+        public BaseController(IAssembler<TModel, TDto>? assambler, IDataBroker? repo)
         {
             _assambler = assambler;
             _repo = repo;

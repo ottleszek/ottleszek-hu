@@ -1,6 +1,5 @@
 ﻿using WillBeThere.Shared.Responses;
 using System.Diagnostics;
-using WillBeThere.Shared.Assamblers;
 using System.Net.Http.Json;
 using Newtonsoft.Json;
 using System.Net;
@@ -20,19 +19,16 @@ namespace WillBeThere.HttpService.HttpService
             }
         }
 
-        public async Task<List<TEntity>> SelectAsync<TEntity>() where TEntity : class, IDbEntity<TEntity>, new()
+        public async Task<List<TEntityDto>> SelectAsync<TEntity>() where TEntity : class, IDbEntity<TEntity>, new()
         {
-            Assambler<TEntity, TEntityDto> _assambler = new Assambler<TEntity, TEntityDto>();
             if (_httpClient is not null)
             {
                 try
                 {
-
                     List<TEntityDto>? resultDto = await _httpClient.GetFromJsonAsync<List<TEntityDto>>($"api/{GetApiName<TEntity>()}");
                     if (resultDto is not null)
                     {
-                        List<TEntity> result = resultDto.Select(entity => _assambler.ToModel(entity)).ToList();
-                        return result;
+                        return resultDto;
                     }
                 }
                 catch (Exception ex)
@@ -40,10 +36,10 @@ namespace WillBeThere.HttpService.HttpService
                     Debug.WriteLine(ex.Message);
                 }
             }
-            return new List<TEntity>();
+            return new List<TEntityDto>();
         }
 
-        public Task<TEntity?> GetByIdAsync<TEntity>(Guid id) where TEntity : class, IDbEntity<TEntity>, new()
+        public Task<TEntityDto?> GetByIdAsync<TEntity>(Guid id) where TEntity : class, IDbEntity<TEntity>, new()
         {
             throw new NotImplementedException();
         }
@@ -90,27 +86,14 @@ namespace WillBeThere.HttpService.HttpService
             return defaultResponse;
         }
 
-        public async Task<Response> DeleteAsync<TEntity>(TEntity? entity) where TEntity : class, IDbEntity<TEntity>, new()
+        public async Task<Response> InsertAsync<TEntity>(TEntityDto entityDto) where TEntity : class, IDbEntity<TEntity>, new()
         {
-            if (entity is not null && entity.HasId)
-            {
-                return await DeleteAsync<TEntity>(entity.Id);
-            }
-            else
-                return new Response($"A {entity} entitásnak nincs azonosítója, nem lehet törölni!");
-        }
-
-
-
-        public async Task<Response> InsertAsync<TEntity>(TEntity entity) where TEntity : class, IDbEntity<TEntity>, new()
-        {
-            Assambler<TEntity, TEntityDto> _assambler = new Assambler<TEntity, TEntityDto>();
             ControllerResponse defaultResponse = new();
             if (_httpClient is not null)
             {
                 try
                 {
-                    HttpResponseMessage httpResponse = await _httpClient.PostAsJsonAsync($"api/{GetApiName<TEntity>()}", _assambler.ToDto(entity));
+                    HttpResponseMessage httpResponse = await _httpClient.PostAsJsonAsync($"api/{GetApiName<TEntity>()}",entityDto);
                     if (httpResponse.StatusCode == HttpStatusCode.BadRequest)
                     {
                         string content = await httpResponse.Content.ReadAsStringAsync();
@@ -145,15 +128,14 @@ namespace WillBeThere.HttpService.HttpService
             return defaultResponse;
         }
 
-        public async Task<Response> UpdateAsync<TEntity>(TEntity entity) where TEntity : class, IDbEntity<TEntity>, new()
+        public async Task<Response> UpdateAsync<TEntity>(TEntityDto entityDto) where TEntity : class, IDbEntity<TEntity>, new()
         {
             Response defaultResponse = new();
             if (_httpClient is not null)
             {
                 try
                 {
-                    Assambler<TEntity, TEntityDto> _assambler = new Assambler<TEntity, TEntityDto>();
-                    HttpResponseMessage httpResponse = await _httpClient.PutAsJsonAsync($"api/{GetApiName<TEntity>()}", _assambler.ToDto(entity));
+                    HttpResponseMessage httpResponse = await _httpClient.PutAsJsonAsync($"api/{GetApiName<TEntity>()}", entityDto);
                     if (httpResponse.StatusCode == HttpStatusCode.BadRequest)
                     {
                         string content = await httpResponse.Content.ReadAsStringAsync();

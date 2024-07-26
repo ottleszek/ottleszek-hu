@@ -1,6 +1,8 @@
 ﻿@page "/"
 @attribute [StreamRendering]
-@inject IPublicOrganizationHttpService service
+@inject IOrganizationProgramDataService? _organizationProgramDataService
+@inject IOrganizationCategoryDataService? _organizationCategoryDataService
+
 
 <PageTitle>Publikus programok</PageTitle>
 <MudText Typo="Typo.h4 ">Publikus programok</MudText>
@@ -16,6 +18,18 @@ else
     }
     else
     {
+        if (_organizationCategories is not null)
+        {
+            <MudChipSet @bind-SelectedValues="_selected" SelectionMode="SelectionMode.MultiSelection" CheckMark="_checkMark" Variant="Variant.Text" Color="Color.Info">
+                @foreach (OrganizationCategory organizationCategory in _organizationCategories)
+                {
+                    @if (!string.IsNullOrEmpty(organizationCategory.Name))
+                    {
+                        <MudChip Value="@organizationCategory.Name"></MudChip>
+                    }
+                }
+            </MudChipSet>
+        }
         <MudDataGrid Items="@_publicPrograms" QuickFilter="@Filtring">
             <ToolBarContent>
                 <MudText Typo="Typo.h6">Publikus programok</MudText>
@@ -43,6 +57,10 @@ else
 
 @code {
     private List<PublicOrganizationProgram>? _publicPrograms = null;
+    private List<OrganizationCategory>? _organizationCategories = null;
+
+    private bool _checkMark = true;
+    private IReadOnlyCollection<string> _selected;
 
     private bool _isLoaded => _publicPrograms is not null;
     private int _numberOfPublicPrograms => _publicPrograms is not null ? _publicPrograms.Count : 0;
@@ -50,7 +68,10 @@ else
 
     protected async override Task OnInitializedAsync()
     {
-        _publicPrograms = await service.GetAllPublicOrganizationProgramsAsync();
+        if (_organizationProgramDataService is not null)
+            _publicPrograms = await _organizationProgramDataService.GetAllPublicOrganizationProgramsAsync();
+        if (_organizationCategoryDataService is not null)           
+            _organizationCategories = await _organizationCategoryDataService.SelectAsync();
         await base.OnInitializedAsync();
     }
 

@@ -3,8 +3,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage.Internal;
 using WillBeThere.Backend.Repos.WillBeThere;
 using WillBeThere.Backend.Services;
-using WillBeThere.Shared.Assamblers;
-using WillBeThere.Shared.Assamblers.ResultModels;
+using WillBeThere.Shared.Assemblers;
+using WillBeThere.Shared.Assemblers.ResultModels;
 using WillBeThere.Shared.Dtos;
 using WillBeThere.Shared.Models;
 using WillBeThere.Shared.Models.ResultModels;
@@ -16,10 +16,10 @@ namespace WillBeThere.Backend.Controllers.WillBeThere
     public class OrganizationProgramController : IncludedController<OrganizationProgram, OrganizationProgramDto>
     {
         private readonly IOrganizationProgramService? _organizationProgramService;
-        private readonly PublicOrganizationProgramAssambler _publicOrganizationProgramAssambler;
+        private readonly PublicOrganizationProgramAssembler _publicOrganizationProgramAssambler;
         public OrganizationProgramController(
-            OrganizationProgramAssambler? assambler, 
-            PublicOrganizationProgramAssambler publicOrganizationProgramAssambler,
+            OrganizationProgramAssembler? assambler, 
+            PublicOrganizationProgramAssembler publicOrganizationProgramAssambler,
             IOrganizationProgramRepo? repo,
             IOrganizationProgramService? organizationProgramService
             ) : base(assambler, repo)

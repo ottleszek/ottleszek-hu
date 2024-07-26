@@ -3,8 +3,8 @@ using WillBeThere.Backend.Context;
 using WillBeThere.Backend.Repos;
 using WillBeThere.Backend.Repos.WillBeThere;
 using WillBeThere.Backend.Services;
-using WillBeThere.Shared.Assamblers;
-using WillBeThere.Shared.Assamblers.ResultModels;
+using WillBeThere.Shared.Assemblers;
+using WillBeThere.Shared.Assemblers.ResultModels;
 
 namespace WillBeThere.Backend.Extensions
 {
@@ -41,16 +41,16 @@ namespace WillBeThere.Backend.Extensions
 
         public static void ConfigureAssamblers(this IServiceCollection services)
         {
-            services.AddScoped<AddressAssambler>();
-            services.AddScoped<OrganizationAssambler>();
-            services.AddScoped<OrganizationAdminAssambler>();
+            services.AddScoped<AddressAssembler>();
+            services.AddScoped<OrganizationAssembler>();
+            services.AddScoped<OrganizationAdminAssembler>();
             services.AddScoped<OrganizationCategoryAssembler>();
-            services.AddScoped<OrganizationProgramAssambler>();
-            services.AddScoped<PartipationAssambler>();
-            services.AddScoped<PublicSpaceAssambler>();
-            services.AddScoped<RegisteredUserAssambler>();
+            services.AddScoped<OrganizationProgramAssembler>();
+            services.AddScoped<PartipationAssembler>();
+            services.AddScoped<PublicSpaceAssembler>();
+            services.AddScoped<RegisteredUserAssembler>();
             
-            services.AddScoped<PublicOrganizationProgramAssambler>();
+            services.AddScoped<PublicOrganizationProgramAssembler>();
 
         }
 

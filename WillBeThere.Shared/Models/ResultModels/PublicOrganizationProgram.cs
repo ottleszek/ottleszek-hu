@@ -1,6 +1,8 @@
-﻿namespace WillBeThere.Shared.Models.ResultModels
+﻿using WillBeThere.Shared.Models.Guids;
+
+namespace WillBeThere.Shared.Models.ResultModels
 {
-    public class PublicOrganizationProgram 
+    public class PublicOrganizationProgram : IDbEntity<PublicOrganizationProgram>
     {
         public Guid Id { get; set; } = Guid.NewGuid();
         public string Title { get; set; } = string.Empty;
