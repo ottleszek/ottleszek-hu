@@ -11,6 +11,7 @@ namespace WillBeThere.Shared.Models.ResultModels
         public DateTime? End { get; set; }
         public Guid OrganizationId { get; set; } = Guid.NewGuid();
         public string Organization { get; set; } = string.Empty ;
+        public string OrganizationCategory { get; set; } = string.Empty ;
         public Address Address { get; set; } =new Address() ;
         public string PublicSpaceName { get; set; } = string.Empty ;
 
