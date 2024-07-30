@@ -1,50 +1,55 @@
-﻿using WillBeThere.HttpService.HttpService;
+﻿using WillBeThere.HttpService.MapperService;
+using WillBeThere.Shared.Assemblers;
 using WillBeThere.Shared.Models.Guids;
 using WillBeThere.Shared.Responses;
 
 namespace WillBeThere.HttpService.DataService
 {
-    public class BaseDataService<TEntity, TEntityDto> : IBaseDataService<TEntity,TEntityDto>
+    public class BaseDataService<TEntity, TEntityDto, TAssembler> : IBaseDataService<TEntity,TEntityDto,TAssembler>
         where TEntity : class, IDbEntity<TEntity>, new()
         where TEntityDto : class, new()
+        where TAssembler : class, IAssembler<TEntity, TEntityDto>
     {
-        protected IBaseHttpService<TEntityDto> _httpService;
+        protected IBaseMapperService<TEntity,TEntityDto, TAssembler>? _mapperService;
 
-        public BaseDataService(IBaseHttpService<TEntityDto> httpService)
+        public BaseDataService(IBaseMapperService<TEntity,TEntityDto, TAssembler>? mapperService)
         {
+            _mapperService = mapperService;
+   
+        }
 
-            _httpService = httpService;
+        public Task<Response> DeleteAsync(TEntity entity)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<Response> DeleteAsync(Guid id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<TEntity?> GetByIdAsync(Guid id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<Response> InsertAsync(TEntity entity)
+        {
+            throw new NotImplementedException();
         }
 
         public async Task<List<TEntity>> SelectAsync() 
         {
-            return await _httpService.SelectAsync<TEntity>();
+            if (_mapperService is not null)
+            {
+                return await _mapperService.SelectAsync();
+            }
+            else { return new List<TEntity>(); }
         }
 
-        public async Task<TEntity?> GetByIdAsync(Guid id) 
+        public Task<Response> UpdateAsync(TEntity entity)
         {
-            return await _httpService.GetByIdAsync<TEntity>(id);
-        }
-
-        public async Task<Response> UpdateAsync(TEntity entity)
-        {
-           return await _httpService.UpdateAsync<TEntity>(entity);
-        }
-
-        public async Task<Response> DeleteAsync(TEntity entity)
-        {
-            return await _httpService.DeleteAsync<TEntity>(entity);
-        }
-
-
-        public async Task<Response> DeleteAsync(Guid id)
-        {
-           return await _httpService.DeleteAsync<TEntity>(id);
-        }
-
-        public async Task<Response> InsertAsync(TEntity entity)
-        {
-            return await _httpService.InsertAsync<TEntity>(entity);
+            throw new NotImplementedException();
         }
     }
 }

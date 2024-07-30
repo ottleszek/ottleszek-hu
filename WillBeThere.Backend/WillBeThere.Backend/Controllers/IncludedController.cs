@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using WillBeThere.Shared.Assamblers;
+using WillBeThere.Shared.Assemblers;
 using WillBeThere.Shared.DataBroker;
 using WillBeThere.Shared.Models.Guids;
 
@@ -11,7 +11,7 @@ namespace WillBeThere.Backend.Controllers
         where TDto : class, new()
     {
         private readonly IIncludedDataBroker? _includedRepo;
-        public IncludedController(Assambler<TModel, TDto>? assambler, IIncludedDataBroker? repo) : base(assambler, (IDataBroker?) repo)
+        public IncludedController(IAssembler<TModel, TDto>? assambler, IIncludedDataBroker? repo) : base(assambler, (IDataBroker?) repo)
         {
             _includedRepo = repo;
         }

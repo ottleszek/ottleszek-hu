@@ -2,7 +2,8 @@
 
 namespace WillBeThere.HttpService.HttpService
 {
-    public interface IBaseHttpService<TEntityDto> :  IDataBroker where TEntityDto : class, new ()
+    public interface IBaseHttpService<TEntityDto> : IDtoDataBroker<TEntityDto> where TEntityDto : class, new ()
     {
+
     }
 }

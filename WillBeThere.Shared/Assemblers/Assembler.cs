@@ -1,6 +1,6 @@
-﻿namespace WillBeThere.Shared.Assamblers
+﻿namespace WillBeThere.Shared.Assemblers
 {
-    public class Assambler<TModel, TDto> 
+    public class Assembler<TModel, TDto> : IAssembler<TModel, TDto>
         where TModel : class, new()
         where TDto: class, new()
     {

@@ -1,4 +1,5 @@
 ﻿using WillBeThere.Shared.Dtos.ResultModels;
+using WillBeThere.Shared.Models;
 using WillBeThere.Shared.Models.ResultModels;
 
 namespace WillBeThere.Shared.Extensions.ResultModels
@@ -16,6 +17,7 @@ namespace WillBeThere.Shared.Extensions.ResultModels
                 End = model.End,
                 Address = model.Address,
                 Organization = model.Organization,
+                OrganizationCategory = model.OrganizationCategory,
                 OrganizationId = model.OrganizationId,
                 PublicSpaceName = model.PublicSpaceName,
 
@@ -33,6 +35,7 @@ namespace WillBeThere.Shared.Extensions.ResultModels
                 End = dto.End,
                 Address = dto.Address,
                 Organization = dto.Organization,
+                OrganizationCategory = dto.OrganizationCategory,
                 OrganizationId = dto.OrganizationId,
                 PublicSpaceName = dto.PublicSpaceName,
             };
