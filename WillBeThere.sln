@@ -15,7 +15,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WillBeThere.HttpService", "WillBeThere.Http.Services\WillBeThere.HttpService.csproj", "{1CEFF28E-B28F-4983-BC55-4905A50F72E3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Blazor.Components", "Blazor.Components\Blazor.Components.csproj", "{C624EC05-3CB9-40B9-A834-29E5AB4DAEBC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Blazor.Components", "Blazor.Components\Blazor.Components.csproj", "{C624EC05-3CB9-40B9-A834-29E5AB4DAEBC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WillBeThere.Mobile", "WillBeThere.Mobile\WillBeThere.Mobile.csproj", "{DF49C1B2-EDE4-413A-BA65-4D41F66D1121}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -47,6 +49,12 @@ Global
 		{C624EC05-3CB9-40B9-A834-29E5AB4DAEBC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C624EC05-3CB9-40B9-A834-29E5AB4DAEBC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C624EC05-3CB9-40B9-A834-29E5AB4DAEBC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DF49C1B2-EDE4-413A-BA65-4D41F66D1121}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DF49C1B2-EDE4-413A-BA65-4D41F66D1121}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DF49C1B2-EDE4-413A-BA65-4D41F66D1121}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{DF49C1B2-EDE4-413A-BA65-4D41F66D1121}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DF49C1B2-EDE4-413A-BA65-4D41F66D1121}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DF49C1B2-EDE4-413A-BA65-4D41F66D1121}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
