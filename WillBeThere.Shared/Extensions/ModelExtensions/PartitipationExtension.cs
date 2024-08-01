@@ -1,7 +1,7 @@
 ﻿using WillBeThere.Shared.Dtos;
 using WillBeThere.Shared.Models;
 
-namespace WillBeThere.Shared.Extensions
+namespace WillBeThere.Shared.Extensions.ModelExtensions
 {
     public static class PartitipationExtension
     {

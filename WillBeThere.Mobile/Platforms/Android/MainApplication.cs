@@ -3,7 +3,11 @@ using Android.Runtime;
 
 namespace WillBeThere.Mobile
 {
-    [Application]
+#if DEBUG
+    [Application(UsesCleartextTraffic = true)]
+#else
+[Application]
+#endif
     public class MainApplication : MauiApplication
     {
         public MainApplication(IntPtr handle, JniHandleOwnership ownership)

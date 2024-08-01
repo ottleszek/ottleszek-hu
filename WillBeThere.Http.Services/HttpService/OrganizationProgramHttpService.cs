@@ -18,7 +18,6 @@ namespace WillBeThere.HttpService.HttpService
             {
                 try
                 {
-
                     List<PublicOrganizationProgramDto>? resultDto = await _httpClient.GetFromJsonAsync<List<PublicOrganizationProgramDto>>($"/api/OrganizationProgram/publicprograms");
                     if (resultDto is not null)
                     {

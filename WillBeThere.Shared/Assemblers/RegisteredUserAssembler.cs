@@ -1,5 +1,5 @@
 ﻿using WillBeThere.Shared.Dtos;
-using WillBeThere.Shared.Extensions;
+using WillBeThere.Shared.Extensions.ModelExtensions;
 using WillBeThere.Shared.Models;
 
 namespace WillBeThere.Shared.Assemblers

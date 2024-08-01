@@ -60,9 +60,9 @@ else
 
 @code {
 
-    private List<PublicOrganizationProgram>? _publicPrograms = null;
+    private List<PublicOrganizationProgram> _publicPrograms = new List<PublicOrganizationProgram>();
     private List<PublicOrganizationProgram> allPublicPrograms = new List<PublicOrganizationProgram>();
-    private List<OrganizationCategory>? _organizationCategories = null;
+    private List<OrganizationCategory> _organizationCategories = new List<OrganizationCategory>();
 
     private bool _isLoaded => _publicPrograms is not null;
     private int _numberOfPublicPrograms => _publicPrograms is not null ? _publicPrograms.Count : 0;

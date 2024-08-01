@@ -1,4 +1,8 @@
 ﻿using Microsoft.Extensions.Logging;
+using Material.Components.Maui.Extensions;
+using WillBeThere.Mobile.Extensions;
+using WillBeThere.Mobile.ViewModel;
+using WillBeThere.Shared.Helper;
 
 namespace WillBeThere.Mobile
 {
@@ -7,8 +11,16 @@ namespace WillBeThere.Mobile
         public static MauiApp CreateMauiApp()
         {
             var builder = MauiApp.CreateBuilder();
+
+            builder.Services.ConfigureHttpCliens();
+            builder.Services.ConfigureAssamblers();
+            builder.Services.ConfigureServices();
+            builder.Services.ConfigureViewModels();
+            builder.Services.ConfigurePages();
+            
             builder
                 .UseMauiApp<App>()
+                .UseMaterialComponents()
                 .ConfigureFonts(fonts =>
                 {
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
@@ -18,8 +30,14 @@ namespace WillBeThere.Mobile
 #if DEBUG
     		builder.Logging.AddDebug();
 #endif
+            
 
-            return builder.Build();
+            // return builder.Build();
+            var app = builder.Build();
+            //var service= app.Services.GetService<MainPageViewModel>();
+            ServiceHelper.Initialize(app.Services);
+
+            return app;
         }
     }
 }

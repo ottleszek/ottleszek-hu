@@ -11,6 +11,10 @@ namespace WillBeThere.HttpService.HttpService
     {
         protected readonly HttpClient? _httpClient;
 
+        public BaseHttpService()
+        {
+            _httpClient = new HttpClient();
+        }
         public BaseHttpService(IHttpClientFactory? httpClientFactory)
         {
             if (httpClientFactory is not null)

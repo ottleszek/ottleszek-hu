@@ -8,8 +8,8 @@ namespace WillBeThere.HttpService.DataService
 {
     public class OrganizationProgramDataService : BaseDataService<OrganizationProgram, OrganizationProgramDto, OrganizationProgramAssembler>, IOrganizationProgramDataService
     {
-
         private readonly IOrganizationProgramMapperService? _organizationProgramMapperService;
+
         public OrganizationProgramDataService(IOrganizationProgramMapperService? organizationProgramMapperService) : base(organizationProgramMapperService)
         {
             _organizationProgramMapperService = organizationProgramMapperService;

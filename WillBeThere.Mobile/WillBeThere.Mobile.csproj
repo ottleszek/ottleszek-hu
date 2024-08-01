@@ -57,9 +57,16 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.2" />
+		<PackageReference Include="Material.Components.Maui" Version="0.2.2-preview" />
 		<PackageReference Include="Microsoft.Maui.Controls" Version="$(MauiVersion)" />
 		<PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="$(MauiVersion)" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="8.0.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\WillBeThere.Http.Services\WillBeThere.HttpService.csproj" />
+	  <ProjectReference Include="..\WillBeThere.Shared\WillBeThere.Shared.csproj" />
 	</ItemGroup>
 
 </Project>

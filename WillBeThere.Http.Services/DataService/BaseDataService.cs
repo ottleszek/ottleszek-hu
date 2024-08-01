@@ -12,6 +12,7 @@ namespace WillBeThere.HttpService.DataService
     {
         protected IBaseMapperService<TEntity,TEntityDto, TAssembler>? _mapperService;
 
+
         public BaseDataService(IBaseMapperService<TEntity,TEntityDto, TAssembler>? mapperService)
         {
             _mapperService = mapperService;

@@ -11,6 +11,11 @@ namespace WillBeThere.HttpService.MapperService
     {
         protected readonly IBaseHttpService<TDto>? _baseHttpService;
         protected readonly TAssembler? _assambler;
+
+        public BaseMapperService()
+        {            
+        }
+
         public BaseMapperService(IBaseHttpService<TDto>? baseHttpService, TAssembler? assambler)
         {
             _baseHttpService = baseHttpService;
