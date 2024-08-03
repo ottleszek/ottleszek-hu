@@ -100,8 +100,8 @@ else
             {
                 foreach (string organizationCategoryName in selected)
                 {
-                    List<PublicOrganizationProgram> newPublicOrganizationProgram = allPublicPrograms.Where(publicProgram => publicProgram.OrganizationCategory == organizationCategoryName).ToList();
-                    _publicPrograms.AddRange(newPublicOrganizationProgram);
+                    List<PublicOrganizationProgram> newPublicOrganizationPrograms = allPublicPrograms.Where(publicProgram => publicProgram.OrganizationCategory == organizationCategoryName).ToList();
+                    _publicPrograms.AddRange(newPublicOrganizationPrograms);
                 }
             }
         }

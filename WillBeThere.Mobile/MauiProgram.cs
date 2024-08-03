@@ -1,7 +1,5 @@
 ﻿using Microsoft.Extensions.Logging;
-using Material.Components.Maui.Extensions;
 using WillBeThere.Mobile.Extensions;
-using WillBeThere.Mobile.ViewModel;
 using WillBeThere.Shared.Helper;
 
 namespace WillBeThere.Mobile
@@ -20,7 +18,6 @@ namespace WillBeThere.Mobile
             
             builder
                 .UseMauiApp<App>()
-                .UseMaterialComponents()
                 .ConfigureFonts(fonts =>
                 {
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");

@@ -1,20 +1,24 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using WillBeThere.HttpService.DataService;
+using WillBeThere.Shared.Models;
 using WillBeThere.Shared.Models.ResultModels;
 
 namespace WillBeThere.Mobile.ViewModel
 {
     public partial class MainPageViewModel : ObservableObject
     {
-        private readonly Task _initTask;
-
-        //private readonly IOrganizationCategoryDataService? _organizationCategoryDataService;
         private readonly IOrganizationProgramDataService? _organizationProgramDataService;
+        private readonly IOrganizationCategoryDataService? _organizationCategoryDataService;
 
-        [ObservableProperty]
-        private List<PublicOrganizationProgram> _publicOrganizationPrograms = new();
+        private readonly Task _initTask;
+        private List<PublicOrganizationProgram> _allPublicOrganizationProgramList=new List<PublicOrganizationProgram>();
+        
+        [ObservableProperty] private List<PublicOrganizationProgram> _publicOrganizationPrograms = new();
+        [ObservableProperty] private List<OrganizationCategory> _organizationCategories = new();
 
-        [ObservableProperty] private bool _isLoaded=false;
+        [ObservableProperty] private string _searchProgramTite=string.Empty;
+
         [ObservableProperty] private bool _isBusy=false;
 
         public MainPageViewModel()
@@ -22,9 +26,13 @@ namespace WillBeThere.Mobile.ViewModel
             _initTask = InitializeData();
         }
 
-        public MainPageViewModel(IOrganizationProgramDataService organizationProgramDataService)
+        public MainPageViewModel(
+            IOrganizationProgramDataService organizationProgramDataService,
+            IOrganizationCategoryDataService organizationCategoryDataService
+            )
         {
             _organizationProgramDataService = organizationProgramDataService;
+            _organizationCategoryDataService = organizationCategoryDataService;
             _initTask=InitializeData();
         }
 
@@ -34,9 +42,28 @@ namespace WillBeThere.Mobile.ViewModel
             if (_organizationProgramDataService is not null)
             {
                 PublicOrganizationPrograms = await _organizationProgramDataService.GetAllPublicOrganizationProgramsAsync();
-                IsLoaded = true;
+                _allPublicOrganizationProgramList.AddRange(PublicOrganizationPrograms);                
+            }
+            if (_organizationCategoryDataService is not null)
+            {
+                OrganizationCategories = await _organizationCategoryDataService.SelectAsync();
             }
             IsBusy = false;
+        }
+
+        [RelayCommand]
+        private void PerformSearchByProgramTitle(string programTitle)
+        {
+            
+            if (string.IsNullOrEmpty(programTitle))
+                PublicOrganizationPrograms.AddRange(PublicOrganizationPrograms);
+            else
+            {
+                List<PublicOrganizationProgram> newPublicOrganizationPrograms =_allPublicOrganizationProgramList.Where(publicPrograms => publicPrograms.Title.Contains(programTitle, StringComparison.OrdinalIgnoreCase)).ToList();
+                PublicOrganizationPrograms.Clear();
+                PublicOrganizationPrograms=newPublicOrganizationPrograms;
+            }
+               
         }
     }
 }
