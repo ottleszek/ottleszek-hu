@@ -15,27 +15,30 @@
                     <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
             </Grid>
-            <HorizontalStackLayout>
-                <CollectionView 
-                    Grid.Row="0"
-                    ItemsSource="{Binding OrganizationCategories}">
-                    <CollectionView.ItemTemplate>
-                        <DataTemplate x:DataType="model:OrganizationCategory">
-                            <Frame Margin="3">
-                                <Label Text="{Binding Name}" />
-                            </Frame>
-                        </DataTemplate>
-                    </CollectionView.ItemTemplate>
-                </CollectionView>
-            </HorizontalStackLayout>
+            <FlexLayout
+                BindableLayout.ItemsSource="{Binding OrganizationCategories}"       
+                Direction="Row"
+                Wrap="Wrap"
+                >
+                <BindableLayout.ItemTemplate>
+                    <DataTemplate>
+                            <Button 
+                                x:Name="searchByProgramTitle"
+                                Margin="3" Text="{Binding Name}"
+                                Command="{Binding PerformSearchByOrganizationCategoryCommand}"
+                                CommandParameter="{Binding Text, Source={x:Reference }}"
+                            />
+                    </DataTemplate>
+                </BindableLayout.ItemTemplate>
+            </FlexLayout>
             <SearchBar                 
-                x:Name="searchProgramTitle"
+                x:Name="searchByProgramTitle"
                 Text="{Binding SearchProgramTite}" 
                 Grid.Row="1"
                 Placeholder="Keresés" 
                 CancelButtonColor="Red"
                 SearchCommand="{Binding PerformSearchByProgramTitleCommand}" 
-                SearchCommandParameter="{Binding Text,Source={x:Reference searchProgramTitle}}" />
+                SearchCommandParameter="{Binding Text,Source={x:Reference searchByProgramTitle}}" />
             <CollectionView 
                 Grid.Row="2"
                 ItemsSource="{Binding PublicOrganizationPrograms}">

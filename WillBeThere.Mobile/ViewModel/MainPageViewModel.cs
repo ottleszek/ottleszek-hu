@@ -62,8 +62,13 @@ namespace WillBeThere.Mobile.ViewModel
                 List<PublicOrganizationProgram> newPublicOrganizationPrograms =_allPublicOrganizationProgramList.Where(publicPrograms => publicPrograms.Title.Contains(programTitle, StringComparison.OrdinalIgnoreCase)).ToList();
                 PublicOrganizationPrograms.Clear();
                 PublicOrganizationPrograms=newPublicOrganizationPrograms;
-            }
-               
+            }               
+        }
+
+        [RelayCommand]
+        private void PerformSearchByOrganizationCategory(string organizationCategory)
+        {
+            Console.WriteLine(organizationCategory);
         }
     }
 }
