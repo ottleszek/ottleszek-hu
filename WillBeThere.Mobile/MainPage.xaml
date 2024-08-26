@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:viewmodel="clr-namespace:WillBeThere.Mobile.ViewModels"             
              xmlns:model="clr-namespace:WillBeThere.Shared.Models;assembly=WillBeThere.Shared"
+             xmlns:controls="clr-namespace:WillBeThere.Mobile.Controls"
              xmlns:resultmodel="clr-namespace:WillBeThere.Shared.Models.ResultModels;assembly=WillBeThere.Shared"
              x:Class="WillBeThere.Mobile.MainPage"
              x:DataType="viewmodel:MainPageViewModel">
@@ -21,13 +22,12 @@
                 Wrap="Wrap"
                 >
                 <BindableLayout.ItemTemplate>
-                    <DataTemplate  x:DataType="model:OrganizationCategory">
-                            <Button 
-                                x:Name="searchByProgramTitle"
-                                Margin="3" 
-                                Text="{Binding Name}"
-                                Command="{Binding }"
-                                CommandParameter="{Binding Text, Source={x:Reference searchByProgramTitle}}"
+                    <DataTemplate x:DataType="model:OrganizationCategory">
+                        <controls:MUIChip
+                            x:Name="searchByOrganizationCategory"
+                            Text="{Binding Name}"
+                            Command="{Binding PerformSearchByOrganizationCategoryCommand}"
+                            CommandParameter="{Binding Text, Source={x:Reference searchByProgramTitle}}"
                             />
                     </DataTemplate>
                 </BindableLayout.ItemTemplate>

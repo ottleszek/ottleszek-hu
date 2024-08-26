@@ -68,4 +68,10 @@
 	  <ProjectReference Include="..\WillBeThere.Shared\WillBeThere.Shared.csproj" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <MauiXaml Update="Controls\MUIChip.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	</ItemGroup>
+
 </Project>
