@@ -1,16 +1,16 @@
 ﻿using WillBeThere.HttpService.DataService;
 using WillBeThere.HttpService.HttpService;
 using WillBeThere.HttpService.MapperService;
-using WillBeThere.Mobile.ViewModel;
+using WillBeThere.Mobile.ViewModels;
 using WillBeThere.Shared.Assemblers.ResultModels;
 using WillBeThere.Shared.Assemblers;
 using static System.Net.WebRequestMethods;
 
 namespace WillBeThere.Mobile.Extensions
 {
-    public static class MobileExtension
+    public static class MobileExtensions
     {
-        public static void ConfigureHttpCliens(this IServiceCollection services)
+        public static void ConfigureHttpClient(this IServiceCollection services)
         {
             var baseUrl = DeviceInfo.Platform == DevicePlatform.Android ? "http://10.0.2.2:6070/" : "http://localhost:6070/";                                
 

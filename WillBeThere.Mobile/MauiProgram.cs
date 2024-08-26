@@ -10,7 +10,7 @@ namespace WillBeThere.Mobile
         {
             var builder = MauiApp.CreateBuilder();
 
-            builder.Services.ConfigureHttpCliens();
+            builder.Services.ConfigureHttpClient();
             builder.Services.ConfigureAssamblers();
             builder.Services.ConfigureServices();
             builder.Services.ConfigureViewModels();

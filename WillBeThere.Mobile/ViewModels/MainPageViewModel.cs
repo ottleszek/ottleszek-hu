@@ -4,7 +4,7 @@ using WillBeThere.HttpService.DataService;
 using WillBeThere.Shared.Models;
 using WillBeThere.Shared.Models.ResultModels;
 
-namespace WillBeThere.Mobile.ViewModel
+namespace WillBeThere.Mobile.ViewModels
 {
     public partial class MainPageViewModel : ObservableObject
     {

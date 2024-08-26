@@ -1,4 +1,4 @@
-﻿using WillBeThere.Mobile.ViewModel;
+﻿using WillBeThere.Mobile.ViewModels;
 using WillBeThere.Shared.Helper;
 
 namespace WillBeThere.Mobile
@@ -8,7 +8,11 @@ namespace WillBeThere.Mobile
         public MainPage()
         {
             InitializeComponent();
-            this.BindingContext = ServiceHelper.GetService<MainPageViewModel>();
+            MainPageViewModel? viewmodel = ServiceHelper.GetService<MainPageViewModel>();
+            if (viewmodel is not null)
+            {
+                this.BindingContext=viewmodel;
+            }
         }
     }
 }

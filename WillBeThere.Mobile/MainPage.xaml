@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:viewmodel="clr-namespace:WillBeThere.Mobile.ViewModel"             
+             xmlns:viewmodel="clr-namespace:WillBeThere.Mobile.ViewModels"             
              xmlns:model="clr-namespace:WillBeThere.Shared.Models;assembly=WillBeThere.Shared"
              xmlns:resultmodel="clr-namespace:WillBeThere.Shared.Models.ResultModels;assembly=WillBeThere.Shared"
              x:Class="WillBeThere.Mobile.MainPage"
@@ -21,16 +21,30 @@
                 Wrap="Wrap"
                 >
                 <BindableLayout.ItemTemplate>
-                    <DataTemplate>
+                    <DataTemplate  x:DataType="model:OrganizationCategory">
                             <Button 
                                 x:Name="searchByProgramTitle"
-                                Margin="3" Text="{Binding Name}"
-                                Command="{Binding PerformSearchByOrganizationCategoryCommand}"
-                                CommandParameter="{Binding Text, Source={x:Reference }}"
+                                Margin="3" 
+                                Text="{Binding Name}"
+                                Command="{Binding }"
+                                CommandParameter="{Binding Text, Source={x:Reference searchByProgramTitle}}"
                             />
                     </DataTemplate>
                 </BindableLayout.ItemTemplate>
             </FlexLayout>
+            <HorizontalStackLayout>
+                <CollectionView 
+                    Grid.Row="0"
+                    ItemsSource="{Binding OrganizationCategories}">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate x:DataType="model:OrganizationCategory">
+                            <Frame Margin="3">
+                                <Label Text="{Binding Name}" />
+                            </Frame>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </HorizontalStackLayout>
             <SearchBar                 
                 x:Name="searchByProgramTitle"
                 Text="{Binding SearchProgramTite}" 
