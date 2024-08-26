@@ -26,8 +26,10 @@
                         <controls:MUIChip
                             x:Name="searchByOrganizationCategory"
                             Text="{Binding Name}"
-                            Command="{Binding PerformSearchByOrganizationCategoryCommand}"
-                            CommandParameter="{Binding Text, Source={x:Reference searchByProgramTitle}}"
+                            ChipBackgroundColor="Blue"
+                            SelectedBackgroundColor="Green"
+                            Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:MainPageViewModel} },Path=PerformSearchByOrganizationCategoryCommand}"
+                            CommandParameter="{Binding Text, Source={x:Reference searchByOrganizationCategory}}"
                             />
                     </DataTemplate>
                 </BindableLayout.ItemTemplate>
