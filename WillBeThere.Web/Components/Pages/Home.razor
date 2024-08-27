@@ -61,7 +61,7 @@ else
 @code {
 
     private List<PublicOrganizationProgram> _publicPrograms = new List<PublicOrganizationProgram>();
-    private List<PublicOrganizationProgram> allPublicPrograms = new List<PublicOrganizationProgram>();
+    private List<PublicOrganizationProgram> _allPublicPrograms = new List<PublicOrganizationProgram>();
     private List<OrganizationCategory> _organizationCategories = new List<OrganizationCategory>();
 
     private bool _isLoaded => _publicPrograms is not null;
@@ -73,7 +73,7 @@ else
         if (_organizationProgramDataService is not null)
         {
             _publicPrograms = await _organizationProgramDataService.GetAllPublicOrganizationProgramsAsync();
-            allPublicPrograms.AddRange(_publicPrograms);
+            _allPublicPrograms.AddRange(_publicPrograms);
         }
         if (_organizationCategoryDataService is not null)           
             _organizationCategories = await _organizationCategoryDataService.SelectAsync();
@@ -91,16 +91,16 @@ else
 
     private void FilteringByOrganizationCategory(IReadOnlyCollection<string>? selected)
     {
-        if (_publicPrograms is not null)
+        if (_publicPrograms is not null && _allPublicPrograms.Any())
         {
             _publicPrograms.Clear();
             if ((selected is null || !selected.Any()))
-                _publicPrograms.AddRange(allPublicPrograms);
+                _publicPrograms.AddRange(_allPublicPrograms);
             else
             {
                 foreach (string organizationCategoryName in selected)
                 {
-                    List<PublicOrganizationProgram> newPublicOrganizationPrograms = allPublicPrograms.Where(publicProgram => publicProgram.OrganizationCategory == organizationCategoryName).ToList();
+                    List<PublicOrganizationProgram> newPublicOrganizationPrograms = _allPublicPrograms.Where(publicProgram => publicProgram.OrganizationCategory == organizationCategoryName).ToList();
                     _publicPrograms.AddRange(newPublicOrganizationPrograms);
                 }
             }

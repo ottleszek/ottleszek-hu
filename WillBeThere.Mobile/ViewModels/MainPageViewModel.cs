@@ -1,6 +1,7 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using WillBeThere.HttpService.DataService;
+using WillBeThere.Mobile.Controls;
 using WillBeThere.Shared.Models;
 using WillBeThere.Shared.Models.ResultModels;
 
@@ -10,15 +11,15 @@ namespace WillBeThere.Mobile.ViewModels
     {
         private readonly IOrganizationProgramDataService? _organizationProgramDataService;
         private readonly IOrganizationCategoryDataService? _organizationCategoryDataService;
-
         private readonly Task _initTask;
-        private List<PublicOrganizationProgram> _allPublicOrganizationProgramList=new List<PublicOrganizationProgram>();
+
+        private List<PublicOrganizationProgram> allPublicOrganizationPrograms = new List<PublicOrganizationProgram>();
+        private HashSet<string> _selectedOrganizationCategories = new HashSet<string>();
         
-        [ObservableProperty] private List<PublicOrganizationProgram> _publicOrganizationPrograms = new();
+        [ObservableProperty] private List<PublicOrganizationProgram> _selectedPublicOrganizationPrograms = new();
         [ObservableProperty] private List<OrganizationCategory> _organizationCategories = new();
 
         [ObservableProperty] private string _searchProgramTite=string.Empty;
-
         [ObservableProperty] private bool _isBusy=false;
 
         public MainPageViewModel()
@@ -41,8 +42,8 @@ namespace WillBeThere.Mobile.ViewModels
             IsBusy = true;
             if (_organizationProgramDataService is not null)
             {
-                PublicOrganizationPrograms = await _organizationProgramDataService.GetAllPublicOrganizationProgramsAsync();
-                _allPublicOrganizationProgramList.AddRange(PublicOrganizationPrograms);                
+                allPublicOrganizationPrograms = await _organizationProgramDataService.GetAllPublicOrganizationProgramsAsync();               
+                SelectedPublicOrganizationPrograms = new List<PublicOrganizationProgram>(allPublicOrganizationPrograms);
             }
             if (_organizationCategoryDataService is not null)
             {
@@ -56,19 +57,43 @@ namespace WillBeThere.Mobile.ViewModels
         {
             
             if (string.IsNullOrEmpty(programTitle))
-                PublicOrganizationPrograms.AddRange(PublicOrganizationPrograms);
+                SelectedPublicOrganizationPrograms=new List<PublicOrganizationProgram>(allPublicOrganizationPrograms);
             else
             {
-                List<PublicOrganizationProgram> newPublicOrganizationPrograms =_allPublicOrganizationProgramList.Where(publicPrograms => publicPrograms.Title.Contains(programTitle, StringComparison.OrdinalIgnoreCase)).ToList();
-                PublicOrganizationPrograms.Clear();
-                PublicOrganizationPrograms=newPublicOrganizationPrograms;
+                List<PublicOrganizationProgram> newPublicOrganizationPrograms =allPublicOrganizationPrograms.Where(publicPrograms => publicPrograms.Title.Contains(programTitle, StringComparison.OrdinalIgnoreCase)).ToList();
+                SelectedPublicOrganizationPrograms.Clear();
+                SelectedPublicOrganizationPrograms = new List<PublicOrganizationProgram>(newPublicOrganizationPrograms);
             }               
         }
 
         [RelayCommand]
-        private void PerformSearchByOrganizationCategory(string organizationCategory)
+        private void PerformSearchByOrganizationCategory(MUIChipCommandParameter commandParameter)
         {
-            Console.WriteLine(organizationCategory);
+            if (commandParameter.IsSelected)
+                _selectedOrganizationCategories.Add(commandParameter.ChipName);
+            else
+                _selectedOrganizationCategories.Remove(commandParameter.ChipName);
+            FilteringByOrganizationCategory();
+
+        }
+
+        private void FilteringByOrganizationCategory()
+        {
+            List<PublicOrganizationProgram> newSelectedPrograms = new List<PublicOrganizationProgram>();
+
+            SelectedPublicOrganizationPrograms.Clear();
+            if ((_selectedOrganizationCategories is null || !_selectedOrganizationCategories.Any()))
+                SelectedPublicOrganizationPrograms = new List<PublicOrganizationProgram>(allPublicOrganizationPrograms);
+            else
+            {
+
+                foreach (string organizationCategoryName in _selectedOrganizationCategories)
+                {
+                    List<PublicOrganizationProgram> newPublicOrganizationPrograms = allPublicOrganizationPrograms.Where(publicProgram => publicProgram.OrganizationCategory == organizationCategoryName).ToList();
+                    newSelectedPrograms.AddRange(newPublicOrganizationPrograms);
+                }
+                SelectedPublicOrganizationPrograms = new List<PublicOrganizationProgram>(newSelectedPrograms);
+            }
         }
     }
 }

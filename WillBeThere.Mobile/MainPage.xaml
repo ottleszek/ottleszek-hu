@@ -34,19 +34,6 @@
                     </DataTemplate>
                 </BindableLayout.ItemTemplate>
             </FlexLayout>
-            <HorizontalStackLayout>
-                <CollectionView 
-                    Grid.Row="0"
-                    ItemsSource="{Binding OrganizationCategories}">
-                    <CollectionView.ItemTemplate>
-                        <DataTemplate x:DataType="model:OrganizationCategory">
-                            <Frame Margin="3">
-                                <Label Text="{Binding Name}" />
-                            </Frame>
-                        </DataTemplate>
-                    </CollectionView.ItemTemplate>
-                </CollectionView>
-            </HorizontalStackLayout>
             <SearchBar                 
                 x:Name="searchByProgramTitle"
                 Text="{Binding SearchProgramTite}" 
@@ -57,7 +44,7 @@
                 SearchCommandParameter="{Binding Text,Source={x:Reference searchByProgramTitle}}" />
             <CollectionView 
                 Grid.Row="2"
-                ItemsSource="{Binding PublicOrganizationPrograms}">
+                ItemsSource="{Binding SelectedPublicOrganizationPrograms}">
                 <CollectionView.ItemTemplate>
                     <DataTemplate x:DataType="resultmodel:PublicOrganizationProgram">
                         <Frame Margin="5">

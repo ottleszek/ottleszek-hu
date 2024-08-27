@@ -1,4 +1,5 @@
 using System.Windows.Input;
+using WillBeThere.Shared.Models;
 
 namespace WillBeThere.Mobile.Controls;
 
@@ -102,9 +103,14 @@ public partial class MUIChip : ContentView
         TapGestureRecognizer chipTapped = new TapGestureRecognizer();
         chipTapped.Tapped += (s, e) =>
         {
+
             IsSelected = !IsSelected;
-            if (IsSelected)
-                this.Command?.Execute(CommandParameter);
+            MUIChipCommandParameter commandParameter = new MUIChipCommandParameter
+            {
+                ChipName = this.CommandParameter,
+                IsSelected = this.IsSelected,
+            };
+            this.Command?.Execute(commandParameter);
         };
         this.MainLayout.GestureRecognizers.Add(chipTapped);
     }
