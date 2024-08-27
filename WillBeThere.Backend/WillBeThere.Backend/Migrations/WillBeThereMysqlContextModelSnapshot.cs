@@ -16,7 +16,7 @@ namespace WillBeThere.Backend.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "8.0.6")
+                .HasAnnotation("ProductVersion", "8.0.7")
                 .HasAnnotation("Relational:MaxIdentifierLength", 64);
 
             modelBuilder.Entity("WillBeThere.Shared.Models.Address", b =>
@@ -41,8 +41,7 @@ namespace WillBeThere.Backend.Migrations
                     b.Property<int>("PostalCode")
                         .HasColumnType("int");
 
-                    b.Property<Guid?>("PublicScapeID")
-                        .IsRequired()
+                    b.Property<Guid>("PublicScapeId")
                         .HasColumnType("char(36)");
 
                     b.Property<string>("PublicSpaceName")
@@ -51,64 +50,64 @@ namespace WillBeThere.Backend.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("PublicScapeID");
+                    b.HasIndex("PublicScapeId");
 
                     b.ToTable("Address");
 
                     b.HasData(
                         new
                         {
-                            Id = new Guid("b0f835de-2e5d-44a1-a619-c52f07865ce8"),
+                            Id = new Guid("d16fc281-4643-4248-87a3-309daff0cf12"),
                             Door = -1,
                             Floor = -1,
                             House = 1,
                             Locality = "Szeged",
                             PostalCode = 6757,
-                            PublicScapeID = new Guid("54ea22f4-d013-4cb4-8709-6aeeb022c975"),
+                            PublicScapeId = new Guid("5ddedfac-4be9-4f68-aa5f-de047ec8c7da"),
                             PublicSpaceName = "Napraforgó utca"
                         },
                         new
                         {
-                            Id = new Guid("ee9ff0d5-6cf8-4a6f-9a2e-3c85b621bbf8"),
+                            Id = new Guid("daba959d-3db1-40d6-b381-b07cf2dcf399"),
                             Door = -1,
                             Floor = -1,
                             House = 49,
                             Locality = "Szeged",
                             PostalCode = 6757,
-                            PublicScapeID = new Guid("54ea22f4-d013-4cb4-8709-6aeeb022c975"),
+                            PublicScapeId = new Guid("5ddedfac-4be9-4f68-aa5f-de047ec8c7da"),
                             PublicSpaceName = "Koszorú utca"
                         },
                         new
                         {
-                            Id = new Guid("42f26620-e28f-48f0-bd51-4dbf5f906c06"),
+                            Id = new Guid("8b790354-8119-460a-b553-71e49648c5c8"),
                             Door = -1,
                             Floor = -1,
                             House = 33,
                             Locality = "Szeged",
                             PostalCode = 6757,
-                            PublicScapeID = new Guid("54ea22f4-d013-4cb4-8709-6aeeb022c975"),
+                            PublicScapeId = new Guid("5ddedfac-4be9-4f68-aa5f-de047ec8c7da"),
                             PublicSpaceName = "Koszorú utca"
                         },
                         new
                         {
-                            Id = new Guid("25602120-2ffd-45e5-ac57-dbaa87b6967a"),
+                            Id = new Guid("1e1f7336-023b-4875-aa7a-ef4ded39bf9d"),
                             Door = -1,
                             Floor = -1,
                             House = 50,
                             Locality = "Szeged",
                             PostalCode = 6710,
-                            PublicScapeID = new Guid("8e757ad5-f7ca-4806-9be2-d6ba3f0aa4a1"),
+                            PublicScapeId = new Guid("6c57cf20-2c5e-4317-b302-9e0d5dec7f5b"),
                             PublicSpaceName = "Kapisztrán"
                         },
                         new
                         {
-                            Id = new Guid("e8d0aaa3-54df-4088-b680-4d4d23b97066"),
+                            Id = new Guid("27f280a3-dc44-4063-9a6d-2aa0d52366b2"),
                             Door = -1,
                             Floor = -1,
                             House = 12,
                             Locality = "Szeged",
                             PostalCode = 6720,
-                            PublicScapeID = new Guid("1cd972c8-4f03-46af-879c-b353faa8669a"),
+                            PublicScapeId = new Guid("c2168001-7620-476d-bfee-21992ef29900"),
                             PublicSpaceName = "Dugonics"
                         });
                 });
@@ -147,7 +146,7 @@ namespace WillBeThere.Backend.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("adc0a58a-5b80-45fe-a736-18fec5e4d96a"),
+                            Id = new Guid("040d98bb-febb-4678-a6e5-aa25056c1ad7"),
                             Description = "Gyálaréti Gyuris család programnaptára",
                             Name = "Gyálaréti Gyuris család",
                             Url = "gyuris.gyalaret.ottleszek.hu",
@@ -155,7 +154,7 @@ namespace WillBeThere.Backend.Migrations
                         },
                         new
                         {
-                            Id = new Guid("3ae02173-56cd-4029-a8c1-3b465e59098f"),
+                            Id = new Guid("af1b2a4c-cfa4-4954-85e2-f51bf40df9c9"),
                             Description = "Kikindáról elszármazott Gyuris Család",
                             Name = "Kikindai Gyuris család",
                             Url = "gyuris.kikinda.ottleszek.hu",
@@ -163,91 +162,91 @@ namespace WillBeThere.Backend.Migrations
                         },
                         new
                         {
-                            Id = new Guid("5b05c3dc-769e-403b-9f81-5d0109c6c642"),
+                            Id = new Guid("ccfac23e-c28a-453a-970c-68c2f1e8a530"),
                             Description = "Gyálaréten működő férfi sátor közösség",
                             Name = "Gyálaréti férfi sátor",
-                            OrganizationCategoryId = new Guid("3cd6fca2-5a0c-4950-88bc-496ff7f94eaa"),
+                            OrganizationCategoryId = new Guid("9d6c9520-cce8-4bb8-bab0-a53cb44c2b12"),
                             Url = "ferfisator.filia.szeged-gyalaret.ottleszek.hu",
                             Website = ""
                         },
                         new
                         {
-                            Id = new Guid("ad839041-43cd-454e-acb7-c895d757b8b1"),
+                            Id = new Guid("7775f90e-7554-499c-894f-e9f3dd802f3d"),
                             Description = "Magyarorszagi férfi sátor közösség",
                             Name = "Férfi sátor",
-                            OrganizationCategoryId = new Guid("3cd6fca2-5a0c-4950-88bc-496ff7f94eaa"),
+                            OrganizationCategoryId = new Guid("9d6c9520-cce8-4bb8-bab0-a53cb44c2b12"),
                             Url = "ferfisator.filia.szeged-gyalaret.ottleszek.hu",
                             Website = ""
                         },
                         new
                         {
-                            Id = new Guid("1344c061-2e5c-4ddc-893b-056f17183c14"),
+                            Id = new Guid("b4f997ae-41ea-4d69-9c9f-17042257d438"),
                             Description = "Gyálaréten működő meditációs csoprot amely a Jézus imát gyakorolja",
                             Name = "Gyálaréti meditációs imacsoport",
-                            OrganizationCategoryId = new Guid("f0e51975-494e-4467-b00a-66a3c56c9972"),
+                            OrganizationCategoryId = new Guid("773239aa-a499-478a-baf6-29ff5091dd54"),
                             Url = "meditacio.filia.szeged-gyalaret.ottleszek.hu",
                             Website = ""
                         },
                         new
                         {
-                            Id = new Guid("c39517de-6ffe-4fc2-9072-93bcd77d2a36"),
+                            Id = new Guid("1026f88c-41fd-474b-adbb-394d1834c5da"),
                             Description = "Gyálaréti filához tartozó csaladcsoport",
                             Name = "Gyálaréti családcsoport",
-                            OrganizationCategoryId = new Guid("f0e51975-494e-4467-b00a-66a3c56c9972"),
+                            OrganizationCategoryId = new Guid("773239aa-a499-478a-baf6-29ff5091dd54"),
                             Url = "csaladcsoport.flila.szeged-gyalaret.ottleszek.hu",
                             Website = ""
                         },
                         new
                         {
-                            Id = new Guid("d1a192af-77dd-4634-b938-8ee5ebd7eddd"),
+                            Id = new Guid("d86887a2-b2f2-4433-b260-7bb81135f0e6"),
                             Description = "Gyálaréti művelődési ház",
                             Name = "Gyálaréti művelődési ház",
-                            OrganizationCategoryId = new Guid("72c62fda-9ace-4ee7-95ad-28225327f3c6"),
+                            OrganizationCategoryId = new Guid("285caea5-9bdf-4686-92d6-21d52716c01c"),
                             Url = "szeged-gyalaret.szeged-gyalaret.ottleszek.hu",
                             Website = ""
                         },
                         new
                         {
-                            Id = new Guid("772abf07-d0dd-4628-b177-55b54c322003"),
+                            Id = new Guid("9a3453f4-1e98-4bc6-8e79-77369ddc41e0"),
                             Description = "Szentmihályi művelődési ház",
                             Name = "Szentmihályi művelődési ház",
-                            OrganizationCategoryId = new Guid("72c62fda-9ace-4ee7-95ad-28225327f3c6"),
+                            OrganizationCategoryId = new Guid("285caea5-9bdf-4686-92d6-21d52716c01c"),
                             Url = "muvelodesihaz.szeged-szentmihaly.ottleszek.hu",
                             Website = ""
                         },
                         new
                         {
-                            Id = new Guid("8d96f87f-4067-4370-a2f4-74062754e328"),
-                            Description = "Szeged-Csanád egyházmegye Pasztorális helynöksége",
-                            Name = "Szeged-Csanád egyházmegye Pasztorális helynökség",
-                            OrganizationCategoryId = new Guid("f0e51975-494e-4467-b00a-66a3c56c9972"),
+                            Id = new Guid("4affe914-9898-436c-b4dc-e4341af28bb6"),
+                            Description = "Szeged-Csanád Egyházmegye Pasztorális helynöksége",
+                            Name = "Szeged-Csanád Egyházmegye Pasztorális helynökség",
+                            OrganizationCategoryId = new Guid("773239aa-a499-478a-baf6-29ff5091dd54"),
                             Url = "pasztoralis-helynokseg.szeged-csanádi-egyhazmegye.ottleszek.hu",
                             Website = ""
                         },
                         new
                         {
-                            Id = new Guid("c8e7e94d-eae1-4ce9-96d2-0dde187ebfe5"),
+                            Id = new Guid("810ca225-66ae-4b28-b7aa-6b927d688b2a"),
                             Description = "Szeged-Csanád egyházmegye Pasztorális helynökség - Családpasztoráció, ",
                             Name = "Szeged-Csanád egyházmegye Pasztorális helynökség - Családpasztoráció",
-                            OrganizationCategoryId = new Guid("f0e51975-494e-4467-b00a-66a3c56c9972"),
+                            OrganizationCategoryId = new Guid("773239aa-a499-478a-baf6-29ff5091dd54"),
                             Url = "pasztoralis-helynokseg.szeged-csanádi-egyhazmegye.ottleszek.hu",
                             Website = ""
                         },
                         new
                         {
-                            Id = new Guid("4e99d6f3-5720-4821-832a-aa7c4ce582e6"),
+                            Id = new Guid("44bd17ff-e349-4314-af43-1cf630605048"),
                             Description = "Szeged-Csanád egyházmegye Pasztorális helynökség - Korházi lelkészség",
                             Name = "Szeged-Csanád egyházmegye Pasztorális helynökség - Korházi lelkészség",
-                            OrganizationCategoryId = new Guid("f0e51975-494e-4467-b00a-66a3c56c9972"),
+                            OrganizationCategoryId = new Guid("773239aa-a499-478a-baf6-29ff5091dd54"),
                             Url = "korhazi-lelekszseg.pasztoralis-helynokseg.szeged-csanádi - egyhazmegye.ottleszek.hu",
                             Website = ""
                         },
                         new
                         {
-                            Id = new Guid("3ba794ad-ef38-465a-b983-3af4e5982f06"),
+                            Id = new Guid("348770fe-e026-4aae-bb91-08129b3c26ff"),
                             Description = "Munkásmisszió, vezetői kör",
                             Name = "Munkáasmisszió",
-                            OrganizationCategoryId = new Guid("f0e51975-494e-4467-b00a-66a3c56c9972"),
+                            OrganizationCategoryId = new Guid("773239aa-a499-478a-baf6-29ff5091dd54"),
                             Url = "vezetok.munkasmisszio.ottleszek.hu",
                             Website = ""
                         });
@@ -265,33 +264,55 @@ namespace WillBeThere.Backend.Migrations
                     b.Property<Guid>("OrganizationId")
                         .HasColumnType("char(36)");
 
+                    b.Property<Guid?>("OrganizationId1")
+                        .HasColumnType("char(36)");
+
                     b.HasKey("Id");
 
-                    b.HasIndex("AdminId")
-                        .IsUnique();
+                    b.HasIndex("AdminId");
 
                     b.HasIndex("OrganizationId");
+
+                    b.HasIndex("OrganizationId1");
 
                     b.ToTable("OrganizationAdminUser");
 
                     b.HasData(
                         new
                         {
-                            Id = new Guid("ec0cf70c-79ae-4861-b93f-3d5225797795"),
-                            AdminId = new Guid("93b1acbd-6333-4f90-8fa2-a6d58969708c"),
-                            OrganizationId = new Guid("4e99d6f3-5720-4821-832a-aa7c4ce582e6")
+                            Id = new Guid("1a72dfab-75d5-46e1-9396-f46a6d62dbd5"),
+                            AdminId = new Guid("fae831a1-49d5-4383-b99a-3f30cbe590cc"),
+                            OrganizationId = new Guid("ccfac23e-c28a-453a-970c-68c2f1e8a530")
                         },
                         new
                         {
-                            Id = new Guid("4185938b-5c5a-4c5f-acdf-5392ce5f53b3"),
-                            AdminId = new Guid("e0afccfe-364c-436e-9306-88187e8344bd"),
-                            OrganizationId = new Guid("1344c061-2e5c-4ddc-893b-056f17183c14")
+                            Id = new Guid("33e1b05d-05e4-43c5-93da-8660f415455e"),
+                            AdminId = new Guid("fae831a1-49d5-4383-b99a-3f30cbe590cc"),
+                            OrganizationId = new Guid("7775f90e-7554-499c-894f-e9f3dd802f3d")
                         },
                         new
                         {
-                            Id = new Guid("0ce02714-a5b8-46af-89ef-a8bc770adfa5"),
-                            AdminId = new Guid("fc10650f-efbf-42a0-91bc-ee326f4c9453"),
-                            OrganizationId = new Guid("ad839041-43cd-454e-acb7-c895d757b8b1")
+                            Id = new Guid("27e18359-c00e-4d00-b133-88bba17073cc"),
+                            AdminId = new Guid("e7f454a0-790f-42b9-8941-87bb81c7d64c"),
+                            OrganizationId = new Guid("810ca225-66ae-4b28-b7aa-6b927d688b2a")
+                        },
+                        new
+                        {
+                            Id = new Guid("cad700ff-782e-4541-b103-a66e05dfba7b"),
+                            AdminId = new Guid("e7f454a0-790f-42b9-8941-87bb81c7d64c"),
+                            OrganizationId = new Guid("b4f997ae-41ea-4d69-9c9f-17042257d438")
+                        },
+                        new
+                        {
+                            Id = new Guid("204f931e-d0e2-4e68-aaf3-fe0cf4666972"),
+                            AdminId = new Guid("fae831a1-49d5-4383-b99a-3f30cbe590cc"),
+                            OrganizationId = new Guid("d86887a2-b2f2-4433-b260-7bb81135f0e6")
+                        },
+                        new
+                        {
+                            Id = new Guid("e86814dd-5c1f-40ff-bbb9-feaa32767eea"),
+                            AdminId = new Guid("be338220-cf5a-4a2b-af3e-a067e665e01f"),
+                            OrganizationId = new Guid("1026f88c-41fd-474b-adbb-394d1834c5da")
                         });
                 });
 
@@ -312,32 +333,32 @@ namespace WillBeThere.Backend.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("f0e51975-494e-4467-b00a-66a3c56c9972"),
+                            Id = new Guid("773239aa-a499-478a-baf6-29ff5091dd54"),
                             Name = "vallás"
                         },
                         new
                         {
-                            Id = new Guid("08af18b0-1d3c-411e-a692-d81c8d40cb75"),
+                            Id = new Guid("bb92e05b-f13b-42bb-83fe-4fb3670aeab7"),
                             Name = "nevelés"
                         },
                         new
                         {
-                            Id = new Guid("dc5fcd4e-8e87-47e0-a944-c94a1c84b2d2"),
+                            Id = new Guid("52f9efbf-1831-416f-9a85-b318daf6eac6"),
                             Name = "házasság"
                         },
                         new
                         {
-                            Id = new Guid("3cd6fca2-5a0c-4950-88bc-496ff7f94eaa"),
+                            Id = new Guid("9d6c9520-cce8-4bb8-bab0-a53cb44c2b12"),
                             Name = "férfi identitás"
                         },
                         new
                         {
-                            Id = new Guid("3274bb0c-beff-4511-9fba-6e440236c493"),
+                            Id = new Guid("6f100476-a6eb-4e11-8f53-f9fa90227829"),
                             Name = "ifjúság"
                         },
                         new
                         {
-                            Id = new Guid("72c62fda-9ace-4ee7-95ad-28225327f3c6"),
+                            Id = new Guid("285caea5-9bdf-4686-92d6-21d52716c01c"),
                             Name = "művelődés"
                         });
                 });
@@ -350,6 +371,10 @@ namespace WillBeThere.Backend.Migrations
 
                     b.Property<Guid?>("AddressId")
                         .HasColumnType("char(36)");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("longtext");
 
                     b.Property<DateTime?>("End")
                         .HasColumnType("datetime(6)");
@@ -379,45 +404,148 @@ namespace WillBeThere.Backend.Migrations
 
                     b.HasIndex("OrganizationOwnerId");
 
-                    b.HasIndex("ProgramOwnerId");
-
                     b.ToTable("OrgranizationProgram");
 
                     b.HasData(
                         new
                         {
-                            Id = new Guid("c395bb6b-9424-486d-8004-947a98af713c"),
-                            AddressId = new Guid("ee9ff0d5-6cf8-4a6f-9a2e-3c85b621bbf8"),
+                            Id = new Guid("7e598d28-848b-45af-9048-7bdbfbfdd9a0"),
+                            AddressId = new Guid("daba959d-3db1-40d6-b381-b07cf2dcf399"),
+                            Description = "Csendes ima.",
                             IsDeffered = false,
                             IsPublic = true,
-                            OrganizationOwnerId = new Guid("1344c061-2e5c-4ddc-893b-056f17183c14"),
-                            ProgramOwnerId = new Guid("93b1acbd-6333-4f90-8fa2-a6d58969708c"),
-                            Start = new DateTime(2024, 5, 16, 20, 30, 0, 0, DateTimeKind.Local),
+                            OrganizationOwnerId = new Guid("b4f997ae-41ea-4d69-9c9f-17042257d438"),
+                            ProgramOwnerId = new Guid("cad700ff-782e-4541-b103-a66e05dfba7b"),
+                            Start = new DateTime(2024, 8, 1, 20, 30, 0, 0, DateTimeKind.Local),
                             Title = "Meditáció"
                         },
                         new
                         {
-                            Id = new Guid("387378db-b9d8-476c-8f2f-c8bb8af10f3c"),
-                            AddressId = new Guid("e8d0aaa3-54df-4088-b680-4d4d23b97066"),
-                            End = new DateTime(2024, 6, 11, 12, 0, 0, 0, DateTimeKind.Local),
+                            Id = new Guid("c5dc6c60-2b1f-4906-b9d4-6f8636ac2257"),
+                            AddressId = new Guid("27f280a3-dc44-4063-9a6d-2aa0d52366b2"),
+                            Description = "Csendes lelkigyakorlat felnőtteknek.",
+                            End = new DateTime(2024, 8, 27, 12, 0, 0, 0, DateTimeKind.Local),
                             IsDeffered = false,
                             IsPublic = true,
-                            OrganizationOwnerId = new Guid("4e99d6f3-5720-4821-832a-aa7c4ce582e6"),
-                            ProgramOwnerId = new Guid("e0afccfe-364c-436e-9306-88187e8344bd"),
-                            Start = new DateTime(2024, 6, 10, 18, 0, 0, 0, DateTimeKind.Local),
+                            OrganizationOwnerId = new Guid("44bd17ff-e349-4314-af43-1cf630605048"),
+                            ProgramOwnerId = new Guid("e86814dd-5c1f-40ff-bbb9-feaa32767eea"),
+                            Start = new DateTime(2024, 8, 26, 18, 0, 0, 0, DateTimeKind.Local),
                             Title = "Lelkigyakorlat"
                         },
                         new
                         {
-                            Id = new Guid("ee0e79db-3cd9-42fe-aad8-5b35b672e97f"),
-                            AddressId = new Guid("ee9ff0d5-6cf8-4a6f-9a2e-3c85b621bbf8"),
-                            End = new DateTime(2024, 6, 16, 20, 0, 0, 0, DateTimeKind.Local),
+                            Id = new Guid("bc268fe5-c467-4958-b7cc-8d68163b0681"),
+                            AddressId = new Guid("daba959d-3db1-40d6-b381-b07cf2dcf399"),
+                            Description = "Apasebek tréning.",
+                            End = new DateTime(2024, 9, 1, 20, 0, 0, 0, DateTimeKind.Local),
                             IsDeffered = false,
                             IsPublic = true,
-                            OrganizationOwnerId = new Guid("5b05c3dc-769e-403b-9f81-5d0109c6c642"),
-                            ProgramOwnerId = new Guid("fc10650f-efbf-42a0-91bc-ee326f4c9453"),
-                            Start = new DateTime(2024, 6, 16, 18, 0, 0, 0, DateTimeKind.Local),
+                            OrganizationOwnerId = new Guid("ccfac23e-c28a-453a-970c-68c2f1e8a530"),
+                            ProgramOwnerId = new Guid("1a72dfab-75d5-46e1-9396-f46a6d62dbd5"),
+                            Start = new DateTime(2024, 9, 1, 18, 0, 0, 0, DateTimeKind.Local),
                             Title = "Férfi sátor tréning"
+                        },
+                        new
+                        {
+                            Id = new Guid("e096e163-dabb-407f-9c42-dfba97b609fa"),
+                            AddressId = new Guid("27f280a3-dc44-4063-9a6d-2aa0d52366b2"),
+                            Description = "Lányoknak...",
+                            End = new DateTime(2024, 11, 11, 21, 0, 0, 0, DateTimeKind.Local),
+                            IsDeffered = false,
+                            IsPublic = true,
+                            OrganizationOwnerId = new Guid("4affe914-9898-436c-b4dc-e4341af28bb6"),
+                            ProgramOwnerId = new Guid("27e18359-c00e-4d00-b133-88bba17073cc"),
+                            Start = new DateTime(2024, 11, 11, 15, 0, 0, 0, DateTimeKind.Local),
+                            Title = "Ciklus show"
+                        },
+                        new
+                        {
+                            Id = new Guid("739efdcd-2dbd-4617-afe5-69529d740bd1"),
+                            AddressId = new Guid("8b790354-8119-460a-b553-71e49648c5c8"),
+                            Description = "Délalföldi",
+                            End = new DateTime(2024, 8, 27, 2, 30, 0, 0, DateTimeKind.Local),
+                            IsDeffered = false,
+                            IsPublic = true,
+                            OrganizationOwnerId = new Guid("d86887a2-b2f2-4433-b260-7bb81135f0e6"),
+                            ProgramOwnerId = new Guid("204f931e-d0e2-4e68-aaf3-fe0cf4666972"),
+                            Start = new DateTime(2024, 8, 26, 21, 0, 0, 0, DateTimeKind.Local),
+                            Title = "Táncház"
+                        },
+                        new
+                        {
+                            Id = new Guid("457899d7-4c68-4c7f-9944-45589c87f3df"),
+                            AddressId = new Guid("daba959d-3db1-40d6-b381-b07cf2dcf399"),
+                            Description = "Férfiaknak",
+                            IsDeffered = false,
+                            IsPublic = false,
+                            OrganizationOwnerId = new Guid("7775f90e-7554-499c-894f-e9f3dd802f3d"),
+                            ProgramOwnerId = new Guid("1a72dfab-75d5-46e1-9396-f46a6d62dbd5"),
+                            Start = new DateTime(2024, 7, 2, 18, 0, 0, 0, DateTimeKind.Local),
+                            Title = "Férfi sátor"
+                        },
+                        new
+                        {
+                            Id = new Guid("8ac055c3-2cd4-4810-883d-8524d6a876c7"),
+                            AddressId = new Guid("daba959d-3db1-40d6-b381-b07cf2dcf399"),
+                            Description = "Férfiaknak",
+                            IsDeffered = false,
+                            IsPublic = false,
+                            OrganizationOwnerId = new Guid("7775f90e-7554-499c-894f-e9f3dd802f3d"),
+                            ProgramOwnerId = new Guid("1a72dfab-75d5-46e1-9396-f46a6d62dbd5"),
+                            Start = new DateTime(2024, 7, 28, 18, 0, 0, 0, DateTimeKind.Local),
+                            Title = "Férfi sátor"
+                        },
+                        new
+                        {
+                            Id = new Guid("a1b8daff-6603-4ab4-94c3-6248fb262db9"),
+                            AddressId = new Guid("daba959d-3db1-40d6-b381-b07cf2dcf399"),
+                            Description = "Férfiaknak",
+                            End = new DateTime(2024, 9, 3, 21, 0, 0, 0, DateTimeKind.Local),
+                            IsDeffered = false,
+                            IsPublic = false,
+                            OrganizationOwnerId = new Guid("7775f90e-7554-499c-894f-e9f3dd802f3d"),
+                            ProgramOwnerId = new Guid("1a72dfab-75d5-46e1-9396-f46a6d62dbd5"),
+                            Start = new DateTime(2024, 9, 3, 18, 0, 0, 0, DateTimeKind.Local),
+                            Title = "Férfi sátor"
+                        },
+                        new
+                        {
+                            Id = new Guid("a9c96df7-44e8-4cc6-bf5f-e4547314475c"),
+                            AddressId = new Guid("daba959d-3db1-40d6-b381-b07cf2dcf399"),
+                            Description = "Családoknak",
+                            End = new DateTime(2024, 8, 27, 1, 30, 0, 0, DateTimeKind.Local),
+                            IsDeffered = false,
+                            IsPublic = false,
+                            OrganizationOwnerId = new Guid("1026f88c-41fd-474b-adbb-394d1834c5da"),
+                            ProgramOwnerId = new Guid("e86814dd-5c1f-40ff-bbb9-feaa32767eea"),
+                            Start = new DateTime(2024, 8, 26, 21, 0, 0, 0, DateTimeKind.Local),
+                            Title = "Családcsoport"
+                        },
+                        new
+                        {
+                            Id = new Guid("6db6b90e-63eb-4443-91ff-12c685aa971b"),
+                            AddressId = new Guid("daba959d-3db1-40d6-b381-b07cf2dcf399"),
+                            Description = "Apasebek tréning.",
+                            End = new DateTime(2024, 9, 16, 20, 0, 0, 0, DateTimeKind.Local),
+                            IsDeffered = true,
+                            IsPublic = true,
+                            OrganizationOwnerId = new Guid("ccfac23e-c28a-453a-970c-68c2f1e8a530"),
+                            ProgramOwnerId = new Guid("33e1b05d-05e4-43c5-93da-8660f415455e"),
+                            Start = new DateTime(2024, 9, 16, 18, 0, 0, 0, DateTimeKind.Local),
+                            Title = "Férfi sátor tréning"
+                        },
+                        new
+                        {
+                            Id = new Guid("c1cab8a9-ca4d-4b32-89d4-b3a4d3cc4374"),
+                            AddressId = new Guid("daba959d-3db1-40d6-b381-b07cf2dcf399"),
+                            Description = "Férfiaknak",
+                            End = new DateTime(2024, 9, 6, 21, 0, 0, 0, DateTimeKind.Local),
+                            IsDeffered = true,
+                            IsPublic = false,
+                            OrganizationOwnerId = new Guid("7775f90e-7554-499c-894f-e9f3dd802f3d"),
+                            ProgramOwnerId = new Guid("1a72dfab-75d5-46e1-9396-f46a6d62dbd5"),
+                            Start = new DateTime(2024, 9, 6, 18, 0, 0, 0, DateTimeKind.Local),
+                            Title = "Férfi sátor"
                         });
                 });
 
@@ -447,38 +575,38 @@ namespace WillBeThere.Backend.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("d2309d8a-17cd-4edd-a7f4-e3affe218fdf"),
+                            Id = new Guid("93371a3d-9580-4634-9726-5249cd28bbd0"),
                             Evaluation = 9,
-                            OrganizationProgramId = new Guid("c395bb6b-9424-486d-8004-947a98af713c"),
-                            RegisteredUserId = new Guid("fc10650f-efbf-42a0-91bc-ee326f4c9453")
+                            OrganizationProgramId = new Guid("7e598d28-848b-45af-9048-7bdbfbfdd9a0"),
+                            RegisteredUserId = new Guid("56f06676-61a1-4051-b64c-aa08297f4d5d")
                         },
                         new
                         {
-                            Id = new Guid("d8df8595-2e38-496b-8e99-ae348fcc4416"),
+                            Id = new Guid("df1b2af6-14d3-40a0-ae95-3f658054c0c0"),
                             Evaluation = 9,
-                            OrganizationProgramId = new Guid("c395bb6b-9424-486d-8004-947a98af713c"),
-                            RegisteredUserId = new Guid("93b1acbd-6333-4f90-8fa2-a6d58969708c")
+                            OrganizationProgramId = new Guid("7e598d28-848b-45af-9048-7bdbfbfdd9a0"),
+                            RegisteredUserId = new Guid("ca005c1a-d39e-4454-9c3d-9f311a28d0ee")
                         },
                         new
                         {
-                            Id = new Guid("5c6fe2b8-d989-4358-8d81-5100e750a8f3"),
+                            Id = new Guid("ef347c4d-12d2-4217-b7ec-4e9f75ad757b"),
                             Evaluation = -1,
-                            OrganizationProgramId = new Guid("387378db-b9d8-476c-8f2f-c8bb8af10f3c"),
-                            RegisteredUserId = new Guid("e0afccfe-364c-436e-9306-88187e8344bd")
+                            OrganizationProgramId = new Guid("c5dc6c60-2b1f-4906-b9d4-6f8636ac2257"),
+                            RegisteredUserId = new Guid("e7f454a0-790f-42b9-8941-87bb81c7d64c")
                         },
                         new
                         {
-                            Id = new Guid("81634e17-cfbb-41f2-8bdd-2957c7fcf101"),
+                            Id = new Guid("28caac82-81ee-4126-8852-1c3401114712"),
                             Evaluation = -1,
-                            OrganizationProgramId = new Guid("387378db-b9d8-476c-8f2f-c8bb8af10f3c"),
-                            RegisteredUserId = new Guid("93b1acbd-6333-4f90-8fa2-a6d58969708c")
+                            OrganizationProgramId = new Guid("c5dc6c60-2b1f-4906-b9d4-6f8636ac2257"),
+                            RegisteredUserId = new Guid("ca005c1a-d39e-4454-9c3d-9f311a28d0ee")
                         },
                         new
                         {
-                            Id = new Guid("c25b1d5c-f6e4-411d-806e-c6411db9fcf2"),
+                            Id = new Guid("73d7e9db-0640-4968-83b8-14ed5c78df6d"),
                             Evaluation = -1,
-                            OrganizationProgramId = new Guid("ee0e79db-3cd9-42fe-aad8-5b35b672e97f"),
-                            RegisteredUserId = new Guid("e0afccfe-364c-436e-9306-88187e8344bd")
+                            OrganizationProgramId = new Guid("bc268fe5-c467-4958-b7cc-8d68163b0681"),
+                            RegisteredUserId = new Guid("e7f454a0-790f-42b9-8941-87bb81c7d64c")
                         });
                 });
 
@@ -499,27 +627,27 @@ namespace WillBeThere.Backend.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("54ea22f4-d013-4cb4-8709-6aeeb022c975"),
+                            Id = new Guid("5ddedfac-4be9-4f68-aa5f-de047ec8c7da"),
                             Name = "utca"
                         },
                         new
                         {
-                            Id = new Guid("1cd972c8-4f03-46af-879c-b353faa8669a"),
+                            Id = new Guid("c2168001-7620-476d-bfee-21992ef29900"),
                             Name = "tér"
                         },
                         new
                         {
-                            Id = new Guid("ac4180df-f964-4d83-ae49-2afe31bb8579"),
+                            Id = new Guid("a2223b11-620c-46d2-84ab-fe3ff3c911f8"),
                             Name = "sugárút"
                         },
                         new
                         {
-                            Id = new Guid("8e757ad5-f7ca-4806-9be2-d6ba3f0aa4a1"),
+                            Id = new Guid("6c57cf20-2c5e-4317-b302-9e0d5dec7f5b"),
                             Name = "köz"
                         },
                         new
                         {
-                            Id = new Guid("b290bb88-c3d3-40e8-934a-22aed8b4b329"),
+                            Id = new Guid("b246ee2f-9832-4101-a482-793edb873dbc"),
                             Name = "út"
                         });
                 });
@@ -545,33 +673,39 @@ namespace WillBeThere.Backend.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("fc10650f-efbf-42a0-91bc-ee326f4c9453"),
+                            Id = new Guid("56f06676-61a1-4051-b64c-aa08297f4d5d"),
                             FirstName = "Csaba",
                             LastName = "Gyuris"
                         },
                         new
                         {
-                            Id = new Guid("93b1acbd-6333-4f90-8fa2-a6d58969708c"),
+                            Id = new Guid("ca005c1a-d39e-4454-9c3d-9f311a28d0ee"),
                             FirstName = "Balázs",
                             LastName = "Szászi"
                         },
                         new
                         {
-                            Id = new Guid("e0afccfe-364c-436e-9306-88187e8344bd"),
+                            Id = new Guid("e7f454a0-790f-42b9-8941-87bb81c7d64c"),
                             FirstName = "Katalin",
                             LastName = "Gyurisné Hutter"
                         },
                         new
                         {
-                            Id = new Guid("d18f16be-c8d7-4941-bf85-fcf69821fee1"),
+                            Id = new Guid("fae831a1-49d5-4383-b99a-3f30cbe590cc"),
                             FirstName = "Jenei",
                             LastName = "Kornél"
                         },
                         new
                         {
-                            Id = new Guid("13fce26a-556f-4b02-a6ad-04e86aac26c1"),
+                            Id = new Guid("7a7f25c9-dc60-4687-b9fc-c1ce3dca0e4c"),
                             FirstName = "Anikó",
                             LastName = "Szászi"
+                        },
+                        new
+                        {
+                            Id = new Guid("be338220-cf5a-4a2b-af3e-a067e665e01f"),
+                            FirstName = "Zsuzsanna",
+                            LastName = "Szabóné"
                         });
                 });
 
@@ -579,7 +713,7 @@ namespace WillBeThere.Backend.Migrations
                 {
                     b.HasOne("WillBeThere.Shared.Models.PublicSpace", "PublicSpace")
                         .WithMany("Addresses")
-                        .HasForeignKey("PublicScapeID")
+                        .HasForeignKey("PublicScapeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -598,12 +732,20 @@ namespace WillBeThere.Backend.Migrations
             modelBuilder.Entity("WillBeThere.Shared.Models.OrganizationAdminUser", b =>
                 {
                     b.HasOne("WillBeThere.Shared.Models.RegisteredUser", "Admin")
-                        .WithOne("OrganizationAdminUser")
-                        .HasForeignKey("WillBeThere.Shared.Models.OrganizationAdminUser", "AdminId");
+                        .WithMany("AdminsOrganizations")
+                        .HasForeignKey("AdminId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("WillBeThere.Shared.Models.Organization", "Organization")
-                        .WithMany("OrganizationAdminUsers")
-                        .HasForeignKey("OrganizationId");
+                        .WithMany("OrganizationsAdmins")
+                        .HasForeignKey("OrganizationId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("WillBeThere.Shared.Models.Organization", null)
+                        .WithMany("OrganizationAdmins")
+                        .HasForeignKey("OrganizationId1");
 
                     b.Navigation("Admin");
 
@@ -622,9 +764,9 @@ namespace WillBeThere.Backend.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("WillBeThere.Shared.Models.OrganizationAdminUser", "UserOwner")
+                    b.HasOne("WillBeThere.Shared.Models.OrganizationAdminUser", "ProgramOwner")
                         .WithMany("OrganizationPrograms")
-                        .HasForeignKey("ProgramOwnerId")
+                        .HasForeignKey("OrganizationOwnerId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -632,7 +774,7 @@ namespace WillBeThere.Backend.Migrations
 
                     b.Navigation("Organization");
 
-                    b.Navigation("UserOwner");
+                    b.Navigation("ProgramOwner");
                 });
 
             modelBuilder.Entity("WillBeThere.Shared.Models.Participation", b =>
@@ -661,9 +803,11 @@ namespace WillBeThere.Backend.Migrations
 
             modelBuilder.Entity("WillBeThere.Shared.Models.Organization", b =>
                 {
-                    b.Navigation("OrganizationAdminUsers");
+                    b.Navigation("OrganizationAdmins");
 
                     b.Navigation("OrganizationPrograms");
+
+                    b.Navigation("OrganizationsAdmins");
                 });
 
             modelBuilder.Entity("WillBeThere.Shared.Models.OrganizationAdminUser", b =>
@@ -688,7 +832,7 @@ namespace WillBeThere.Backend.Migrations
 
             modelBuilder.Entity("WillBeThere.Shared.Models.RegisteredUser", b =>
                 {
-                    b.Navigation("OrganizationAdminUser");
+                    b.Navigation("AdminsOrganizations");
 
                     b.Navigation("RegisteredUserPaticipations");
                 });

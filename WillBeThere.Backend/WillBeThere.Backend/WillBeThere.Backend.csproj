@@ -24,4 +24,8 @@
     <ProjectReference Include="..\..\WillBeThere.Shared\WillBeThere.Shared.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Migrations\" />
+  </ItemGroup>
+
 </Project>

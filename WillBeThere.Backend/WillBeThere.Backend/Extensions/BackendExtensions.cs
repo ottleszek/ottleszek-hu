@@ -9,7 +9,7 @@ using WillBeThere.Shared.Assemblers.ResultModels;
 namespace WillBeThere.Backend.Extensions
 {
     public static class BackendExtensions
-    {
+    {      
         public static void ConfigureCors(this IServiceCollection services)
         {
 
@@ -56,14 +56,28 @@ namespace WillBeThere.Backend.Extensions
 
         public static void ConfigureRepos(this IServiceCollection services)
         {
-            services.AddScoped<IPublicSpaceRepo, PublicSpaceRepo<WillBeThereInMemoryContext>>();
-            services.AddScoped<IAddressRepo, AddressRepo<WillBeThereInMemoryContext>>();
-            services.AddScoped<IOrganizationRepo, OrganiozationRepo<WillBeThereInMemoryContext>>();
-            services.AddScoped<IOrganizationAdminUserRepo,OrganizationAdminUserRepo<WillBeThereInMemoryContext>>();
-            services.AddScoped<IOrganizationCategoryRepo,OrganizationCategoryRepo<WillBeThereInMemoryContext>>();
-            services.AddScoped<IOrganizationProgramRepo, OrganizationProgramRepo<WillBeThereInMemoryContext>>();
-            services.AddScoped<IParticipationRepo,ParticipationRepo<WillBeThereInMemoryContext>>();
-            services.AddScoped<IRegisteredUserRepo,RegisteredUserRepo<WillBeThereInMemoryContext>>();
+            if (false)
+            {
+                services.AddScoped<IPublicSpaceRepo, PublicSpaceRepo<WillBeThereInMemoryContext>>();
+                services.AddScoped<IAddressRepo, AddressRepo<WillBeThereInMemoryContext>>();
+                services.AddScoped<IOrganizationRepo, OrganiozationRepo<WillBeThereInMemoryContext>>();
+                services.AddScoped<IOrganizationAdminUserRepo, OrganizationAdminUserRepo<WillBeThereInMemoryContext>>();
+                services.AddScoped<IOrganizationCategoryRepo, OrganizationCategoryRepo<WillBeThereInMemoryContext>>();
+                services.AddScoped<IOrganizationProgramRepo, OrganizationProgramRepo<WillBeThereInMemoryContext>>();
+                services.AddScoped<IParticipationRepo, ParticipationRepo<WillBeThereInMemoryContext>>();
+                services.AddScoped<IRegisteredUserRepo, RegisteredUserRepo<WillBeThereInMemoryContext>>();
+            }
+            else
+            {
+                services.AddScoped<IPublicSpaceRepo, PublicSpaceRepo<WillBeThereMysqlContext>>();
+                services.AddScoped<IAddressRepo, AddressRepo<WillBeThereMysqlContext>>();
+                services.AddScoped<IOrganizationRepo, OrganiozationRepo<WillBeThereMysqlContext>>();
+                services.AddScoped<IOrganizationAdminUserRepo, OrganizationAdminUserRepo<WillBeThereMysqlContext>>();
+                services.AddScoped<IOrganizationCategoryRepo, OrganizationCategoryRepo<WillBeThereMysqlContext>>();
+                services.AddScoped<IOrganizationProgramRepo, OrganizationProgramRepo<WillBeThereMysqlContext>>();
+                services.AddScoped<IParticipationRepo, ParticipationRepo<WillBeThereMysqlContext>>();
+                services.AddScoped<IRegisteredUserRepo, RegisteredUserRepo<WillBeThereMysqlContext>>();
+            }
 
             services.AddScoped<IWrapRepo, WrapRepo>();
         }

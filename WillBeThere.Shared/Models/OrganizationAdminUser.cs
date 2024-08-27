@@ -1,4 +1,6 @@
-﻿using WillBeThere.Shared.Models.Guids;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using WillBeThere.Shared.Models.Guids;
 
 namespace WillBeThere.Shared.Models
 {
@@ -20,9 +22,10 @@ namespace WillBeThere.Shared.Models
         public Guid Id { get; set; }
         public Guid AdminId { get; set; }
         public Guid OrganizationId { get; set; }
-        public virtual List<OrganizationProgram>? OrganizationPrograms { get; set; }
         public virtual RegisteredUser? Admin { get; set; }
         public virtual Organization? Organization { get; set; }
+        // 1:N OrganizationAdminUser (ProgramOwner) - OrganizationProgram
+        public virtual List<OrganizationProgram>? OrganizationPrograms { get; set; }
 
     }
 }

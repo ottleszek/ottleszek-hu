@@ -29,9 +29,12 @@ namespace WillBeThere.Shared.Models
         public string Url { get; set; }
         public string Website { get; set; }
         public Guid? OrganizationCategoryId { get; set; }
+        // 1:N Organization category - organization
         public virtual OrganizationCategory? OrganizationCategory { get; set; }
         public virtual List<OrganizationProgram>? OrganizationPrograms { get; set; }
-        public virtual List<OrganizationAdminUser>? OrganizationAdminUsers { get; set; }
+        public virtual List<OrganizationAdminUser>? OrganizationsAdmins { get; set; }
+        // N:M Organization - OrganizationAdminUser - RegisteredUsers
+        public virtual ICollection<OrganizationAdminUser>? OrganizationAdmins { get; set; }
 
     }
 }

@@ -27,11 +27,11 @@ namespace WillBeThere.Backend.Context
                 .WithOne(op => op.Organization)
                 .HasForeignKey(op => op.OrganizationOwnerId)
                 .IsRequired(true);
-            // 1:N OrganizationAdminUser - OrganizationProgram
+            // 1:N OrganizationAdminUser (ProgramOwner) - OrganizationProgram
             modelBuilder.Entity<OrganizationAdminUser>()
                 .HasMany(oau => oau.OrganizationPrograms)
                 .WithOne(op => op.ProgramOwner)
-                .HasForeignKey(op => op.ProgramOwnerId)
+                .HasForeignKey(op => op.OrganizationOwnerId)
                 .IsRequired(true);
             // 1:N Address - OrganizationPrograms
             modelBuilder.Entity<Address>()
@@ -51,7 +51,7 @@ namespace WillBeThere.Backend.Context
                 .WithOne(o => o.OrganizationCategory)
                 .HasForeignKey(o => o.OrganizationCategoryId)
                 .IsRequired(false);
-            // N:M OeganizationProgram - RegisteredUser == Participation
+            // N:M OrganizationProgram - RegisteredUser == Participation
             modelBuilder.Entity<Participation>()
                 .HasOne(ope => ope.OrganizationProgram)
                 .WithMany(op => op.ProgramParticipants)
@@ -62,18 +62,18 @@ namespace WillBeThere.Backend.Context
                 .WithMany(op => op.RegisteredUserPaticipations )
                 .HasForeignKey(ope => ope.RegisteredUserId)
                 .IsRequired(true);
-            // 1:1 RegisteredUser - OrgranizationAdminUser
-            modelBuilder.Entity<RegisteredUser>()
-                .HasOne(ru => ru.OrganizationAdminUser)
-                .WithOne(oau => oau.Admin)
-                .HasForeignKey<OrganizationAdminUser>(oau => oau.AdminId)
-                .IsRequired(false);
-            // 1:N Organization - OrganizationAdminUser
-            modelBuilder.Entity<Organization>()
-                .HasMany(o => o.OrganizationAdminUsers)
-                .WithOne(oau => oau.Organization)
-                .HasForeignKey(oau  => oau.OrganizationId)
-                .IsRequired(false);
+            // N:M Organization - OrganizationAdminUser - RegisteredUser
+            modelBuilder.Entity<OrganizationAdminUser>()
+                .HasOne(oau => oau.Admin)
+                .WithMany(ru => ru.AdminsOrganizations)
+                .HasForeignKey(oau => oau.AdminId)
+                .IsRequired(true);
+            modelBuilder.Entity<OrganizationAdminUser>()
+                .HasOne(oau => oau.Organization)
+                .WithMany(o => o.OrganizationsAdmins)
+                .HasForeignKey(oau => oau.OrganizationId)
+                .IsRequired(true);
+
 
             base.OnModelCreating(modelBuilder);
         }

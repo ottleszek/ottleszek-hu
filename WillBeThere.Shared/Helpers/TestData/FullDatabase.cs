@@ -478,7 +478,7 @@ namespace WillBeThere.Shared.Helpers.TestData
                     IsPublic=true,
                     AddressId=addressId2,
                     OrganizationOwnerId=organizationId3,
-                    ProgramOwnerId=organizationAdminUserId1,
+                    ProgramOwnerId=organizationAdminUserId2,
                 },
                 // Elhalasztott nem publikus
                 new OrganizationProgram
