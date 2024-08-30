@@ -16,7 +16,7 @@ namespace WillBeThere.Backend.Context
         public DbSet<Organization> Organization { get; set; }
         public DbSet<OrganizationCategory> OrganizationCategory { get; set; }
         public DbSet<RegisteredUser> RegisteredUser { get; set; }
-        public DbSet<OrganizationAdminUser> OrganizationAdminUser { get; set; }
+        public DbSet<ProgramOwner> OrganizationAdminUser { get; set; }
         public DbSet<Participation> Participation { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -25,13 +25,13 @@ namespace WillBeThere.Backend.Context
             modelBuilder.Entity<Organization>()
                 .HasMany(o => o.OrganizationPrograms)
                 .WithOne(op => op.Organization)
-                .HasForeignKey(op => op.OrganizationOwnerId)
+                .HasForeignKey(op => op.OrganizationId)
                 .IsRequired(true);
             // 1:N OrganizationAdminUser (ProgramOwner) - OrganizationProgram
-            modelBuilder.Entity<OrganizationAdminUser>()
+            modelBuilder.Entity<ProgramOwner>()
                 .HasMany(oau => oau.OrganizationPrograms)
                 .WithOne(op => op.ProgramOwner)
-                .HasForeignKey(op => op.OrganizationOwnerId)
+                .HasForeignKey(op => op.OrganizationId)
                 .IsRequired(true);
             // 1:N Address - OrganizationPrograms
             modelBuilder.Entity<Address>()
@@ -63,12 +63,12 @@ namespace WillBeThere.Backend.Context
                 .HasForeignKey(ope => ope.RegisteredUserId)
                 .IsRequired(true);
             // N:M Organization - OrganizationAdminUser - RegisteredUser
-            modelBuilder.Entity<OrganizationAdminUser>()
-                .HasOne(oau => oau.Admin)
+            modelBuilder.Entity<ProgramOwner>()
+                .HasOne(oau => oau.EditorData)
                 .WithMany(ru => ru.AdminsOrganizations)
                 .HasForeignKey(oau => oau.AdminId)
                 .IsRequired(true);
-            modelBuilder.Entity<OrganizationAdminUser>()
+            modelBuilder.Entity<ProgramOwner>()
                 .HasOne(oau => oau.Organization)
                 .WithMany(o => o.OrganizationsAdmins)
                 .HasForeignKey(oau => oau.OrganizationId)

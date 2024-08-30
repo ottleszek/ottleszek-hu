@@ -13,7 +13,7 @@ namespace WillBeThere.Shared.Models
             End = null;
             IsPublic = false;
             IsDeffered = false;
-            OrganizationOwnerId = new();
+            OrganizationId = new();
             ProgramOwnerId = new();
             AddressId = new();
             Organization = null;
@@ -29,7 +29,7 @@ namespace WillBeThere.Shared.Models
             End = end;
             IsPublic = isPublic;
             IsDeffered = isDeffered;
-            OrganizationOwnerId = organizationOwnerId;
+            OrganizationId = organizationOwnerId;
             ProgramOwnerId = programOwnerId;
             AddressId = addressId;
         }
@@ -40,13 +40,17 @@ namespace WillBeThere.Shared.Models
         public DateTime? End { get; set; }
         public bool IsPublic { get; set; }
         public bool IsDeffered { get; set; }
-        public Guid OrganizationOwnerId { get; set; }
+        public Guid OrganizationId { get; set; }
         public Guid ProgramOwnerId {  get; set; }
         public Guid? AddressId { get; set; }
         public virtual Organization? Organization { get; set; }
-        public virtual OrganizationAdminUser? ProgramOwner { get; set; }
+        // 1:1 OrganizationProgarm - ProgramOwner
+        public virtual ProgramOwner? ProgramOwner { get; set; }
+        // 1:1 OrganizationProgram - Address
         public virtual Address? Address { get; set; }
+        // 1:N OrganizationProgram - Participation
         public virtual ICollection<Participation>? ProgramParticipants { get; set; }
+        
 
     }
 }

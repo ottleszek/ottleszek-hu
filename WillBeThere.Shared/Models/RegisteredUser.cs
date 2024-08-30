@@ -21,13 +21,12 @@ namespace WillBeThere.Shared.Models
 
         public Guid Id { get ; set; }
         public string FirstName { get; set; }
-        public string LastName { get; set; }
-        
+        public string LastName { get; set; }        
 
         // N:M RegisteredUser - Participation - Organization program
         public virtual ICollection<Participation>? RegisteredUserPaticipations { get; set; }
-        // M:M RegisteredUSer - OrganizationAdminUSer - Organization
-        public virtual ICollection<OrganizationAdminUser> AdminsOrganizations { get; set; }
+        // 1:1 RegisteredUser - Editor
+        public virtual Editor Editor { get; set; }
         public string HungrianName => $"{LastName} {FirstName}";
 
 
