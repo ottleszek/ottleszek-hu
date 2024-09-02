@@ -1,4 +1,6 @@
-﻿using WillBeThere.Shared.Models.Guids;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using WillBeThere.Shared.Models.Guids;
 
 namespace WillBeThere.Shared.Models
 {
@@ -32,17 +34,25 @@ namespace WillBeThere.Shared.Models
             ProgramOwnerId = programOwnerId;
             AddressId = addressId;
         }
+        [Key]
+        [Required]
         public Guid Id { get; set; }
+        [Required]
+        [StringLength(50)]
         public string Title { get; set; }
         public string Description { get; set; }
+        [Required]
         public DateTime Start {  get; set; }
         public DateTime? End { get; set; }
+        [Required]
         public bool IsPublic { get; set; }
         public bool IsDeffered { get; set; }
         public Guid OrganizationId { get; set; }
         public Guid ProgramOwnerId {  get; set; }
         public Guid? AddressId { get; set; }
-        //public virtual Organization? Organization { get; set; }
+
+        [ForeignKey(nameof(OrganizationId))]
+        public virtual Organization? Organization { get; set; }
         // 1:1 OrganizationProgram - ProgramOwner
         //public virtual ProgramOwner? ProgramOwner { get; set; }
         // 1:1 OrganizationProgram - Address

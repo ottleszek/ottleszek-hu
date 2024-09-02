@@ -39,7 +39,7 @@ namespace WillBeThere.Shared.Models
         [ForeignKey(nameof(OrganizationCategoryId))]
         public virtual OrganizationCategory? OrganizationCategory { get; set; }
         // 1:N Organization - OrganizationProgram
-        // virtual List<OrganizationProgram>? OrganizationPrograms { get; set; }
+        public virtual ICollection<OrganizationProgram>? OrganizationPrograms { get; set; }
         // 1:N Organization - OrganizationEditor
         //public virtual ICollection<Editor>? OrganizationEditors{ get; set; }
 

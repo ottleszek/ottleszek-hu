@@ -36,6 +36,8 @@ namespace WillBeThere.Backend.Context
                 .HasForeignKey(a => a.PublicScapeId)
                 .IsRequired(true);
 
+
+
             /*
                         // 1:N Organization - OrgranizationProgram
                         modelBuilder.Entity<Organization>()
