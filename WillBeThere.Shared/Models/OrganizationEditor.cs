@@ -8,8 +8,8 @@ namespace WillBeThere.Shared.Models
         private Guid OrganizationId { get; set ; }
         private Guid EditorId { get; set ; }
         // 1:N Organization - OrganizationEditor
-        public virtual Organization? Organization { get; set ; }
-        public virtual Editor? Editor { get; set ; }
+        //public virtual Organization? Organization { get; set ; }
+        //public virtual Editor? Editor { get; set ; }
 
     }
 }

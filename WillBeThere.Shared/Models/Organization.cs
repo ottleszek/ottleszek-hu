@@ -30,11 +30,11 @@ namespace WillBeThere.Shared.Models
         public string Website { get; set; }
         public Guid? OrganizationCategoryId { get; set; }
         // 1:N Organization category - organization
-        public virtual OrganizationCategory? OrganizationCategory { get; set; }
+        //public virtual OrganizationCategory? OrganizationCategory { get; set; }
         // 1:N Organization - OrganizationProgram
-        public virtual List<OrganizationProgram>? OrganizationPrograms { get; set; }
+        // virtual List<OrganizationProgram>? OrganizationPrograms { get; set; }
         // 1:N Organization - OrganizationEditor
-        public virtual ICollection<Editor>? OrganizationEditors{ get; set; }
+        //public virtual ICollection<Editor>? OrganizationEditors{ get; set; }
 
     }
 }

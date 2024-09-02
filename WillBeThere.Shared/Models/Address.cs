@@ -36,7 +36,7 @@ namespace WillBeThere.Shared.Models
         public int Floor { get; set; }
         public int Door { get; set; }
         public int PostalCode { get; set; }
-        public virtual PublicSpace? PublicSpace { get; set; }
-        public virtual List<OrganizationProgram>? OrganizationPrograms { get; set;}
+        //public virtual PublicSpace? PublicSpace { get; set; }
+        //public virtual List<OrganizationProgram>? OrganizationPrograms { get; set;}
     }
 }

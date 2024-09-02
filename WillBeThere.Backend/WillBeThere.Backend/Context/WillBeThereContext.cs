@@ -22,13 +22,14 @@ namespace WillBeThere.Backend.Context
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+/*
             // 1:N Organization - OrgranizationProgram
             modelBuilder.Entity<Organization>()
                 .HasMany(o => o.OrganizationPrograms)
                 .WithOne(op => op.Organization)
                 .HasForeignKey(op => op.OrganizationId)
                 .IsRequired(true);
-/*           
+           
             // 1:N OrganizationAdminUser (ProgramOwner) - OrganizationProgram
             modelBuilder.Entity<ProgramOwner>()
                 .HasMany(oau => oau.OrganizationPrograms)

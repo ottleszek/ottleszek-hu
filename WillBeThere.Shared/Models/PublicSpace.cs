@@ -17,7 +17,7 @@ namespace WillBeThere.Shared.Models
 
         public Guid Id { get; set; }
         public string Name { get; set; } = string.Empty;
-        public virtual List<Address>? Addresses { get; set; }
+        //public virtual List<Address>? Addresses { get; set; }
 
     }
 }

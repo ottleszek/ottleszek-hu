@@ -16,7 +16,6 @@ namespace WillBeThere.Shared.Models
             OrganizationId = new();
             ProgramOwnerId = new();
             AddressId = new();
-            Organization = null;
             
         }
 
@@ -43,13 +42,13 @@ namespace WillBeThere.Shared.Models
         public Guid OrganizationId { get; set; }
         public Guid ProgramOwnerId {  get; set; }
         public Guid? AddressId { get; set; }
-        public virtual Organization? Organization { get; set; }
+        //public virtual Organization? Organization { get; set; }
         // 1:1 OrganizationProgram - ProgramOwner
         //public virtual ProgramOwner? ProgramOwner { get; set; }
         // 1:1 OrganizationProgram - Address
-        public virtual Address? Address { get; set; }
+        //public virtual Address? Address { get; set; }
         // 1:N OrganizationProgram - Participation
-        public virtual ICollection<Participation>? ProgramParticipants { get; set; }
+        //public virtual ICollection<Participation>? ProgramParticipants { get; set; }
         
 
     }
