@@ -11,7 +11,7 @@ namespace WillBeThere.Shared.Extensions.ModelExtensions
             {
                 Id = model.Id,
                 OrganizationProgramId = model.OrganizationProgramId,
-                RegisteredUserId = model.RegisteredUserId,
+                RegisteredUserId = model.ParticipantId,
                 Evaluation = model.Evaluation,
             };
         }
@@ -22,7 +22,7 @@ namespace WillBeThere.Shared.Extensions.ModelExtensions
             {
                 Id = dto.Id,
                 OrganizationProgramId = dto.OrganizationProgramId,
-                RegisteredUserId = dto.RegisteredUserId,
+                ParticipantId = dto.RegisteredUserId,
             };
         }
     }

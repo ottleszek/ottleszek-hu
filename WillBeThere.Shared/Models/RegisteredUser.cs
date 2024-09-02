@@ -1,4 +1,5 @@
-﻿using WillBeThere.Shared.Models.Guids;
+﻿using System.ComponentModel.DataAnnotations;
+using WillBeThere.Shared.Models.Guids;
 
 namespace WillBeThere.Shared.Models
 {
@@ -18,15 +19,19 @@ namespace WillBeThere.Shared.Models
             FirstName = firstName;
             LastName = lastName;
         }
-
+        [Key]
+        [Required]
         public Guid Id { get ; set; }
+        [Required]
+        [StringLength(30)]
         public string FirstName { get; set; }
+        [StringLength(30)]
         public string LastName { get; set; }        
 
         // N:M RegisteredUser - Participation - Organization program
-        // public virtual ICollection<Participation>? RegisteredUserPaticipations { get; set; }
+        public virtual ICollection<Participation>? Paticipations { get; set; }
         // 1:1 RegisteredUser - Editor
-        //public virtual Editor Editor { get; set; }
+        public virtual Editor? Editor { get; set; }
         public string HungrianName => $"{LastName} {FirstName}";
 
 

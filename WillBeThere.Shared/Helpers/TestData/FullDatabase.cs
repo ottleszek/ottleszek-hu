@@ -553,33 +553,33 @@ namespace WillBeThere.Shared.Helpers.TestData
                 {
                     Id=participationId1,
                     OrganizationProgramId=organizationProgramId1,
-                    RegisteredUserId=registeredUserId1,
+                    ParticipantId=registeredUserId1,
                     Evaluation=9,
                 },
                 new Participation
                 {
                     Id=participationId2,
                     OrganizationProgramId=organizationProgramId1,
-                    RegisteredUserId=registeredUserId2,
+                    ParticipantId=registeredUserId2,
                     Evaluation=9,
                 },
                 new Participation
                 {
                     Id=participationId3,
                     OrganizationProgramId=organizationProgramId2,
-                    RegisteredUserId=registeredUserId3,
+                    ParticipantId=registeredUserId3,
                 },
                 new Participation
                 {
                     Id=participationId4,
                     OrganizationProgramId=organizationProgramId2,
-                    RegisteredUserId=registeredUserId2,
+                    ParticipantId=registeredUserId2,
                 },
                 new Participation
                 {
                     Id=participationId5,
                     OrganizationProgramId=OrganizationProgramId3,
-                    RegisteredUserId=registeredUserId3,
+                    ParticipantId=registeredUserId3,
                 },
             };
         #endregion

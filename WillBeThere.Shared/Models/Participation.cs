@@ -1,4 +1,6 @@
-﻿using WillBeThere.Shared.Models.Guids;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using WillBeThere.Shared.Models.Guids;
 
 namespace WillBeThere.Shared.Models
 {
@@ -7,24 +9,29 @@ namespace WillBeThere.Shared.Models
         public Participation()
         {
             Id = Guid.Empty;
-            RegisteredUserId =Guid.Empty;
+            ParticipantId =Guid.Empty;
             OrganizationProgramId = Guid.Empty;
             Evaluation = -1;
         }
         public Participation(Guid id, Guid registeredUserID, Guid orgranizationProgramId, int evaluation) 
         {
             Id=id;
-            RegisteredUserId = registeredUserID;
+            ParticipantId = registeredUserID;
             OrganizationProgramId = orgranizationProgramId;
             Evaluation = evaluation;
         }
-
+        [Key]
+        [Required]
         public Guid Id { get; set; }
-        public Guid RegisteredUserId { get; set; }
+        [Required]
+        public Guid ParticipantId { get; set; }
+        [Required]
         public Guid OrganizationProgramId { get; set; }
         public int Evaluation {  get; set; }
-        //public virtual RegisteredUser? Participant { get; set; }
-        //public virtual OrganizationProgram? OrganizationProgram { get; set; }
+        [ForeignKey(nameof(ParticipantId))]
+        public virtual RegisteredUser? Participant { get; set; }
+        [ForeignKey(nameof(OrganizationProgramId))]
+        public virtual OrganizationProgram? OrganizationProgram { get; set; }
         
     }
 }

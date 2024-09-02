@@ -46,6 +46,6 @@ namespace WillBeThere.Shared.Models
         public int PostalCode { get; set; }
         [ForeignKey(nameof(PublicScapeId))]
         public virtual PublicSpace? PublicSpace { get; set; }
-        //public virtual List<OrganizationProgram>? OrganizationPrograms { get; set;}
+        public virtual ICollection<OrganizationProgram>? OrganizationPrograms { get; set;}
     }
 }

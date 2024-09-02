@@ -21,7 +21,7 @@ namespace WillBeThere.Shared.Models
             
         }
 
-        public OrganizationProgram(Guid id, string title, string description, DateTime start, DateTime? end, bool isPublic, bool isDeffered, Guid organizationOwnerId, Guid programOwnerId, Guid? addressId) 
+        public OrganizationProgram(Guid id, string title, string description, DateTime start, DateTime? end, bool isPublic, bool isDeffered, Guid organizationOwnerId, Guid programOwnerId, Guid addressId) 
         {
             Id= id;
             Title = title;
@@ -49,16 +49,17 @@ namespace WillBeThere.Shared.Models
         public bool IsDeffered { get; set; }
         public Guid OrganizationId { get; set; }
         public Guid ProgramOwnerId {  get; set; }
-        public Guid? AddressId { get; set; }
+        public Guid AddressId { get; set; }
 
         [ForeignKey(nameof(OrganizationId))]
         public virtual Organization? Organization { get; set; }
         // 1:1 OrganizationProgram - ProgramOwner
         //public virtual ProgramOwner? ProgramOwner { get; set; }
         // 1:1 OrganizationProgram - Address
-        //public virtual Address? Address { get; set; }
+        [ForeignKey(nameof(AddressId))]
+        public virtual Address? Address { get; set; }
         // 1:N OrganizationProgram - Participation
-        //public virtual ICollection<Participation>? ProgramParticipants { get; set; }
+        public virtual ICollection<Participation>? Participants { get; set; }
         
 
     }
