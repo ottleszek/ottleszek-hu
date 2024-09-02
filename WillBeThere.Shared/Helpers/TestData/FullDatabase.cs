@@ -422,7 +422,7 @@ namespace WillBeThere.Shared.Helpers.TestData
                     IsPublic=false,
                     AddressId=addressId2,
                     OrganizationId=organizationId4,
-                    ProgramOwnerId=organizationAdminUserId1,
+                    //ProgramOwnerId=organizationAdminUserId1,
                 },
                 // Egy hónappal ezelőtt
                 new OrganizationProgram
@@ -436,7 +436,7 @@ namespace WillBeThere.Shared.Helpers.TestData
                     IsPublic=false,
                     AddressId=addressId2,
                     OrganizationId=organizationId4,
-                    ProgramOwnerId=organizationAdminUserId1,
+                    //ProgramOwnerId=organizationAdminUserId1,
                 },
                 // Egy hét múlva
                 new OrganizationProgram
@@ -450,7 +450,7 @@ namespace WillBeThere.Shared.Helpers.TestData
                     IsPublic=false,
                     AddressId=addressId2,
                     OrganizationId=organizationId4,
-                    ProgramOwnerId=organizationAdminUserId1,
+                    //ProgramOwnerId=organizationAdminUserId1,
                 },
                 // Éppen most
                 new OrganizationProgram
@@ -464,7 +464,7 @@ namespace WillBeThere.Shared.Helpers.TestData
                     IsPublic=false,
                     AddressId=addressId2,
                     OrganizationId=organizationId6,
-                    ProgramOwnerId=organizationAdminUserId6,
+                    //ProgramOwnerId=organizationAdminUserId6,
                 },
                 // Elhalasztott publikus
                 new OrganizationProgram
@@ -478,7 +478,7 @@ namespace WillBeThere.Shared.Helpers.TestData
                     IsPublic=true,
                     AddressId=addressId2,
                     OrganizationId=organizationId3,
-                    ProgramOwnerId=organizationAdminUserId2,
+                    //ProgramOwnerId=organizationAdminUserId2,
                 },
                 // Elhalasztott nem publikus
                 new OrganizationProgram
@@ -492,7 +492,7 @@ namespace WillBeThere.Shared.Helpers.TestData
                     IsPublic=false,
                     AddressId=addressId2,
                     OrganizationId=organizationId4,
-                    ProgramOwnerId=organizationAdminUserId1,
+                    //ProgramOwnerId=organizationAdminUserId1,
                 },
             };
         #endregion
@@ -504,43 +504,43 @@ namespace WillBeThere.Shared.Helpers.TestData
                 {
                     // Gyálaréti Fréfi sátor - Jenei Kornél
                     Id = organizationAdminUserId1,
-                    OrganizationId = organizationId3,
-                    EditorID = registeredUserId4,
+                    //OrganizationId = organizationId3,
+                    //EditorID = registeredUserId4,
                 },
                 new ProgramOwner
                 {
                     // Magyarországi Férfi sátor
                     Id=organizationAdminUserId2,
-                    OrganizationId=organizationId4,
-                    EditorID = registeredUserId4,
+                    //OrganizationId=organizationId4,
+                    //EditorID = registeredUserId4,
                 },
                 new ProgramOwner
                 {
                     // Családpaszoráció - Gyurisné Hutter Katalin
                     Id=organizationAdminUserId3,
-                    OrganizationId=organizationId10,
-                    EditorID = registeredUserId3,
+                    //OrganizationId=organizationId10,
+                    //EditorID = registeredUserId3,
                 },
                 new ProgramOwner
                 {
                     // Gyálaréti meditációs csoport - Szászi Balázs
                     Id=organizationAdminUserId4,
-                    OrganizationId=organizationId5,
-                    EditorID = registeredUserId3,
+                    //OrganizationId=organizationId5,
+                    //EditorID = registeredUserId3,
                 },
                 new ProgramOwner
                 {
                     // Gyálaréti művelődési ház - Jenei Kornél
                     Id = organizationAdminUserId5,
-                    OrganizationId = organizationId7,
-                    EditorID = registeredUserId4,
+                    //OrganizationId = organizationId7,
+                    //EditorID = registeredUserId4,
                 },
                 new ProgramOwner
                 {
                     // Családcsoport - Szabóné Zsuzsa
                     Id = organizationAdminUserId6,
-                    OrganizationId = organizationId6,
-                    EditorID = registeredUserId6,
+                    //OrganizationId = organizationId6,
+                    //EditorID = registeredUserId6,
                 },
 
             };

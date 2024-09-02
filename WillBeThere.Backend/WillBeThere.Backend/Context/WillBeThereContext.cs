@@ -9,15 +9,16 @@ namespace WillBeThere.Backend.Context
         {
         }
 
-        public DbSet<OrganizationProgram> OrgranizationProgram { get; set; }
-        public DbSet<Address> Address { get; set; }
-        public DbSet<PublicSpace> PublicSpace { get; set; }
-        public DbSet<OrganizationCategory> ProgramCategory { get; set; }
-        public DbSet<Organization> Organization { get; set; }
-        public DbSet<OrganizationCategory> OrganizationCategory { get; set; }
-        public DbSet<RegisteredUser> RegisteredUser { get; set; }
-        public DbSet<ProgramOwner> OrganizationAdminUser { get; set; }
-        public DbSet<Participation> Participation { get; set; }
+        public DbSet<OrganizationProgram> OrgranizationPrograms { get; set; }
+        public DbSet<Address> Addresses { get; set; }
+        public DbSet<PublicSpace> PublicSpacees { get; set; }
+        public DbSet<OrganizationCategory> ProgramCategoryes { get; set; }
+        public DbSet<Organization> Organizations { get; set; }
+        public DbSet<RegisteredUser> RegisteredUsers { get; set; }
+        public DbSet<ProgramOwner> ProgramOwners { get; set; }
+        public DbSet<Participation> Participations { get; set; }
+        public DbSet<Editor> Editors { get; set; }
+        public DbSet<OrganizationEditor> OrganizationEditors { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -27,6 +28,7 @@ namespace WillBeThere.Backend.Context
                 .WithOne(op => op.Organization)
                 .HasForeignKey(op => op.OrganizationId)
                 .IsRequired(true);
+/*           
             // 1:N OrganizationAdminUser (ProgramOwner) - OrganizationProgram
             modelBuilder.Entity<ProgramOwner>()
                 .HasMany(oau => oau.OrganizationPrograms)
@@ -73,7 +75,7 @@ namespace WillBeThere.Backend.Context
                 .WithMany(o => o.OrganizationsAdmins)
                 .HasForeignKey(oau => oau.OrganizationId)
                 .IsRequired(true);
-
+*/
 
             base.OnModelCreating(modelBuilder);
         }

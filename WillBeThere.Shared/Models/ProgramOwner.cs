@@ -18,6 +18,6 @@ namespace WillBeThere.Shared.Models
         // 1:1 Editor - ProgramOwner
         public virtual Editor? EditorData { get; set; }
         // 1:N ProgramOwner - OrganizationProgram
-        public virtual List<OrganizationProgram>? OwnedPrograms { get; set; }
+        //public virtual List<OrganizationProgram>? OwnedPrograms { get; set; }
     }
 }

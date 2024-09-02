@@ -10,8 +10,8 @@ namespace WillBeThere.Shared.Extensions.ModelExtensions
             return new OrganizationAdminUserDto
             {
                 Id = model.Id,
-                AdminId = model.EditorID,
-                OrganizationId = model.OrganizationId,
+                //AdminId = model.EditorID,
+                //OrganizationId = model.OrganizationId,
             };
         }
 
@@ -20,8 +20,8 @@ namespace WillBeThere.Shared.Extensions.ModelExtensions
             return new ProgramOwner
             {
                 Id = dto.Id,
-                EditorID = dto.AdminId,
-                OrganizationId = dto.OrganizationId,
+                //EditorID = dto.AdminId,
+                //OrganizationId = dto.OrganizationId,
             };
         }
     }

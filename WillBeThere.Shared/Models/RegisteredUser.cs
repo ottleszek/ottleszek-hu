@@ -26,7 +26,7 @@ namespace WillBeThere.Shared.Models
         // N:M RegisteredUser - Participation - Organization program
         public virtual ICollection<Participation>? RegisteredUserPaticipations { get; set; }
         // 1:1 RegisteredUser - Editor
-        public virtual Editor Editor { get; set; }
+        //public virtual Editor Editor { get; set; }
         public string HungrianName => $"{LastName} {FirstName}";
 
 

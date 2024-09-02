@@ -44,8 +44,8 @@ namespace WillBeThere.Shared.Models
         public Guid ProgramOwnerId {  get; set; }
         public Guid? AddressId { get; set; }
         public virtual Organization? Organization { get; set; }
-        // 1:1 OrganizationProgarm - ProgramOwner
-        public virtual ProgramOwner? ProgramOwner { get; set; }
+        // 1:1 OrganizationProgram - ProgramOwner
+        //public virtual ProgramOwner? ProgramOwner { get; set; }
         // 1:1 OrganizationProgram - Address
         public virtual Address? Address { get; set; }
         // 1:N OrganizationProgram - Participation
