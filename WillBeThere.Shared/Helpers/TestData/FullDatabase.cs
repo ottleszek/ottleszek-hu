@@ -197,7 +197,7 @@ namespace WillBeThere.Shared.Helpers.TestData
                     Id= organizationId1,
                     Name="Gyálaréti Gyuris család",
                     Description="Gyálaréti Gyuris család programnaptára",
-                    Url="gyuris.gyalaret.ottleszek.hu",
+                    Url="gyuris-gyalaret",
                     OrganizationCategoryId=null,
                 },
                 new Organization
@@ -205,7 +205,7 @@ namespace WillBeThere.Shared.Helpers.TestData
                     Id= organizationId2,
                     Name="Kikindai Gyuris család",
                     Description="Kikindáról elszármazott Gyuris Család",
-                    Url="gyuris.kikinda.ottleszek.hu",
+                    Url="gyuris-kikinda",
                     OrganizationCategoryId=null,
                 },
                 new Organization

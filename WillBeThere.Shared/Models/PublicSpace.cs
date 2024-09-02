@@ -1,4 +1,5 @@
-﻿using WillBeThere.Shared.Models.Guids;
+﻿using System.ComponentModel.DataAnnotations;
+using WillBeThere.Shared.Models.Guids;
 
 namespace WillBeThere.Shared.Models
 {
@@ -14,10 +15,13 @@ namespace WillBeThere.Shared.Models
             Id=id;
             Name = nameOfPublicSpace;
         }
-
+        [Key]
+        [Required]
         public Guid Id { get; set; }
+        [Required]
+        [StringLength(30)]
         public string Name { get; set; } = string.Empty;
-        //public virtual List<Address>? Addresses { get; set; }
+        public virtual List<Address>? Addresses { get; set; }
 
     }
 }
