@@ -1,7 +1,7 @@
 ﻿using WillBeThere.Application.Responses;
 using WillBeThere.Domain.Entities.DbIds;
 
-namespace WillBeThere.Application.DataBroker
+namespace WillBeThere.Infrastucture.DataBroker
 {
     public interface IDtoDataBroker<TEntityDto> where TEntityDto : class, new() 
     {

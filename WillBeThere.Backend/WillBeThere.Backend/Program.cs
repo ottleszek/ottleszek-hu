@@ -1,6 +1,6 @@
 using System.Text.Json.Serialization;
-using WillBeThere.Backend.Context;
 using WillBeThere.Backend.Extensions;
+using WillBeThere.Infrastucture.Context;
 
 var builder = WebApplication.CreateBuilder(args);
 

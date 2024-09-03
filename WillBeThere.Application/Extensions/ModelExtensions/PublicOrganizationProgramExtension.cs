@@ -1,5 +1,5 @@
 ﻿
-using WillBeThere.Domain.Dtos.ResultModels;
+using WillBeThere.Application.Dtos.ResultModels;
 using WillBeThere.Domain.Models.ResultModels;
 
 namespace WillBeThere.Application.Extensions.ModelExtensions

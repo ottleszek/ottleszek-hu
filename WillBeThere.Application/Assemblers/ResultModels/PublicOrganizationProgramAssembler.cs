@@ -1,6 +1,6 @@
 ﻿using WillBeThere.Application.Assemblers;
+using WillBeThere.Application.Dtos.ResultModels;
 using WillBeThere.Application.Extensions.ModelExtensions;
-using WillBeThere.Domain.Dtos.ResultModels;
 using WillBeThere.Domain.Models.ResultModels;
 
 namespace WillBeThere.Domain.Assemblers.ResultModels

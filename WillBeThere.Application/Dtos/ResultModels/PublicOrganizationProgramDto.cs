@@ -1,6 +1,6 @@
 ﻿using WillBeThere.Domain.Entites;
 
-namespace WillBeThere.Domain.Dtos.ResultModels
+namespace WillBeThere.Application.Dtos.ResultModels
 {
     public class PublicOrganizationProgramDto
     {

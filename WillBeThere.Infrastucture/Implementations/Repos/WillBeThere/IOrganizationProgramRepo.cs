@@ -1,4 +1,4 @@
-﻿using WillBeThere.Domain.DataBroker;
+﻿using WillBeThere.Infrastucture.DataBroker;
 
 namespace WillBeThere.Backend.Repos.WillBeThere
 {

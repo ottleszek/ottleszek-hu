@@ -1,5 +1,5 @@
-﻿using WillBeThere.Domain.Dtos;
-using WillBeThere.Domain.Dtos.ResultModels;
+﻿using WillBeThere.Application.Dtos;
+using WillBeThere.Application.Dtos.ResultModels;
 
 namespace WillBeThere.HttpService.HttpService
 {

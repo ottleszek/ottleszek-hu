@@ -1,4 +1,4 @@
-﻿using WillBeThere.Application.DataBroker;
+﻿using WillBeThere.Infrastucture.DataBroker;
 
 namespace WillBeThere.HttpService.HttpService
 {

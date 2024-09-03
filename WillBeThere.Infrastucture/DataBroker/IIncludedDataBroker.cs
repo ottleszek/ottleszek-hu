@@ -1,6 +1,6 @@
 ﻿using WillBeThere.Domain.Entities.DbIds;
 
-namespace WillBeThere.Domain.DataBroker
+namespace WillBeThere.Infrastucture.DataBroker
 {
     public interface IIncludedDataBroker : IDataBroker
     {

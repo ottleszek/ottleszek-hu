@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 
-namespace WillBeThere.Backend.Context
+namespace WillBeThere.Infrastucture.Context
 {
     public class WillBeThereInMemoryContext : WillBeThereContext
     {

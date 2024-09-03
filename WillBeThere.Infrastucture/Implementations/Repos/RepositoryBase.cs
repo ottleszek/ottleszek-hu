@@ -1,8 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
 using WillBeThere.Application.Responses;
-using WillBeThere.Domain.DataBroker;
 using WillBeThere.Domain.Entities.DbIds;
+using WillBeThere.Infrastucture.DataBroker;
 
 namespace WillBeThere.Backend.Repos
 {

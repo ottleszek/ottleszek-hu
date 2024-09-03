@@ -1,5 +1,5 @@
 ﻿
-namespace WillBeThere.Domain.Dtos
+namespace WillBeThere.Application.Dtos
 {
     public class AddressDto
     {

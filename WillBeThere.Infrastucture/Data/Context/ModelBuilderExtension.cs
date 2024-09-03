@@ -3,7 +3,7 @@ using WillBeThere.Domain.Entites;
 using WillBeThere.Domain.Helpers.TestData;
 
 
-namespace WillBeThere.Backend.Context
+namespace WillBeThere.Infrastucture.Context
 {
     public static class ModelBuilderExtension
     {

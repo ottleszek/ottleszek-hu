@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using WillBeThere.Domain.DataBroker;
 using WillBeThere.Domain.Entities.DbIds;
+using WillBeThere.Infrastucture.DataBroker;
 
 namespace WillBeThere.Backend.Repos
 {

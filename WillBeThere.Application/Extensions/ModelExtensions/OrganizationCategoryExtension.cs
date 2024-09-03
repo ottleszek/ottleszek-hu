@@ -1,4 +1,4 @@
-﻿using WillBeThere.Domain.Dtos;
+﻿using WillBeThere.Application.Dtos;
 using WillBeThere.Domain.Entites;
 
 namespace WillBeThere.Domain.Extensions.ModelExtensions

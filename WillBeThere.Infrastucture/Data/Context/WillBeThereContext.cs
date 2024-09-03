@@ -1,8 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using WillBeThere.Domain.Entites;
-using WillBeThere.Domain.Models;
 
-namespace WillBeThere.Backend.Context
+namespace WillBeThere.Infrastucture.Context
 {
     public class WillBeThereContext : DbContext
     {

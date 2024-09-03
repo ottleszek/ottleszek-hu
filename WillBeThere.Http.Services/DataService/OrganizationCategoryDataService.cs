@@ -1,7 +1,7 @@
 ﻿using WillBeThere.HttpService.MapperService;
-using WillBeThere.Domain.Dtos;
 using WillBeThere.Domain.Entites;
 using WillBeThere.Application.Assemblers;
+using WillBeThere.Application.Dtos;
 
 namespace WillBeThere.HttpService.DataService
 {

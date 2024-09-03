@@ -1,5 +1,5 @@
 ﻿using WillBeThere.Application.Assemblers;
-using WillBeThere.Domain.Dtos;
+using WillBeThere.Application.Dtos;
 using WillBeThere.Domain.Entites;
 using WillBeThere.Domain.Models.ResultModels;
 

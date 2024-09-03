@@ -14,6 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\WillBeThere.Application\WillBeThere.Application.csproj" />
     <ProjectReference Include="..\WillBeThere.Domain\WillBeThere.Domain.csproj" />
     <ProjectReference Include="..\WillBeThere.Shared\WillBeThere.Shared.csproj" />
   </ItemGroup>
