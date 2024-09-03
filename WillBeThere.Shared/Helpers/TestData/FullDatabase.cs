@@ -44,6 +44,13 @@ namespace WillBeThere.Shared.Helpers.TestData
         static Guid registeredUserId4 = Guid.NewGuid();
         static Guid registeredUserId5 = Guid.NewGuid();
         static Guid registeredUserId6 = Guid.NewGuid();
+        static Guid registeredUserId10 = Guid.NewGuid();
+        static Guid registeredUserId11 = Guid.NewGuid();
+        static Guid registeredUserId12 = Guid.NewGuid();
+        static Guid registeredUserId13 = Guid.NewGuid();
+        static Guid registeredUserId14 = Guid.NewGuid();
+        static Guid registeredUserId15 = Guid.NewGuid();
+        static Guid registeredUserId16 = Guid.NewGuid();
 
         static Guid organizationAdminUserId1 = Guid.NewGuid();
         static Guid organizationAdminUserId2 = Guid.NewGuid();
@@ -69,6 +76,15 @@ namespace WillBeThere.Shared.Helpers.TestData
         static  Guid participationId3 = Guid.NewGuid();
         static  Guid participationId4 = Guid.NewGuid();
         static  Guid participationId5 = Guid.NewGuid();
+
+        static Guid organizationEditorId1=Guid.NewGuid();
+        static Guid organizationEditorId2 = Guid.NewGuid();
+        static Guid organizationEditorId3 = Guid.NewGuid();
+        static Guid organizationEditorId4 = Guid.NewGuid();
+        static Guid organizationEditorId5 = Guid.NewGuid();
+        static Guid organizationEditorId6 = Guid.NewGuid();
+        static Guid organizationEditorId7 = Guid.NewGuid();
+        static Guid organizationEditorId8 = Guid.NewGuid();
         #endregion
 
         #region PublicSpace
@@ -331,7 +347,95 @@ namespace WillBeThere.Shared.Helpers.TestData
                     FirstName="Zsuzsanna",
                     LastName="Szabóné",
                 },
-            };
+                new RegisteredUser
+                {
+                    Id=registeredUserId10,
+                    FirstName="Név10",
+                    LastName="Felhasználó",
+                },
+                new RegisteredUser
+                {
+                    Id=registeredUserId11,
+                    FirstName="Név10",
+                    LastName="Felhasznál1",
+                },
+                new RegisteredUser
+                {
+                    Id=registeredUserId12,
+                    FirstName="Név12",
+                    LastName="Felhasználó",
+                },
+                new RegisteredUser
+                {
+                    Id=registeredUserId13,
+                    FirstName="Név13",
+                    LastName="Felhasználó",
+                },
+                new RegisteredUser
+                {
+                    Id=registeredUserId14,
+                    FirstName="Név14",
+                    LastName="Felhasználó",
+                },
+                new RegisteredUser
+                {
+                    Id=registeredUserId15,
+                    FirstName="Név15",
+                    LastName="Felhasználó",
+                },
+                new RegisteredUser
+                {
+                    Id=registeredUserId16,
+                    FirstName="Név16",
+                    LastName="Felhasználó",
+                },
+        };
+        #endregion
+
+        #region Editor
+        public static List<Editor> Editors = new()
+        {
+             new Editor
+                {
+                    Id=registeredUserId1,
+                },
+                new Editor
+                {
+                    Id=registeredUserId2,
+                },
+                new Editor
+                {
+                    Id=registeredUserId3,
+                },
+
+                new Editor
+                {
+                    Id=registeredUserId4,
+                },
+                new Editor
+                {
+                    Id=registeredUserId5,
+                },
+                new Editor
+                {
+                    Id=registeredUserId6,
+                },
+        };
+        #endregion 
+
+        #region ProgramOwner
+        public static List<ProgramOwner> ProgramOwners = new()
+        {
+                new ProgramOwner
+                {
+                    Id=registeredUserId4,
+                },
+                new ProgramOwner
+                {
+                    Id=registeredUserId6,
+                },
+        };
+
         #endregion
 
         #region OrganizationProgram
@@ -422,7 +526,7 @@ namespace WillBeThere.Shared.Helpers.TestData
                     IsPublic=false,
                     AddressId=addressId2,
                     OrganizationId=organizationId4,
-                    //ProgramOwnerId=organizationAdminUserId1,
+                    ProgramOwnerId=registeredUserId4,
                 },
                 // Egy hónappal ezelőtt
                 new OrganizationProgram
@@ -436,7 +540,7 @@ namespace WillBeThere.Shared.Helpers.TestData
                     IsPublic=false,
                     AddressId=addressId2,
                     OrganizationId=organizationId4,
-                    //ProgramOwnerId=organizationAdminUserId1,
+                    ProgramOwnerId=registeredUserId4,
                 },
                 // Egy hét múlva
                 new OrganizationProgram
@@ -450,7 +554,7 @@ namespace WillBeThere.Shared.Helpers.TestData
                     IsPublic=false,
                     AddressId=addressId2,
                     OrganizationId=organizationId4,
-                    //ProgramOwnerId=organizationAdminUserId1,
+                    ProgramOwnerId=registeredUserId4,
                 },
                 // Éppen most
                 new OrganizationProgram
@@ -464,7 +568,7 @@ namespace WillBeThere.Shared.Helpers.TestData
                     IsPublic=false,
                     AddressId=addressId2,
                     OrganizationId=organizationId6,
-                    //ProgramOwnerId=organizationAdminUserId6,
+                    ProgramOwnerId=registeredUserId6,
                 },
                 // Elhalasztott publikus
                 new OrganizationProgram
@@ -478,7 +582,7 @@ namespace WillBeThere.Shared.Helpers.TestData
                     IsPublic=true,
                     AddressId=addressId2,
                     OrganizationId=organizationId3,
-                    //ProgramOwnerId=organizationAdminUserId2,
+                    ProgramOwnerId=registeredUserId4,
                 },
                 // Elhalasztott nem publikus
                 new OrganizationProgram
@@ -492,58 +596,66 @@ namespace WillBeThere.Shared.Helpers.TestData
                     IsPublic=false,
                     AddressId=addressId2,
                     OrganizationId=organizationId4,
-                    //ProgramOwnerId=organizationAdminUserId1,
+                    ProgramOwnerId=registeredUserId4,
                 },
             };
         #endregion
 
-        #region OrganizationAdminUsers
-        public static List<ProgramOwner> OrganizationAdminUsers = new()
+        #region OrganizationEditor
+        public static List<OrganizationEditor> OrganizationEditors = new()
+        {
+            new OrganizationEditor
             {
-                new ProgramOwner
-                {
-                    // Gyálaréti Fréfi sátor - Jenei Kornél
-                    Id = organizationAdminUserId1,
-                    //OrganizationId = organizationId3,
-                    //EditorID = registeredUserId4,
-                },
-                new ProgramOwner
-                {
-                    // Magyarországi Férfi sátor
-                    Id=organizationAdminUserId2,
-                    //OrganizationId=organizationId4,
-                    //EditorID = registeredUserId4,
-                },
-                new ProgramOwner
-                {
-                    // Családpaszoráció - Gyurisné Hutter Katalin
-                    Id=organizationAdminUserId3,
-                    //OrganizationId=organizationId10,
-                    //EditorID = registeredUserId3,
-                },
-                new ProgramOwner
-                {
-                    // Gyálaréti meditációs csoport - Szászi Balázs
-                    Id=organizationAdminUserId4,
-                    //OrganizationId=organizationId5,
-                    //EditorID = registeredUserId3,
-                },
-                new ProgramOwner
-                {
-                    // Gyálaréti művelődési ház - Jenei Kornél
-                    Id = organizationAdminUserId5,
-                    //OrganizationId = organizationId7,
-                    //EditorID = registeredUserId4,
-                },
-                new ProgramOwner
-                {
-                    // Családcsoport - Szabóné Zsuzsa
-                    Id = organizationAdminUserId6,
-                    //OrganizationId = organizationId6,
-                    //EditorID = registeredUserId6,
-                },
+                Id=organizationEditorId1,
+                OrganizationId=organizationId1,
+                EditorId=registeredUserId11=registeredUserId1,
+            },
+            new OrganizationEditor
+            {
+                Id=organizationEditorId2,
+                OrganizationId=organizationId2,
+                EditorId=registeredUserId11=registeredUserId1,
 
-            };
+            },
+            new OrganizationEditor
+            {
+                Id=organizationEditorId3,
+                OrganizationId=organizationId3,
+                EditorId=registeredUserId11=registeredUserId1,
+
+            },          
+            new OrganizationEditor
+            {
+                Id=organizationEditorId4,
+                OrganizationId=organizationId4,
+                EditorId=registeredUserId11=registeredUserId5,
+            },
+            new OrganizationEditor
+            {
+                Id=organizationEditorId5,
+                OrganizationId=organizationId5,
+                EditorId=registeredUserId11=registeredUserId5,
+            },
+            new OrganizationEditor
+            {
+                Id=organizationEditorId6,
+                OrganizationId=organizationId6,
+                EditorId=registeredUserId11=registeredUserId6,
+            },
+            new OrganizationEditor
+            {
+                Id=organizationEditorId7,
+                OrganizationId=organizationId9,
+                EditorId=registeredUserId3
+            },
+            new OrganizationEditor
+            {
+                Id=organizationEditorId8,
+                OrganizationId=organizationId10,
+                EditorId=registeredUserId3,
+            },
+
+        };
         #endregion
 
         #region Participations

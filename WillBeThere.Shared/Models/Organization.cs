@@ -40,8 +40,8 @@ namespace WillBeThere.Shared.Models
         public virtual OrganizationCategory? OrganizationCategory { get; set; }
         // 1:N Organization - OrganizationProgram
         public virtual ICollection<OrganizationProgram>? OrganizationPrograms { get; set; }
-        // 1:N Organization - OrganizationEditor
-        //public virtual ICollection<Editor>? OrganizationEditors{ get; set; }
+        // N:M Organization -= OrganizationEditor - Editor
+        public virtual List<OrganizationEditor>? Editors { get; set; }
 
     }
 }

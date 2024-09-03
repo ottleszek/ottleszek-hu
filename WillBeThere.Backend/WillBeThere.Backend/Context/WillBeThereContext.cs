@@ -23,6 +23,17 @@ namespace WillBeThere.Backend.Context
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
 
+            // 1:1 RegisteredUser - Editor
+            modelBuilder.Entity<RegisteredUser>()
+                .HasOne(r => r.Editor)
+                .WithOne(e => e.RegisteredUser)
+                .HasForeignKey<Editor>(e => e.Id);
+            // 1:1 Editor - ProgramOwner
+            modelBuilder.Entity<Editor>()
+                .HasOne(e => e.ProgramOwner)
+                .WithOne(po => po.Editor)
+                .HasForeignKey<ProgramOwner>(po => po.Id);
+
             // 1:N OrganizationCategory - Organization
             modelBuilder.Entity<OrganizationCategory>()
                 .HasMany(oc => oc.Organizations)
@@ -61,28 +72,18 @@ namespace WillBeThere.Backend.Context
                 .HasForeignKey(p => p.ParticipantId)
                 .IsRequired(true);
 
-            /*
+            // N:M Organizaton -= OrganizationEditor - Editor
+            modelBuilder.Entity<OrganizationEditor>()
+                .HasOne(oe => oe.Organization)
+                .WithMany(o => o.Editors)
+                .HasForeignKey(oe => oe.OrganizationId)
+                .IsRequired(true);
+            modelBuilder.Entity<OrganizationEditor>()
+                .HasOne(oe => oe.Editor)
+                .WithMany(e => e.Organizations)
+                .HasForeignKey(oe => oe.EditorId)
+                .IsRequired(true);
 
-                        // 1:N OrganizationAdminUser (ProgramOwner) - OrganizationProgram
-                        modelBuilder.Entity<ProgramOwner>()
-                            .HasMany(oau => oau.OrganizationPrograms)
-                            .WithOne(op => op.ProgramOwner)
-                            .HasForeignKey(op => op.OrganizationId)
-                            .IsRequired(true);
-
-
-                        // N:M Organization - OrganizationAdminUser - RegisteredUser
-                        modelBuilder.Entity<ProgramOwner>()
-                            .HasOne(oau => oau.EditorData)
-                            .WithMany(ru => ru.AdminsOrganizations)
-                            .HasForeignKey(oau => oau.AdminId)
-                            .IsRequired(true);
-                        modelBuilder.Entity<ProgramOwner>()
-                            .HasOne(oau => oau.Organization)
-                            .WithMany(o => o.OrganizationsAdmins)
-                            .HasForeignKey(oau => oau.OrganizationId)
-                            .IsRequired(true);
-            */
 
             base.OnModelCreating(modelBuilder);
         }

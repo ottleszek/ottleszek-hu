@@ -16,12 +16,13 @@ namespace WillBeThere.Shared.Models
         [Key, ForeignKey(nameof(RegisteredUser))]
         [Required]
         public Guid Id { get; set; }
-        [Required]
-        public Guid RegisteredUserId;
 
         // 1:1 Editor - RegisteredUser
         public virtual RegisteredUser? RegisteredUser { get; set; }
-        // 1:N Editor - OrganizationEditor
-        //public virtual List<OrganizationEditor>? EditedOrganizations { get; set; }
+        // 1:1 Editor - ProgramOwner
+        public virtual ProgramOwner? ProgramOwner { get; set; }
+        // N:M Editor -= OrganizationEditor - Organization
+        public virtual List<OrganizationEditor>? Organizations { get; set; }
+
     }
 }
