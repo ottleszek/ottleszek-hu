@@ -4,9 +4,10 @@ using WillBeThere.Backend.Context;
 using WillBeThere.Backend.Repos;
 using WillBeThere.Backend.Repos.WillBeThere;
 using WillBeThere.Backend.Services;
-using WillBeThere.Shared.Helpers.TestData;
-using WillBeThere.Shared.Models;
-using WillBeThere.Shared.Models.ResultModels;
+using WillBeThere.Domain.Entites;
+using WillBeThere.Domain.Helpers.TestData;
+using WillBeThere.Domain.Models;
+using WillBeThere.Domain.Models.ResultModels;
 
 namespace WillBeThereTest.Backend.Services
 {

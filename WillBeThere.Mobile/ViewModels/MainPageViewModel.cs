@@ -2,8 +2,8 @@
 using CommunityToolkit.Mvvm.Input;
 using WillBeThere.HttpService.DataService;
 using WillBeThere.Mobile.Controls;
-using WillBeThere.Shared.Models;
-using WillBeThere.Shared.Models.ResultModels;
+using WillBeThere.Domain.Models.ResultModels;
+using WillBeThere.Domain.Entites;
 
 namespace WillBeThere.Mobile.ViewModels
 {

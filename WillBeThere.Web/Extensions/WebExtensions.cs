@@ -1,8 +1,8 @@
 ﻿using WillBeThere.HttpService.DataService;
 using WillBeThere.HttpService.HttpService;
 using WillBeThere.HttpService.MapperService;
-using WillBeThere.Shared.Assemblers;
-using WillBeThere.Shared.Assemblers.ResultModels;
+using WillBeThere.Domain.Assemblers.ResultModels;
+using WillBeThere.Application.Assemblers;
 
 namespace WillBeThere.Web.Extensions
 {

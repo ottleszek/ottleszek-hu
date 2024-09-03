@@ -1,5 +1,5 @@
-﻿using WillBeThere.Shared.Dtos;
-using WillBeThere.Shared.Dtos.ResultModels;
+﻿using WillBeThere.Domain.Dtos;
+using WillBeThere.Domain.Dtos.ResultModels;
 
 namespace WillBeThere.HttpService.HttpService
 {

@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using WillBeThere.Shared.DataBroker;
-using WillBeThere.Shared.Models.Guids;
+using WillBeThere.Domain.DataBroker;
+using WillBeThere.Domain.Entities.DbIds;
 
 namespace WillBeThere.Backend.Repos
 {

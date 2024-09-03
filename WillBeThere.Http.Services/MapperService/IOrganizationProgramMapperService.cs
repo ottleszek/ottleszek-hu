@@ -1,7 +1,7 @@
-﻿using WillBeThere.Shared.Assemblers;
-using WillBeThere.Shared.Dtos;
-using WillBeThere.Shared.Models;
-using WillBeThere.Shared.Models.ResultModels;
+﻿using WillBeThere.Application.Assemblers;
+using WillBeThere.Domain.Dtos;
+using WillBeThere.Domain.Entites;
+using WillBeThere.Domain.Models.ResultModels;
 
 namespace WillBeThere.HttpService.MapperService
 {

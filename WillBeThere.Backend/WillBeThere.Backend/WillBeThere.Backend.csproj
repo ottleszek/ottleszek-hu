@@ -21,7 +21,13 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\WillBeThere.Application\WillBeThere.Application.csproj" />
+    <ProjectReference Include="..\..\WillBeThere.Infrastucture\WillBeThere.Infrastucture.csproj" />
     <ProjectReference Include="..\..\WillBeThere.Shared\WillBeThere.Shared.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Context\" />
   </ItemGroup>
 
 </Project>

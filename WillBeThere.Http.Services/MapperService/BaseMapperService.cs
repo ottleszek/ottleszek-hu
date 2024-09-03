@@ -1,6 +1,6 @@
 ﻿using WillBeThere.HttpService.HttpService;
-using WillBeThere.Shared.Assemblers;
-using WillBeThere.Shared.Models.Guids;
+using WillBeThere.Domain.Entities.DbIds;
+using WillBeThere.Application.Assemblers;
 
 namespace WillBeThere.HttpService.MapperService
 {

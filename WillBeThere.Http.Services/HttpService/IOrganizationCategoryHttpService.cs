@@ -1,4 +1,4 @@
-﻿using WillBeThere.Shared.Dtos;
+﻿using WillBeThere.Domain.Dtos;
 
 namespace WillBeThere.HttpService.HttpService
 {

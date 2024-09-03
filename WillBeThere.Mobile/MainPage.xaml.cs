@@ -1,5 +1,5 @@
 ﻿using WillBeThere.Mobile.ViewModels;
-using WillBeThere.Shared.Helper;
+using WillBeThere.Domain.Helper;
 
 namespace WillBeThere.Mobile
 {

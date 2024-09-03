@@ -1,8 +1,8 @@
 ﻿using WillBeThere.HttpService.MapperService;
-using WillBeThere.Shared.Assemblers;
-using WillBeThere.Shared.Dtos;
-using WillBeThere.Shared.Models;
-using WillBeThere.Shared.Models.ResultModels;
+using WillBeThere.Domain.Dtos;
+using WillBeThere.Domain.Models.ResultModels;
+using WillBeThere.Domain.Entites;
+using WillBeThere.Application.Assemblers;
 
 namespace WillBeThere.HttpService.DataService
 {

@@ -1,6 +1,7 @@
-﻿using WillBeThere.Shared.Assemblers;
-using WillBeThere.Shared.Dtos;
-using WillBeThere.Shared.Models;
+﻿using WillBeThere.Application.Assemblers;
+using WillBeThere.Domain.Dtos;
+using WillBeThere.Domain.Entites;
+
 
 namespace WillBeThere.HttpService.DataService
 {

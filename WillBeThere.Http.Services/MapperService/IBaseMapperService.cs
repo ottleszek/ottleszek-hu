@@ -1,5 +1,5 @@
-﻿using WillBeThere.Shared.Assemblers;
-using WillBeThere.Shared.Models.Guids;
+﻿using WillBeThere.Application.Assemblers;
+using WillBeThere.Domain.Entities.DbIds;
 
 namespace WillBeThere.HttpService.MapperService
 {

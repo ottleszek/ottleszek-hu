@@ -1,7 +1,7 @@
-﻿using WillBeThere.HttpService.MapperService;
-using WillBeThere.Shared.Assemblers;
-using WillBeThere.Shared.Models.Guids;
-using WillBeThere.Shared.Responses;
+﻿using WillBeThere.Application.Assemblers;
+using WillBeThere.Application.Responses;
+using WillBeThere.Domain.Entities.DbIds;
+using WillBeThere.HttpService.MapperService;
 
 namespace WillBeThere.HttpService.DataService
 {

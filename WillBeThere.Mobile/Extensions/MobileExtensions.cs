@@ -2,9 +2,8 @@
 using WillBeThere.HttpService.HttpService;
 using WillBeThere.HttpService.MapperService;
 using WillBeThere.Mobile.ViewModels;
-using WillBeThere.Shared.Assemblers.ResultModels;
-using WillBeThere.Shared.Assemblers;
-using static System.Net.WebRequestMethods;
+using WillBeThere.Domain.Assemblers.ResultModels;
+using WillBeThere.Application.Assemblers;
 
 namespace WillBeThere.Mobile.Extensions
 {

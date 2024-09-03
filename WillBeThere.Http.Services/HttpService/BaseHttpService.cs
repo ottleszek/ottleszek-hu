@@ -1,9 +1,9 @@
-﻿using WillBeThere.Shared.Responses;
-using System.Diagnostics;
+﻿using System.Diagnostics;
 using System.Net.Http.Json;
 using Newtonsoft.Json;
 using System.Net;
-using WillBeThere.Shared.Models.Guids;
+using WillBeThere.Domain.Entities.DbIds;
+using WillBeThere.Application.Responses;
 
 namespace WillBeThere.HttpService.HttpService
 {

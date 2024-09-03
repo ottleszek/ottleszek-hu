@@ -1,10 +1,10 @@
 ﻿using WillBeThere.HttpService.HttpService;
-using WillBeThere.Shared.Assemblers;
-using WillBeThere.Shared.Assemblers.ResultModels;
-using WillBeThere.Shared.Dtos;
-using WillBeThere.Shared.Dtos.ResultModels;
-using WillBeThere.Shared.Models;
-using WillBeThere.Shared.Models.ResultModels;
+using WillBeThere.Domain.Assemblers.ResultModels;
+using WillBeThere.Domain.Dtos;
+using WillBeThere.Domain.Dtos.ResultModels;
+using WillBeThere.Domain.Models.ResultModels;
+using WillBeThere.Domain.Entites;
+using WillBeThere.Application.Assemblers;
 
 namespace WillBeThere.HttpService.MapperService
 {

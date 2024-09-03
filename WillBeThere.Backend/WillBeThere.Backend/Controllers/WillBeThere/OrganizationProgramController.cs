@@ -1,13 +1,12 @@
 ﻿using Microsoft.AspNetCore.Mvc; 
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Storage.Internal;
+using WillBeThere.Application.Assemblers;
 using WillBeThere.Backend.Repos.WillBeThere;
 using WillBeThere.Backend.Services;
-using WillBeThere.Shared.Assemblers;
-using WillBeThere.Shared.Assemblers.ResultModels;
-using WillBeThere.Shared.Dtos;
-using WillBeThere.Shared.Models;
-using WillBeThere.Shared.Models.ResultModels;
+using WillBeThere.Domain.Assemblers.ResultModels;
+using WillBeThere.Domain.Dtos;
+using WillBeThere.Domain.Entites;
+using WillBeThere.Domain.Models.ResultModels;
 
 namespace WillBeThere.Backend.Controllers.WillBeThere
 {
