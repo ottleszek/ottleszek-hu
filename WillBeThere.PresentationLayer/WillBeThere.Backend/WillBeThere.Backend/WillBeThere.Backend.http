@@ -1,6 +1,0 @@
-@WillBeThere.Backend_HostAddress = http://localhost:5098
-
-GET {{WillBeThere.Backend_HostAddress}}/weatherforecast/
-Accept: application/json
-
-###
