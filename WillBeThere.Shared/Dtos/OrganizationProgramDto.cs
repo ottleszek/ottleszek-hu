@@ -12,6 +12,6 @@ namespace WillBeThere.Shared.Dtos
         public bool IsDeffered { get; set; }
         public Guid OrganizationOwnerId { get; set; } = Guid.Empty;
         public Guid ProgramOwnerId { get; set; } = Guid.Empty;
-        public Guid? AddressId { get; set; }
+        public Guid AddressId { get; set; }
     }
 }

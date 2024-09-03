@@ -1,4 +1,6 @@
-﻿using WillBeThere.Shared.Models.Guids;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using WillBeThere.Shared.Models.Guids;
 
 namespace WillBeThere.Shared.Models
 {
@@ -27,16 +29,23 @@ namespace WillBeThere.Shared.Models
             Door = door;
             PostalCode = postalCode;
         }
-
+        [Key]
+        [Required]
         public Guid Id { get; set; }
+        [Required]
         public Guid PublicScapeId { get; set; }
+        [Required]
+        [StringLength(30)]
         public string PublicSpaceName { get; set; }
+        [Required]
+        [StringLength(30)]
         public string Locality { get; set; }
         public int House { get; set; }
         public int Floor { get; set; }
         public int Door { get; set; }
         public int PostalCode { get; set; }
+        [ForeignKey(nameof(PublicScapeId))]
         public virtual PublicSpace? PublicSpace { get; set; }
-        public virtual List<OrganizationProgram>? OrganizationPrograms { get; set;}
+        public virtual ICollection<OrganizationProgram>? OrganizationPrograms { get; set;}
     }
 }

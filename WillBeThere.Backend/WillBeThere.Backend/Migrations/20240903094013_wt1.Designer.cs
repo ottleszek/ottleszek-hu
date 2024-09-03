@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WillBeThere.Backend.Context;
 
@@ -10,9 +11,11 @@ using WillBeThere.Backend.Context;
 namespace WillBeThere.Backend.Migrations
 {
     [DbContext(typeof(WillBeThereMysqlContext))]
-    partial class WillBeThereMysqlContextModelSnapshot : ModelSnapshot
+    [Migration("20240903094013_wt1")]
+    partial class wt1
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

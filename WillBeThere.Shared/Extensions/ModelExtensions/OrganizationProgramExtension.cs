@@ -15,7 +15,7 @@ namespace WillBeThere.Shared.Extensions.ModelExtensions
                 End = model.End,
                 IsDeffered = model.IsDeffered,
                 IsPublic = model.IsPublic,
-                OrganizationOwnerId = model.OrganizationOwnerId,
+                OrganizationOwnerId = model.OrganizationId,
                 ProgramOwnerId = model.ProgramOwnerId,
                 AddressId = model.AddressId,
             };
@@ -31,7 +31,7 @@ namespace WillBeThere.Shared.Extensions.ModelExtensions
                 End = dto.End,
                 IsPublic = dto.IsPublic,
                 IsDeffered = dto.IsDeffered,
-                OrganizationOwnerId = dto.OrganizationOwnerId,
+                OrganizationId = dto.OrganizationOwnerId,
                 ProgramOwnerId = dto.ProgramOwnerId,
                 AddressId = dto.AddressId,
             };

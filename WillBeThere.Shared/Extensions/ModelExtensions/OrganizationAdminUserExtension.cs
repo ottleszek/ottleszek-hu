@@ -5,23 +5,23 @@ namespace WillBeThere.Shared.Extensions.ModelExtensions
 {
     public static class OrganizationAdminUserExtension
     {
-        public static OrganizationAdminUserDto ToDto(this OrganizationAdminUser model)
+        public static OrganizationAdminUserDto ToDto(this ProgramOwner model)
         {
             return new OrganizationAdminUserDto
             {
                 Id = model.Id,
-                AdminId = model.AdminId,
-                OrganizationId = model.OrganizationId,
+                //AdminId = model.EditorID,
+                //OrganizationId = model.OrganizationId,
             };
         }
 
-        public static OrganizationAdminUser ToModel(this OrganizationAdminUserDto dto)
+        public static ProgramOwner ToModel(this OrganizationAdminUserDto dto)
         {
-            return new OrganizationAdminUser
+            return new ProgramOwner
             {
                 Id = dto.Id,
-                AdminId = dto.AdminId,
-                OrganizationId = dto.OrganizationId,
+                //EditorID = dto.AdminId,
+                //OrganizationId = dto.OrganizationId,
             };
         }
     }

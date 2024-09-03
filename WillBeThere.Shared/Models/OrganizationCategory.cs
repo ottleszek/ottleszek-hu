@@ -1,4 +1,5 @@
-﻿using WillBeThere.Shared.Models.Guids;
+﻿using System.ComponentModel.DataAnnotations;
+using WillBeThere.Shared.Models.Guids;
 
 namespace WillBeThere.Shared.Models
 {
@@ -15,7 +16,11 @@ namespace WillBeThere.Shared.Models
             Name = name;
         }
 
+        [Key]
+        [Required]
         public Guid Id { get ; set; }
+        [Required]
+        [StringLength(30)]
         public string Name { get; set; }
         public virtual ICollection<Organization>? Organizations { get; set; }
     }

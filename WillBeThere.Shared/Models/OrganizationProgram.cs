@@ -1,4 +1,6 @@
-﻿using WillBeThere.Shared.Models.Guids;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using WillBeThere.Shared.Models.Guids;
 
 namespace WillBeThere.Shared.Models
 {
@@ -13,14 +15,13 @@ namespace WillBeThere.Shared.Models
             End = null;
             IsPublic = false;
             IsDeffered = false;
-            OrganizationOwnerId = new();
+            OrganizationId = new();
             ProgramOwnerId = new();
             AddressId = new();
-            Organization = null;
             
         }
 
-        public OrganizationProgram(Guid id, string title, string description, DateTime start, DateTime? end, bool isPublic, bool isDeffered, Guid organizationOwnerId, Guid programOwnerId, Guid? addressId) 
+        public OrganizationProgram(Guid id, string title, string description, DateTime start, DateTime? end, bool isPublic, bool isDeffered, Guid organizationOwnerId, Guid programOwnerId, Guid addressId) 
         {
             Id= id;
             Title = title;
@@ -29,24 +30,37 @@ namespace WillBeThere.Shared.Models
             End = end;
             IsPublic = isPublic;
             IsDeffered = isDeffered;
-            OrganizationOwnerId = organizationOwnerId;
+            OrganizationId = organizationOwnerId;
             ProgramOwnerId = programOwnerId;
             AddressId = addressId;
         }
+        [Key]
+        [Required]
         public Guid Id { get; set; }
+        [Required]
+        [StringLength(50)]
         public string Title { get; set; }
         public string Description { get; set; }
+        [Required]
         public DateTime Start {  get; set; }
         public DateTime? End { get; set; }
+        [Required]
         public bool IsPublic { get; set; }
         public bool IsDeffered { get; set; }
-        public Guid OrganizationOwnerId { get; set; }
+        public Guid OrganizationId { get; set; }
         public Guid ProgramOwnerId {  get; set; }
-        public Guid? AddressId { get; set; }
+        public Guid AddressId { get; set; }
+
+        [ForeignKey(nameof(OrganizationId))]
         public virtual Organization? Organization { get; set; }
-        public virtual OrganizationAdminUser? ProgramOwner { get; set; }
+        // 1:1 OrganizationProgram - ProgramOwner
+        //public virtual ProgramOwner? ProgramOwner { get; set; }
+        // 1:1 OrganizationProgram - Address
+        [ForeignKey(nameof(AddressId))]
         public virtual Address? Address { get; set; }
-        public virtual ICollection<Participation>? ProgramParticipants { get; set; }
+        // 1:N OrganizationProgram - Participation
+        public virtual ICollection<Participation>? Participants { get; set; }
+        
 
     }
 }

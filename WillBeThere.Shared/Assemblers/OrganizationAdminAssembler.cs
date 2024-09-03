@@ -5,14 +5,14 @@ using WillBeThere.Shared.Models;
 
 namespace WillBeThere.Shared.Assemblers
 {
-    public class OrganizationAdminAssembler : IAssembler<OrganizationAdminUser, OrganizationAdminUserDto>
+    public class OrganizationAdminAssembler : IAssembler<ProgramOwner, OrganizationAdminUserDto>
     {
-        public OrganizationAdminUserDto ToDto(OrganizationAdminUser model)
+        public OrganizationAdminUserDto ToDto(ProgramOwner model)
         {
             return model.ToDto();
         }
 
-        public OrganizationAdminUser ToModel(OrganizationAdminUserDto dto)
+        public ProgramOwner ToModel(OrganizationAdminUserDto dto)
         {
             return dto.ToModel();
         }

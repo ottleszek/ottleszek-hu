@@ -91,7 +91,7 @@ namespace WillBeThereTest.Backend.Services
             List<OrganizationProgram> expectedList = FullDatabase.OrganizationPrograms.Where(
                 op => op.Start > DateTime.Now && op.IsPublic && !op.IsDeffered).ToList();
             // Organization name           
-            List<string> expectedOrganizationName = FullDatabase.Organizations.Where(o => expectedList.Select(op => op.OrganizationOwnerId).Contains(o.Id)).Select(o  => o.Name).ToList();
+            List<string> expectedOrganizationName = FullDatabase.Organizations.Where(o => expectedList.Select(op => op.OrganizationId).Contains(o.Id)).Select(o  => o.Name).ToList();
             Assert.That(list.Select(pop => pop.Organization), Is.EqualTo(expectedOrganizationName),"A jövőbeli programok szervezői nem a megfelelő szervezetek!");
             // Addresses
             List<Guid> expectedAddressIDs = FullDatabase.Addresses.Where(a => expectedList.Select(op => op.AddressId).Contains(a.Id)).Select(a => a.Id).ToList();

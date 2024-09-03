@@ -44,6 +44,13 @@ namespace WillBeThere.Shared.Helpers.TestData
         static Guid registeredUserId4 = Guid.NewGuid();
         static Guid registeredUserId5 = Guid.NewGuid();
         static Guid registeredUserId6 = Guid.NewGuid();
+        static Guid registeredUserId10 = Guid.NewGuid();
+        static Guid registeredUserId11 = Guid.NewGuid();
+        static Guid registeredUserId12 = Guid.NewGuid();
+        static Guid registeredUserId13 = Guid.NewGuid();
+        static Guid registeredUserId14 = Guid.NewGuid();
+        static Guid registeredUserId15 = Guid.NewGuid();
+        static Guid registeredUserId16 = Guid.NewGuid();
 
         static Guid organizationAdminUserId1 = Guid.NewGuid();
         static Guid organizationAdminUserId2 = Guid.NewGuid();
@@ -69,6 +76,15 @@ namespace WillBeThere.Shared.Helpers.TestData
         static  Guid participationId3 = Guid.NewGuid();
         static  Guid participationId4 = Guid.NewGuid();
         static  Guid participationId5 = Guid.NewGuid();
+
+        static Guid organizationEditorId1=Guid.NewGuid();
+        static Guid organizationEditorId2 = Guid.NewGuid();
+        static Guid organizationEditorId3 = Guid.NewGuid();
+        static Guid organizationEditorId4 = Guid.NewGuid();
+        static Guid organizationEditorId5 = Guid.NewGuid();
+        static Guid organizationEditorId6 = Guid.NewGuid();
+        static Guid organizationEditorId7 = Guid.NewGuid();
+        static Guid organizationEditorId8 = Guid.NewGuid();
         #endregion
 
         #region PublicSpace
@@ -197,7 +213,7 @@ namespace WillBeThere.Shared.Helpers.TestData
                     Id= organizationId1,
                     Name="Gyálaréti Gyuris család",
                     Description="Gyálaréti Gyuris család programnaptára",
-                    Url="gyuris.gyalaret.ottleszek.hu",
+                    Url="gyuris-gyalaret",
                     OrganizationCategoryId=null,
                 },
                 new Organization
@@ -205,7 +221,7 @@ namespace WillBeThere.Shared.Helpers.TestData
                     Id= organizationId2,
                     Name="Kikindai Gyuris család",
                     Description="Kikindáról elszármazott Gyuris Család",
-                    Url="gyuris.kikinda.ottleszek.hu",
+                    Url="gyuris-kikinda",
                     OrganizationCategoryId=null,
                 },
                 new Organization
@@ -331,7 +347,95 @@ namespace WillBeThere.Shared.Helpers.TestData
                     FirstName="Zsuzsanna",
                     LastName="Szabóné",
                 },
-            };
+                new RegisteredUser
+                {
+                    Id=registeredUserId10,
+                    FirstName="Név10",
+                    LastName="Felhasználó",
+                },
+                new RegisteredUser
+                {
+                    Id=registeredUserId11,
+                    FirstName="Név10",
+                    LastName="Felhasznál1",
+                },
+                new RegisteredUser
+                {
+                    Id=registeredUserId12,
+                    FirstName="Név12",
+                    LastName="Felhasználó",
+                },
+                new RegisteredUser
+                {
+                    Id=registeredUserId13,
+                    FirstName="Név13",
+                    LastName="Felhasználó",
+                },
+                new RegisteredUser
+                {
+                    Id=registeredUserId14,
+                    FirstName="Név14",
+                    LastName="Felhasználó",
+                },
+                new RegisteredUser
+                {
+                    Id=registeredUserId15,
+                    FirstName="Név15",
+                    LastName="Felhasználó",
+                },
+                new RegisteredUser
+                {
+                    Id=registeredUserId16,
+                    FirstName="Név16",
+                    LastName="Felhasználó",
+                },
+        };
+        #endregion
+
+        #region Editor
+        public static List<Editor> Editors = new()
+        {
+             new Editor
+                {
+                    Id=registeredUserId1,
+                },
+                new Editor
+                {
+                    Id=registeredUserId2,
+                },
+                new Editor
+                {
+                    Id=registeredUserId3,
+                },
+
+                new Editor
+                {
+                    Id=registeredUserId4,
+                },
+                new Editor
+                {
+                    Id=registeredUserId5,
+                },
+                new Editor
+                {
+                    Id=registeredUserId6,
+                },
+        };
+        #endregion 
+
+        #region ProgramOwner
+        public static List<ProgramOwner> ProgramOwners = new()
+        {
+                new ProgramOwner
+                {
+                    Id=registeredUserId4,
+                },
+                new ProgramOwner
+                {
+                    Id=registeredUserId6,
+                },
+        };
+
         #endregion
 
         #region OrganizationProgram
@@ -349,7 +453,7 @@ namespace WillBeThere.Shared.Helpers.TestData
                     IsDeffered=false,
                     IsPublic=true,
                     AddressId=addressId2,
-                    OrganizationOwnerId=organizationId5,
+                    OrganizationId=organizationId5,
                     ProgramOwnerId=organizationAdminUserId4,
                 },
                 //Egy nappal ezelőtt
@@ -363,7 +467,7 @@ namespace WillBeThere.Shared.Helpers.TestData
                     IsDeffered=false,
                     IsPublic=true,
                     AddressId=addressId5,
-                    OrganizationOwnerId=organizationId11,
+                    OrganizationId=organizationId11,
                     ProgramOwnerId=organizationAdminUserId6,
                 },
                 // Öt nap mulva
@@ -377,7 +481,7 @@ namespace WillBeThere.Shared.Helpers.TestData
                     IsDeffered=false,
                     IsPublic=true,
                     AddressId=addressId2,
-                    OrganizationOwnerId=organizationId3,
+                    OrganizationId=organizationId3,
                     ProgramOwnerId=organizationAdminUserId1,
                 },
                 // Két hónap múlva
@@ -391,7 +495,7 @@ namespace WillBeThere.Shared.Helpers.TestData
                     IsDeffered=false,
                     IsPublic=true,
                     AddressId=addressId5,
-                    OrganizationOwnerId=organizationId9,
+                    OrganizationId=organizationId9,
                     ProgramOwnerId=organizationAdminUserId3,
                 },
                 // Épp most
@@ -405,7 +509,7 @@ namespace WillBeThere.Shared.Helpers.TestData
                     IsDeffered=false,
                     IsPublic=true,
                     AddressId=addressId3,
-                    OrganizationOwnerId=organizationId7,
+                    OrganizationId=organizationId7,
                     ProgramOwnerId=organizationAdminUserId5,
                 },
                 #endregion
@@ -421,8 +525,8 @@ namespace WillBeThere.Shared.Helpers.TestData
                     IsDeffered=false,
                     IsPublic=false,
                     AddressId=addressId2,
-                    OrganizationOwnerId=organizationId4,
-                    ProgramOwnerId=organizationAdminUserId1,
+                    OrganizationId=organizationId4,
+                    ProgramOwnerId=registeredUserId4,
                 },
                 // Egy hónappal ezelőtt
                 new OrganizationProgram
@@ -435,8 +539,8 @@ namespace WillBeThere.Shared.Helpers.TestData
                     IsDeffered=false,
                     IsPublic=false,
                     AddressId=addressId2,
-                    OrganizationOwnerId=organizationId4,
-                    ProgramOwnerId=organizationAdminUserId1,
+                    OrganizationId=organizationId4,
+                    ProgramOwnerId=registeredUserId4,
                 },
                 // Egy hét múlva
                 new OrganizationProgram
@@ -449,8 +553,8 @@ namespace WillBeThere.Shared.Helpers.TestData
                     IsDeffered=false,
                     IsPublic=false,
                     AddressId=addressId2,
-                    OrganizationOwnerId=organizationId4,
-                    ProgramOwnerId=organizationAdminUserId1,
+                    OrganizationId=organizationId4,
+                    ProgramOwnerId=registeredUserId4,
                 },
                 // Éppen most
                 new OrganizationProgram
@@ -463,8 +567,8 @@ namespace WillBeThere.Shared.Helpers.TestData
                     IsDeffered=false,
                     IsPublic=false,
                     AddressId=addressId2,
-                    OrganizationOwnerId=organizationId6,
-                    ProgramOwnerId=organizationAdminUserId6,
+                    OrganizationId=organizationId6,
+                    ProgramOwnerId=registeredUserId6,
                 },
                 // Elhalasztott publikus
                 new OrganizationProgram
@@ -477,8 +581,8 @@ namespace WillBeThere.Shared.Helpers.TestData
                     IsDeffered=true,
                     IsPublic=true,
                     AddressId=addressId2,
-                    OrganizationOwnerId=organizationId3,
-                    ProgramOwnerId=organizationAdminUserId1,
+                    OrganizationId=organizationId3,
+                    ProgramOwnerId=registeredUserId4,
                 },
                 // Elhalasztott nem publikus
                 new OrganizationProgram
@@ -491,59 +595,67 @@ namespace WillBeThere.Shared.Helpers.TestData
                     IsDeffered=true,
                     IsPublic=false,
                     AddressId=addressId2,
-                    OrganizationOwnerId=organizationId4,
-                    ProgramOwnerId=organizationAdminUserId1,
+                    OrganizationId=organizationId4,
+                    ProgramOwnerId=registeredUserId4,
                 },
             };
         #endregion
 
-        #region OrganizationAdminUsers
-        public static List<OrganizationAdminUser> OrganizationAdminUsers = new()
+        #region OrganizationEditor
+        public static List<OrganizationEditor> OrganizationEditors = new()
+        {
+            new OrganizationEditor
             {
-                new OrganizationAdminUser
-                {
-                    // Gyálaréti Fréfi sátor - Jenei Kornél
-                    Id = organizationAdminUserId1,
-                    OrganizationId = organizationId3,
-                    AdminId = registeredUserId4,
-                },
-                new OrganizationAdminUser
-                {
-                    // Magyarországi Férfi sátor
-                    Id=organizationAdminUserId2,
-                    OrganizationId=organizationId4,
-                    AdminId = registeredUserId4,
-                },
-                new OrganizationAdminUser
-                {
-                    // Családpaszoráció - Gyurisné Hutter Katalin
-                    Id=organizationAdminUserId3,
-                    OrganizationId=organizationId10,
-                    AdminId = registeredUserId3,
-                },
-                new OrganizationAdminUser
-                {
-                    // Gyálaréti meditációs csoport - Szászi Balázs
-                    Id=organizationAdminUserId4,
-                    OrganizationId=organizationId5,
-                    AdminId = registeredUserId3,
-                },
-                new OrganizationAdminUser
-                {
-                    // Gyálaréti művelődési ház - Jenei Kornél
-                    Id = organizationAdminUserId5,
-                    OrganizationId = organizationId7,
-                    AdminId = registeredUserId4,
-                },
-                new OrganizationAdminUser
-                {
-                    // Családcsoport - Szabóné Zsuzsa
-                    Id = organizationAdminUserId6,
-                    OrganizationId = organizationId6,
-                    AdminId = registeredUserId6,
-                },
+                Id=organizationEditorId1,
+                OrganizationId=organizationId1,
+                EditorId=registeredUserId11=registeredUserId1,
+            },
+            new OrganizationEditor
+            {
+                Id=organizationEditorId2,
+                OrganizationId=organizationId2,
+                EditorId=registeredUserId11=registeredUserId1,
 
-            };
+            },
+            new OrganizationEditor
+            {
+                Id=organizationEditorId3,
+                OrganizationId=organizationId3,
+                EditorId=registeredUserId11=registeredUserId1,
+
+            },          
+            new OrganizationEditor
+            {
+                Id=organizationEditorId4,
+                OrganizationId=organizationId4,
+                EditorId=registeredUserId11=registeredUserId5,
+            },
+            new OrganizationEditor
+            {
+                Id=organizationEditorId5,
+                OrganizationId=organizationId5,
+                EditorId=registeredUserId11=registeredUserId5,
+            },
+            new OrganizationEditor
+            {
+                Id=organizationEditorId6,
+                OrganizationId=organizationId6,
+                EditorId=registeredUserId11=registeredUserId6,
+            },
+            new OrganizationEditor
+            {
+                Id=organizationEditorId7,
+                OrganizationId=organizationId9,
+                EditorId=registeredUserId3
+            },
+            new OrganizationEditor
+            {
+                Id=organizationEditorId8,
+                OrganizationId=organizationId10,
+                EditorId=registeredUserId3,
+            },
+
+        };
         #endregion
 
         #region Participations
@@ -553,33 +665,33 @@ namespace WillBeThere.Shared.Helpers.TestData
                 {
                     Id=participationId1,
                     OrganizationProgramId=organizationProgramId1,
-                    RegisteredUserId=registeredUserId1,
+                    ParticipantId=registeredUserId1,
                     Evaluation=9,
                 },
                 new Participation
                 {
                     Id=participationId2,
                     OrganizationProgramId=organizationProgramId1,
-                    RegisteredUserId=registeredUserId2,
+                    ParticipantId=registeredUserId2,
                     Evaluation=9,
                 },
                 new Participation
                 {
                     Id=participationId3,
                     OrganizationProgramId=organizationProgramId2,
-                    RegisteredUserId=registeredUserId3,
+                    ParticipantId=registeredUserId3,
                 },
                 new Participation
                 {
                     Id=participationId4,
                     OrganizationProgramId=organizationProgramId2,
-                    RegisteredUserId=registeredUserId2,
+                    ParticipantId=registeredUserId2,
                 },
                 new Participation
                 {
                     Id=participationId5,
                     OrganizationProgramId=OrganizationProgramId3,
-                    RegisteredUserId=registeredUserId3,
+                    ParticipantId=registeredUserId3,
                 },
             };
         #endregion

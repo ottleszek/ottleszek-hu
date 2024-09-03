@@ -12,12 +12,15 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WillBeThere.Web", "WillBeThere.Web\WillBeThere.Web.csproj", "{CE592382-D9B0-4B53-A73D-81BFFE20615E}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{E525B7B5-FFB1-40F2-B279-7AF369A931E8}"
+	ProjectSection(SolutionItems) = preProject
+		WillBeThere.drawio = WillBeThere.drawio
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WillBeThere.HttpService", "WillBeThere.Http.Services\WillBeThere.HttpService.csproj", "{1CEFF28E-B28F-4983-BC55-4905A50F72E3}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Blazor.Components", "Blazor.Components\Blazor.Components.csproj", "{C624EC05-3CB9-40B9-A834-29E5AB4DAEBC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WillBeThere.Mobile", "WillBeThere.Mobile\WillBeThere.Mobile.csproj", "{DF49C1B2-EDE4-413A-BA65-4D41F66D1121}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WillBeThere.Mobile", "WillBeThere.Mobile\WillBeThere.Mobile.csproj", "{DF49C1B2-EDE4-413A-BA65-4D41F66D1121}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
