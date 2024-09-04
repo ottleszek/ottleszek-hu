@@ -2,7 +2,7 @@
 using WillBeThere.Application.Assemblers;
 using WillBeThere.Application.Responses;
 using WillBeThere.Domain.Entities.DbIds;
-using WillBeThere.Infrastucture.DataBroker;
+using WillBeThere.Infrastucture.DataBrokers;
 
 namespace WillBeThere.Backend.Controllers
 {

@@ -5,7 +5,7 @@ using System.Net;
 using WillBeThere.Domain.Entities.DbIds;
 using WillBeThere.Application.Responses;
 
-namespace WillBeThere.HttpService.HttpService
+namespace WillBeThere.Application.Services.HttpService
 {
     public class BaseHttpService<TEntityDto> :  IBaseHttpService<TEntityDto> where TEntityDto : class, new()
     {

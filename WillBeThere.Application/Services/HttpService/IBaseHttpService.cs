@@ -1,6 +1,6 @@
-﻿using WillBeThere.Infrastucture.DataBroker;
+﻿using WillBeThere.Application.DataBrokers;
 
-namespace WillBeThere.HttpService.HttpService
+namespace WillBeThere.Application.Services.HttpService
 {
     public interface IBaseHttpService<TEntityDto> : IDtoDataBroker<TEntityDto> where TEntityDto : class, new ()
     {

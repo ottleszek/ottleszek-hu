@@ -3,7 +3,7 @@ using WillBeThere.Application.Responses;
 using WillBeThere.Domain.Entities.DbIds;
 
 
-namespace WillBeThere.HttpService.DataService
+namespace WillBeThere.Application.Services.DataService
 {
     public interface IBaseDataService<TEntity, TEntityDto, TAssembler> 
         where TEntity : class, IDbEntity<TEntity>, new()

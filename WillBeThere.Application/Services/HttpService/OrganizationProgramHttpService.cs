@@ -3,7 +3,7 @@ using System.Net.Http.Json;
 using WillBeThere.Application.Dtos;
 using WillBeThere.Application.Dtos.ResultModels;
 
-namespace WillBeThere.HttpService.HttpService
+namespace WillBeThere.Application.Services.HttpService
 {
     public class OrganizationProgramHttpService : BaseHttpService<OrganizationProgramDto>, IOrganizationProgramHttpService
     {

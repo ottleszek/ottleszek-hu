@@ -1,9 +1,9 @@
 ﻿using WillBeThere.Application.Assemblers;
 using WillBeThere.Application.Responses;
+using WillBeThere.Application.Services.MapperService;
 using WillBeThere.Domain.Entities.DbIds;
-using WillBeThere.HttpService.MapperService;
 
-namespace WillBeThere.HttpService.DataService
+namespace WillBeThere.Application.Services.DataService
 {
     public class BaseDataService<TEntity, TEntityDto, TAssembler> : IBaseDataService<TEntity,TEntityDto,TAssembler>
         where TEntity : class, IDbEntity<TEntity>, new()

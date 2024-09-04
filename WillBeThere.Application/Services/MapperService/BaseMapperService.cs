@@ -1,8 +1,8 @@
-﻿using WillBeThere.HttpService.HttpService;
-using WillBeThere.Domain.Entities.DbIds;
+﻿using WillBeThere.Domain.Entities.DbIds;
 using WillBeThere.Application.Assemblers;
+using WillBeThere.Application.Services.HttpService;
 
-namespace WillBeThere.HttpService.MapperService
+namespace WillBeThere.Application.Services.MapperService
 {
     public class BaseMapperService<TModel, TDto,TAssembler> : IBaseMapperService<TModel,TDto, TAssembler>
         where TModel : class, IDbEntity<TModel>, new()

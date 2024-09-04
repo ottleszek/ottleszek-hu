@@ -1,7 +1,7 @@
 ﻿using WillBeThere.Application.Dtos;
 using WillBeThere.Application.Dtos.ResultModels;
 
-namespace WillBeThere.HttpService.HttpService
+namespace WillBeThere.Application.Services.HttpService
 {
     public interface IOrganizationProgramHttpService : IBaseHttpService<OrganizationProgramDto>
     {

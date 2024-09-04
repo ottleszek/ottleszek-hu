@@ -3,7 +3,7 @@ using WillBeThere.Application.Dtos;
 using WillBeThere.Domain.Entites;
 
 
-namespace WillBeThere.HttpService.DataService
+namespace WillBeThere.Application.Services.DataService
 {
     public interface IOrganizationCategoryDataService : IBaseDataService<OrganizationCategory, OrganizationCategoryDto,OrganizationCategoryAssembler>
     {

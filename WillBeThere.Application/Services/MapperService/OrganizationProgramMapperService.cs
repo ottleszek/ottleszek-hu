@@ -1,12 +1,12 @@
-﻿using WillBeThere.HttpService.HttpService;
-using WillBeThere.Domain.Assemblers.ResultModels;
+﻿using WillBeThere.Domain.Assemblers.ResultModels;
 using WillBeThere.Domain.Models.ResultModels;
 using WillBeThere.Domain.Entites;
 using WillBeThere.Application.Assemblers;
 using WillBeThere.Application.Dtos;
 using WillBeThere.Application.Dtos.ResultModels;
+using WillBeThere.Application.Services.HttpService;
 
-namespace WillBeThere.HttpService.MapperService
+namespace WillBeThere.Application.Services.MapperService
 {
     public class OrganizationProgramMapperService : BaseMapperService<OrganizationProgram, OrganizationProgramDto, OrganizationProgramAssembler>, IOrganizationProgramMapperService
     {

@@ -1,6 +1,6 @@
 ﻿using WillBeThere.Application.Dtos;
 
-namespace WillBeThere.HttpService.HttpService
+namespace WillBeThere.Application.Services.HttpService
 {
     public class OrganizationCategoryHttpService : BaseHttpService<OrganizationCategoryDto>, IOrganizationCategoryHttpService
     {
