@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 
-namespace WillBeThere.Domain.Helper
+namespace WillBeThere.Application.Helpers
 {
     public static class ServiceHelper
     {

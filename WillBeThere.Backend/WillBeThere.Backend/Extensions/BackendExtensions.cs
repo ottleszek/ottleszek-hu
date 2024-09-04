@@ -3,7 +3,6 @@ using WillBeThere.Application.Assemblers;
 using WillBeThere.Backend.Repos;
 using WillBeThere.Backend.Repos.WillBeThere;
 using WillBeThere.Backend.Services;
-using WillBeThere.Domain.Assemblers;
 using WillBeThere.Domain.Assemblers.ResultModels;
 using WillBeThere.Infrastucture.Context;
 
@@ -36,7 +35,7 @@ namespace WillBeThere.Backend.Extensions
 
         public static void ConfigureMysqlContext(this IServiceCollection services)
         {
-            string connectionString = "server=localhost;userid=root;password=;database=willbethere;port=3307";
+            string connectionString = "server=localhost;userid=root;password=;database=willbethere;port=3306";
             services.AddDbContext<WillBeThereMysqlContext>(options => options.UseMySQL(connectionString));
         }
 
