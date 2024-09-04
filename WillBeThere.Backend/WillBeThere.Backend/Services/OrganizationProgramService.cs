@@ -1,6 +1,6 @@
 ﻿using WillBeThere.Backend.Repos;
-using WillBeThere.Shared.Models;
-using WillBeThere.Shared.Models.ResultModels;
+using WillBeThere.Domain.Entites;
+using WillBeThere.Domain.Models.ResultModels;
 
 namespace WillBeThere.Backend.Services
 {

@@ -14,4 +14,8 @@
     <Folder Include="Helpers\TestData\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\WillBeThere.Domain\WillBeThere.Domain.csproj" />
+  </ItemGroup>
+
 </Project>

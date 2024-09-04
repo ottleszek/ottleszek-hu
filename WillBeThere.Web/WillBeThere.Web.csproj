@@ -13,6 +13,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Blazor.Components\Blazor.Components.csproj" />
     <ProjectReference Include="..\WillBeThere.Http.Services\WillBeThere.HttpService.csproj" />
+    <ProjectReference Include="..\WillBeThere.Infrastucture\WillBeThere.Infrastucture.csproj" />
     <ProjectReference Include="..\WillBeThere.Shared\WillBeThere.Shared.csproj" />
   </ItemGroup>
 

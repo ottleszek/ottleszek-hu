@@ -1,9 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using WillBeThere.Application.Assemblers;
+using WillBeThere.Application.Dtos;
 using WillBeThere.Backend.Repos.WillBeThere;
-using WillBeThere.Shared.Assemblers;
-using WillBeThere.Shared.DataBroker;
-using WillBeThere.Shared.Dtos;
-using WillBeThere.Shared.Models;
+using WillBeThere.Domain.Entites;
 
 namespace WillBeThere.Backend.Controllers.WillBeThere
 {

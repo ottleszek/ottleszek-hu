@@ -1,10 +1,9 @@
-﻿using WillBeThere.HttpService.DataService;
-using WillBeThere.HttpService.HttpService;
-using WillBeThere.HttpService.MapperService;
-using WillBeThere.Mobile.ViewModels;
-using WillBeThere.Shared.Assemblers.ResultModels;
-using WillBeThere.Shared.Assemblers;
-using static System.Net.WebRequestMethods;
+﻿using WillBeThere.Mobile.ViewModels;
+using WillBeThere.Domain.Assemblers.ResultModels;
+using WillBeThere.Application.Assemblers;
+using WillBeThere.Application.Services.HttpService;
+using WillBeThere.Application.Services.MapperService;
+using WillBeThere.Application.Services.DataService;
 
 namespace WillBeThere.Mobile.Extensions
 {

@@ -1,4 +1,4 @@
-﻿using WillBeThere.Shared.Models.ResultModels;
+﻿using WillBeThere.Domain.Models.ResultModels;
 
 namespace WillBeThere.Backend.Services
 {
