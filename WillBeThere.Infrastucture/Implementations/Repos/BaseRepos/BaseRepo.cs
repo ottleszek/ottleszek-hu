@@ -7,9 +7,9 @@ namespace WillBeThere.Infrastucture.Implementations.Repos.BaseRepos
     {
         private readonly TDbContext? _dbContext;
 
-        public BaseRepo()
+        public BaseRepo(TDbContext? dbContext)
         {
-            
+            _dbContext = dbContext;
         }
 
         protected DbSet<TEntity>? GetDbSet<TEntity>() where TEntity : class, IDbEntity<TEntity>, new()

@@ -11,7 +11,7 @@ namespace WillBeThere.Infrastucture.Implementations.Repos.BaseRepos.Queries
     {
         private readonly TDbContext? _dbContext;
 
-        public BaseQueryRepo(TDbContext? dbContext)
+        public BaseQueryRepo(TDbContext? dbContext):base(dbContext)
         {
             _dbContext = dbContext;
         }
