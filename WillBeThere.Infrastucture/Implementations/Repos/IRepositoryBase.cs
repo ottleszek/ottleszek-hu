@@ -1,7 +1,7 @@
 ﻿using System.Linq.Expressions;
 using WillBeThere.Domain.Entities.DbIds;
 
-namespace WillBeThere.Backend.Repos
+namespace WillBeThere.Infrastucture.Implementations.Repos
 {
     public interface IRepositoryBase
     {

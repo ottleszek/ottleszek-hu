@@ -2,11 +2,11 @@
 using Microsoft.EntityFrameworkCore;
 using WillBeThere.Application.Assemblers;
 using WillBeThere.Application.Dtos;
-using WillBeThere.Backend.Repos.WillBeThere;
-using WillBeThere.Backend.Services;
 using WillBeThere.Domain.Assemblers.ResultModels;
 using WillBeThere.Domain.Entites;
 using WillBeThere.Domain.Models.ResultModels;
+using WillBeThere.Infrastucture.Implementations.Repos.WillBeThere;
+using WillBeThere.Infrastucture.Implementations.Services;
 
 namespace WillBeThere.Backend.Controllers.WillBeThere
 {

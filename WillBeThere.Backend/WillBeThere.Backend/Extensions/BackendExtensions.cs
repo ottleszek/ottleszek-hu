@@ -1,10 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using WillBeThere.Application.Assemblers;
-using WillBeThere.Backend.Repos;
-using WillBeThere.Backend.Repos.WillBeThere;
-using WillBeThere.Backend.Services;
 using WillBeThere.Domain.Assemblers.ResultModels;
 using WillBeThere.Infrastucture.Context;
+using WillBeThere.Infrastucture.Implementations.Repos;
+using WillBeThere.Infrastucture.Implementations.Repos.WillBeThere;
+using WillBeThere.Infrastucture.Implementations.Services;
 
 namespace WillBeThere.Backend.Extensions
 {

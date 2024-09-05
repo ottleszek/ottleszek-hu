@@ -2,7 +2,7 @@
 using WillBeThere.Domain.Entities.DbIds;
 using WillBeThere.Infrastucture.DataBrokers;
 
-namespace WillBeThere.Backend.Repos
+namespace WillBeThere.Infrastucture.Implementations.Repos
 {
     public abstract class IncludedRepositoryBase<TDbContext> : RepositoryBase<TDbContext>,  IIncludedDataBroker
         where TDbContext : DbContext

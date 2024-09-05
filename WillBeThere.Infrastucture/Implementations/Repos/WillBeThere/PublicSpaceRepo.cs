@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 
-namespace WillBeThere.Backend.Repos.WillBeThere
+namespace WillBeThere.Infrastucture.Implementations.Repos.WillBeThere
 {
     public class PublicSpaceRepo<TDbContext> : IncludedRepositoryBase<TDbContext>, IPublicSpaceRepo
         where TDbContext: DbContext

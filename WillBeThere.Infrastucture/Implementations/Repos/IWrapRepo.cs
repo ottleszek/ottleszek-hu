@@ -1,6 +1,6 @@
-﻿using WillBeThere.Backend.Repos.WillBeThere;
+﻿using WillBeThere.Infrastucture.Implementations.Repos.WillBeThere;
 
-namespace WillBeThere.Backend.Repos
+namespace WillBeThere.Infrastucture.Implementations.Repos
 {
     public interface IWrapRepo
     {

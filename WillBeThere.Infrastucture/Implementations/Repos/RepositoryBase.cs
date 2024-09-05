@@ -4,7 +4,7 @@ using WillBeThere.Application.Responses;
 using WillBeThere.Domain.Entities.DbIds;
 using WillBeThere.Infrastucture.DataBrokers;
 
-namespace WillBeThere.Backend.Repos
+namespace WillBeThere.Infrastucture.Implementations.Repos
 {
     public class RepositoryBase<TDbContext> : IDataBroker, IRepositoryBase
         where TDbContext : DbContext

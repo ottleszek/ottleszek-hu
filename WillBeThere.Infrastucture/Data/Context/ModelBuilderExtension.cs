@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using WillBeThere.Domain.Entites;
-using WillBeThere.Domain.Helpers.TestData;
+using WillBeThere.Infrastucture.Helpers.TestData;
 
 
 namespace WillBeThere.Infrastucture.Context

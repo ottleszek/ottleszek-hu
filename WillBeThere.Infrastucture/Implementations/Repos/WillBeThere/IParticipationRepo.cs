@@ -1,6 +1,6 @@
 ﻿using WillBeThere.Infrastucture.DataBrokers;
 
-namespace WillBeThere.Backend.Repos.WillBeThere
+namespace WillBeThere.Infrastucture.Implementations.Repos.WillBeThere
 {
     public interface IParticipationRepo : IIncludedDataBroker, IRepositoryBase
     {

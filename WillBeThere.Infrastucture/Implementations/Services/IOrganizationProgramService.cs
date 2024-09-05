@@ -1,6 +1,6 @@
 ﻿using WillBeThere.Domain.Models.ResultModels;
 
-namespace WillBeThere.Backend.Services
+namespace WillBeThere.Infrastucture.Implementations.Services
 {
     public interface IOrganizationProgramService
     {
