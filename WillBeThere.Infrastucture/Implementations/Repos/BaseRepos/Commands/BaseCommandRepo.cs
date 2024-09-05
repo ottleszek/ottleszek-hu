@@ -1,27 +1,23 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using System.Linq.Expressions;
 using WillBeThere.Application.Responses;
+using WillBeThere.Backend.Repos;
 using WillBeThere.Domain.Entities.DbIds;
-using WillBeThere.Infrastucture.DataBrokers;
+using WillBeThere.Infrastucture.DataBrokers.Commands;
+using WillBeThere.Infrastucture.Implementations.Repos.BaseRepos.Queries;
 
-namespace WillBeThere.Backend.Repos
+namespace WillBeThere.Infrastucture.Implementations.Repos.BaseRepos.Commands
 {
-    public class RepositoryBase<TDbContext> : IDataBroker, IRepositoryBase
-        where TDbContext : DbContext
+    public class BaseCommandRepo<TDbContext> : BaseQueryRepo<TDbContext>, IBaseCommandBroker
+                where TDbContext : DbContext
     {
         private readonly TDbContext? _dbContext;
-        public RepositoryBase(TDbContext? dbContext)
+
+        public BaseCommandRepo(TDbContext? dbContext)
+            :base(dbContext)
         {
             _dbContext = dbContext;
         }
-
-        public async Task<List<TEntity>> SelectAllAsync<TEntity>() where TEntity : class, IDbEntity<TEntity>, new() => await FindAll<TEntity>().ToListAsync();
-        public async Task<TEntity?> GetByIdAsync<TEntity>(Guid id) where TEntity : class, IDbEntity<TEntity>, new()
-        {
-            return await FindByCondition<TEntity>(entity  => entity.Id == id).FirstOrDefaultAsync();
-        }
-
-        public async Task<Response> UpdateAsync<TEntity>(TEntity entity) where TEntity : class, IDbEntity<TEntity>, new ()
+        public async Task<Response> UpdateAsync<TEntity>(TEntity entity) where TEntity : class, IDbEntity<TEntity>, new()
         {
             Response response = new();
             try
@@ -85,13 +81,13 @@ namespace WillBeThere.Backend.Repos
         public async Task<Response> DeleteAsync<TEntity>(Guid id) where TEntity : class, IDbEntity<TEntity>, new()
         {
             TEntity? entityToDelete = FindByCondition<TEntity>(e => e.Id == id).FirstOrDefault();
-            return await DeleteAsync<TEntity>(entityToDelete);           
+            return await DeleteAsync<TEntity>(entityToDelete);
         }
         public async Task<Response> InsertAsync<TEntity>(TEntity entity) where TEntity : class, IDbEntity<TEntity>, new()
         {
             Response response = new();
 
-            DbSet<TEntity>? dbSet= GetDbSet<TEntity>();
+            DbSet<TEntity>? dbSet = GetDbSet<TEntity>();
             TDbContext? dbContext = GetDbContext<TEntity>();
 
             if (dbContext is null || dbSet is null)
@@ -112,21 +108,6 @@ namespace WillBeThere.Backend.Repos
             response.Append($"{nameof(RepositoryBase<TDbContext>)} osztály, {nameof(InsertAsync)} metódusban hiba keletkezett");
             response.Append($"{entity} osztály hozzáadása az adatbázishoz nem sikerült!");
             return response;
-        }
-
-        public IQueryable<TEntity> FindAll<TEntity>() where TEntity : class, IDbEntity<TEntity>, new()
-        {
-            DbSet<TEntity>? dbSet = GetDbSet<TEntity>();
-            if (dbSet is null)
-                return Enumerable.Empty<TEntity>().AsQueryable().AsNoTracking();
-            return dbSet.AsNoTracking();
-        }
-        public IQueryable<TEntity> FindByCondition<TEntity>(Expression<Func<TEntity, bool>> expression) where TEntity : class, IDbEntity<TEntity>, new()
-        {
-            DbSet<TEntity>? dbSet = GetDbSet<TEntity>();
-            if (dbSet is null)
-                return Enumerable.Empty<TEntity>().AsQueryable().AsNoTracking();
-            return dbSet.Where(expression).AsNoTracking();
         }
     }
 }

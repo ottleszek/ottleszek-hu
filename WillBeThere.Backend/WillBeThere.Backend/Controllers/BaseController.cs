@@ -29,7 +29,7 @@ namespace WillBeThere.Backend.Controllers
 
             if (_repo != null && _assambler is not null)
             {
-                entities = await _repo.SelectAsync<TModel>();
+                entities = await _repo.SelectAllAsync<TModel>();
                 return Ok(entities.Select(entity => _assambler.ToDto(entity)));
             }
             return NoContent();
