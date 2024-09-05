@@ -9,6 +9,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Context\**" />
+    <Content Remove="Context\**" />
+    <EmbeddedResource Remove="Context\**" />
+    <None Remove="Context\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.7" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="8.0.7" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.7">
@@ -25,10 +32,6 @@
     <ProjectReference Include="..\..\WillBeThere.Application\WillBeThere.Application.csproj" />
     <ProjectReference Include="..\..\WillBeThere.Infrastucture\WillBeThere.Infrastucture.csproj" />
     <ProjectReference Include="..\..\WillBeThere.Shared\WillBeThere.Shared.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Context\" />
   </ItemGroup>
 
 </Project>

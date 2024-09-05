@@ -56,7 +56,7 @@ namespace WillBeThere.Backend.Extensions
 
         public static void ConfigureRepos(this IServiceCollection services)
         {
-            if (false)
+            if (true)
             {
                 services.AddScoped<IPublicSpaceRepo, PublicSpaceRepo<WillBeThereInMemoryContext>>();
                 services.AddScoped<IAddressRepo, AddressRepo<WillBeThereInMemoryContext>>();
