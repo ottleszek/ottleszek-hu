@@ -65,8 +65,6 @@
 
 	<ItemGroup>
 	  <ProjectReference Include="..\WillBeThere.Application\WillBeThere.Application.csproj" />
-	  <ProjectReference Include="..\WillBeThere.Http.Services\WillBeThere.HttpService.csproj" />
-	  <ProjectReference Include="..\WillBeThere.Shared\WillBeThere.Shared.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>

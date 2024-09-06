@@ -19,7 +19,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\WillBeThere.Domain\WillBeThere.Domain.csproj" />
-    <ProjectReference Include="..\WillBeThere.Http.Services\WillBeThere.HttpService.csproj" />
   </ItemGroup>
 
 </Project>
