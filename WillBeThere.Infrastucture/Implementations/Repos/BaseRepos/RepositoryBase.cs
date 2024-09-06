@@ -4,7 +4,7 @@ using WillBeThere.Application.Responses;
 using WillBeThere.Domain.Entities.DbIds;
 using WillBeThere.Infrastucture.DataBrokers;
 
-namespace WillBeThere.Infrastucture.Implementations.Repos
+namespace WillBeThere.Infrastucture.Implementations.Repos.BaseRepos
 {
     public class RepositoryBase<TDbContext> : IDataBroker, IRepositoryBase
         where TDbContext : DbContext
@@ -18,10 +18,10 @@ namespace WillBeThere.Infrastucture.Implementations.Repos
         public async Task<List<TEntity>> SelectAllAsync<TEntity>() where TEntity : class, IDbEntity<TEntity>, new() => await FindAll<TEntity>().ToListAsync();
         public async Task<TEntity?> GetByIdAsync<TEntity>(Guid id) where TEntity : class, IDbEntity<TEntity>, new()
         {
-            return await FindByCondition<TEntity>(entity  => entity.Id == id).FirstOrDefaultAsync();
+            return await FindByCondition<TEntity>(entity => entity.Id == id).FirstOrDefaultAsync();
         }
 
-        public async Task<Response> UpdateAsync<TEntity>(TEntity entity) where TEntity : class, IDbEntity<TEntity>, new ()
+        public async Task<Response> UpdateAsync<TEntity>(TEntity entity) where TEntity : class, IDbEntity<TEntity>, new()
         {
             Response response = new();
             try
@@ -85,13 +85,13 @@ namespace WillBeThere.Infrastucture.Implementations.Repos
         public async Task<Response> DeleteAsync<TEntity>(Guid id) where TEntity : class, IDbEntity<TEntity>, new()
         {
             TEntity? entityToDelete = FindByCondition<TEntity>(e => e.Id == id).FirstOrDefault();
-            return await DeleteAsync<TEntity>(entityToDelete);           
+            return await DeleteAsync(entityToDelete);
         }
         public async Task<Response> InsertAsync<TEntity>(TEntity entity) where TEntity : class, IDbEntity<TEntity>, new()
         {
             Response response = new();
 
-            DbSet<TEntity>? dbSet= GetDbSet<TEntity>();
+            DbSet<TEntity>? dbSet = GetDbSet<TEntity>();
             TDbContext? dbContext = GetDbContext<TEntity>();
 
             if (dbContext is null || dbSet is null)
@@ -149,6 +149,6 @@ namespace WillBeThere.Infrastucture.Implementations.Repos
                 return _dbContext;
         }
 
-               
+
     }
 }

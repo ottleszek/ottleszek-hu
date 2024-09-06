@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using WillBeThere.Domain.Entities.DbIds;
 
-namespace WillBeThere.Infrastucture.Implementations.Repos.BaseRepos
+namespace WillBeThere.Infrastucture.Implementations.Repos.BaseCqrsRepos
 {
     public class BaseRepo<TDbContext> where TDbContext : DbContext
     {

@@ -4,7 +4,7 @@ using WillBeThere.Application.Queries.OrganizationPrograms;
 using WillBeThere.Domain.Models.ResultModels;
 using WillBeThere.Infrastucture.Implementations.Services;
 
-namespace WillBeThere.Infrastucture.Handlers.OrganizationProgram
+namespace WillBeThere.Infrastucture.Handlers.OrganizationPrograms
 {
     public class GetPublicOrganizationProgramListHandler : IRequestHandler<GetPublicOrgranizationProgramListQuery, List<PublicOrganizationProgram>>
     {

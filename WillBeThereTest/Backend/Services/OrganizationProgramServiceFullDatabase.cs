@@ -1,9 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using WillBeThere.Domain.Entites;
+using WillBeThere.Domain.Helpers.TestData;
 using WillBeThere.Domain.Models.ResultModels;
 using WillBeThere.Infrastucture.Context;
-using WillBeThere.Infrastucture.Helpers.TestData;
-using WillBeThere.Infrastucture.Implementations.Repos;
+using WillBeThere.Infrastucture.Implementations.Repos.BaseRepos;
 using WillBeThere.Infrastucture.Implementations.Repos.WillBeThere;
 using WillBeThere.Infrastucture.Implementations.Services;
 

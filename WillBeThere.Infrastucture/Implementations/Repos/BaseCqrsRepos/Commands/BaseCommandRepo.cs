@@ -2,9 +2,10 @@
 using WillBeThere.Application.Responses;
 using WillBeThere.Domain.Entities.DbIds;
 using WillBeThere.Infrastucture.DataBrokers.Commands;
-using WillBeThere.Infrastucture.Implementations.Repos.BaseRepos.Queries;
+using WillBeThere.Infrastucture.Implementations.Repos.BaseCqrsRepos.Queries;
+using WillBeThere.Infrastucture.Implementations.Repos.BaseRepos;
 
-namespace WillBeThere.Infrastucture.Implementations.Repos.BaseRepos.Commands
+namespace WillBeThere.Infrastucture.Implementations.Repos.BaseCqrsRepos.Commands
 {
     public class BaseCommandRepo<TDbContext> : BaseQueryRepo<TDbContext>, IBaseCommandBroker
                 where TDbContext : DbContext

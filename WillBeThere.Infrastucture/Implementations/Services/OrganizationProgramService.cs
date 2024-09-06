@@ -1,6 +1,6 @@
 ﻿using WillBeThere.Domain.Entites;
 using WillBeThere.Domain.Models.ResultModels;
-using WillBeThere.Infrastucture.Implementations.Repos;
+using WillBeThere.Infrastucture.Implementations.Repos.BaseRepos;
 
 namespace WillBeThere.Infrastucture.Implementations.Services
 {

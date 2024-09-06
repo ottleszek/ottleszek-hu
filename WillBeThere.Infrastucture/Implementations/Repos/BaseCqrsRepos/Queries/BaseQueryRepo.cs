@@ -2,8 +2,9 @@
 using System.Linq.Expressions;
 using WillBeThere.Domain.Entities.DbIds;
 using WillBeThere.Infrastucture.DataBrokers.Queries;
+using WillBeThere.Infrastucture.Implementations.Repos.BaseRepos;
 
-namespace WillBeThere.Infrastucture.Implementations.Repos.BaseRepos.Queries
+namespace WillBeThere.Infrastucture.Implementations.Repos.BaseCqrsRepos.Queries
 {
     public class BaseQueryRepo<TDbContext> : BaseRepo<TDbContext>, IBaseQueryBroker, IRepositoryBase
         where TDbContext : DbContext

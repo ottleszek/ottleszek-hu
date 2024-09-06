@@ -1,6 +1,7 @@
 using System.Text.Json.Serialization;
 using WillBeThere.Backend.Extensions;
 using WillBeThere.Infrastucture.Context;
+using WillBeThere.Infrastucture;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -18,11 +19,8 @@ builder.Services.AddControllers().AddJsonOptions(options =>
 });
 
 builder.Services.ConfigureCors();
-builder.Services.ConfigureInMemoryContext();
-builder.Services.ConfigureMysqlContext();
-builder.Services.ConfigureAssamblers();
-builder.Services.ConfigureRepos();
-builder.Services.ConfigureServices();
+//builder.Services.AddApplication();
+builder.Services.AddInfrastructure();
 
 var app = builder.Build();
 

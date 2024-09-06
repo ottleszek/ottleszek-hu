@@ -1,7 +1,9 @@
-﻿using Microsoft.AspNetCore.Mvc; 
+﻿using MediatR;
+using Microsoft.AspNetCore.Mvc; 
 using Microsoft.EntityFrameworkCore;
 using WillBeThere.Application.Assemblers;
 using WillBeThere.Application.Dtos;
+using WillBeThere.Application.Queries.OrganizationPrograms;
 using WillBeThere.Domain.Assemblers.ResultModels;
 using WillBeThere.Domain.Entites;
 using WillBeThere.Domain.Models.ResultModels;
@@ -14,17 +16,23 @@ namespace WillBeThere.Backend.Controllers.WillBeThere
     [Route("api/[controller]")]
     public class OrganizationProgramController : IncludedController<OrganizationProgram, OrganizationProgramDto>
     {
-        private readonly IOrganizationProgramService? _organizationProgramService;
+        //private readonly IOrganizationProgramService? _organizationProgramService;
+        private readonly IMediator _mediator;
         private readonly PublicOrganizationProgramAssembler _publicOrganizationProgramAssambler;
+        private readonly IOrganizationProgramRepo? repo;
+
         public OrganizationProgramController(
             OrganizationProgramAssembler? assambler, 
             PublicOrganizationProgramAssembler publicOrganizationProgramAssambler,
             IOrganizationProgramRepo? repo,
-            IOrganizationProgramService? organizationProgramService
+            //IOrganizationProgramService? organizationProgramService,
+            IMediator mediator
             ) : base(assambler, repo)
         {
-            _organizationProgramService = organizationProgramService;
+            //_organizationProgramService = organizationProgramService;
+            _mediator = mediator;
             _publicOrganizationProgramAssambler = publicOrganizationProgramAssambler;
+            this.repo = repo;
         }
 
         // GET: /api/OrganizationProgram/publicprograms
@@ -34,15 +42,12 @@ namespace WillBeThere.Backend.Controllers.WillBeThere
         public async Task<IActionResult> GetPublicPrograms()
         {
             List<PublicOrganizationProgram> pop = new List<PublicOrganizationProgram>();
-            if (_organizationProgramService is not null)
+            if (_mediator is not null)
             {
-                IQueryable<PublicOrganizationProgram>? publicProgramsQuery = _organizationProgramService.GetPublicOrganizationsPrograms();
+                //IQueryable<PublicOrganizationProgram>? publicProgramsQuery = _organizationProgramService.GetPublicOrganizationsPrograms();
+                List<PublicOrganizationProgram>? publicProgramsQuery = await _mediator.Send(new GetPublicOrgranizationProgramListQuery());
                 if (publicProgramsQuery is not null)
-                {                    
-                    pop = await publicProgramsQuery.ToListAsync();
-
                     return Ok(publicProgramsQuery.Select(pop =>_publicOrganizationProgramAssambler.ToDto(pop)));
-                }
             }
             return NoContent();
         }
