@@ -1,6 +1,7 @@
 ﻿using WillBeThere.Infrastucture.DataBrokers;
+using WillBeThere.Infrastucture.Implementations.Repos.BaseRepos;
 
-namespace WillBeThere.Backend.Repos.WillBeThere
+namespace WillBeThere.Infrastucture.Implementations.Repos.WillBeThere
 {
     public interface IRegisteredUserRepo : IIncludedDataBroker, IRepositoryBase
     {

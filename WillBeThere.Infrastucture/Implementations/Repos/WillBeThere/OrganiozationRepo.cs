@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using WillBeThere.Infrastucture.Implementations.Repos.BaseRepos;
 
-namespace WillBeThere.Backend.Repos.WillBeThere
+namespace WillBeThere.Infrastucture.Implementations.Repos.WillBeThere
 {
     public class OrganiozationRepo<TDbContext> : IncludedRepositoryBase<TDbContext>, IOrganizationRepo
         where TDbContext : DbContext

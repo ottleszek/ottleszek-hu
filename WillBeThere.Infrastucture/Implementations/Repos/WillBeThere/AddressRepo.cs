@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using WillBeThere.Infrastucture.Implementations.Repos.BaseRepos;
 
-namespace WillBeThere.Backend.Repos.WillBeThere
+namespace WillBeThere.Infrastucture.Implementations.Repos.WillBeThere
 {
     public class AddressRepo<TDbContext> : IncludedRepositoryBase<TDbContext>, IAddressRepo
         where TDbContext : DbContext

@@ -1,6 +1,6 @@
-﻿using WillBeThere.Backend.Repos.WillBeThere;
+﻿using WillBeThere.Infrastucture.Implementations.Repos.WillBeThere;
 
-namespace WillBeThere.Backend.Repos
+namespace WillBeThere.Infrastucture.Implementations.Repos.BaseRepos
 {
     public interface IWrapRepo
     {
@@ -12,7 +12,7 @@ namespace WillBeThere.Backend.Repos
         public IParticipationRepo? ParticipationRepo { get; }
         public IPublicSpaceRepo? PublicSpaceRepo { get; }
         public IRegisteredUserRepo? RegisteredUserRepo { get; }
-        
+
 
     }
 }

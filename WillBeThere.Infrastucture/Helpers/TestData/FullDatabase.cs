@@ -1,6 +1,6 @@
 ﻿using WillBeThere.Domain.Entites;
 
-namespace WillBeThere.Domain.Helpers.TestData
+namespace WillBeThere.Infrastucture.Helpers.TestData
 {
     public static class FullDatabase
     {

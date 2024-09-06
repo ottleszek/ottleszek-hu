@@ -2,9 +2,9 @@
 using WillBeThere.Domain.Entities.DbIds;
 using WillBeThere.Infrastucture.DataBrokers;
 
-namespace WillBeThere.Backend.Repos
+namespace WillBeThere.Infrastucture.Implementations.Repos.BaseRepos
 {
-    public abstract class IncludedRepositoryBase<TDbContext> : RepositoryBase<TDbContext>,  IIncludedDataBroker
+    public abstract class IncludedRepositoryBase<TDbContext> : RepositoryBase<TDbContext>, IIncludedDataBroker
         where TDbContext : DbContext
     {
         protected IncludedRepositoryBase(TDbContext? dbContext) : base(dbContext)

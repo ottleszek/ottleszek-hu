@@ -1,8 +1,8 @@
-﻿using WillBeThere.Backend.Repos;
-using WillBeThere.Domain.Entites;
+﻿using WillBeThere.Domain.Entites;
 using WillBeThere.Domain.Models.ResultModels;
+using WillBeThere.Infrastucture.Implementations.Repos.BaseRepos;
 
-namespace WillBeThere.Backend.Services
+namespace WillBeThere.Infrastucture.Implementations.Services
 {
     public class OrganizationProgramService : IOrganizationProgramService
     {

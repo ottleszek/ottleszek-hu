@@ -23,7 +23,7 @@ namespace WillBeThere.Application.Services.HttpService
             }
         }
 
-        public async Task<List<TEntityDto>> SelectAsync<TEntity>() where TEntity : class, IDbEntity<TEntity>, new()
+        public async Task<List<TEntityDto>> SelectAllAsync<TEntity>() where TEntity : class, IDbEntity<TEntity>, new()
         {
             if (_httpClient is not null)
             {

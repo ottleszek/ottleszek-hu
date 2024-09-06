@@ -1,6 +1,6 @@
-﻿using WillBeThere.Backend.Repos.WillBeThere;
+﻿using WillBeThere.Infrastucture.Implementations.Repos.WillBeThere;
 
-namespace WillBeThere.Backend.Repos
+namespace WillBeThere.Infrastucture.Implementations.Repos.BaseRepos
 {
     public class WrapRepo : IWrapRepo
     {
@@ -11,13 +11,13 @@ namespace WillBeThere.Backend.Repos
         private readonly IOrganizationProgramRepo? _organizationProgramRepo;
         private readonly IParticipationRepo? _participationRepo;
         private readonly IPublicSpaceRepo? _publicSpaceRepo;
-        private readonly IRegisteredUserRepo? _registeredUserRepo;               
+        private readonly IRegisteredUserRepo? _registeredUserRepo;
 
         public WrapRepo(
             IAddressRepo? addressRepo,
             IOrganizationRepo? organizationRepo,
             IOrganizationAdminUserRepo organizationAdminUserRepo,
-            IOrganizationCategoryRepo? organizationCategoryRepo,                        
+            IOrganizationCategoryRepo? organizationCategoryRepo,
             IOrganizationProgramRepo? organizationProgramRepo,
             IParticipationRepo? participationRepo,
             IPublicSpaceRepo? publicSpaceRepo,

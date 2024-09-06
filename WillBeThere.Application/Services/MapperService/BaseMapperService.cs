@@ -25,7 +25,7 @@ namespace WillBeThere.Application.Services.MapperService
         {
             if (_baseHttpService is not null && _assambler is not null)
             {
-                List<TDto> entityDtos = await _baseHttpService.SelectAsync<TModel>();
+                List<TDto> entityDtos = await _baseHttpService.SelectAllAsync<TModel>();
                 List<TModel> result = entityDtos.Select(entityDto => _assambler.ToModel(entityDto)).ToList();
                 return result;
             }
