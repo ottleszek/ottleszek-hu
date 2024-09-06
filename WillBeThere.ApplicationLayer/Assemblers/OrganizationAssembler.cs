@@ -1,0 +1,19 @@
+﻿using WillBeThere.ApplicationLayer.Dtos;
+using WillBeThere.DomainLayer.Entites;
+using WillBeThere.DomainLayer.Extensions.ModelExtensions;
+
+namespace WillBeThere.ApplicationLayer.Assemblers
+{
+    public class OrganizationAssembler : IAssembler<Organization, OrganizationDto>
+    {
+        public OrganizationDto ToDto(Organization model)
+        {
+            return model.ToDto();
+        }
+
+        public Organization ToModel(OrganizationDto dto)
+        {
+            return dto.ToModel();
+        }
+    }
+}

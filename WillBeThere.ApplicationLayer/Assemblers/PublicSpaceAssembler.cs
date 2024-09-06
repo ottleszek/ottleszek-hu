@@ -1,0 +1,20 @@
+﻿using WillBeThere.ApplicationLayer.Dtos;
+using WillBeThere.DomainLayer.Entites;
+using WillBeThere.DomainLayer.Extensions.ModelExtensions;
+
+
+namespace WillBeThere.ApplicationLayer.Assemblers
+{
+    public class PublicSpaceAssembler : IAssembler<PublicSpace, PublicSpaceDto>
+    {
+        public PublicSpaceDto ToDto(PublicSpace model)
+        {
+            return model.ToDto();
+        }
+
+        public PublicSpace ToModel(PublicSpaceDto dto)
+        {
+            return dto.ToModel();
+        }
+    }
+}

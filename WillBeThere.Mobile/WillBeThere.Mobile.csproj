@@ -64,7 +64,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <ProjectReference Include="..\WillBeThere.Application\WillBeThere.Application.csproj" />
+	  <ProjectReference Include="..\WillBeThere.ApplicationLayer\WillBeThere.ApplicationLayer.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>

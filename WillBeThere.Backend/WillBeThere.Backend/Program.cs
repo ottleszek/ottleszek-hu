@@ -1,7 +1,7 @@
 using System.Text.Json.Serialization;
 using WillBeThere.Backend.Extensions;
-using WillBeThere.Infrastucture.Context;
-using WillBeThere.Infrastucture;
+using WillBeThere.InfrastuctureLayer.Context;
+using WillBeThere.InfrastuctureLayer;
 
 var builder = WebApplication.CreateBuilder(args);
 

@@ -1,14 +1,14 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc; 
 using Microsoft.EntityFrameworkCore;
-using WillBeThere.Application.Assemblers;
-using WillBeThere.Application.Dtos;
-using WillBeThere.Application.Queries.OrganizationPrograms;
-using WillBeThere.Domain.Assemblers.ResultModels;
-using WillBeThere.Domain.Entites;
-using WillBeThere.Domain.Models.ResultModels;
-using WillBeThere.Infrastucture.Implementations.Repos.WillBeThere;
-using WillBeThere.Infrastucture.Implementations.Services;
+using WillBeThere.ApplicationLayer.Assemblers;
+using WillBeThere.ApplicationLayer.Dtos;
+using WillBeThere.ApplicationLayer.Queries.OrganizationPrograms;
+using WillBeThere.DomainLayer.Assemblers.ResultModels;
+using WillBeThere.DomainLayer.Entites;
+using WillBeThere.DomainLayer.Entites.ResultModels;
+using WillBeThere.InfrastuctureLayer.Implementations.Repos.WillBeThere;
+using WillBeThere.InfrastuctureLayer.Implementations.Services;
 
 namespace WillBeThere.Backend.Controllers.WillBeThere
 {

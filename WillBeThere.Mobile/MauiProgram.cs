@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.Logging;
 using WillBeThere.Mobile.Extensions;
-using WillBeThere.Application.Helpers;
+using WillBeThere.ApplicationLayer.Helpers;
 
 namespace WillBeThere.Mobile
 {

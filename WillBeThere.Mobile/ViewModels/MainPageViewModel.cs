@@ -1,9 +1,9 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using WillBeThere.Mobile.Controls;
-using WillBeThere.Domain.Models.ResultModels;
-using WillBeThere.Domain.Entites;
-using WillBeThere.Application.Services.DataService;
+using WillBeThere.DomainLayer.Entites.ResultModels;
+using WillBeThere.DomainLayer.Entites;
+using WillBeThere.ApplicationLayer.Services.DataService;
 
 namespace WillBeThere.Mobile.ViewModels
 {

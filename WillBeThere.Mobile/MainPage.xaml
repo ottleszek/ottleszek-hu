@@ -2,9 +2,9 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:viewmodel="clr-namespace:WillBeThere.Mobile.ViewModels"             
-             xmlns:model="clr-namespace:WillBeThere.Domain.Entites;assembly=WillBeThere.Domain"
+             xmlns:model="clr-namespace:WillBeThere.DomainLayer.Entites;assembly=WillBeThere.DomainLayer"
              xmlns:controls="clr-namespace:WillBeThere.Mobile.Controls"
-             xmlns:resultmodel="clr-namespace:WillBeThere.Domain.Models.ResultModels;assembly=WillBeThere.Domain"
+             xmlns:resultmodel="clr-namespace:WillBeThere.DomainLayer.Entites.ResultModels;assembly=WillBeThere.DomainLayer"
              x:Class="WillBeThere.Mobile.MainPage"
              x:DataType="viewmodel:MainPageViewModel">
     <ScrollView>

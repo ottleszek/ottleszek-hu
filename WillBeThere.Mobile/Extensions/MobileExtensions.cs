@@ -1,9 +1,9 @@
 ﻿using WillBeThere.Mobile.ViewModels;
-using WillBeThere.Domain.Assemblers.ResultModels;
-using WillBeThere.Application.Assemblers;
-using WillBeThere.Application.Services.HttpService;
-using WillBeThere.Application.Services.MapperService;
-using WillBeThere.Application.Services.DataService;
+using WillBeThere.DomainLayer.Assemblers.ResultModels;
+using WillBeThere.ApplicationLayer.Assemblers;
+using WillBeThere.ApplicationLayer.Services.HttpService;
+using WillBeThere.ApplicationLayer.Services.MapperService;
+using WillBeThere.ApplicationLayer.Services.DataService;
 
 namespace WillBeThere.Mobile.Extensions
 {

@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using WillBeThere.Application.Assemblers;
-using WillBeThere.Application.Dtos;
-using WillBeThere.Domain.Entites;
-using WillBeThere.Infrastucture.Implementations.Repos.WillBeThere;
+using WillBeThere.ApplicationLayer.Assemblers;
+using WillBeThere.ApplicationLayer.Dtos;
+using WillBeThere.DomainLayer.Entites;
+using WillBeThere.InfrastuctureLayer.Implementations.Repos.WillBeThere;
 
 namespace WillBeThere.Backend.Controllers.WillBeThere
 {

@@ -27,6 +27,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\WillBeThere.Backend\WillBeThere.Backend\WillBeThere.Backend.csproj" />
+    <ProjectReference Include="..\WillBeThere.InfrastuctureLayer\WillBeThere.InfrastuctureLayer.csproj" />
   </ItemGroup>
 
   <ItemGroup>

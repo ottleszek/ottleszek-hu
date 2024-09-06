@@ -1,12 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using WillBeThere.Application.Assemblers;
-using WillBeThere.Domain.Assemblers.ResultModels;
-using WillBeThere.Infrastucture.Context;
-using WillBeThere.Infrastucture.Implementations.Repos.BaseRepos;
-using WillBeThere.Infrastucture.Implementations.Repos.WillBeThere;
-using WillBeThere.Infrastucture.Implementations.Services;
-
-namespace WillBeThere.Backend.Extensions
+﻿namespace WillBeThere.Backend.Extensions
 {
     public static class BackendExtensions
     {
