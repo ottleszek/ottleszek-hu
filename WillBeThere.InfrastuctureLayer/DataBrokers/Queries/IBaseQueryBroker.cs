@@ -6,6 +6,7 @@ namespace WillBeThere.InfrastuctureLayer.DataBrokers.Queries
     {
         Task<List<TEntity>> SelectAllAsync<TEntity>() where TEntity : class, IDbEntity<TEntity>, new();
         Task<TEntity?> GetByIdAsync<TEntity>(Guid id) where TEntity : class, IDbEntity<TEntity>, new();
+        Task<bool> ExsistAsync<TEntity>(Guid id) where TEntity : class, IDbEntity<TEntity>, new();
 
     }
 }

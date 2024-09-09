@@ -24,5 +24,10 @@
         {
             Error = $"{Error}\n{error}";
         }
+
+        public void InsertToBegining(string error)
+        {
+            Error = $"{error}\n{Error}";
+        }
     }
 }

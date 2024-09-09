@@ -4,7 +4,7 @@ using WillBeThere.InfrastuctureLayer.DataBrokers;
 
 namespace WillBeThere.InfrastuctureLayer.Implementations.Repos.BaseRepos
 {
-    public abstract class IncludedRepositoryBase<TDbContext> : RepositoryBase<TDbContext>, IIncludedDataBroker
+    public abstract class IncludedRepositoryBase<TDbContext> : WrongRepositoryBase<TDbContext>, IIncludedDataBroker
         where TDbContext : DbContext
     {
         protected IncludedRepositoryBase(TDbContext? dbContext) : base(dbContext)

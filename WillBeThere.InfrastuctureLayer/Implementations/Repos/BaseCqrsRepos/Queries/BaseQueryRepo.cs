@@ -6,21 +6,26 @@ using WillBeThere.InfrastuctureLayer.Implementations.Repos.BaseRepos;
 
 namespace WillBeThere.InfrastuctureLayer.Implementations.Repos.BaseCqrsRepos.Queries
 {
-    public class BaseQueryRepo<TDbContext> : BaseRepo<TDbContext>, IBaseQueryBroker, IRepositoryBase
-        where TDbContext : DbContext
+    public class BaseQueryRepo<TDbContext> : BaseRepo<DbContext>, IBaseQueryBroker, IRepositoryBase where TDbContext : DbContext
     {
-        private readonly TDbContext? _dbContext;
+        protected readonly DbContext? _dbContext;
 
-        public BaseQueryRepo(TDbContext? dbContext):base(dbContext)
+        public BaseQueryRepo(DbContext? dbContext) : base(dbContext)
         {
             _dbContext = dbContext;
         }
 
         public async Task<List<TEntity>> SelectAllAsync<TEntity>() where TEntity : class, IDbEntity<TEntity>, new() => await FindAll<TEntity>().ToListAsync();
 
-        Task<TEntity?> IBaseQueryBroker.GetByIdAsync<TEntity>(Guid id) where TEntity : class
+        public async Task<TEntity?> GetByIdAsync<TEntity>(Guid id) where TEntity : class, IDbEntity<TEntity>, new () => await FindByCondition<TEntity>(entity => entity.Id == id).FirstOrDefaultAsync();
+
+        public async Task<bool> ExsistAsync<TEntity>(Guid id) where TEntity : class, IDbEntity<TEntity>, new()
         {
-            throw new NotImplementedException();
+            DbSet<TEntity>? dbSet = GetDbSet<TEntity>();
+            if (dbSet is null)
+                return false;
+            else
+                return await dbSet.AnyAsync(entity => entity.Id == id);
         }
 
         public IQueryable<TEntity> FindAll<TEntity>() where TEntity : class, IDbEntity<TEntity>, new()
@@ -37,6 +42,18 @@ namespace WillBeThere.InfrastuctureLayer.Implementations.Repos.BaseCqrsRepos.Que
             if (dbSet is null)
                 return Enumerable.Empty<TEntity>().AsQueryable().AsNoTracking();
             return dbSet.Where(expression).AsNoTracking();
+        }
+
+        protected DbSet<TEntity>? GetDbSet<TEntity>() where TEntity : class, IDbEntity<TEntity>, new()
+        {
+            try
+            {
+                if (_dbContext is null)
+                    return null;
+                return _dbContext.Set<TEntity>();
+            }
+            catch (Exception) { }
+            return null;
         }
     }
 }

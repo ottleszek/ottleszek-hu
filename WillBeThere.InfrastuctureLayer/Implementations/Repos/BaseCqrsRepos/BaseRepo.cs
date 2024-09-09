@@ -3,7 +3,7 @@ using WillBeThere.DomainLayer.Entities.DbIds;
 
 namespace WillBeThere.InfrastuctureLayer.Implementations.Repos.BaseCqrsRepos
 {
-    public class BaseRepo<TDbContext> where TDbContext : DbContext
+    public class BaseRepo<TDbContext> : IBaseRepo where TDbContext : DbContext 
     {
         private readonly TDbContext? _dbContext;
 
@@ -12,17 +12,7 @@ namespace WillBeThere.InfrastuctureLayer.Implementations.Repos.BaseCqrsRepos
             _dbContext = dbContext;
         }
 
-        protected DbSet<TEntity>? GetDbSet<TEntity>() where TEntity : class, IDbEntity<TEntity>, new()
-        {
-            try
-            {
-                if (_dbContext is null)
-                    return null;
-                return _dbContext.Set<TEntity>();
-            }
-            catch (Exception) { }
-            return null;
-        }
+
 
         protected TDbContext? GetDbContext<TEntity>() where TEntity : class, IDbEntity<TEntity>, new()
         {

@@ -1,35 +1,35 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using WillBeThere.ApplicationLayer.Responses;
 using WillBeThere.DomainLayer.Entities.DbIds;
-using WillBeThere.InfrastuctureLayer.DataBrokers.Commands;
+using WillBeThere.InfrastuctureLayer.DataBrokers.Queries;
 using WillBeThere.InfrastuctureLayer.Implementations.Repos.BaseCqrsRepos.Queries;
 using WillBeThere.InfrastuctureLayer.Implementations.Repos.BaseRepos;
 
 namespace WillBeThere.InfrastuctureLayer.Implementations.Repos.BaseCqrsRepos.Commands
 {
-    public class BaseCommandRepo<TDbContext> : BaseQueryRepo<TDbContext>, IBaseCommandBroker
-                where TDbContext : DbContext
+    public class BaseCommandRepo<TDbContext> : BaseQueryRepo<DbContext>, IBaseQueryBroker, IRepositoryBase where TDbContext : DbContext
     {
-        private readonly TDbContext? _dbContext;
-
-        public BaseCommandRepo(TDbContext? dbContext)
+    {
+        public BaseCommandRepo(DbContext? dbContext)
             :base(dbContext)
         {
-            _dbContext = dbContext;
         }
+
         public async Task<Response> UpdateAsync<TEntity>(TEntity entity) where TEntity : class, IDbEntity<TEntity>, new()
         {
             Response response = new();
             try
             {
-                TDbContext? dbContext = GetDbContext<TEntity>();
-                if (dbContext is null)
+                if (_dbContext is null)
+                {
+                    response.Append($"{nameof(BaseCommandRepo<TDbContext>)} osztály, {nameof(UpdateAsync)} metódusban hiba keletkezett!");
                     response.Append($"Az adatbázis nem elérhető!");
+                    return response;
+                }
                 else
                 {
-                    dbContext.ChangeTracker.Clear();
-                    dbContext.Entry(entity).State = EntityState.Modified;
-                    await dbContext.SaveChangesAsync();
+                    _dbContext.ChangeTracker.Clear();
+                    _dbContext.Entry(entity).State = EntityState.Modified;
                     return response;
                 }
             }
@@ -37,7 +37,7 @@ namespace WillBeThere.InfrastuctureLayer.Implementations.Repos.BaseCqrsRepos.Com
             {
                 response.Append(e.Message);
             }
-            response.Append($"{nameof(RepositoryBase<TDbContext>)} osztály, {nameof(UpdateAsync)} metódusban hiba keletkezett!");
+            response.Append($"{nameof(BaseCommandRepo<TDbContext>)} osztály, {nameof(UpdateAsync)} metódusban hiba keletkezett!");
             response.Append($"{entity} frissítése nem sikerült!");
             return response;
         }
@@ -54,14 +54,11 @@ namespace WillBeThere.InfrastuctureLayer.Implementations.Repos.BaseCqrsRepos.Com
             {
                 try
                 {
-                    TDbContext? dbContext = GetDbContext<TEntity>();
-                    if (dbContext is null)
+                    if (_dbContext is null)
                         response.Append($"Az adatbázis nem elérhető!");
                     else
                     {
-                        dbContext.ChangeTracker.Clear();
-                        dbContext.Entry(entity).State = EntityState.Deleted;
-                        await dbContext.SaveChangesAsync();
+                        _dbContext.Entry(entity).State = EntityState.Deleted;
                         return response;
                     }
 
@@ -71,10 +68,11 @@ namespace WillBeThere.InfrastuctureLayer.Implementations.Repos.BaseCqrsRepos.Com
                     response.Append(e.Message);
                 }
             }
-            response.Append($"{nameof(RepositoryBase<TDbContext>)} osztály, {nameof(DeleteAsync)} metódusban hiba keletkezett");
             if (entity is not null)
                 response.Append($"Az entitás id:{entity.Id}");
             response.Append($"Az entitás törlése nem sikerült!");
+            if (response.HasError)
+                response.InsertToBegining($"{nameof(BaseCommandRepo<TDbContext>)} osztály, {nameof(DeleteAsync)} metódusban hiba keletkezett");
             return response;
         }
 
@@ -88,26 +86,29 @@ namespace WillBeThere.InfrastuctureLayer.Implementations.Repos.BaseCqrsRepos.Com
             Response response = new();
 
             DbSet<TEntity>? dbSet = GetDbSet<TEntity>();
-            TDbContext? dbContext = GetDbContext<TEntity>();
 
-            if (dbContext is null || dbSet is null)
+            if (dbSet is null)
+            {
+                response.Append($"{nameof(BaseCommandRepo<TDbContext>)} osztály, {nameof(InsertAsync)} metódusban hiba keletkezett");
                 response.Append($"Az adatbázis nem elérhető!");
+                return response;
+            }
             else
             {
                 try
                 {
                     dbSet.Add(entity);
-                    await dbContext.SaveChangesAsync();
                     return response;
                 }
                 catch (Exception e)
                 {
                     response.Append(e.Message);
                 }
+
+                response.Append($"{nameof(BaseCommandRepo)} osztály, {nameof(InsertAsync)} metódusban hiba keletkezett");
+                response.Append($"{entity} osztály hozzáadása az adatbázishoz nem sikerült!");
             }
-            response.Append($"{nameof(RepositoryBase<TDbContext>)} osztály, {nameof(InsertAsync)} metódusban hiba keletkezett");
-            response.Append($"{entity} osztály hozzáadása az adatbázishoz nem sikerült!");
             return response;
-        }
+        }            
     }
 }

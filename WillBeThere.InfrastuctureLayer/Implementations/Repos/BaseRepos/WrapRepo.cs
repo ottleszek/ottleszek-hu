@@ -1,9 +1,15 @@
-﻿using WillBeThere.InfrastuctureLayer.Implementations.Repos.WillBeThere;
+﻿using Microsoft.EntityFrameworkCore;
+using WillBeThere.DomainLayer.Entites;
+using WillBeThere.InfrastuctureLayer.Implementations.Repos.WillBeThere;
+using WillBeThere.InfrastuctureLayer.UnifOfWorks;
 
 namespace WillBeThere.InfrastuctureLayer.Implementations.Repos.BaseRepos
 {
-    public class WrapRepo : IWrapRepo
+    public class WrapRepo<TDbContext> : IWrapRepo where TDbContext: DbContext
     {
+        private IUnitOfWork _unitOfWork;
+
+
         private readonly IAddressRepo? _addressRepo;
         private readonly IOrganizationRepo? _organizationRepo;
         private readonly IOrganizationAdminUserRepo? _organizationAdminUserRepo;
@@ -24,6 +30,10 @@ namespace WillBeThere.InfrastuctureLayer.Implementations.Repos.BaseRepos
             IRegisteredUserRepo? registeredUserRepo
             )
         {
+            if (addressRepo!=null)
+                _unitOfWork.AddRepository<AddressRepo<TDbContext>, Address>(addressRepo);
+
+
             _addressRepo = addressRepo;
             _organizationRepo = organizationRepo;
             _organizationAdminUserRepo = organizationAdminUserRepo;
