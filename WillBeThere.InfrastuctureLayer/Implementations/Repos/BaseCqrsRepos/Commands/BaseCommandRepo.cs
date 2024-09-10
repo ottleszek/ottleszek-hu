@@ -8,8 +8,7 @@ using WillBeThere.InfrastuctureLayer.Implementations.Repos.BaseRepos;
 namespace WillBeThere.InfrastuctureLayer.Implementations.Repos.BaseCqrsRepos.Commands
 {
     public class BaseCommandRepo<TDbContext> : BaseQueryRepo<DbContext>, IBaseQueryBroker, IRepositoryBase where TDbContext : DbContext
-    {
-    {
+    {    
         public BaseCommandRepo(DbContext? dbContext)
             :base(dbContext)
         {
@@ -105,7 +104,7 @@ namespace WillBeThere.InfrastuctureLayer.Implementations.Repos.BaseCqrsRepos.Com
                     response.Append(e.Message);
                 }
 
-                response.Append($"{nameof(BaseCommandRepo)} osztály, {nameof(InsertAsync)} metódusban hiba keletkezett");
+                response.Append($"{nameof(BaseCommandRepo<TDbContext>)} osztály, {nameof(InsertAsync)} metódusban hiba keletkezett");
                 response.Append($"{entity} osztály hozzáadása az adatbázishoz nem sikerült!");
             }
             return response;

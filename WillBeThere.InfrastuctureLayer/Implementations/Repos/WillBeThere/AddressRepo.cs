@@ -3,7 +3,7 @@ using WillBeThere.InfrastuctureLayer.Implementations.Repos.BaseRepos;
 
 namespace WillBeThere.InfrastuctureLayer.Implementations.Repos.WillBeThere
 {
-    public class AddressRepo<TDbContext> : IncludedRepositoryBase<TDbContext>, IAddressRepo
+    public class AddressRepo<TDbContext> : IncludedRepositoryBase<TDbContext>, IAddressRepo<TDbContext>
         where TDbContext : DbContext
     {
         public AddressRepo(TDbContext? dbContext) : base(dbContext)

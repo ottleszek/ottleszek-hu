@@ -1,13 +1,16 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Storage;
 using WillBeThere.DomainLayer.Entities.DbIds;
 using WillBeThere.InfrastuctureLayer.Implementations.Repos.BaseCqrsRepos;
 using WillBeThere.InfrastuctureLayer.Implementations.Repos.BaseRepos;
 
-namespace WillBeThere.InfrastuctureLayer.UnifOfWorks
+namespace WillBeThere.InfrastuctureLayer.Implementations.UnifOfWorks
 {
     public class UnitOfWork : IUnitOfWork
     {
         private readonly DbContext _context;
+        private IDbContextTransaction? _transaction;
+
         private Dictionary<Type, object> _repositories;
 
         public UnitOfWork(DbContext context)
@@ -18,6 +21,7 @@ namespace WillBeThere.InfrastuctureLayer.UnifOfWorks
 
         public void Dispose()
         {
+            _transaction?.Dispose();
             _context.Dispose();
         }
 
@@ -29,10 +33,10 @@ namespace WillBeThere.InfrastuctureLayer.UnifOfWorks
             {
                 return (TRepository)_repositories[type];
             }
-            return default(TRepository?);
+            return default;
         }
         public void AddRepository<TRepository, TEntity>(TRepository? repository) where TRepository : IBaseRepo, IRepositoryBase where TEntity : class, IDbEntity<TEntity>, new()
-{
+        {
             if (repository is null)
                 return;
             TRepository? exsist = GetRepository<TRepository, TEntity>();
@@ -60,9 +64,29 @@ namespace WillBeThere.InfrastuctureLayer.UnifOfWorks
             }
         }
         */
-        public async Task SaveAsync()
+
+        public void BeginTransaction()
         {
-            await _context.SaveChangesAsync();
+            _transaction =_context.Database.BeginTransaction();
+        }
+
+        public async Task Commit()
+        {
+            try
+            {
+                await _context.SaveChangesAsync();
+                _transaction?.Commit();
+            }
+            catch 
+            {
+                Rollback();
+                throw;
+            }
+        }
+
+        public void Rollback()
+        {
+            _transaction?.Rollback();
         }
     }
 }
