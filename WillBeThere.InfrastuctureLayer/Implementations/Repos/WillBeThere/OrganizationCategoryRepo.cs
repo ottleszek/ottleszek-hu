@@ -3,7 +3,7 @@ using WillBeThere.InfrastuctureLayer.Implementations.Repos.BaseRepos;
 
 namespace WillBeThere.InfrastuctureLayer.Implementations.Repos.WillBeThere
 {
-    public class OrganizationCategoryRepo<TDbContext> : IncludedRepositoryBase<TDbContext>, IOrganizationCategoryRepo
+    public class OrganizationCategoryRepo<TDbContext> : INoCqrsRepo<TDbContext>, IOrganizationCategoryRepo
         where TDbContext : DbContext
     {
         public OrganizationCategoryRepo(TDbContext? dbContext) : base(dbContext)

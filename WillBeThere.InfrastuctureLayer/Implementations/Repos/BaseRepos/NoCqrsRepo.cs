@@ -6,11 +6,11 @@ using WillBeThere.InfrastuctureLayer.DataBrokers;
 
 namespace WillBeThere.InfrastuctureLayer.Implementations.Repos.BaseRepos
 {
-    public class WrongRepositoryBase<TDbContext> : IDataBroker, IRepositoryBase
+    public class NoCqrsRepo<TDbContext> : IDataBroker, IRepositoryBase
         where TDbContext : DbContext
     {
         private readonly TDbContext? _dbContext;
-        public WrongRepositoryBase(TDbContext? dbContext)
+        public NoCqrsRepo(TDbContext? dbContext)
         {
             _dbContext = dbContext;
         }
@@ -41,7 +41,7 @@ namespace WillBeThere.InfrastuctureLayer.Implementations.Repos.BaseRepos
             {
                 response.Append(e.Message);
             }
-            response.Append($"{nameof(WrongRepositoryBase<TDbContext>)} osztály, {nameof(UpdateAsync)} metódusban hiba keletkezett!");
+            response.Append($"{nameof(NoCqrsRepo<TDbContext>)} osztály, {nameof(UpdateAsync)} metódusban hiba keletkezett!");
             response.Append($"{entity} frissítése nem sikerült!");
             return response;
         }
@@ -75,7 +75,7 @@ namespace WillBeThere.InfrastuctureLayer.Implementations.Repos.BaseRepos
                     response.Append(e.Message);
                 }
             }
-            response.Append($"{nameof(WrongRepositoryBase<TDbContext>)} osztály, {nameof(DeleteAsync)} metódusban hiba keletkezett");
+            response.Append($"{nameof(NoCqrsRepo<TDbContext>)} osztály, {nameof(DeleteAsync)} metódusban hiba keletkezett");
             if (entity is not null)
                 response.Append($"Az entitás id:{entity.Id}");
             response.Append($"Az entitás törlése nem sikerült!");
@@ -109,7 +109,7 @@ namespace WillBeThere.InfrastuctureLayer.Implementations.Repos.BaseRepos
                     response.Append(e.Message);
                 }
             }
-            response.Append($"{nameof(WrongRepositoryBase<TDbContext>)} osztály, {nameof(InsertAsync)} metódusban hiba keletkezett");
+            response.Append($"{nameof(NoCqrsRepo<TDbContext>)} osztály, {nameof(InsertAsync)} metódusban hiba keletkezett");
             response.Append($"{entity} osztály hozzáadása az adatbázishoz nem sikerült!");
             return response;
         }

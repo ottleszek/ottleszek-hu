@@ -2,11 +2,10 @@
 using System.Linq.Expressions;
 using WillBeThere.DomainLayer.Entities.DbIds;
 using WillBeThere.InfrastuctureLayer.DataBrokers.Queries;
-using WillBeThere.InfrastuctureLayer.Implementations.Repos.BaseRepos;
 
 namespace WillBeThere.InfrastuctureLayer.Implementations.Repos.BaseCqrsRepos.Queries
 {
-    public class BaseQueryRepo<TDbContext> : BaseRepo<DbContext>, IBaseQueryBroker, IRepositoryBase where TDbContext : DbContext
+    public class BaseQueryRepo<TDbContext> : BaseRepo<DbContext>, IBaseQueryBroker where TDbContext : DbContext
     {
         protected readonly DbContext? _dbContext;
 
@@ -28,7 +27,7 @@ namespace WillBeThere.InfrastuctureLayer.Implementations.Repos.BaseCqrsRepos.Que
                 return await dbSet.AnyAsync(entity => entity.Id == id);
         }
 
-        public IQueryable<TEntity> FindAll<TEntity>() where TEntity : class, IDbEntity<TEntity>, new()
+        protected IQueryable<TEntity> FindAll<TEntity>() where TEntity : class, IDbEntity<TEntity>, new()
         {
             DbSet<TEntity>? dbSet = GetDbSet<TEntity>();
             if (dbSet is null)
@@ -36,7 +35,7 @@ namespace WillBeThere.InfrastuctureLayer.Implementations.Repos.BaseCqrsRepos.Que
             return dbSet.AsNoTracking();
         }
 
-        public IQueryable<TEntity> FindByCondition<TEntity>(Expression<Func<TEntity, bool>> expression) where TEntity : class, IDbEntity<TEntity>, new()
+        protected IQueryable<TEntity> FindByCondition<TEntity>(Expression<Func<TEntity, bool>> expression) where TEntity : class, IDbEntity<TEntity>, new()
         {
             DbSet<TEntity>? dbSet = GetDbSet<TEntity>();
             if (dbSet is null)

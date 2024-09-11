@@ -10,9 +10,8 @@ namespace WillBeThere.InfrastuctureLayer.Implementations.Repos.BaseRepos
         private IUnitOfWork? _unitOfWork;
 
         private readonly IAddressRepo? _addressRepo;
-        private readonly IOrganizationRepo? _organizationRepo;
-        private readonly IOrganizationAdminUserRepo? _organizationAdminUserRepo;
         private readonly IOrganizationCategoryRepo? _organizationCategoryRepo;
+        private readonly IOrganizationRepo? _organizationRepo;
         private readonly IOrganizationProgramRepo? _organizationProgramRepo;
         private readonly IParticipationRepo? _participationRepo;
         private readonly IPublicSpaceRepo? _publicSpaceRepo;
@@ -21,7 +20,6 @@ namespace WillBeThere.InfrastuctureLayer.Implementations.Repos.BaseRepos
         public WrapRepo(
             IAddressRepo? addressRepo,
             IOrganizationRepo? organizationRepo,
-            IOrganizationAdminUserRepo organizationAdminUserRepo,
             IOrganizationCategoryRepo? organizationCategoryRepo,
             IOrganizationProgramRepo? organizationProgramRepo,
             IParticipationRepo? participationRepo,
@@ -30,18 +28,29 @@ namespace WillBeThere.InfrastuctureLayer.Implementations.Repos.BaseRepos
             )
         {
 
-            if (addressRepo != null)
+            if (addressRepo is not null)
                 _unitOfWork?.AddRepository<IAddressRepo, Address>(addressRepo);
+           
+            if (_organizationProgramRepo is not null)
+                _unitOfWork?.AddRepository<IOrganizationProgramRepo,OrganizationProgram>(organizationProgramRepo);
+            if (participationRepo is not null)
+                _unitOfWork?.AddRepository<IParticipationRepo,Participation>(participationRepo);
+            if (publicSpaceRepo is not null)
+                _unitOfWork?.AddRepository<IPublicSpaceRepo,PublicSpace>(publicSpaceRepo);
+            if (registeredUserRepo is not null)
+                _unitOfWork?.AddRepository<IRegisteredUserRepo,RegisteredUser>(registeredUserRepo);
+            if (organizationCategoryRepo is not null)
+                _unitOfWork?.AddRepository<IOrganizationCategoryRepo,OrganizationCategory>(organizationCategoryRepo);
+            if ()
 
-
-            _addressRepo = addressRepo;
+            /*_addressRepo = addressRepo;
             _organizationRepo = organizationRepo;
             _organizationAdminUserRepo = organizationAdminUserRepo;
             _organizationCategoryRepo = organizationCategoryRepo;
             _organizationProgramRepo = organizationProgramRepo;
             _participationRepo = participationRepo;
             _publicSpaceRepo = publicSpaceRepo;
-            _registeredUserRepo = registeredUserRepo;
+            _registeredUserRepo = registeredUserRepo;*/
         }
         public IAddressRepo? AddressRepo => _addressRepo;
         public IOrganizationRepo? OrganizationRepo => _organizationRepo;

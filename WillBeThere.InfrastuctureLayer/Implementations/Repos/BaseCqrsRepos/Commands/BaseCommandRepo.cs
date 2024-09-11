@@ -3,18 +3,17 @@ using WillBeThere.ApplicationLayer.Responses;
 using WillBeThere.DomainLayer.Entities.DbIds;
 using WillBeThere.InfrastuctureLayer.DataBrokers.Queries;
 using WillBeThere.InfrastuctureLayer.Implementations.Repos.BaseCqrsRepos.Queries;
-using WillBeThere.InfrastuctureLayer.Implementations.Repos.BaseRepos;
 
 namespace WillBeThere.InfrastuctureLayer.Implementations.Repos.BaseCqrsRepos.Commands
 {
-    public class BaseCommandRepo<TDbContext> : BaseQueryRepo<DbContext>, IBaseQueryBroker, IRepositoryBase where TDbContext : DbContext
+    public class BaseCommandRepo<TDbContext> : BaseQueryRepo<DbContext>, IBaseQueryBroker where TDbContext : DbContext
     {    
         public BaseCommandRepo(DbContext? dbContext)
             :base(dbContext)
         {
         }
 
-        public async Task<Response> UpdateAsync<TEntity>(TEntity entity) where TEntity : class, IDbEntity<TEntity>, new()
+        public Response UpdateAsync<TEntity>(TEntity entity) where TEntity : class, IDbEntity<TEntity>, new()
         {
             Response response = new();
             try
@@ -42,7 +41,7 @@ namespace WillBeThere.InfrastuctureLayer.Implementations.Repos.BaseCqrsRepos.Com
         }
 
 
-        public async Task<Response> DeleteAsync<TEntity>(TEntity? entity) where TEntity : class, IDbEntity<TEntity>, new()
+        public Response DeleteAsync<TEntity>(TEntity? entity) where TEntity : class, IDbEntity<TEntity>, new()
         {
             Response response = new();
             if (entity is null)
@@ -75,10 +74,10 @@ namespace WillBeThere.InfrastuctureLayer.Implementations.Repos.BaseCqrsRepos.Com
             return response;
         }
 
-        public async Task<Response> DeleteAsync<TEntity>(Guid id) where TEntity : class, IDbEntity<TEntity>, new()
+        public Response DeleteAsync<TEntity>(Guid id) where TEntity : class, IDbEntity<TEntity>, new()
         {
             TEntity? entityToDelete = FindByCondition<TEntity>(e => e.Id == id).FirstOrDefault();
-            return await DeleteAsync<TEntity>(entityToDelete);
+            return DeleteAsync<TEntity>(entityToDelete);
         }
         public async Task<Response> InsertAsync<TEntity>(TEntity entity) where TEntity : class, IDbEntity<TEntity>, new()
         {
