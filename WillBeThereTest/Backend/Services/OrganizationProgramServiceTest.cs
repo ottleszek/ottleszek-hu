@@ -14,7 +14,7 @@ namespace WillBeThereTest.Backend.Services
         private readonly Mock<IWrapRepo> _mockWrapRepo = new Mock<IWrapRepo>();
         private readonly Mock<IOrganizationRepo> _mockOrganizationRepo = new Mock<IOrganizationRepo>();
         private readonly Mock<IOrganizationProgramRepo> _mockOrganizationProgramRepo = new Mock<IOrganizationProgramRepo>();
-        private readonly Mock<IAddressRepo> _mockAddressRepo = new Mock<IAddressRepo>();
+        private readonly Mock<IAddressQueryRepo> _mockAddressRepo = new Mock<IAddressQueryRepo>();
         private readonly Mock<IPublicSpaceRepo> _mockPublicSpaceRepo = new Mock<IPublicSpaceRepo>();
         
         public OrganizationProgramServiceTest()

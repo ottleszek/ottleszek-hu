@@ -1,12 +1,11 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using WillBeThere.ApplicationLayer.Responses;
 using WillBeThere.DomainLayer.Entities.DbIds;
-using WillBeThere.InfrastuctureLayer.DataBrokers.Queries;
 using WillBeThere.InfrastuctureLayer.Implementations.Repos.BaseCqrsRepos.Queries;
 
 namespace WillBeThere.InfrastuctureLayer.Implementations.Repos.BaseCqrsRepos.Commands
 {
-    public class BaseCommandRepo<TDbContext> : BaseQueryRepo<DbContext>, IBaseQueryBroker where TDbContext : DbContext
+    public class BaseCommandRepo<TDbContext> : BaseQueryRepo<DbContext> where TDbContext : DbContext
     {    
         public BaseCommandRepo(DbContext? dbContext)
             :base(dbContext)

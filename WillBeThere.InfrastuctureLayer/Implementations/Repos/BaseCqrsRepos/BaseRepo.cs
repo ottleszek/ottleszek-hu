@@ -11,9 +11,6 @@ namespace WillBeThere.InfrastuctureLayer.Implementations.Repos.BaseCqrsRepos
         {
             _dbContext = dbContext;
         }
-
-
-
         protected TDbContext? GetDbContext<TEntity>() where TEntity : class, IDbEntity<TEntity>, new()
         {
             if (_dbContext is null)

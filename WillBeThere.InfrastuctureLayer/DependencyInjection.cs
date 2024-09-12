@@ -59,7 +59,7 @@ namespace WillBeThere.InfrastuctureLayer
             if (true)
             {
                 services.AddScoped<IPublicSpaceRepo, PublicSpaceRepo<WillBeThereInMemoryContext>>();
-                services.AddScoped<IAddressRepo, AddressRepo<WillBeThereInMemoryContext>>();
+                services.AddScoped<IAddressQueryRepo, AddressRepo<WillBeThereInMemoryContext>>();
                 services.AddScoped<IOrganizationRepo, OrganiozationRepo<WillBeThereInMemoryContext>>();
                 services.AddScoped<IOrganizationAdminUserRepo, OrganizationAdminUserRepo<WillBeThereInMemoryContext>>();
                 services.AddScoped<IOrganizationCategoryRepo, OrganizationCategoryRepo<WillBeThereInMemoryContext>>();
@@ -70,7 +70,7 @@ namespace WillBeThere.InfrastuctureLayer
             else
             {
                 services.AddScoped<IPublicSpaceRepo, PublicSpaceRepo<WillBeThereMysqlContext>>();
-                services.AddScoped<IAddressRepo, AddressRepo<WillBeThereMysqlContext>>();
+                services.AddScoped<IAddressQueryRepo, AddressRepo<WillBeThereMysqlContext>>();
                 services.AddScoped<IOrganizationRepo, OrganiozationRepo<WillBeThereMysqlContext>>();
                 services.AddScoped<IOrganizationAdminUserRepo, OrganizationAdminUserRepo<WillBeThereMysqlContext>>();
                 services.AddScoped<IOrganizationCategoryRepo, OrganizationCategoryRepo<WillBeThereMysqlContext>>();
@@ -79,7 +79,7 @@ namespace WillBeThere.InfrastuctureLayer
                 services.AddScoped<IRegisteredUserRepo, RegisteredUserRepo<WillBeThereMysqlContext>>();
             }
 
-            services.AddScoped<IWrapRepo, WrapRepo>();
+            services.AddScoped<IWrapRepo, WrapCommandRepo>();
         }
 
         public static void ConfigureServices(this IServiceCollection services)

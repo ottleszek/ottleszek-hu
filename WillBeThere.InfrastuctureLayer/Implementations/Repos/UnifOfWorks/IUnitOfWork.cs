@@ -2,7 +2,7 @@
 using WillBeThere.InfrastuctureLayer.Implementations.Repos.BaseCqrsRepos;
 using WillBeThere.InfrastuctureLayer.Implementations.Repos.BaseRepos;
 
-namespace WillBeThere.InfrastuctureLayer.Implementations.UnifOfWorks
+namespace WillBeThere.InfrastuctureLayer.Implementations.Repos.UnifOfWorks
 {
     public interface IUnitOfWork : IDisposable
     {

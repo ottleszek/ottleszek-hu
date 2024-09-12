@@ -4,7 +4,7 @@ using WillBeThere.DomainLayer.Entities.DbIds;
 using WillBeThere.InfrastuctureLayer.Implementations.Repos.BaseCqrsRepos;
 using WillBeThere.InfrastuctureLayer.Implementations.Repos.BaseRepos;
 
-namespace WillBeThere.InfrastuctureLayer.Implementations.UnifOfWorks
+namespace WillBeThere.InfrastuctureLayer.Implementations.Repos.UnifOfWorks
 {
     public class UnitOfWork : IUnitOfWork
     {
@@ -67,7 +67,7 @@ namespace WillBeThere.InfrastuctureLayer.Implementations.UnifOfWorks
 
         public void BeginTransaction()
         {
-            _transaction =_context.Database.BeginTransaction();
+            _transaction = _context.Database.BeginTransaction();
         }
 
         public async Task Commit()
@@ -77,7 +77,7 @@ namespace WillBeThere.InfrastuctureLayer.Implementations.UnifOfWorks
                 await _context.SaveChangesAsync();
                 _transaction?.Commit();
             }
-            catch 
+            catch
             {
                 Rollback();
                 throw;

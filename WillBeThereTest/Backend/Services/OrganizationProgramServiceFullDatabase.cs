@@ -18,7 +18,7 @@ namespace WillBeThereTest.Backend.Services
                 .Options;
 
 
-        private IAddressRepo _addressRepo;
+        private IAddressQueryRepo _addressRepo;
         private IOrganizationRepo _organizationRepo;
         private IOrganizationAdminUserRepo _organizationAdminUserRepo;
         private IOrganizationCategoryRepo _organizationCategoryRepo;

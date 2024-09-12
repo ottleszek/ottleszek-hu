@@ -1,13 +1,12 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using WillBeThere.DomainLayer.Entities.DbIds;
-using WillBeThere.InfrastuctureLayer.DataBrokers;
 
-namespace WillBeThere.InfrastuctureLayer.Implementations.Repos.BaseRepos
+namespace WillBeThere.InfrastuctureLayer.Implementations.Repos.BaseCqrsRepos.Queries
 {
-    public abstract class IncludedRepositoryBase<TDbContext> : WrongRepositoryBase<TDbContext>, IIncludedDataBroker
+    public abstract class IncludedQueryRepo<TDbContext> : BaseQueryRepo<TDbContext>, IIncludedQueryRepo
         where TDbContext : DbContext
     {
-        protected IncludedRepositoryBase(TDbContext? dbContext) : base(dbContext)
+        protected IncludedQueryRepo(TDbContext? dbContext) : base(dbContext)
         {
         }
 

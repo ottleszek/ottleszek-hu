@@ -4,7 +4,7 @@ namespace WillBeThere.InfrastuctureLayer.Implementations.Repos.BaseRepos
 {
     public interface IWrapRepo
     {
-        public IAddressRepo? AddressRepo { get; }
+        public IAddressQueryRepo? AddressRepo { get; }
         public IOrganizationRepo? OrganizationRepo { get; }
         public IOrganizationAdminUserRepo? OrganizationAdminUserRepo { get; }
         public IOrganizationCategoryRepo? OrganizationCategoryRepo { get; }

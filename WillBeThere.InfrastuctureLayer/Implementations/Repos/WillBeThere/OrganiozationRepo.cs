@@ -1,9 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using WillBeThere.InfrastuctureLayer.Implementations.Repos.BaseRepos;
+using WillBeThere.InfrastuctureLayer.Implementations.Repos.BaseCqrsRepos.Queries;
+
 
 namespace WillBeThere.InfrastuctureLayer.Implementations.Repos.WillBeThere
 {
-    public class OrganiozationRepo<TDbContext> : INoCqrsRepo<TDbContext>, IOrganizationRepo
+    public class OrganiozationRepo<TDbContext> : IncludedQueryRepo<TDbContext>
         where TDbContext : DbContext
     {
         public OrganiozationRepo(TDbContext? dbContext) : base(dbContext)

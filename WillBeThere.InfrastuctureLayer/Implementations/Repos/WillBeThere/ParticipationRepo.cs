@@ -1,9 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using WillBeThere.InfrastuctureLayer.Implementations.Repos.BaseRepos;
+using WillBeThere.InfrastuctureLayer.Implementations.Repos.BaseCqrsRepos.Queries;
 
 namespace WillBeThere.InfrastuctureLayer.Implementations.Repos.WillBeThere
 {
-    public class ParticipationRepo<TDbContext> : INoCqrsRepo<TDbContext>, IParticipationRepo
+    public class ParticipationRepo<TDbContext> : IncludedQueryRepo<TDbContext>, IParticipationRepo
         where TDbContext : DbContext
     {
         public ParticipationRepo(TDbContext? dbContext) : base(dbContext)

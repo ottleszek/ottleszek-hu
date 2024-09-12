@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using WillBeThere.ApplicationLayer.Assemblers;
 using WillBeThere.DomainLayer.Entities.DbIds;
 using WillBeThere.InfrastuctureLayer.DataBrokers;
+using WillBeThere.InfrastuctureLayer.Implementations.Repos.BaseCqrsRepos.Queries;
 
 namespace WillBeThere.Backend.Controllers
 {
@@ -10,8 +11,8 @@ namespace WillBeThere.Backend.Controllers
         where TModel : class, IDbEntity<TModel>, new()
         where TDto : class, new()
     {
-        private readonly IIncludedDataBroker? _includedRepo;
-        public IncludedController(IAssembler<TModel, TDto>? assambler, IIncludedDataBroker? repo) : base(assambler, (IDataBroker?) repo)
+        private readonly IIncludedQueryRepo? _includedRepo;
+        public IncludedController(IAssembler<TModel, TDto>? assambler, IIncludedQueryRepo? repo) : base(assambler, (IDataBroker?) repo)
         {
             _includedRepo = repo;
         }
