@@ -1,12 +1,12 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using WillBeThere.InfrastuctureLayer.Implementations.Repos.BaseCqrsRepos.Queries;
 
-namespace WillBeThere.InfrastuctureLayer.Implementations.Repos.WillBeThere
+namespace WillBeThere.InfrastuctureLayer.Implementations.Repos.WillBeThere.QueryRepos
 {
-    public class OrganizationProgramRepo<TDbContext> : IncludedQueryRepo<TDbContext>, IOrganizationProgramRepo
+    public class OrganizationProgramQueryRepo<TDbContext> : IncludedQueryRepo<TDbContext>, IBaseQueryRepo, IOrganizationProgramQueryRepo
         where TDbContext : DbContext
     {
-        public OrganizationProgramRepo(TDbContext? dbContext) : base(dbContext)
+        public OrganizationProgramQueryRepo(TDbContext? dbContext) : base(dbContext)
         {
         }
 

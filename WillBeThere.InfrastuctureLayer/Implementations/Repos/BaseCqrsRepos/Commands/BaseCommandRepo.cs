@@ -1,16 +1,13 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using WillBeThere.ApplicationLayer.Responses;
 using WillBeThere.DomainLayer.Entities.DbIds;
-using WillBeThere.InfrastuctureLayer.Implementations.Repos.BaseCqrsRepos.Queries;
+using WillBeThere.InfrastuctureLayer.Implementations.Repos.BaseRepos;
 
 namespace WillBeThere.InfrastuctureLayer.Implementations.Repos.BaseCqrsRepos.Commands
 {
-    public class BaseCommandRepo<TDbContext> : BaseQueryRepo<DbContext> where TDbContext : DbContext
+    public class BaseCommandRepo<TDbContext> : RepositoryBase<DbContext>, IBaseCommandRepo where TDbContext : DbContext
     {    
-        public BaseCommandRepo(DbContext? dbContext)
-            :base(dbContext)
-        {
-        }
+        public BaseCommandRepo(DbContext? dbContext) : base(dbContext) { }
 
         public Response UpdateAsync<TEntity>(TEntity entity) where TEntity : class, IDbEntity<TEntity>, new()
         {
@@ -78,7 +75,7 @@ namespace WillBeThere.InfrastuctureLayer.Implementations.Repos.BaseCqrsRepos.Com
             TEntity? entityToDelete = FindByCondition<TEntity>(e => e.Id == id).FirstOrDefault();
             return DeleteAsync<TEntity>(entityToDelete);
         }
-        public async Task<Response> InsertAsync<TEntity>(TEntity entity) where TEntity : class, IDbEntity<TEntity>, new()
+        public Response InsertAsync<TEntity>(TEntity entity) where TEntity : class, IDbEntity<TEntity>, new()
         {
             Response response = new();
 

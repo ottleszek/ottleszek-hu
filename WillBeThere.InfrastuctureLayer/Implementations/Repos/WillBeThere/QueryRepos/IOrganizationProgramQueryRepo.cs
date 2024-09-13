@@ -1,9 +1,9 @@
 ﻿using WillBeThere.InfrastuctureLayer.Implementations.Repos.BaseCqrsRepos;
 using WillBeThere.InfrastuctureLayer.Implementations.Repos.BaseCqrsRepos.Queries;
 
-namespace WillBeThere.InfrastuctureLayer.Implementations.Repos.WillBeThere
+namespace WillBeThere.InfrastuctureLayer.Implementations.Repos.WillBeThere.QueryRepos
 {
-    public interface IOrganizationProgramRepo : IBaseRepo, IIncludedQueryRepo
+    public interface IOrganizationProgramQueryRepo : IBaseRepo, IIncludedQueryRepo
     {
     }
 }

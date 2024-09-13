@@ -1,4 +1,5 @@
 ﻿using WillBeThere.InfrastuctureLayer.Implementations.Repos.WillBeThere;
+using WillBeThere.InfrastuctureLayer.Implementations.Repos.WillBeThere.QueryRepos;
 
 namespace WillBeThere.InfrastuctureLayer.Implementations.Repos.BaseRepos
 {
@@ -6,9 +7,8 @@ namespace WillBeThere.InfrastuctureLayer.Implementations.Repos.BaseRepos
     {
         public IAddressQueryRepo? AddressRepo { get; }
         public IOrganizationRepo? OrganizationRepo { get; }
-        public IOrganizationAdminUserRepo? OrganizationAdminUserRepo { get; }
         public IOrganizationCategoryRepo? OrganizationCategoryRepo { get; }
-        public IOrganizationProgramRepo? OrganizationProgramRepo { get; }
+        public IOrganizationProgramQueryRepo? OrganizationProgramRepo { get; }
         public IParticipationRepo? ParticipationRepo { get; }
         public IPublicSpaceRepo? PublicSpaceRepo { get; }
         public IRegisteredUserRepo? RegisteredUserRepo { get; }

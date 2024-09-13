@@ -5,7 +5,7 @@ namespace WillBeThere.InfrastuctureLayer.Implementations.Repos.BaseCqrsRepos
 {
     public class BaseRepo<TDbContext> : IBaseRepo where TDbContext : DbContext 
     {
-        private readonly TDbContext? _dbContext;
+        protected readonly TDbContext? _dbContext;
 
         public BaseRepo(TDbContext? dbContext)
         {
@@ -17,6 +17,18 @@ namespace WillBeThere.InfrastuctureLayer.Implementations.Repos.BaseCqrsRepos
                 return null;
             else
                 return _dbContext;
+        }
+
+        protected DbSet<TEntity>? GetDbSet<TEntity>() where TEntity : class, IDbEntity<TEntity>, new()
+        {
+            try
+            {
+                if (_dbContext is null)
+                    return null;
+                return _dbContext.Set<TEntity>();
+            }
+            catch (Exception) { }
+            return null;
         }
 
     }

@@ -1,5 +1,5 @@
 ﻿using MediatR;
-using Microsoft.AspNetCore.Mvc; 
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using WillBeThere.ApplicationLayer.Assemblers;
 using WillBeThere.ApplicationLayer.Dtos;
@@ -7,7 +7,7 @@ using WillBeThere.ApplicationLayer.Queries.OrganizationPrograms;
 using WillBeThere.DomainLayer.Assemblers.ResultModels;
 using WillBeThere.DomainLayer.Entites;
 using WillBeThere.DomainLayer.Entites.ResultModels;
-using WillBeThere.InfrastuctureLayer.Implementations.Repos.WillBeThere;
+using WillBeThere.InfrastuctureLayer.Implementations.Repos.WillBeThere.QueryRepos;
 using WillBeThere.InfrastuctureLayer.Implementations.Services;
 
 namespace WillBeThere.Backend.Controllers.WillBeThere
@@ -19,12 +19,12 @@ namespace WillBeThere.Backend.Controllers.WillBeThere
         //private readonly IOrganizationProgramService? _organizationProgramService;
         private readonly IMediator _mediator;
         private readonly PublicOrganizationProgramAssembler _publicOrganizationProgramAssambler;
-        private readonly IOrganizationProgramRepo? repo;
+        private readonly IOrganizationProgramQueryRepo? repo;
 
         public OrganizationProgramController(
             OrganizationProgramAssembler? assambler, 
             PublicOrganizationProgramAssembler publicOrganizationProgramAssambler,
-            IOrganizationProgramRepo? repo,
+            IOrganizationProgramQueryRepo? repo,
             //IOrganizationProgramService? organizationProgramService,
             IMediator mediator
             ) : base(assambler, repo)

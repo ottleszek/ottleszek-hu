@@ -1,8 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using WillBeThere.InfrastuctureLayer.Implementations.Repos.BaseCqrsRepos.Commands;
+using WillBeThere.DomainLayer.Entites;
 using WillBeThere.InfrastuctureLayer.Implementations.Repos.UnifOfWorks;
-using WillBeThere.InfrastuctureLayer.Implementations.Repos.WillBeThere;
-
+using WillBeThere.InfrastuctureLayer.Implementations.Repos.WillBeThere.CommandRepos;
 
 namespace WillBeThere.InfrastuctureLayer.Implementations.Repos.BaseRepos
 {
@@ -10,29 +9,40 @@ namespace WillBeThere.InfrastuctureLayer.Implementations.Repos.BaseRepos
     {
         private IUnitOfWork? _unitOfWork;
 
-        private readonly IBaseCommandRepo _commandRepo;
-
         /*private readonly IAddressQueryRepo? _addressRepo;
         private readonly IOrganizationCategoryRepo? _organizationCategoryRepo;
         private readonly IOrganizationRepo? _organizationRepo;
-        private readonly IOrganizationProgramRepo? _organizationProgramRepo;
-        private readonly IParticipationRepo? _participationRepo;
+        */
+        private readonly IOrganizationProgramCommandRepo? _organizationProgramRepo;
+        /*private readonly IParticipationRepo? _participationRepo;
         private readonly IPublicSpaceRepo? _publicSpaceRepo;
         private readonly IRegisteredUserRepo? _registeredUserRepo;
         */
 
         public WrapCommandRepo(
-            IBaseCommandRepo commandRepo
-          /*  IAddressQueryRepo? addressRepo,
-            IOrganizationRepo? organizationRepo,
-            IOrganizationCategoryRepo? organizationCategoryRepo,
-            IOrganizationProgramRepo? organizationProgramRepo,
+            IUnitOfWork? unitOfWork,
+            /*  IAddressQueryRepo? addressRepo,
+              IOrganizationRepo? organizationRepo,
+              IOrganizationCategoryRepo? organizationCategoryRepo,
+            */
+            IOrganizationProgramCommandRepo? organizationProgramRepo
+            /*
             IParticipationRepo? participationRepo,
             IPublicSpaceRepo? publicSpaceRepo,
-            IRegisteredUserRepo? registeredUserRepo*/
+            IRegisteredUserRepo? registeredUserRepo
+            */
+
             )
         {
-            _commandRepo = commandRepo;
+            _organizationProgramRepo = organizationProgramRepo;
+            _unitOfWork = unitOfWork;
+            if (_unitOfWork is not null)
+            {
+                _unitOfWork.AddRepository<OrganizationProgramCommandRepo<TDbContext>, OrganizationProgram>(_organizationProgramRepo);
+            }
+
+
+
 
             //_commandRepo.
             /*
@@ -59,7 +69,10 @@ namespace WillBeThere.InfrastuctureLayer.Implementations.Repos.BaseRepos
             _participationRepo = participationRepo;
             _publicSpaceRepo = publicSpaceRepo;
             _registeredUserRepo = registeredUserRepo;*/
-        }
+        }        
+
+        public 
+
         /*
         public IAddressQueryRepo? AddressRepo => _addressRepo;
         public IOrganizationRepo? OrganizationRepo => _organizationRepo;

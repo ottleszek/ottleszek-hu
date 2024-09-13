@@ -5,6 +5,7 @@ using WillBeThere.InfrastuctureLayer.Context;
 using WillBeThere.InfrastuctureLayer.Helpers.TestData;
 using WillBeThere.InfrastuctureLayer.Implementations.Repos.BaseRepos;
 using WillBeThere.InfrastuctureLayer.Implementations.Repos.WillBeThere;
+using WillBeThere.InfrastuctureLayer.Implementations.Repos.WillBeThere.QueryRepos;
 using WillBeThere.InfrastuctureLayer.Implementations.Services;
 
 namespace WillBeThereTest.Backend.Services
@@ -22,7 +23,7 @@ namespace WillBeThereTest.Backend.Services
         private IOrganizationRepo _organizationRepo;
         private IOrganizationAdminUserRepo _organizationAdminUserRepo;
         private IOrganizationCategoryRepo _organizationCategoryRepo;
-        private IOrganizationProgramRepo _organizationProgramRepo;
+        private IOrganizationProgramQueryRepo _organizationProgramRepo;
         private IParticipationRepo _participationRepo;
         private IPublicSpaceRepo _publicSpaceRepo;
         private IRegisteredUserRepo _registeredUserRepo;
@@ -42,7 +43,7 @@ namespace WillBeThereTest.Backend.Services
             _organizationRepo = new OrganiozationRepo<WillBeThereInMemoryContext>(_context);
             _organizationAdminUserRepo = new OrganizationAdminUserRepo<WillBeThereInMemoryContext>(_context);
             _organizationCategoryRepo = new OrganizationCategoryRepo<WillBeThereInMemoryContext>(_context);
-            _organizationProgramRepo = new OrganizationProgramRepo<WillBeThereInMemoryContext>(_context);
+            _organizationProgramRepo = new OrganizationProgramQueryRepo<WillBeThereInMemoryContext>(_context);
             _publicSpaceRepo =new PublicSpaceRepo<WillBeThereInMemoryContext>(_context);
             _registeredUserRepo = new RegisteredUserRepo<WillBeThereInMemoryContext>(_context);
             _participationRepo = new ParticipationRepo<WillBeThereInMemoryContext>(_context);

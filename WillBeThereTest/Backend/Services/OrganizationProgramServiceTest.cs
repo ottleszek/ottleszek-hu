@@ -3,6 +3,7 @@ using WillBeThere.DomainLayer.Entites;
 using WillBeThere.DomainLayer.Entites.ResultModels;
 using WillBeThere.InfrastuctureLayer.Implementations.Repos.BaseRepos;
 using WillBeThere.InfrastuctureLayer.Implementations.Repos.WillBeThere;
+using WillBeThere.InfrastuctureLayer.Implementations.Repos.WillBeThere.QueryRepos;
 using WillBeThere.InfrastuctureLayer.Implementations.Services;
 
 namespace WillBeThereTest.Backend.Services
@@ -13,7 +14,7 @@ namespace WillBeThereTest.Backend.Services
         
         private readonly Mock<IWrapRepo> _mockWrapRepo = new Mock<IWrapRepo>();
         private readonly Mock<IOrganizationRepo> _mockOrganizationRepo = new Mock<IOrganizationRepo>();
-        private readonly Mock<IOrganizationProgramRepo> _mockOrganizationProgramRepo = new Mock<IOrganizationProgramRepo>();
+        private readonly Mock<IOrganizationProgramQueryRepo> _mockOrganizationProgramRepo = new Mock<IOrganizationProgramQueryRepo>();
         private readonly Mock<IAddressQueryRepo> _mockAddressRepo = new Mock<IAddressQueryRepo>();
         private readonly Mock<IPublicSpaceRepo> _mockPublicSpaceRepo = new Mock<IPublicSpaceRepo>();
         
