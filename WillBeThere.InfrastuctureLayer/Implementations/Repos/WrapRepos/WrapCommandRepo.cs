@@ -2,10 +2,11 @@
 using WillBeThere.DomainLayer.Entites;
 using WillBeThere.InfrastuctureLayer.Implementations.Repos.UnifOfWorks;
 using WillBeThere.InfrastuctureLayer.Implementations.Repos.WillBeThere.CommandRepos;
+using WillBeThere.InfrastuctureLayer.Implementations.Repos.WillBeThere.QueryRepos;
 
-namespace WillBeThere.InfrastuctureLayer.Implementations.Repos.BaseRepos
+namespace WillBeThere.InfrastuctureLayer.Implementations.Repos.WrapRepos
 {
-    public class WrapCommandRepo<TDbContext> : IWrapRepo where TDbContext: DbContext
+    public class WrapCommandRepo<TDbContext> : IWrapCommandRepo where TDbContext : DbContext
     {
         private IUnitOfWork? _unitOfWork;
 
@@ -14,10 +15,13 @@ namespace WillBeThere.InfrastuctureLayer.Implementations.Repos.BaseRepos
         private readonly IOrganizationRepo? _organizationRepo;
         */
         private readonly IOrganizationProgramCommandRepo? _organizationProgramRepo;
+
+        public IOrganizationProgramCommandRepo? OrganizationProgramRepo => _organizationProgramRepo;
+
         /*private readonly IParticipationRepo? _participationRepo;
-        private readonly IPublicSpaceRepo? _publicSpaceRepo;
-        private readonly IRegisteredUserRepo? _registeredUserRepo;
-        */
+private readonly IPublicSpaceRepo? _publicSpaceRepo;
+private readonly IRegisteredUserRepo? _registeredUserRepo;
+*/
 
         public WrapCommandRepo(
             IUnitOfWork? unitOfWork,
@@ -38,7 +42,7 @@ namespace WillBeThere.InfrastuctureLayer.Implementations.Repos.BaseRepos
             _unitOfWork = unitOfWork;
             if (_unitOfWork is not null)
             {
-                _unitOfWork.AddRepository<OrganizationProgramCommandRepo<TDbContext>, OrganizationProgram>(_organizationProgramRepo);
+                _unitOfWork.AddRepository<OrganizationProgramCommandRepo<TDbContext>, OrganizationProgram>((OrganizationProgramCommandRepo<TDbContext>?)_organizationProgramRepo);
             }
 
 
@@ -69,9 +73,7 @@ namespace WillBeThere.InfrastuctureLayer.Implementations.Repos.BaseRepos
             _participationRepo = participationRepo;
             _publicSpaceRepo = publicSpaceRepo;
             _registeredUserRepo = registeredUserRepo;*/
-        }        
-
-        public 
+        }
 
         /*
         public IAddressQueryRepo? AddressRepo => _addressRepo;

@@ -4,9 +4,11 @@ using WillBeThere.ApplicationLayer.Assemblers;
 using WillBeThere.DomainLayer.Assemblers.ResultModels;
 using WillBeThere.InfrastuctureLayer.Context;
 using WillBeThere.InfrastuctureLayer.Handlers.OrganizationPrograms;
-using WillBeThere.InfrastuctureLayer.Implementations.Repos.BaseRepos;
+using WillBeThere.InfrastuctureLayer.Implementations.Repos.BaseCqrsRepos.Commands;
 using WillBeThere.InfrastuctureLayer.Implementations.Repos.WillBeThere;
+using WillBeThere.InfrastuctureLayer.Implementations.Repos.WillBeThere.CommandRepos;
 using WillBeThere.InfrastuctureLayer.Implementations.Repos.WillBeThere.QueryRepos;
+using WillBeThere.InfrastuctureLayer.Implementations.Repos.WrapRepos;
 using WillBeThere.InfrastuctureLayer.Implementations.Services;
 
 namespace WillBeThere.InfrastuctureLayer
@@ -59,28 +61,36 @@ namespace WillBeThere.InfrastuctureLayer
         {
             if (true)
             {
-                services.AddScoped<IPublicSpaceRepo, PublicSpaceRepo<WillBeThereInMemoryContext>>();
+                /*services.AddScoped<IPublicSpaceRepo, PublicSpaceRepo<WillBeThereInMemoryContext>>();
                 services.AddScoped<IAddressQueryRepo, AddressRepo<WillBeThereInMemoryContext>>();
                 services.AddScoped<IOrganizationRepo, OrganiozationRepo<WillBeThereInMemoryContext>>();
                 services.AddScoped<IOrganizationAdminUserRepo, OrganizationAdminUserRepo<WillBeThereInMemoryContext>>();
-                services.AddScoped<IOrganizationCategoryRepo, OrganizationCategoryRepo<WillBeThereInMemoryContext>>();
+                services.AddScoped<IOrganizationCategoryRepo, OrganizationCategoryRepo<WillBeThereInMemoryContext>>();*/
                 services.AddScoped<IOrganizationProgramQueryRepo, OrganizationProgramQueryRepo<WillBeThereInMemoryContext>>();
-                services.AddScoped<IParticipationRepo, ParticipationRepo<WillBeThereInMemoryContext>>();
+                services.AddScoped<IOrganizationProgramCommandRepo, OrganizationProgramCommandRepo<WillBeThereInMemoryContext>>();
+                /*services.AddScoped<IParticipationRepo, ParticipationRepo<WillBeThereInMemoryContext>>();
                 services.AddScoped<IRegisteredUserRepo, RegisteredUserRepo<WillBeThereInMemoryContext>>();
+
+                services.AddScoped<IWrapCommandRepo, WrapCommandRepo<WillBeThereInMemoryContext>>();*/
             }
             else
             {
-                services.AddScoped<IPublicSpaceRepo, PublicSpaceRepo<WillBeThereMysqlContext>>();
+                /*services.AddScoped<IPublicSpaceRepo, PublicSpaceRepo<WillBeThereMysqlContext>>();
                 services.AddScoped<IAddressQueryRepo, AddressRepo<WillBeThereMysqlContext>>();
                 services.AddScoped<IOrganizationRepo, OrganiozationRepo<WillBeThereMysqlContext>>();
                 services.AddScoped<IOrganizationAdminUserRepo, OrganizationAdminUserRepo<WillBeThereMysqlContext>>();
-                services.AddScoped<IOrganizationCategoryRepo, OrganizationCategoryRepo<WillBeThereMysqlContext>>();
+                services.AddScoped<IOrganizationCategoryRepo, OrganizationCategoryRepo<WillBeThereMysqlContext>>();*/
                 services.AddScoped<IOrganizationProgramQueryRepo, OrganizationProgramQueryRepo<WillBeThereMysqlContext>>();
-                services.AddScoped<IParticipationRepo, ParticipationRepo<WillBeThereMysqlContext>>();
-                services.AddScoped<IRegisteredUserRepo, RegisteredUserRepo<WillBeThereMysqlContext>>();
+                services.AddScoped<IOrganizationProgramCommandRepo, OrganizationProgramCommandRepo<WillBeThereInMemoryContext>>();
+                /*services.AddScoped<IParticipationRepo, ParticipationRepo<WillBeThereMysqlContext>>();
+                services.AddScoped<IRegisteredUserRepo, RegisteredUserRepo<WillBeThereMysqlContext>>();*/
+
+
+                services.AddScoped<IWrapCommandRepo, WrapCommandRepo<WillBeThereMysqlContext>>();
+
             }
 
-            services.AddScoped<IWrapRepo, WrapCommandRepo>();
+
         }
 
         public static void ConfigureServices(this IServiceCollection services)
