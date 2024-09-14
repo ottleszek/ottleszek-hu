@@ -5,6 +5,7 @@ using WillBeThere.DomainLayer.Assemblers.ResultModels;
 using WillBeThere.InfrastuctureLayer.Context;
 using WillBeThere.InfrastuctureLayer.Handlers.OrganizationPrograms;
 using WillBeThere.InfrastuctureLayer.Implementations.Repos.BaseCqrsRepos.Commands;
+using WillBeThere.InfrastuctureLayer.Implementations.Repos.UnifOfWorks;
 using WillBeThere.InfrastuctureLayer.Implementations.Repos.WillBeThere;
 using WillBeThere.InfrastuctureLayer.Implementations.Repos.WillBeThere.CommandRepos;
 using WillBeThere.InfrastuctureLayer.Implementations.Repos.WillBeThere.QueryRepos;
@@ -68,10 +69,14 @@ namespace WillBeThere.InfrastuctureLayer
                 services.AddScoped<IOrganizationCategoryRepo, OrganizationCategoryRepo<WillBeThereInMemoryContext>>();*/
                 services.AddScoped<IOrganizationProgramQueryRepo, OrganizationProgramQueryRepo<WillBeThereInMemoryContext>>();
                 services.AddScoped<IOrganizationProgramCommandRepo, OrganizationProgramCommandRepo<WillBeThereInMemoryContext>>();
+
+                services.AddScoped<IWrapCommandRepo, WrapCommandRepo<WillBeThereInMemoryContext>>();
+                services.AddScoped<IUnitOfWork, UnitOfWork<WillBeThereInMemoryContext>>();
+
                 /*services.AddScoped<IParticipationRepo, ParticipationRepo<WillBeThereInMemoryContext>>();
                 services.AddScoped<IRegisteredUserRepo, RegisteredUserRepo<WillBeThereInMemoryContext>>();
 
-                services.AddScoped<IWrapCommandRepo, WrapCommandRepo<WillBeThereInMemoryContext>>();*/
+
             }
             else
             {

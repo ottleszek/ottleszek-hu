@@ -2,18 +2,17 @@
 using Microsoft.EntityFrameworkCore.Storage;
 using WillBeThere.DomainLayer.Entities.DbIds;
 using WillBeThere.InfrastuctureLayer.Implementations.Repos.BaseCqrsRepos.Commands;
-using WillBeThere.InfrastuctureLayer.Implementations.Repos.BaseRepos;
 
 namespace WillBeThere.InfrastuctureLayer.Implementations.Repos.UnifOfWorks
 {
-    public class UnitOfWork : IUnitOfWork
+    public class UnitOfWork<TDbContext> : IUnitOfWork where TDbContext : DbContext
     {
-        private readonly DbContext _context;
+        private readonly TDbContext _context;
         private IDbContextTransaction? _transaction;
 
         private Dictionary<Type, object> _repositories;
 
-        public UnitOfWork(DbContext context)
+        public UnitOfWork(TDbContext context)
         {
             _context = context;
             _repositories = new Dictionary<Type, object>();

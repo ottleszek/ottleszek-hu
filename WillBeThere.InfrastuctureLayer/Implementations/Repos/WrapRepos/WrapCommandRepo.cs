@@ -2,7 +2,6 @@
 using WillBeThere.DomainLayer.Entites;
 using WillBeThere.InfrastuctureLayer.Implementations.Repos.UnifOfWorks;
 using WillBeThere.InfrastuctureLayer.Implementations.Repos.WillBeThere.CommandRepos;
-using WillBeThere.InfrastuctureLayer.Implementations.Repos.WillBeThere.QueryRepos;
 
 namespace WillBeThere.InfrastuctureLayer.Implementations.Repos.WrapRepos
 {
