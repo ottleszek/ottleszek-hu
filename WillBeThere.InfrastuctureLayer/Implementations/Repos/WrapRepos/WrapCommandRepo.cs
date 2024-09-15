@@ -41,7 +41,7 @@ private readonly IRegisteredUserRepo? _registeredUserRepo;
             _unitOfWork = unitOfWork;
             if (_unitOfWork is not null)
             {
-                _unitOfWork.AddRepository<OrganizationProgramCommandRepo<TDbContext>, OrganizationProgram>((OrganizationProgramCommandRepo<TDbContext>?)_organizationProgramRepo);
+                _unitOfWork.AddRepository<IOrganizationProgramCommandRepo, OrganizationProgram>(_organizationProgramRepo);
             }
 
 
