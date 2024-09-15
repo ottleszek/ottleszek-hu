@@ -4,10 +4,10 @@ using WillBeThere.InfrastuctureLayer.Implementations.Repos.BaseCqrsRepos.Queries
 
 namespace WillBeThere.InfrastuctureLayer.Implementations.Repos.WillBeThere
 {
-    public class OrganiozationRepo<TDbContext> : IncludedQueryRepo<TDbContext>
+    public class OrganizationRepo<TDbContext> : IncludedQueryRepo<TDbContext>
         where TDbContext : DbContext
     {
-        public OrganiozationRepo(TDbContext? dbContext) : base(dbContext)
+        public OrganizationRepo(TDbContext? dbContext) : base(dbContext)
         {
         }
 

@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using WillBeThere.DomainLayer.Entites;
 using WillBeThere.InfrastuctureLayer.Implementations.Repos.UnifOfWorks;
+using WillBeThere.InfrastuctureLayer.Implementations.Repos.WillBeThere;
 using WillBeThere.InfrastuctureLayer.Implementations.Repos.WillBeThere.CommandRepos;
 
 namespace WillBeThere.InfrastuctureLayer.Implementations.Repos.WrapRepos
@@ -24,11 +25,12 @@ private readonly IRegisteredUserRepo? _registeredUserRepo;
 
         public WrapCommandRepo(
             IUnitOfWork? unitOfWork,
+            IPublicSpaceRepo publicSpaceRepo
             /*  IAddressQueryRepo? addressRepo,
               IOrganizationRepo? organizationRepo,
               IOrganizationCategoryRepo? organizationCategoryRepo,
             */
-            IOrganizationProgramCommandRepo? organizationProgramRepo
+            //IOrganizationProgramCommandRepo? organizationProgramRepo
             /*
             IParticipationRepo? participationRepo,
             IPublicSpaceRepo? publicSpaceRepo,
@@ -37,7 +39,7 @@ private readonly IRegisteredUserRepo? _registeredUserRepo;
 
             )
         {
-            _organizationProgramRepo = organizationProgramRepo;
+            //_organizationProgramRepo = organizationProgramRepo;
             _unitOfWork = unitOfWork;
             if (_unitOfWork is not null)
             {

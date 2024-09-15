@@ -62,19 +62,19 @@ namespace WillBeThere.InfrastuctureLayer
         {
             if (true)
             {
-                /*services.AddScoped<IPublicSpaceRepo, PublicSpaceRepo<WillBeThereInMemoryContext>>();
-                services.AddScoped<IAddressQueryRepo, AddressRepo<WillBeThereInMemoryContext>>();
+                services.AddScoped<IPublicSpaceRepo, PublicSpaceRepo<WillBeThereInMemoryContext>>();
+                /*services.AddScoped<IAddressQueryRepo, AddressRepo<WillBeThereInMemoryContext>>();
                 services.AddScoped<IOrganizationRepo, OrganiozationRepo<WillBeThereInMemoryContext>>();
                 services.AddScoped<IOrganizationAdminUserRepo, OrganizationAdminUserRepo<WillBeThereInMemoryContext>>();
                 services.AddScoped<IOrganizationCategoryRepo, OrganizationCategoryRepo<WillBeThereInMemoryContext>>();*/
                 services.AddScoped<IOrganizationProgramQueryRepo, OrganizationProgramQueryRepo<WillBeThereInMemoryContext>>();
                 services.AddScoped<IOrganizationProgramCommandRepo, OrganizationProgramCommandRepo<WillBeThereInMemoryContext>>();
 
-                services.AddScoped<IWrapCommandRepo, WrapCommandRepo<WillBeThereInMemoryContext>>();
-                services.AddScoped<IUnitOfWork, UnitOfWork<WillBeThereInMemoryContext>>();
+                //services.AddScoped<IWrapCommandRepo, WrapCommandRepo<WillBeThereInMemoryContext>>();
+                //services.AddScoped<IUnitOfWork, UnitOfWork<WillBeThereInMemoryContext>>();
 
                 /*services.AddScoped<IParticipationRepo, ParticipationRepo<WillBeThereInMemoryContext>>();
-                services.AddScoped<IRegisteredUserRepo, RegisteredUserRepo<WillBeThereInMemoryContext>>();
+                services.AddScoped<IRegisteredUserRepo, RegisteredUserRepo<WillBeThereInMemoryContext>>();*/
 
 
             }
@@ -92,6 +92,7 @@ namespace WillBeThere.InfrastuctureLayer
 
 
                 services.AddScoped<IWrapCommandRepo, WrapCommandRepo<WillBeThereMysqlContext>>();
+                services.AddScoped<IUnitOfWork, UnitOfWork<WillBeThereInMemoryContext>>();
 
             }
 
@@ -100,12 +101,12 @@ namespace WillBeThere.InfrastuctureLayer
 
         public static void ConfigureServices(this IServiceCollection services)
         {
-            services.AddScoped<IOrganizationProgramService, OrganizationProgramService>();
+            //services.AddScoped<IOrganizationProgramService, OrganizationProgramService>();
         }
 
         public static void ConfigureCqrs(this IServiceCollection services)
         {
-            services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(GetPublicOrganizationProgramListHandler).Assembly));
+            //services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(GetPublicOrganizationProgramListHandler).Assembly));
         }
     }
 }
