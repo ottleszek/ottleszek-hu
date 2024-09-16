@@ -1,5 +1,5 @@
-﻿using WillBeThere.DomainLayer.Entities.DbIds;
-using WillBeThere.InfrastuctureLayer.Implementations.Repos.BaseRepos;
+﻿using SharedDomainLayer.Entities;
+using SharedDomainLayer.Repos;
 
 namespace WillBeThere.InfrastuctureLayer.Implementations.Repos.BaseCqrsRepos.Queries
 {
@@ -8,8 +8,5 @@ namespace WillBeThere.InfrastuctureLayer.Implementations.Repos.BaseCqrsRepos.Que
         public  Task<List<TEntity>> SelectAllAsync<TEntity>() where TEntity : class, IDbEntity<TEntity>, new();
         public  Task<TEntity?> GetByIdAsync<TEntity>(Guid id) where TEntity : class, IDbEntity<TEntity>, new();
         public Task<bool> IsExsistAsync<TEntity>(Guid id) where TEntity : class, IDbEntity<TEntity>, new();
-
-
-
     }
 }

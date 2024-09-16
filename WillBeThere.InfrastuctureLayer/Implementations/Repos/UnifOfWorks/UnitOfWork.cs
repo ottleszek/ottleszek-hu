@@ -1,7 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
-using WillBeThere.DomainLayer.Entities.DbIds;
-using WillBeThere.InfrastuctureLayer.Implementations.Repos.BaseCqrsRepos.Commands;
+using SharedDomainLayer.Entities;
+using SharedDomainLayer.Repos.Commands;
+using SharedDomainLayer.WrapRepos;
+
 
 namespace WillBeThere.InfrastuctureLayer.Implementations.Repos.UnifOfWorks
 {
@@ -34,16 +36,19 @@ namespace WillBeThere.InfrastuctureLayer.Implementations.Repos.UnifOfWorks
             }
             return default;
         }
-        public void AddRepository<TRepository, TEntity>(TRepository? repository) where TRepository : IBaseCommandRepo where TEntity : class, IDbEntity<TEntity>, new()
+        public TRepository? AddRepository<TRepository, TEntity>(TRepository? repository) where TRepository : IBaseCommandRepo where TEntity : class, IDbEntity<TEntity>, new()
         {
-            if (repository is null)
-                return;
-            TRepository? exsist = GetRepository<TRepository, TEntity>();
-            if (exsist == null)
+            if (repository is not null)
             {
-                var repositoryType = typeof(TRepository);
-                _repositories.Add(repositoryType, repository);
+                TRepository? exsist = GetRepository<TRepository, TEntity>();
+                if (exsist == null)
+                {
+                    var repositoryType = typeof(TRepository);
+                    _repositories.Add(repositoryType, repository);
+                    return repository;
+                }
             }
+            return default;
         }
 
         /*TRepository? IUnitOfWork.CreateRepository<TRepository, TEntity>() where TRepository : class
@@ -64,7 +69,7 @@ namespace WillBeThere.InfrastuctureLayer.Implementations.Repos.UnifOfWorks
         }
         */
 
-        public async Task<int> SaveChanges()
+        public async Task<int> SaveChangesAsync()
         {
             try
             {

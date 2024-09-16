@@ -1,4 +1,4 @@
-﻿using WillBeThere.DomainLayer.Entities.DbIds;
+﻿using SharedDomainLayer.Entities;
 
 namespace WillBeThere.InfrastuctureLayer.Implementations.Repos.BaseCqrsRepos.Queries
 {

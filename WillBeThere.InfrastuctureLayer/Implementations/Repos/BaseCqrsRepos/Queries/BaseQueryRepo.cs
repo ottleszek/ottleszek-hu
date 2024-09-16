@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using WillBeThere.DomainLayer.Entities.DbIds;
+using SharedDomainLayer.Entities;
 using WillBeThere.InfrastuctureLayer.DataBrokers.Queries;
 using WillBeThere.InfrastuctureLayer.Implementations.Repos.BaseRepos;
 

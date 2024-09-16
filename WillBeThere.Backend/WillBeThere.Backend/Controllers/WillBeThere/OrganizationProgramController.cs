@@ -2,13 +2,12 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using WillBeThere.ApplicationLayer.Assemblers;
-using WillBeThere.ApplicationLayer.Dtos;
+using WillBeThere.ApplicationLayer.Contracts.Dtos;
 using WillBeThere.ApplicationLayer.Queries.OrganizationPrograms;
 using WillBeThere.DomainLayer.Assemblers.ResultModels;
 using WillBeThere.DomainLayer.Entites;
 using WillBeThere.DomainLayer.Entites.ResultModels;
 using WillBeThere.InfrastuctureLayer.Implementations.Repos.WillBeThere.QueryRepos;
-using WillBeThere.InfrastuctureLayer.Implementations.Services;
 
 namespace WillBeThere.Backend.Controllers.WillBeThere
 {

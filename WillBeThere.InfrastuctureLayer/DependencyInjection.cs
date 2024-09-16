@@ -75,6 +75,8 @@ namespace WillBeThere.InfrastuctureLayer
 
                 /*services.AddScoped<IParticipationRepo, ParticipationRepo<WillBeThereInMemoryContext>>();
                 services.AddScoped<IRegisteredUserRepo, RegisteredUserRepo<WillBeThereInMemoryContext>>();*/
+                services.AddScoped<IWrapCommandRepo, WrapQueryRepo<WillBeThereMysqlContext>>();
+                services.AddScoped<IUnitOfWork, UnitOfWork<WillBeThereInMemoryContext>>();
 
 
             }
@@ -91,7 +93,7 @@ namespace WillBeThere.InfrastuctureLayer
                 services.AddScoped<IRegisteredUserRepo, RegisteredUserRepo<WillBeThereMysqlContext>>();*/
 
 
-                services.AddScoped<IWrapCommandRepo, WrapCommandRepo<WillBeThereMysqlContext>>();
+                services.AddScoped<IWrapCommandRepo, WrapQueryRepo<WillBeThereMysqlContext>>();
                 services.AddScoped<IUnitOfWork, UnitOfWork<WillBeThereInMemoryContext>>();
 
             }
@@ -101,12 +103,12 @@ namespace WillBeThere.InfrastuctureLayer
 
         public static void ConfigureServices(this IServiceCollection services)
         {
-            //services.AddScoped<IOrganizationProgramService, OrganizationProgramService>();
+            services.AddScoped<IOrganizationProgramService, OrganizationProgramService>();
         }
 
         public static void ConfigureCqrs(this IServiceCollection services)
         {
-            //services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(GetPublicOrganizationProgramListHandler).Assembly));
+            services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(GetPublicOrganizationProgramListHandler).Assembly));
         }
     }
 }

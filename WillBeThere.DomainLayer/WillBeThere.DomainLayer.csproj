@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\SharedDomainLayer\SharedDomainLayer.csproj" />
+  </ItemGroup>
+
 </Project>

@@ -7,12 +7,12 @@ using WillBeThere.InfrastuctureLayer.Implementations.Repos.BaseCqrsRepos.Queries
 
 namespace WillBeThere.Backend.Controllers
 {
-    public class IncludedController<TModel, TDto> : BaseController<TModel, TDto>
+    public class IncludedController<TModel, TDto> : BaseQueryController<TModel, TDto>
         where TModel : class, IDbEntity<TModel>, new()
         where TDto : class, new()
     {
         private readonly IIncludedQueryRepo? _includedRepo;
-        public IncludedController(IAssembler<TModel, TDto>? assambler, IIncludedQueryRepo? repo) : base(assambler, (IDataBroker?) repo)
+        public IncludedController(IAssembler<TModel, TDto>? assambler, IIncludedQueryRepo? repo) : base(assambler, repo)
         {
             _includedRepo = repo;
         }

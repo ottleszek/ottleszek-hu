@@ -1,5 +1,5 @@
-﻿using WillBeThere.ApplicationLayer.Responses;
-using WillBeThere.DomainLayer.Entities.DbIds;
+﻿using SharedDomainLayer.Entities;
+using SharedDomainLayer.Responses;
 
 namespace WillBeThere.InfrastuctureLayer.DataBrokers
 {

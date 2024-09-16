@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using WillBeThere.ApplicationLayer.Assemblers;
-using WillBeThere.ApplicationLayer.Dtos;
+using WillBeThere.ApplicationLayer.Contracts.Dtos;
 using WillBeThere.DomainLayer.Entites;
-using WillBeThere.InfrastuctureLayer.Implementations.Repos.WillBeThere;
+using WillBeThere.InfrastuctureLayer.Implementations.Repos.WillBeThere.QueryRepos;
 
 namespace WillBeThere.Backend.Controllers.WillBeThere
 {
@@ -10,7 +10,7 @@ namespace WillBeThere.Backend.Controllers.WillBeThere
     [Route("api/[controller]")]
     public class OrganizationCategoryController : IncludedController<OrganizationCategory, OrganizationCategoryDto>
     {
-        public OrganizationCategoryController(OrganizationCategoryAssembler? assambler, IOrganizationCategoryRepo? repo) : base(assambler, repo)
+        public OrganizationCategoryController(OrganizationCategoryAssembler? assambler, IOrganizationCategoryQueryRepo? repo) : base(assambler, repo)
         {
         }
     }

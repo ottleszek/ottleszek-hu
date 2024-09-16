@@ -1,4 +1,4 @@
-﻿using WillBeThere.ApplicationLayer.Dtos;
+﻿using WillBeThere.ApplicationLayer.Contracts.Dtos;
 using WillBeThere.DomainLayer.Entites;
 
 namespace WillBeThere.DomainLayer.Extensions.ModelExtensions
