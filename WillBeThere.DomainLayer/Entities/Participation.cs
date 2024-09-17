@@ -1,10 +1,10 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using SharedDomainLayer.Entities;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using WillBeThere.DomainLayer.Entities.DbIds;
 
 namespace WillBeThere.DomainLayer.Entites
 {
-    public class Participation : IDbEntity<OrganizationProgram>
+    public class Participation : IDbEntity<Participation>
     {
         public Participation()
         {

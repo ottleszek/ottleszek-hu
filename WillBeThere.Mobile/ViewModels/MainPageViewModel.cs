@@ -3,7 +3,7 @@ using CommunityToolkit.Mvvm.Input;
 using WillBeThere.Mobile.Controls;
 using WillBeThere.DomainLayer.Entites.ResultModels;
 using WillBeThere.DomainLayer.Entites;
-using WillBeThere.ApplicationLayer.Services.DataService;
+using WillBeThere.ApplicationLayer.Contracts.Services.DataService;
 
 namespace WillBeThere.Mobile.ViewModels
 {

@@ -1,4 +1,4 @@
-﻿using WillBeThere.ApplicationLayer.Dtos.ResultModels;
+﻿using WillBeThere.ApplicationLayer.Contracts.Dtos.ResultModels;
 using WillBeThere.DomainLayer.Entites.ResultModels;
 
 namespace WillBeThere.ApplicationLayer.Extensions.ModelExtensions

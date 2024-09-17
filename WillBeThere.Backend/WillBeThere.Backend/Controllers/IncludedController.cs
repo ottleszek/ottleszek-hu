@@ -1,17 +1,17 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using SharedDomainLayer.Entities;
 using WillBeThere.ApplicationLayer.Assemblers;
-using WillBeThere.DomainLayer.Entities.DbIds;
-using WillBeThere.InfrastuctureLayer.DataBrokers;
+using WillBeThere.InfrastuctureLayer.Implementations.Repos.Base;
 
 namespace WillBeThere.Backend.Controllers
 {
-    public class IncludedController<TModel, TDto> : BaseController<TModel, TDto>
+    public class IncludedController<TModel, TDto> : BaseQueryController<TModel, TDto>
         where TModel : class, IDbEntity<TModel>, new()
         where TDto : class, new()
     {
-        private readonly IIncludedDataBroker? _includedRepo;
-        public IncludedController(IAssembler<TModel, TDto>? assambler, IIncludedDataBroker? repo) : base(assambler, (IDataBroker?) repo)
+        private readonly IIncludedQueryRepo? _includedRepo;
+        public IncludedController(IAssembler<TModel, TDto>? assambler, IIncludedQueryRepo? repo) : base(assambler, repo)
         {
             _includedRepo = repo;
         }

@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
-using WillBeThere.DomainLayer.Entities.DbIds;
+using SharedDomainLayer.Entities;
 
 namespace WillBeThere.DomainLayer.Entites
 {

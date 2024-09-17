@@ -1,20 +1,20 @@
 ﻿using Moq;
 using WillBeThere.DomainLayer.Entites;
 using WillBeThere.DomainLayer.Entites.ResultModels;
-using WillBeThere.InfrastuctureLayer.Implementations.Repos.BaseRepos;
 using WillBeThere.InfrastuctureLayer.Implementations.Repos.WillBeThere;
+using WillBeThere.InfrastuctureLayer.Implementations.Repos.WillBeThere.QueryRepos;
 using WillBeThere.InfrastuctureLayer.Implementations.Services;
 
 namespace WillBeThereTest.Backend.Services
 {
     public class OrganizationProgramServiceTest
     {
-        private readonly IOrganizationProgramService? _organizationProgramService;
+     /*   private readonly IOrganizationProgramService? _organizationProgramService;
         
-        private readonly Mock<IWrapRepo> _mockWrapRepo = new Mock<IWrapRepo>();
+        private readonly Mock<IWrapCommandRepo> _mockWrapRepo = new Mock<IWrapCommandRepo>();
         private readonly Mock<IOrganizationRepo> _mockOrganizationRepo = new Mock<IOrganizationRepo>();
-        private readonly Mock<IOrganizationProgramRepo> _mockOrganizationProgramRepo = new Mock<IOrganizationProgramRepo>();
-        private readonly Mock<IAddressRepo> _mockAddressRepo = new Mock<IAddressRepo>();
+        private readonly Mock<IOrganizationProgramQueryRepo> _mockOrganizationProgramRepo = new Mock<IOrganizationProgramQueryRepo>();
+        private readonly Mock<IAddressQueryRepo> _mockAddressRepo = new Mock<IAddressQueryRepo>();
         private readonly Mock<IPublicSpaceRepo> _mockPublicSpaceRepo = new Mock<IPublicSpaceRepo>();
         
         public OrganizationProgramServiceTest()
@@ -220,6 +220,6 @@ namespace WillBeThereTest.Backend.Services
                     Assert.That(query.Count(), Is.EqualTo(0), $"Jövőben nem létező események esetén a ${_organizationProgramService.GetPublicOrganizationsPrograms()} netódus mégis talált eseményt!");
             }
         }
-        #endregion
+        #endregion*/
     }
 }

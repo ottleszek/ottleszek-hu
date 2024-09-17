@@ -1,8 +1,8 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using WillBeThere.ApplicationLayer.Assemblers;
-using WillBeThere.ApplicationLayer.Services.DataService;
-using WillBeThere.ApplicationLayer.Services.HttpService;
-using WillBeThere.ApplicationLayer.Services.MapperService;
+using WillBeThere.ApplicationLayer.Contracts.Services.DataService;
+using WillBeThere.ApplicationLayer.Contracts.Services.HttpService;
+using WillBeThere.ApplicationLayer.Contracts.Services.MapperService;
 using WillBeThere.DomainLayer.Assemblers.ResultModels;
 
 namespace WillBeThere.ApplicationLayer
@@ -28,7 +28,7 @@ namespace WillBeThere.ApplicationLayer
         {
             services.AddScoped<AddressAssembler>();
             services.AddScoped<OrganizationAssembler>();
-            services.AddScoped<OrganizationAdminAssembler>();
+            services.AddScoped<ProgramOwnerAssembler>();
             services.AddScoped<OrganizationCategoryAssembler>();
             services.AddScoped<OrganizationProgramAssembler>();
             services.AddScoped<PartipationAssembler>();
