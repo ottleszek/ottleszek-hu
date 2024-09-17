@@ -23,7 +23,7 @@ namespace WillBeThere.Mobile.Extensions
         {
             services.AddScoped<AddressAssembler>();
             services.AddScoped<OrganizationAssembler>();
-            services.AddScoped<OrganizationAdminAssembler>();
+            services.AddScoped<ProgramOwnerAssembler>();
             services.AddScoped<OrganizationCategoryAssembler>();
             services.AddScoped<OrganizationProgramAssembler>();
             services.AddScoped<PartipationAssembler>();

@@ -4,10 +4,9 @@ using WillBeThere.InfrastuctureLayer.Implementations.Repos.WillBeThere.QueryRepo
 
 namespace WillBeThere.InfrastuctureLayer.Implementations.Repos.WillBeThere.QueryRepos.Repos
 {
-    public class RegisteredUserRepo<TDbContext> : IncludedQueryRepo<TDbContext>, IRegisteredUserRepo
-        where TDbContext : DbContext
+    public class OrganizationEditorQueryRepo<TDbContext> : IncludedQueryRepo<TDbContext>, IOrganizationEditorQueryRepo where TDbContext : DbContext
     {
-        public RegisteredUserRepo(TDbContext? dbContext) : base(dbContext)
+        public OrganizationEditorQueryRepo(TDbContext? dbContext) : base(dbContext)
         {
         }
 

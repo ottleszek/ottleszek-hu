@@ -4,14 +4,14 @@ using WillBeThere.DomainLayer.Extensions.ModelExtensions;
 
 namespace WillBeThere.ApplicationLayer.Assemblers
 {
-    public class OrganizationAdminAssembler : IAssembler<ProgramOwner, OrganizationAdminUserDto>
+    public class ProgramOwnerAssembler : IAssembler<ProgramOwner, ProgramOwnerDto>
     {
-        public OrganizationAdminUserDto ToDto(ProgramOwner model)
+        public ProgramOwnerDto ToDto(ProgramOwner model)
         {
             return model.ToDto();
         }
 
-        public ProgramOwner ToModel(OrganizationAdminUserDto dto)
+        public ProgramOwner ToModel(ProgramOwnerDto dto)
         {
             return dto.ToModel();
         }

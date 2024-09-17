@@ -19,8 +19,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Contracts\NewFolder1\" />
-    <Folder Include="Contracts\NewFolder\" />
+    <Folder Include="Contracts\Responses\" />
+    <Folder Include="Contracts\Requests\" />
   </ItemGroup>
 
 </Project>

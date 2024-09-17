@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using SharedDomainLayer.Repos.Commands;
 using WillBeThere.ApplicationLayer.Assemblers;
 using WillBeThere.ApplicationLayer.Contracts.UnitOfWork;
 using WillBeThere.DomainLayer.Assemblers.ResultModels;
@@ -47,35 +48,35 @@ namespace WillBeThere.InfrastuctureLayer
         {
             services.AddScoped<AddressAssembler>();
             services.AddScoped<OrganizationAssembler>();
-            services.AddScoped<OrganizationAdminAssembler>();
             services.AddScoped<OrganizationCategoryAssembler>();
             services.AddScoped<OrganizationProgramAssembler>();
             services.AddScoped<PartipationAssembler>();
             services.AddScoped<PublicSpaceAssembler>();
-            services.AddScoped<RegisteredUserAssembler>();
+            services.AddScoped<ProgramOwnerAssembler>();
             services.AddScoped<PublicOrganizationProgramAssembler>();
+            services.AddScoped<RegisteredUserAssembler>();
         }
 
         public static void ConfigureRepos(this IServiceCollection services)
         {
             if (true)
             {
-                services.AddScoped<IPublicSpaceRepo, Implementations.Repos.WillBeThere.QueryRepos.Repos.PublicSpaceRepo<WillBeThereInMemoryContext>>();
-                /*services.AddScoped<IAddressQueryRepo, AddressRepo<WillBeThereInMemoryContext>>();
-                services.AddScoped<IOrganizationRepo, OrganiozationRepo<WillBeThereInMemoryContext>>();
-                services.AddScoped<IOrganizationAdminUserRepo, OrganizationAdminUserRepo<WillBeThereInMemoryContext>>();
-                services.AddScoped<IOrganizationCategoryRepo, OrganizationCategoryRepo<WillBeThereInMemoryContext>>();*/
-                services.AddScoped<IOrganizationProgramQueryRepo, OrganizationProgramQueryRepo<WillBeThereInMemoryContext>>();
-                services.AddScoped<IOrganizationProgramCommandRepo, OrganizationProgramCommandRepo<WillBeThereInMemoryContext>>();
+                services.AddScoped<IAddressQueryRepo,AddressQueryRepo<WillBeThereInMemoryContext>>();
+                services.AddScoped<IEditorCommandRepo,EditorCommandRepo<WillBeThereInMemoryContext>>();
+                services.AddScoped<IOrganizationCategoryQueryRepo,OrganizationCategoryQueryRepo<WillBeThereInMemoryContext>>();
+                services.AddScoped<IOrganizationEditorQueryRepo,OrganizationEditorQueryRepo<WillBeThereInMemoryContext>>();
+                services.AddScoped<IOrganizationProgramQueryRepo,OrganizationProgramQueryRepo<WillBeThereInMemoryContext>>();
+                services.AddScoped<IOrganizationQueryRepo,OrganizationQueryRepo<WillBeThereInMemoryContext>>();
+                services.AddScoped<IParticipationQueryRepo,ParticipationQueryRepoo<WillBeThereInMemoryContext>>();
+                services.AddScoped<IProgamOwnerQueryRepo,ProgramOwnerQueryRepo<WillBeThereInMemoryContext>>();
+                services.AddScoped<IPublicSpaceQueryRepo,PublicSpaceQueryRepo<WillBeThereInMemoryContext>>();
+                services.AddScoped<IRegisteredUserQueryRepo,RegisteredUserQueryRepo<WillBeThereInMemoryContext>>();
 
-                //services.AddScoped<IWrapCommandRepo, WrapCommandRepo<WillBeThereInMemoryContext>>();
-                //services.AddScoped<IUnitOfWork, UnitOfWork<WillBeThereInMemoryContext>>();
 
-                /*services.AddScoped<IParticipationRepo, ParticipationRepo<WillBeThereInMemoryContext>>();
-                services.AddScoped<IRegisteredUserRepo, RegisteredUserRepo<WillBeThereInMemoryContext>>();*/
                 services.AddScoped<IWrapRepos,WrapRepos<WillBeThereInMemoryContext>>();
                 services.AddScoped<IWrapperUnitOfWork, WrapperUnitOfWork<WillBeThereMysqlContext>>();
                 services.AddScoped<IUnitOfWork, UnitOfWork<WillBeThereInMemoryContext>>();
+                services.AddScoped<IRepoStore,RepoStore<WillBeThereInMemoryContext>>();
             }
             else
             {

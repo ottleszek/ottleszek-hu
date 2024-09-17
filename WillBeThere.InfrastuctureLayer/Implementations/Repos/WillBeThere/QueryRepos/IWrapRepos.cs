@@ -4,6 +4,15 @@ namespace WillBeThere.InfrastuctureLayer.Implementations.Repos.WillBeThere.Query
 {
     public interface IWrapRepos
     {
-        public IAddressQueryRepo addressQueryRepo { get;  }
+        public IAddressQueryRepo AddressQueryRepo { get; }
+        public IEditorQueryRepo EditorQueryRepo { get; }
+        public IOrganizationCategoryQueryRepo OrganizationCategoryQueryRepo { get; }
+        public IOrganizationEditorQueryRepo OrganizationEditorQueryRepo { get; }
+        public IOrganizationProgramQueryRepo OrganizationProgramQueryRepo { get; }
+        public IOrganizationQueryRepo OrganizationQueryRepo { get; }
+        public IParticipationQueryRepo ParticipationQueryRepo { get; }
+        public IProgamOwnerQueryRepo ProgramOwnerQueryRepo { get; }
+        public IPublicSpaceQueryRepo PublicSpaceQueryRepo { get; }
+        public IRegisteredUserQueryRepo RegisteredUserQueryRepo { get; }
     }
 }

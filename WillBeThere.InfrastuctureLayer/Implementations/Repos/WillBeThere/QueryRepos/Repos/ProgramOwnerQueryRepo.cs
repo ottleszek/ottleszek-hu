@@ -4,9 +4,9 @@ using WillBeThere.InfrastuctureLayer.Implementations.Repos.WillBeThere.QueryRepo
 
 namespace WillBeThere.InfrastuctureLayer.Implementations.Repos.WillBeThere.QueryRepos.Repos
 {
-    public class PublicSpaceRepo<TDbContext> : IncludedQueryRepo<TDbContext>, IPublicSpaceRepo where TDbContext : DbContext
+    public class ProgramOwnerQueryRepo<TDbContext> : IncludedQueryRepo<TDbContext>, IProgamOwnerQueryRepo where TDbContext : DbContext
     {
-        public PublicSpaceRepo(TDbContext? dbContext) : base(dbContext)
+        public ProgramOwnerQueryRepo(TDbContext? dbContext) : base(dbContext)
         {
         }
 

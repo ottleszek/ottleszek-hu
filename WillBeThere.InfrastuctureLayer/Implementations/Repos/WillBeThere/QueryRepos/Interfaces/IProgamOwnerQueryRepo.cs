@@ -2,7 +2,7 @@
 
 namespace WillBeThere.InfrastuctureLayer.Implementations.Repos.WillBeThere.QueryRepos.Interfaces
 {
-    public interface IPublicSpaceRepo : IIncludedQueryRepo
+    public interface IProgamOwnerQueryRepo : IIncludedQueryRepo
     {
     }
 }

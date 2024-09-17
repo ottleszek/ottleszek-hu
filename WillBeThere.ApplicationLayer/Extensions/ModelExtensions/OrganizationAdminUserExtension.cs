@@ -5,9 +5,9 @@ namespace WillBeThere.DomainLayer.Extensions.ModelExtensions
 {
     public static class OrganizationAdminUserExtension
     {
-        public static OrganizationAdminUserDto ToDto(this ProgramOwner model)
+        public static ProgramOwnerDto ToDto(this ProgramOwner model)
         {
-            return new OrganizationAdminUserDto
+            return new ProgramOwnerDto
             {
                 Id = model.Id,
                 //AdminId = model.EditorID,
@@ -15,7 +15,7 @@ namespace WillBeThere.DomainLayer.Extensions.ModelExtensions
             };
         }
 
-        public static ProgramOwner ToModel(this OrganizationAdminUserDto dto)
+        public static ProgramOwner ToModel(this ProgramOwnerDto dto)
         {
             return new ProgramOwner
             {
