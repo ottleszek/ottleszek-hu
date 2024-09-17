@@ -1,73 +1,33 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Storage;
-using SharedDomainLayer.Entities;
-using SharedDomainLayer.Repos.Commands;
-using SharedDomainLayer.WrapRepos;
+using WillBeThere.ApplicationLayer.Contracts.UnitOfWork;
 
 
 namespace WillBeThere.InfrastuctureLayer.Implementations.Repos.UnifOfWorks
 {
-    public class UnitOfWork<TDbContext> : IUnitOfWork where TDbContext : DbContext
+    public class UnitOfWork<TDbContext> : WrapperUnitOfWork<TDbContext>, IUnitOfWork where TDbContext : DbContext
     {
-        private readonly TDbContext _context;
-        private IDbContextTransaction? _transaction;
-
-        private Dictionary<Type, object> _repositories;
-
-        public UnitOfWork(TDbContext context)
+        public UnitOfWork(TDbContext context) : base(context)  
         {
-            _context = context;
             _repositories = new Dictionary<Type, object>();
         }
 
-        public void Dispose()
+        public override void Commit()
         {
-            _transaction?.Dispose();
-            _context.Dispose();
-        }
-
-        public TRepository? GetRepository<TRepository, TEntity>() where TRepository : IBaseCommandRepo where TEntity : class, IDbEntity<TEntity>, new()
-        {
-            var type = typeof(TEntity);
-
-            if (_repositories.ContainsKey(type))
+            try
             {
-                return (TRepository)_repositories[type];
+                _context.SaveChanges();
+                _transaction?.Commit();
             }
-            return default;
-        }
-        public TRepository? AddRepository<TRepository, TEntity>(TRepository? repository) where TRepository : IBaseCommandRepo where TEntity : class, IDbEntity<TEntity>, new()
-        {
-            if (repository is not null)
+            catch (Exception)
             {
-                TRepository? exsist = GetRepository<TRepository, TEntity>();
-                if (exsist == null)
-                {
-                    var repositoryType = typeof(TRepository);
-                    _repositories.Add(repositoryType, repository);
-                    return repository;
-                }
+                Rollback();
+                throw;
             }
-            return default;
-        }
-
-        /*TRepository? IUnitOfWork.CreateRepository<TRepository, TEntity>() where TRepository : class
-        {
-            TRepository? repository = GetRepository<TRepository, TEntity>();
-            if (repository!=null)
-                return repository;
-            else
+            finally
             {
-                var repositoryType = typeof(TRepository);
-                var repositoryInstance = Activator.CreateInstance(repositoryType.MakeGenericType(typeof(TEntity)), _context);
-                if (repositoryInstance == null)
-                    return null;
-                var type = typeof(TEntity);
-                _repositories.Add(type, repositoryInstance);
-                return (TRepository)_repositories[type];
+                Dispose();
             }
         }
-        */
 
         public async Task<int> SaveChangesAsync()
         {
@@ -78,31 +38,6 @@ namespace WillBeThere.InfrastuctureLayer.Implementations.Repos.UnifOfWorks
             catch (Exception ex) { }
             return 0;
         }
-
-        public void BeginTransaction()
-        {
-            _transaction = _context.Database.BeginTransaction();
-        }
-
-        public async Task Commit()
-        {
-            try
-            {
-                await _context.SaveChangesAsync();
-                _transaction?.Commit();
-            }
-            catch
-            {
-                Rollback();
-                throw;
-            }
-        }
-
-        public void Rollback()
-        {
-            _transaction?.Rollback();
-        }
-
 
     }
 }

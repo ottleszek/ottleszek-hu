@@ -1,7 +1,7 @@
-﻿using WillBeThere.ApplicationLayer.Assemblers;
+﻿using SharedDomainLayer.Entities;
+using SharedDomainLayer.Responses;
+using WillBeThere.ApplicationLayer.Assemblers;
 using WillBeThere.ApplicationLayer.Contracts.Services.MapperService;
-using WillBeThere.ApplicationLayer.Responses;
-using WillBeThere.DomainLayer.Entities.DbIds;
 
 namespace WillBeThere.ApplicationLayer.Contracts.Services.DataService
 {

@@ -2,9 +2,8 @@
 using System.Net.Http.Json;
 using Newtonsoft.Json;
 using System.Net;
-using WillBeThere.DomainLayer.Entities.DbIds;
-using WillBeThere.ApplicationLayer.Responses;
-using System.Net.Http;
+using SharedDomainLayer.Entities;
+using SharedDomainLayer.Responses;
 
 namespace WillBeThere.ApplicationLayer.Contracts.Services.HttpService
 {

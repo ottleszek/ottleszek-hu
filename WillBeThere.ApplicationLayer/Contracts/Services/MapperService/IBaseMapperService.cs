@@ -1,5 +1,5 @@
-﻿using WillBeThere.ApplicationLayer.Assemblers;
-using WillBeThere.DomainLayer.Entities.DbIds;
+﻿using SharedDomainLayer.Entities;
+using WillBeThere.ApplicationLayer.Assemblers;
 
 namespace WillBeThere.ApplicationLayer.Contracts.Services.MapperService
 {

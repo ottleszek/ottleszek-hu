@@ -1,4 +1,4 @@
-﻿using WillBeThere.DomainLayer.Entities.DbIds;
+﻿using SharedDomainLayer.Entities;
 
 namespace WillBeThere.DomainLayer.Entites.ResultModels
 {

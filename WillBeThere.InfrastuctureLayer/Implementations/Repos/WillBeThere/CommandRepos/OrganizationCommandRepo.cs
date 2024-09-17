@@ -3,9 +3,9 @@ using WillBeThere.InfrastuctureLayer.Implementations.Repos.BaseCqrsRepos.Command
 
 namespace WillBeThere.InfrastuctureLayer.Implementations.Repos.WillBeThere.CommandRepos
 {
-    public class EditorCommandRepo<TDbContext> : BaseCommandRepo<TDbContext>, IEditorCommandRepo where TDbContext : DbContext
+    public class OrganizationCommandRepo<TDbContext> : BaseCommandRepo<TDbContext>, IOrganizationProgramCommandRepo where TDbContext : DbContext
     {
-        public EditorCommandRepo(TDbContext? dbContext) : base(dbContext)
+        public OrganizationCommandRepo(TDbContext? dbContext) : base(dbContext)
         {
         }
     }

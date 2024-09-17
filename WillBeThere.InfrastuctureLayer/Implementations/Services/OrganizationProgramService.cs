@@ -1,13 +1,12 @@
-﻿using WillBeThere.DomainLayer.Entites;
-using WillBeThere.DomainLayer.Entites.ResultModels;
-using WillBeThere.InfrastuctureLayer.Implementations.Repos.WrapRepos;
+﻿using WillBeThere.DomainLayer.Entites.ResultModels;
+using WillBeThere.InfrastuctureLayer.Implementations.Repos.WillBeThere.QueryRepos;
 
 namespace WillBeThere.InfrastuctureLayer.Implementations.Services
 {
     public class OrganizationProgramService : IOrganizationProgramService
     {
-        private readonly IWrapCommandRepo? _wrapRepo;
-        public OrganizationProgramService(IWrapCommandRepo? wrapRepo)
+        private readonly IWrapRepos? _wrapRepo;
+        public OrganizationProgramService(IWrapRepos? wrapRepo)
         {
             _wrapRepo = wrapRepo;
         }

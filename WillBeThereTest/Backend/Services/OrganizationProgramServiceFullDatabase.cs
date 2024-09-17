@@ -5,7 +5,6 @@ using WillBeThere.InfrastuctureLayer.Context;
 using WillBeThere.InfrastuctureLayer.Helpers.TestData;
 using WillBeThere.InfrastuctureLayer.Implementations.Repos.WillBeThere;
 using WillBeThere.InfrastuctureLayer.Implementations.Repos.WillBeThere.QueryRepos;
-using WillBeThere.InfrastuctureLayer.Implementations.Repos.WrapRepos;
 using WillBeThere.InfrastuctureLayer.Implementations.Services;
 
 namespace WillBeThereTest.Backend.Services

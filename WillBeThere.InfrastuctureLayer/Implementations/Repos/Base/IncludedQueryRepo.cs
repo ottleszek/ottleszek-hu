@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SharedDomainLayer.Entities;
 
-namespace WillBeThere.InfrastuctureLayer.Implementations.Repos.BaseCqrsRepos.Queries
+namespace WillBeThere.InfrastuctureLayer.Implementations.Repos.Base
 {
     public abstract class IncludedQueryRepo<TDbContext> : BaseQueryRepo<TDbContext>, IIncludedQueryRepo
         where TDbContext : DbContext

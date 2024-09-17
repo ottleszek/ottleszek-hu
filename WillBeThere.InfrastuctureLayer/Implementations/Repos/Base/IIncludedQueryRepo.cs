@@ -1,6 +1,6 @@
 ﻿using SharedDomainLayer.Entities;
 
-namespace WillBeThere.InfrastuctureLayer.Implementations.Repos.BaseCqrsRepos.Queries
+namespace WillBeThere.InfrastuctureLayer.Implementations.Repos.Base
 {
     public interface IIncludedQueryRepo : IBaseQueryRepo
     {

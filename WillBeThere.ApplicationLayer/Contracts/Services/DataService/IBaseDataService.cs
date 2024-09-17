@@ -3,6 +3,7 @@ using SharedDomainLayer.Responses;
 using WillBeThere.ApplicationLayer.Assemblers;
 
 namespace WillBeThere.ApplicationLayer.Contracts.Services.DataService
+{ 
     public interface IBaseDataService<TEntity, TEntityDto, TAssembler>
         where TEntity : class, IDbEntity<TEntity>, new()
         where TEntityDto : class, new()

@@ -1,9 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using SharedDomainLayer.Entities;
+using SharedDomainLayer.Repos.Commands;
+using SharedDomainLayer.Responses;
 using WillBeThere.ApplicationLayer.Assemblers;
-using WillBeThere.ApplicationLayer.Responses;
-using WillBeThere.DomainLayer.Entities.DbIds;
-using WillBeThere.InfrastuctureLayer.Implementations.Repos.BaseCqrsRepos.Commands;
-using WillBeThere.InfrastuctureLayer.Implementations.Repos.UnifOfWorks;
+using WillBeThere.ApplicationLayer.Contracts.UnitOfWork;
 
 
 namespace WillBeThere.Backend.Controllers
@@ -52,7 +52,7 @@ namespace WillBeThere.Backend.Controllers
             ControllerResponse response = new();
             if (_unitOfWork is not null && _assambler is not null && _repo != null)
             {
-                response = (ControllerResponse)repo.Update<TModel>(_assambler.ToModel(entity));
+                response = (ControllerResponse)_repo.Update<TModel>(_assambler.ToModel(entity));
                 if (response.HasError)
                     response.ClearAndAdd($"{response.Error}");
                 else
@@ -74,7 +74,7 @@ namespace WillBeThere.Backend.Controllers
             if (_unitOfWork is not null && _repo != null)
             {
 
-                response = (ControllerResponse)repo.Delete<TModel>(id);
+                response = (ControllerResponse)_repo.Delete<TModel>(id);
                 if (response.HasError)
                     response.ClearAndAdd($"{response.Error}");
                 else

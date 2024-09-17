@@ -1,15 +1,15 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using WillBeThere.ApplicationLayer.Assemblers;
+using WillBeThere.ApplicationLayer.Contracts.UnitOfWork;
 using WillBeThere.DomainLayer.Assemblers.ResultModels;
 using WillBeThere.InfrastuctureLayer.Context;
 using WillBeThere.InfrastuctureLayer.Handlers.OrganizationPrograms;
-using WillBeThere.InfrastuctureLayer.Implementations.Repos.BaseCqrsRepos.Commands;
 using WillBeThere.InfrastuctureLayer.Implementations.Repos.UnifOfWorks;
-using WillBeThere.InfrastuctureLayer.Implementations.Repos.WillBeThere;
 using WillBeThere.InfrastuctureLayer.Implementations.Repos.WillBeThere.CommandRepos;
 using WillBeThere.InfrastuctureLayer.Implementations.Repos.WillBeThere.QueryRepos;
-using WillBeThere.InfrastuctureLayer.Implementations.Repos.WrapRepos;
+using WillBeThere.InfrastuctureLayer.Implementations.Repos.WillBeThere.QueryRepos.Interfaces;
+using WillBeThere.InfrastuctureLayer.Implementations.Repos.WillBeThere.QueryRepos.Repos;
 using WillBeThere.InfrastuctureLayer.Implementations.Services;
 
 namespace WillBeThere.InfrastuctureLayer
@@ -53,16 +53,14 @@ namespace WillBeThere.InfrastuctureLayer
             services.AddScoped<PartipationAssembler>();
             services.AddScoped<PublicSpaceAssembler>();
             services.AddScoped<RegisteredUserAssembler>();
-
             services.AddScoped<PublicOrganizationProgramAssembler>();
-
         }
 
         public static void ConfigureRepos(this IServiceCollection services)
         {
             if (true)
             {
-                services.AddScoped<IPublicSpaceRepo, PublicSpaceRepo<WillBeThereInMemoryContext>>();
+                services.AddScoped<IPublicSpaceRepo, Implementations.Repos.WillBeThere.QueryRepos.Repos.PublicSpaceRepo<WillBeThereInMemoryContext>>();
                 /*services.AddScoped<IAddressQueryRepo, AddressRepo<WillBeThereInMemoryContext>>();
                 services.AddScoped<IOrganizationRepo, OrganiozationRepo<WillBeThereInMemoryContext>>();
                 services.AddScoped<IOrganizationAdminUserRepo, OrganizationAdminUserRepo<WillBeThereInMemoryContext>>();
@@ -75,10 +73,9 @@ namespace WillBeThere.InfrastuctureLayer
 
                 /*services.AddScoped<IParticipationRepo, ParticipationRepo<WillBeThereInMemoryContext>>();
                 services.AddScoped<IRegisteredUserRepo, RegisteredUserRepo<WillBeThereInMemoryContext>>();*/
-                services.AddScoped<IWrapCommandRepo, WrapQueryRepo<WillBeThereMysqlContext>>();
+                services.AddScoped<IWrapRepos,WrapRepos<WillBeThereInMemoryContext>>();
+                services.AddScoped<IWrapperUnitOfWork, WrapperUnitOfWork<WillBeThereMysqlContext>>();
                 services.AddScoped<IUnitOfWork, UnitOfWork<WillBeThereInMemoryContext>>();
-
-
             }
             else
             {
@@ -91,14 +88,9 @@ namespace WillBeThere.InfrastuctureLayer
                 services.AddScoped<IOrganizationProgramCommandRepo, OrganizationProgramCommandRepo<WillBeThereInMemoryContext>>();
                 /*services.AddScoped<IParticipationRepo, ParticipationRepo<WillBeThereMysqlContext>>();
                 services.AddScoped<IRegisteredUserRepo, RegisteredUserRepo<WillBeThereMysqlContext>>();*/
-
-
-                services.AddScoped<IWrapCommandRepo, WrapQueryRepo<WillBeThereMysqlContext>>();
-                services.AddScoped<IUnitOfWork, UnitOfWork<WillBeThereInMemoryContext>>();
-
+                //services.AddScoped<IWrapCommandRepo, RepoStore<WillBeThereMysqlContext>>();
+                //services.AddScoped<IUnitOfWork, UnitOfWork<WillBeThereInMemoryContext>>();
             }
-
-
         }
 
         public static void ConfigureServices(this IServiceCollection services)

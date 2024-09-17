@@ -1,4 +1,4 @@
-﻿using WillBeThere.DomainLayer.Entities.DbIds;
+﻿using SharedDomainLayer.Entities;
 using WillBeThere.ApplicationLayer.Assemblers;
 using WillBeThere.ApplicationLayer.Contracts.Services.HttpService;
 

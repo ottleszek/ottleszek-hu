@@ -2,7 +2,7 @@
 using WillBeThere.ApplicationLayer.Assemblers;
 using WillBeThere.ApplicationLayer.Contracts.Dtos;
 using WillBeThere.DomainLayer.Entites;
-using WillBeThere.InfrastuctureLayer.Implementations.Repos.WillBeThere.QueryRepos;
+using WillBeThere.InfrastuctureLayer.Implementations.Repos.WillBeThere.QueryRepos.Interfaces;
 
 namespace WillBeThere.Backend.Controllers.WillBeThere
 {
