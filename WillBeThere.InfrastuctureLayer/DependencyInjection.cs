@@ -47,6 +47,7 @@ namespace WillBeThere.InfrastuctureLayer
         public static void ConfigureAssamblers(this IServiceCollection services)
         {
             services.AddScoped<AddressAssembler>();
+            services.AddScoped<EditorAssambler>();
             services.AddScoped<OrganizationAssembler>();
             services.AddScoped<OrganizationCategoryAssembler>();
             services.AddScoped<OrganizationProgramAssembler>();
@@ -62,7 +63,7 @@ namespace WillBeThere.InfrastuctureLayer
             if (true)
             {
                 services.AddScoped<IAddressQueryRepo,AddressQueryRepo<WillBeThereInMemoryContext>>();
-                services.AddScoped<IEditorCommandRepo,EditorCommandRepo<WillBeThereInMemoryContext>>();
+                services.AddScoped<IEditorQueryRepo,EditorQueryRepo<WillBeThereInMemoryContext>>();
                 services.AddScoped<IOrganizationCategoryQueryRepo,OrganizationCategoryQueryRepo<WillBeThereInMemoryContext>>();
                 services.AddScoped<IOrganizationEditorQueryRepo,OrganizationEditorQueryRepo<WillBeThereInMemoryContext>>();
                 services.AddScoped<IOrganizationProgramQueryRepo,OrganizationProgramQueryRepo<WillBeThereInMemoryContext>>();
