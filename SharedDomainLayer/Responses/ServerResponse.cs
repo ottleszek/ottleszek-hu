@@ -1,12 +1,12 @@
 ﻿namespace SharedDomainLayer.Responses
 {
-    public class ControllerResponse : Response
+    public class ServerResponse : Response
     {
-        public ControllerResponse()
+        public ServerResponse()
         {
             Error=string.Empty;
         }
-        public ControllerResponse(string error) 
+        public ServerResponse(string error) 
         { 
             Error = error;
         }

@@ -27,11 +27,11 @@ namespace WillBeThere.Backend.Controllers
         [HttpPost()]
         public async Task<IActionResult> InsertAsync([FromBody] TDto entity)
         {
-            ControllerResponse response = new();
+            ServerResponse response = new();
             if (_unitOfWork is not null && _assambler is not null && _repo != null)
             {
 
-                response = (ControllerResponse)_repo.Insert<TModel>(_assambler.ToModel(entity));
+                response = (ServerResponse)_repo.Insert<TModel>(_assambler.ToModel(entity));
                 if (response.HasError)
                     response.ClearAndAdd($"{response.Error}");
                 else
@@ -49,10 +49,10 @@ namespace WillBeThere.Backend.Controllers
         [HttpPut()]
         public async Task<ActionResult> UpdateAsync([FromBody] TDto entity)
         {
-            ControllerResponse response = new();
+            ServerResponse response = new();
             if (_unitOfWork is not null && _assambler is not null && _repo != null)
             {
-                response = (ControllerResponse)_repo.Update<TModel>(_assambler.ToModel(entity));
+                response = (ServerResponse)_repo.Update<TModel>(_assambler.ToModel(entity));
                 if (response.HasError)
                     response.ClearAndAdd($"{response.Error}");
                 else
@@ -70,11 +70,11 @@ namespace WillBeThere.Backend.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteAsync(Guid id)
         {
-            ControllerResponse response = new();
+            ServerResponse response = new();
             if (_unitOfWork is not null && _repo != null)
             {
 
-                response = (ControllerResponse)_repo.Delete<TModel>(id);
+                response = (ServerResponse)_repo.Delete<TModel>(id);
                 if (response.HasError)
                     response.ClearAndAdd($"{response.Error}");
                 else

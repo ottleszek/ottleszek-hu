@@ -3,7 +3,7 @@ using WillBeThere.DomainLayer.Entites;
 
 namespace WillBeThere.DomainLayer.Extensions.ModelExtensions
 {
-    public static class ReisteredUserExtension
+    public static class RegisteredUserExtension
     {
         public static RegisteredUserDto ToDto(this RegisteredUser model)
         {

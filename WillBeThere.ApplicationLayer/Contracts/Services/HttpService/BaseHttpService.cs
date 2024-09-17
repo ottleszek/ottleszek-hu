@@ -59,7 +59,7 @@ namespace WillBeThere.ApplicationLayer.Contracts.Services.HttpService
                     if (httpResponse.StatusCode == HttpStatusCode.BadRequest)
                     {
                         string content = await httpResponse.Content.ReadAsStringAsync();
-                        Response? response = JsonConvert.DeserializeObject<ControllerResponse>(content);
+                        Response? response = JsonConvert.DeserializeObject<ServerResponse>(content);
                         if (response is null)
                         {
                             defaultResponse.ClearAndAdd("A törlés http kérés hibát okozott!");
@@ -73,7 +73,7 @@ namespace WillBeThere.ApplicationLayer.Contracts.Services.HttpService
                     else
                     {
                         string content = await httpResponse.Content.ReadAsStringAsync();
-                        Response? response = JsonConvert.DeserializeObject<ControllerResponse>(content);
+                        Response? response = JsonConvert.DeserializeObject<ServerResponse>(content);
                         if (response is null)
                         {
                             defaultResponse.ClearAndAdd("A módosítás http kérés hibát okozott!");
@@ -92,7 +92,7 @@ namespace WillBeThere.ApplicationLayer.Contracts.Services.HttpService
 
         public async Task<Response> InsertAsync<TEntity>(TEntityDto entityDto) where TEntity : class, IDbEntity<TEntity>, new()
         {
-            ControllerResponse defaultResponse = new();
+            ServerResponse defaultResponse = new();
             if (_httpClient is not null)
             {
                 try
@@ -101,7 +101,7 @@ namespace WillBeThere.ApplicationLayer.Contracts.Services.HttpService
                     if (httpResponse.StatusCode == HttpStatusCode.BadRequest)
                     {
                         string content = await httpResponse.Content.ReadAsStringAsync();
-                        ControllerResponse? response = JsonConvert.DeserializeObject<ControllerResponse>(content);
+                        ServerResponse? response = JsonConvert.DeserializeObject<ServerResponse>(content);
                         if (response is null)
                         {
                             defaultResponse.ClearAndAdd("A mentés http kérés hibát okozott!");
@@ -115,7 +115,7 @@ namespace WillBeThere.ApplicationLayer.Contracts.Services.HttpService
                     else
                     {
                         string content = await httpResponse.Content.ReadAsStringAsync();
-                        ControllerResponse? response = JsonConvert.DeserializeObject<ControllerResponse>(content);
+                        ServerResponse? response = JsonConvert.DeserializeObject<ServerResponse>(content);
                         if (response is null)
                         {
                             defaultResponse.ClearAndAdd("A módosítás http kérés hibát okozott!");
@@ -143,7 +143,7 @@ namespace WillBeThere.ApplicationLayer.Contracts.Services.HttpService
                     if (httpResponse.StatusCode == HttpStatusCode.BadRequest)
                     {
                         string content = await httpResponse.Content.ReadAsStringAsync();
-                        Response? response = JsonConvert.DeserializeObject<ControllerResponse>(content);
+                        Response? response = JsonConvert.DeserializeObject<ServerResponse>(content);
                         if (response is null)
                         {
                             defaultResponse.ClearAndAdd("A módosítás http kérés hibát okozott!");
@@ -157,7 +157,7 @@ namespace WillBeThere.ApplicationLayer.Contracts.Services.HttpService
                     else
                     {
                         string content = await httpResponse.Content.ReadAsStringAsync();
-                        Response? response = JsonConvert.DeserializeObject<ControllerResponse>(content);
+                        Response? response = JsonConvert.DeserializeObject<ServerResponse>(content);
                         if (response is null)
                         {
                             defaultResponse.ClearAndAdd("A módosítás http kérés hibát okozott!");
