@@ -6,8 +6,8 @@ namespace WillBeThere.InfrastuctureLayer.Implementations.Services
 {
     public class OrganizationProgramService : IOrganizationProgramService
     {
-        private readonly IWrapRepos? _wrapRepo;
-        public OrganizationProgramService(IWrapRepos? wrapRepo)
+        private readonly IWillBeThereWrapQueryUnitOfWork? _wrapRepo;
+        public OrganizationProgramService(IWillBeThereWrapQueryUnitOfWork? wrapRepo)
         {
             _wrapRepo = wrapRepo;
         }

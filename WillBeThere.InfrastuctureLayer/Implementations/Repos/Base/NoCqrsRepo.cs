@@ -3,12 +3,11 @@ using SharedDomainLayer.Entities;
 using SharedDomainLayer.Repos.Commands;
 using SharedDomainLayer.Responses;
 using System.Linq.Expressions;
-
-using WillBeThere.InfrastuctureLayer.DataBrokers;
+using WillBeThere.InfrastuctureLayer.Implementations.Repos.Base;
 
 namespace WillBeThere.InfrastuctureLayer.Implementations.Repos.BaseRepos
 {
-    public class NoCqrsRepo<TDbContext> : IDataBroker, IRepositoryBase
+    public class NoCqrsRepo<TDbContext> : INoCqrsRepo, IRepositoryBase
         where TDbContext : DbContext
     {
         private readonly TDbContext? _dbContext;
@@ -18,10 +17,7 @@ namespace WillBeThere.InfrastuctureLayer.Implementations.Repos.BaseRepos
         }
 
         public async Task<List<TEntity>> SelectAllAsync<TEntity>() where TEntity : class, IDbEntity<TEntity>, new() => await FindAll<TEntity>().ToListAsync();
-        public async Task<TEntity?> GetByIdAsync<TEntity>(Guid id) where TEntity : class, IDbEntity<TEntity>, new()
-        {
-            return await FindByCondition<TEntity>(entity => entity.Id == id).FirstOrDefaultAsync();
-        }
+        public async Task<TEntity?> GetByIdAsync<TEntity>(Guid id) where TEntity : class, IDbEntity<TEntity>, new() => await FindByCondition<TEntity>(entity => entity.Id == id).FirstOrDefaultAsync();        
 
         public async Task<Response> UpdateAsync<TEntity>(TEntity entity) where TEntity : class, IDbEntity<TEntity>, new()
         {

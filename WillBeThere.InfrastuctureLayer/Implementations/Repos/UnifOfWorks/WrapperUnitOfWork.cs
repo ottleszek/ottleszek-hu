@@ -1,51 +1,43 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Storage;
+using SharedDomainLayer.Entities;
+using SharedDomainLayer.Repos;
 using WillBeThere.ApplicationLayer.Contracts.UnitOfWork;
 
 namespace WillBeThere.InfrastuctureLayer.Implementations.Repos.UnifOfWorks
 {
-    public class WrapperUnitOfWork<TDbContext> : RepoStore<TDbContext>, IWrapperUnitOfWork where TDbContext : DbContext
-    { 
-        protected readonly TDbContext _context;
-        protected IDbContextTransaction? _transaction;
+    public class WrapperUnitOfWork<TDbContext> : UnitOfWork<TDbContext>, IWrapperUnitOfWork where TDbContext : DbContext
+    {
+        protected Dictionary<Type, object> _repositories;
 
-        public WrapperUnitOfWork(TDbContext context)
+        public WrapperUnitOfWork(TDbContext dbContext, IBaseRepo repository) : base(dbContext,repository)
         {
-            _context = context;
+            _repositories = [];
         }
 
-        public void BeginTransaction()
+        public TRepository? AddRepository<TRepository, TEntity>(TRepository? repository) where TRepository : IBaseRepo where TEntity : class, IDbEntity<TEntity>, new()
         {
-            _transaction = _context.Database.BeginTransaction();
-        }
-
-        public virtual void Commit()
-        {
-            try
+            if (repository is not null)
             {
-                _transaction?.Commit();
+                TRepository? exsist = GetRepository<TRepository, TEntity>();
+                if (exsist == null)
+                {
+                    var repositoryType = typeof(TRepository);
+                    _repositories.Add(repositoryType, repository);
+                    return repository;
+                }
             }
-            catch
-            {
-                Rollback();
-                throw;
-            }
-            finally
-            {
-                Dispose();
-            }
+            return default;
         }
 
-        public void Rollback()
+        public TRepository? GetRepository<TRepository, TEntity>() where TRepository : IBaseRepo where TEntity : class, IDbEntity<TEntity>, new()
         {
-            _transaction?.Rollback();
-            Dispose();
-        }
+            var type = typeof(TEntity);
 
-        public void Dispose()
-        {
-            _transaction?.Dispose();
-            _context.Dispose();
+            if (_repositories.ContainsKey(type))
+            {
+                return (TRepository)_repositories[type];
+            }
+            return default;
         }
     }
 }

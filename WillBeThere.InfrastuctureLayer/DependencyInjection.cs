@@ -4,6 +4,7 @@ using SharedDomainLayer.Repos.Commands;
 using WillBeThere.ApplicationLayer.Assemblers;
 using WillBeThere.ApplicationLayer.Contracts.UnitOfWork;
 using WillBeThere.DomainLayer.Assemblers.ResultModels;
+using WillBeThere.DomainLayer.Services;
 using WillBeThere.InfrastuctureLayer.Context;
 using WillBeThere.InfrastuctureLayer.Handlers.OrganizationPrograms;
 using WillBeThere.InfrastuctureLayer.Implementations.Repos.UnifOfWorks;
@@ -72,12 +73,10 @@ namespace WillBeThere.InfrastuctureLayer
                 services.AddScoped<IProgamOwnerQueryRepo,ProgramOwnerQueryRepo<WillBeThereInMemoryContext>>();
                 services.AddScoped<IPublicSpaceQueryRepo,PublicSpaceQueryRepo<WillBeThereInMemoryContext>>();
                 services.AddScoped<IRegisteredUserQueryRepo,RegisteredUserQueryRepo<WillBeThereInMemoryContext>>();
-
-
-                services.AddScoped<IWrapRepos,WrapRepos<WillBeThereInMemoryContext>>();
+                services.AddScoped<IWillBeThereWrapQueryUnitOfWork,WillBeThereWrapQueryUnitOfWork<WillBeThereInMemoryContext>>();
                 services.AddScoped<IWrapperUnitOfWork, WrapperUnitOfWork<WillBeThereMysqlContext>>();
                 services.AddScoped<IUnitOfWork, UnitOfWork<WillBeThereInMemoryContext>>();
-                services.AddScoped<IRepoStore,RepoStore<WillBeThereInMemoryContext>>();
+                services.AddScoped<IRepoStore,WrapperUnitOfWork<WillBeThereInMemoryContext>>();
             }
             else
             {
@@ -86,8 +85,8 @@ namespace WillBeThere.InfrastuctureLayer
                 services.AddScoped<IOrganizationRepo, OrganiozationRepo<WillBeThereMysqlContext>>();
                 services.AddScoped<IOrganizationAdminUserRepo, OrganizationAdminUserRepo<WillBeThereMysqlContext>>();
                 services.AddScoped<IOrganizationCategoryRepo, OrganizationCategoryRepo<WillBeThereMysqlContext>>();*/
-                services.AddScoped<IOrganizationProgramQueryRepo, OrganizationProgramQueryRepo<WillBeThereMysqlContext>>();
-                services.AddScoped<IOrganizationProgramCommandRepo, OrganizationProgramCommandRepo<WillBeThereInMemoryContext>>();
+                //services.AddScoped<IOrganizationProgramQueryRepo, OrganizationProgramQueryRepo<WillBeThereMysqlContext>>();
+                //services.AddScoped<IOrganizationProgramCommandRepo, OrganizationProgramCommandRepo<WillBeThereInMemoryContext>>();
                 /*services.AddScoped<IParticipationRepo, ParticipationRepo<WillBeThereMysqlContext>>();
                 services.AddScoped<IRegisteredUserRepo, RegisteredUserRepo<WillBeThereMysqlContext>>();*/
                 //services.AddScoped<IWrapCommandRepo, RepoStore<WillBeThereMysqlContext>>();
@@ -98,6 +97,7 @@ namespace WillBeThere.InfrastuctureLayer
         public static void ConfigureServices(this IServiceCollection services)
         {
             services.AddScoped<IOrganizationProgramService, OrganizationProgramService>();
+            services.AddScoped<IOrganizationCategoryService, OrganizationCategoryServices>();
         }
 
         public static void ConfigureCqrs(this IServiceCollection services)

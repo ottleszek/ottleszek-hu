@@ -1,6 +1,6 @@
 ﻿using SharedDomainLayer.Repos.Commands;
 
-namespace WillBeThere.InfrastuctureLayer.Implementations.Repos.WillBeThere.CommandRepos
+namespace WillBeThere.DomainLayer.Repos
 {
     public interface IAddressCommandRepo : IBaseCommandRepo
     {

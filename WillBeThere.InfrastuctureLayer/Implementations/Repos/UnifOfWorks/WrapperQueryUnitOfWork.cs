@@ -5,11 +5,10 @@ using WillBeThere.ApplicationLayer.Contracts.UnitOfWork;
 
 namespace WillBeThere.InfrastuctureLayer.Implementations.Repos.UnifOfWorks
 {
-    public class RepoStore<TDbContext> : IRepoStore where TDbContext : DbContext
+    public class WrapperQueryUnitOfWork<TDbContext> : QueryUnitOfWork<TDbContext>, IWrapperUnitOfWork where TDbContext : DbContext
     {
         protected Dictionary<Type, object> _repositories;
-
-        public RepoStore()
+        public WrapperQueryUnitOfWork(TDbContext context, IBaseRepo repo) : base(context, repo)
         {
             _repositories = [];
         }
@@ -39,24 +38,5 @@ namespace WillBeThere.InfrastuctureLayer.Implementations.Repos.UnifOfWorks
             }
             return default;
         }
-
-        /*TRepository? IUnitOfWork.CreateRepository<TRepository, TEntity>() where TRepository : class
-{
-    TRepository? repository = GetRepository<TRepository, TEntity>();
-    if (repository!=null)
-        return repository;
-    else
-    {
-        var repositoryType = typeof(TRepository);
-        var repositoryInstance = Activator.CreateInstance(repositoryType.MakeGenericType(typeof(TEntity)), _context);
-        if (repositoryInstance == null)
-            return null;
-        var type = typeof(TEntity);
-        _repositories.Add(type, repositoryInstance);
-        return (TRepository)_repositories[type];
-    }
-}
-*/
-
     }
 }

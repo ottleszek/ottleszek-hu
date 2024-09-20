@@ -1,17 +1,26 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Storage;
+using SharedDomainLayer.Repos;
 using WillBeThere.ApplicationLayer.Contracts.UnitOfWork;
-
 
 namespace WillBeThere.InfrastuctureLayer.Implementations.Repos.UnifOfWorks
 {
-    public class UnitOfWork<TDbContext> : WrapperUnitOfWork<TDbContext>, IUnitOfWork where TDbContext : DbContext
+    public class UnitOfWork<TDbContext> : IUnitOfWork where TDbContext : DbContext
     {
-        public UnitOfWork(TDbContext context) : base(context)  
+        private DbContext _context;
+        private IBaseRepo _baseRepo;
+
+        protected IDbContextTransaction? _transaction;
+
+        public virtual IBaseRepo Repository => _baseRepo;
+
+        public UnitOfWork(TDbContext context, IBaseRepo repo) 
         {
-            _repositories = new Dictionary<Type, object>();
+            _context = context;
+            _baseRepo = repo;
         }
 
-        public override void Commit()
+        public virtual void Commit()
         {
             try
             {
@@ -29,7 +38,7 @@ namespace WillBeThere.InfrastuctureLayer.Implementations.Repos.UnifOfWorks
             }
         }
 
-        public async Task<int> SaveChangesAsync()
+        public virtual async Task<int> SaveChangesAsync()
         {
             try
             {
@@ -37,6 +46,23 @@ namespace WillBeThere.InfrastuctureLayer.Implementations.Repos.UnifOfWorks
             }
             catch (Exception ex) { }
             return 0;
+        }
+
+        public void BeginTransaction()
+        {
+            _transaction = _context.Database.BeginTransaction();
+        }
+
+        public void Rollback()
+        {
+            _transaction?.Rollback();
+            Dispose();
+        }
+
+        public void Dispose()
+        {
+            _transaction?.Dispose();
+            _context.Dispose();
         }
 
     }

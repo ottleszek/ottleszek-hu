@@ -2,7 +2,7 @@
 
 namespace WillBeThere.InfrastuctureLayer.Implementations.Repos.WillBeThere.QueryRepos
 {
-    public interface IWrapRepos
+    public interface IWillBeThereWrapQueryUnitOfWork
     {
         public IAddressQueryRepo AddressQueryRepo { get; }
         public IEditorQueryRepo EditorQueryRepo { get; }

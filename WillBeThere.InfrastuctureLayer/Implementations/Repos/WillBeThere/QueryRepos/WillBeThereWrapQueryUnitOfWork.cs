@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using SharedDomainLayer.Repos;
 using WillBeThere.DomainLayer.Entites;
 using WillBeThere.InfrastuctureLayer.Implementations.Repos.UnifOfWorks;
 using WillBeThere.InfrastuctureLayer.Implementations.Repos.WillBeThere.QueryRepos.Interfaces;
@@ -6,10 +7,10 @@ using WillBeThere.InfrastuctureLayer.Implementations.Repos.WillBeThere.QueryRepo
 
 namespace WillBeThere.InfrastuctureLayer.Implementations.Repos.WillBeThere.QueryRepos
 {
-    public class WrapRepos<TDbContext> : WrapperUnitOfWork<TDbContext>, IWrapRepos where TDbContext : DbContext
+    public class WillBeThereWrapQueryUnitOfWork<TDbContext> : WrapperQueryUnitOfWork<TDbContext>, IWillBeThereWrapQueryUnitOfWork where TDbContext : DbContext
     {
         private TDbContext dbContext;
-        public WrapRepos
+        public WillBeThereWrapQueryUnitOfWork
             (
                 TDbContext dbContext,
                 IAddressQueryRepo addressQueryRepo,
@@ -23,7 +24,7 @@ namespace WillBeThere.InfrastuctureLayer.Implementations.Repos.WillBeThere.Query
                 IPublicSpaceQueryRepo publicSpaceQueryRepo,
                 IRegisteredUserQueryRepo registeredUserQueryRepo
             ) 
-            : base(dbContext)
+            : base(dbContext, organizationQueryRepo)
         {
             this.dbContext = dbContext;
             AddRepository<IAddressQueryRepo, Address>(addressQueryRepo);
@@ -37,6 +38,8 @@ namespace WillBeThere.InfrastuctureLayer.Implementations.Repos.WillBeThere.Query
             AddRepository<IPublicSpaceQueryRepo, PublicSpace>(publicSpaceQueryRepo);
             AddRepository<IRegisteredUserQueryRepo, RegisteredUser>(registeredUserQueryRepo);
         }
+
+        public override IBaseRepo Repository => base.Repository;
 
         public IAddressQueryRepo AddressQueryRepo => GetRepository<IAddressQueryRepo,Address>() ?? new AddressQueryRepo<TDbContext>(dbContext);
         public IEditorQueryRepo EditorQueryRepo => GetRepository<IEditorQueryRepo,Editor>() ?? new EditorQueryRepo<TDbContext>(dbContext);

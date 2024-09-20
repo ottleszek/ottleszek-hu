@@ -2,7 +2,7 @@
 
 namespace WillBeThere.DomainLayer.Repos
 {
-    public interface IEditorCommandRepo : IBaseCommandRepo
+    public interface IRegisteredUserCommandRepo : IBaseCommandRepo
     {
     }
 }

@@ -4,9 +4,9 @@ using WillBeThere.InfrastuctureLayer.Implementations.Repos.BaseCqrsRepos.Command
 
 namespace WillBeThere.InfrastuctureLayer.Implementations.Repos.WillBeThere.CommandRepos
 {
-    public class OrganizationCommandRepo<TDbContext> : BaseCommandRepo<TDbContext>, IOrganizationCommandRepo where TDbContext : DbContext
+    public class RegisteredUserCommandRepo<TDbContext> : BaseCommandRepo<TDbContext>, IRegisteredUserCommandRepo where TDbContext : DbContext
     {
-        public OrganizationCommandRepo(TDbContext? dbContext) : base(dbContext)
+        public RegisteredUserCommandRepo(DbContext? dbContext) : base(dbContext)
         {
         }
     }
