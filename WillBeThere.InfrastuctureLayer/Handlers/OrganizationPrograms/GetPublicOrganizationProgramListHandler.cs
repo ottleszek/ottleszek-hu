@@ -16,16 +16,13 @@ namespace WillBeThere.InfrastuctureLayer.Handlers.OrganizationPrograms
         }
         public async Task<List<PublicOrganizationProgram>> Handle(GetPublicOrgranizationProgramListQuery request, CancellationToken cancellationToken)
         {
-            List<PublicOrganizationProgram> pop = new List<PublicOrganizationProgram>();
             if (_organizationProgramService is not null)
             {
-                IQueryable<PublicOrganizationProgram>? publicProgramsQuery = _organizationProgramService.GetPublicOrganizationsPrograms();
-                if (publicProgramsQuery is not null)
-                {
-                    pop = await publicProgramsQuery.ToListAsync(cancellationToken: cancellationToken);
-                }
+                List<PublicOrganizationProgram>? pop = await _organizationProgramService.GetPublicOrganizationsPrograms();
+                if (pop is not null)
+                    return pop;
             }
-            return pop;
+            return new List<PublicOrganizationProgram>();
         }
     }
 }

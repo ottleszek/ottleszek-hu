@@ -17,7 +17,6 @@ namespace WillBeThere.Backend.Controllers.WillBeThere
         //private readonly IOrganizationProgramService? _organizationProgramService;
         private readonly IMediator? _mediator;
         private readonly PublicOrganizationProgramAssembler? _publicOrganizationProgramAssambler;
-        private readonly IOrganizationProgramQueryRepo? _repo;
 
         public OrganizationProgramController(
             IMediator? mediator,
@@ -31,7 +30,6 @@ namespace WillBeThere.Backend.Controllers.WillBeThere
             //_organizationProgramService = organizationProgramService;
             _mediator = mediator ?? throw new ArgumentNullException(nameof(mediator));
             _publicOrganizationProgramAssambler = publicOrganizationProgramAssambler;
-            _repo = repo;
         }
 
         // GET: /api/OrganizationProgram/publicprograms
@@ -43,10 +41,8 @@ namespace WillBeThere.Backend.Controllers.WillBeThere
             List<PublicOrganizationProgram> pop = new List<PublicOrganizationProgram>();
             if (_mediator is not null && _publicOrganizationProgramAssambler is not null)
             {
-                //IQueryable<PublicOrganizationProgram>? publicProgramsQuery = _organizationProgramService.GetPublicOrganizationsPrograms();
-                List<PublicOrganizationProgram>? publicProgramsQuery = await _mediator.Send(new GetPublicOrgranizationProgramListQuery());
-                if (publicProgramsQuery is not null)
-                    return Ok(publicProgramsQuery.Select(pop =>_publicOrganizationProgramAssambler.ToDto(pop)));
+                pop = await _mediator.Send(new GetPublicOrgranizationProgramListQuery());
+                return Ok(pop.Select(pop =>_publicOrganizationProgramAssambler.ToDto(pop)));
             }
             return NoContent();
         }

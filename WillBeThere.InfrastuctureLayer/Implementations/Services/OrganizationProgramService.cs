@@ -13,7 +13,7 @@ namespace WillBeThere.InfrastuctureLayer.Implementations.Services
             _wrapRepo = wrapRepo;
         }
 
-        public async Task<List<PublicOrganizationProgram>>? GetPublicOrganizationsPrograms()
+        public async Task<List<PublicOrganizationProgram>?> GetPublicOrganizationsPrograms()
         {
             IQueryable<PublicOrganizationProgram>? publicOrganizationPrograms = GetPublicOrganizationsProgramQuery();
             if (publicOrganizationPrograms is null)

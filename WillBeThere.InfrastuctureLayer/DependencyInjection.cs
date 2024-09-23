@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using SharedDomainLayer.Repos;
 using SharedDomainLayer.Repos.Commands;
 using WillBeThere.ApplicationLayer.Assemblers;
 using WillBeThere.ApplicationLayer.Contracts.UnitOfWork;
@@ -7,6 +8,7 @@ using WillBeThere.DomainLayer.Assemblers.ResultModels;
 using WillBeThere.DomainLayer.Services;
 using WillBeThere.InfrastuctureLayer.Context;
 using WillBeThere.InfrastuctureLayer.Handlers.OrganizationPrograms;
+using WillBeThere.InfrastuctureLayer.Implementations.Repos.BaseCqrsRepos;
 using WillBeThere.InfrastuctureLayer.Implementations.Repos.UnifOfWorks;
 using WillBeThere.InfrastuctureLayer.Implementations.Repos.WillBeThere.CommandRepos;
 using WillBeThere.InfrastuctureLayer.Implementations.Repos.WillBeThere.QueryRepos;
@@ -73,10 +75,13 @@ namespace WillBeThere.InfrastuctureLayer
                 services.AddScoped<IProgamOwnerQueryRepo,ProgramOwnerQueryRepo<WillBeThereInMemoryContext>>();
                 services.AddScoped<IPublicSpaceQueryRepo,PublicSpaceQueryRepo<WillBeThereInMemoryContext>>();
                 services.AddScoped<IRegisteredUserQueryRepo,RegisteredUserQueryRepo<WillBeThereInMemoryContext>>();
+                
                 services.AddScoped<IWillBeThereWrapQueryUnitOfWork,WillBeThereWrapQueryUnitOfWork<WillBeThereInMemoryContext>>();
-                services.AddScoped<IWrapperUnitOfWork, WrapperUnitOfWork<WillBeThereMysqlContext>>();
+                services.AddScoped<IWrapperUnitOfWork, WrapperUnitOfWork<WillBeThereInMemoryContext>>();
                 services.AddScoped<IUnitOfWork, UnitOfWork<WillBeThereInMemoryContext>>();
                 services.AddScoped<IRepoStore,WrapperUnitOfWork<WillBeThereInMemoryContext>>();
+
+                services.AddScoped<IBaseRepo, BaseRepo<WillBeThereInMemoryContext>>();
             }
             else
             {

@@ -12,12 +12,18 @@ namespace WillBeThere.InfrastuctureLayer.Implementations.Repos.UnifOfWorks
 
         protected IDbContextTransaction? _transaction;
 
-        public virtual IBaseRepo Repository => _baseRepo;
+        public virtual IBaseRepo Repository {get => _baseRepo; set => _baseRepo = value; }
 
         public UnitOfWork(TDbContext context, IBaseRepo repo) 
         {
             _context = context;
             _baseRepo = repo;
+        }
+
+        public void SetRepository(IBaseRepo repository)
+        {
+            if (repository is not null)
+                _baseRepo = repository;
         }
 
         public virtual void Commit()
@@ -64,6 +70,7 @@ namespace WillBeThere.InfrastuctureLayer.Implementations.Repos.UnifOfWorks
             _transaction?.Dispose();
             _context.Dispose();
         }
+
 
     }
 }

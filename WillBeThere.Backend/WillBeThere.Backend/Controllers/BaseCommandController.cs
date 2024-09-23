@@ -14,13 +14,15 @@ namespace WillBeThere.Backend.Controllers
     {
         protected readonly IAssembler<TModel, TDto>? _assambler;
         protected readonly IUnitOfWork _unitOfWork;
-        protected readonly IBaseCommandRepo? _repo;
+        protected readonly IBaseCommandRepo? _repository;
 
         public BaseCommandController(IAssembler<TModel, TDto>? assambler, IBaseCommandRepo? repository, IUnitOfWork unitOfWork)
         {
             _assambler = assambler;
             _unitOfWork = unitOfWork;
-            _repo=unitOfWork.AddRepository<IBaseCommandRepo, TModel>(repository);
+            _repository = repository;
+            if (repository is not null)
+                unitOfWork.SetRepository(repository);
         }
 
         // POST: api/TModel
@@ -28,10 +30,10 @@ namespace WillBeThere.Backend.Controllers
         public async Task<IActionResult> InsertAsync([FromBody] TDto entity)
         {
             ServerResponse response = new();
-            if (_unitOfWork is not null && _assambler is not null && _repo != null)
+            if (_unitOfWork is not null && _assambler is not null && _repository != null)
             {
 
-                response = (ServerResponse)_repo.Insert<TModel>(_assambler.ToModel(entity));
+                response = (ServerResponse)_repository.Insert<TModel>(_assambler.ToModel(entity));
                 if (response.HasError)
                     response.ClearAndAdd($"{response.Error}");
                 else
@@ -50,9 +52,9 @@ namespace WillBeThere.Backend.Controllers
         public async Task<ActionResult> UpdateAsync([FromBody] TDto entity)
         {
             ServerResponse response = new();
-            if (_unitOfWork is not null && _assambler is not null && _repo != null)
+            if (_unitOfWork is not null && _assambler is not null && _repository != null)
             {
-                response = (ServerResponse)_repo.Update<TModel>(_assambler.ToModel(entity));
+                response = (ServerResponse)_repository.Update<TModel>(_assambler.ToModel(entity));
                 if (response.HasError)
                     response.ClearAndAdd($"{response.Error}");
                 else
@@ -71,10 +73,10 @@ namespace WillBeThere.Backend.Controllers
         public async Task<IActionResult> DeleteAsync(Guid id)
         {
             ServerResponse response = new();
-            if (_unitOfWork is not null && _repo != null)
+            if (_unitOfWork is not null && _repository != null)
             {
 
-                response = (ServerResponse)_repo.Delete<TModel>(id);
+                response = (ServerResponse)_repository.Delete<TModel>(id);
                 if (response.HasError)
                     response.ClearAndAdd($"{response.Error}");
                 else
