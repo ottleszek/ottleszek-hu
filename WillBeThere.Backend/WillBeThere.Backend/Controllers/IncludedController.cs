@@ -10,10 +10,8 @@ namespace WillBeThere.Backend.Controllers
         where TModel : class, IDbEntity<TModel>, new()
         where TDto : class, new()
     {
-        private readonly IIncludedQueryRepo? _includedRepo;
-        public IncludedController(IAssembler<TModel, TDto>? assambler, IIncludedQueryRepo? repo) : base(assambler, repo)
+        public IncludedController(IAssembler<TModel, TDto>? assambler, IIncludedQueryRepo? includedRepo) : base(assambler, includedRepo)
         {
-            _includedRepo = repo;
         }
 
         // GET: api/TModel/included
@@ -22,9 +20,10 @@ namespace WillBeThere.Backend.Controllers
         {
             List<TModel>? entities = new();
 
-            if (_includedRepo != null && _assambler is not null)
+            if (_baseRepo != null && _assambler is not null)
             {
-                IQueryable<TModel>? query = _includedRepo.SelectAllInluded<TModel>();
+                IIncludedQueryRepo includedRepo = (IIncludedQueryRepo) _baseRepo;
+                IQueryable<TModel>? query =  includedRepo.SelectAllInluded<TModel>();
                 if (query != null)
                 {
                     entities = await query.ToListAsync();

@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using SharedDomainLayer.Entities;
 using WillBeThere.ApplicationLayer.Assemblers;
 using WillBeThere.InfrastuctureLayer.Implementations.Repos.Base;
@@ -10,12 +11,12 @@ namespace WillBeThere.Backend.Controllers
         where TDto : class, new()
     {
         protected readonly IAssembler<TModel, TDto>? _assambler;
-        protected readonly IBaseQueryRepo? _repo;
+        protected readonly IBaseQueryRepo? _baseRepo;
 
         public BaseQueryController(IAssembler<TModel, TDto>? assambler, IBaseQueryRepo? repo)
         {
             _assambler = assambler;
-            _repo = repo;
+            _baseRepo = repo;
         }
 
         // GET: api/TModel/
@@ -26,9 +27,9 @@ namespace WillBeThere.Backend.Controllers
         {
             List<TModel>? entities = new();
 
-            if (_repo != null && _assambler is not null)
+            if (_baseRepo != null && _assambler is not null)
             {
-                entities = await _repo.SelectAllAsync<TModel>();
+                entities = await _baseRepo.SelectAll<TModel>().ToListAsync();
                 return Ok(entities.Select(entity => _assambler.ToDto(entity)));
             }
             return NoContent();
@@ -39,9 +40,9 @@ namespace WillBeThere.Backend.Controllers
         public async Task<IActionResult> GetByIdAsync(Guid id)
         {
             TModel? entity = new();
-            if (_repo is not null && _assambler is not null)
+            if (_baseRepo is not null && _assambler is not null)
             {
-                entity = await _repo.GetByIdAsync<TModel>(id);
+                entity = await Task.FromResult(_baseRepo.GetById<TModel>(id));
                 if (entity != null)
                     return Ok(_assambler.ToDto(entity));
                 else

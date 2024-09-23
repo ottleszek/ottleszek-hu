@@ -4,6 +4,6 @@ namespace WillBeThere.InfrastuctureLayer.Implementations.Services
 {
     public interface IOrganizationProgramService
     {
-        public IQueryable<PublicOrganizationProgram>? GetPublicOrganizationsPrograms();
+        public Task<List<PublicOrganizationProgram>>? GetPublicOrganizationsPrograms();
     }
 }

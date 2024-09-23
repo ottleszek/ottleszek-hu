@@ -15,22 +15,23 @@ namespace WillBeThere.Backend.Controllers.WillBeThere
     public class OrganizationProgramController : IncludedController<OrganizationProgram, OrganizationProgramDto>
     {
         //private readonly IOrganizationProgramService? _organizationProgramService;
-        private readonly IMediator _mediator;
-        private readonly PublicOrganizationProgramAssembler _publicOrganizationProgramAssambler;
-        private readonly IOrganizationProgramQueryRepo? repo;
+        private readonly IMediator? _mediator;
+        private readonly PublicOrganizationProgramAssembler? _publicOrganizationProgramAssambler;
+        private readonly IOrganizationProgramQueryRepo? _repo;
 
         public OrganizationProgramController(
+            IMediator? mediator,
             OrganizationProgramAssembler? assambler, 
             PublicOrganizationProgramAssembler publicOrganizationProgramAssambler,
-            IOrganizationProgramQueryRepo? repo,
+            IOrganizationProgramQueryRepo? repo
             //IOrganizationProgramService? organizationProgramService,
-            IMediator mediator
+            
             ) : base(assambler, repo)
         {
             //_organizationProgramService = organizationProgramService;
-            _mediator = mediator;
+            _mediator = mediator ?? throw new ArgumentNullException(nameof(mediator));
             _publicOrganizationProgramAssambler = publicOrganizationProgramAssambler;
-            this.repo = repo;
+            _repo = repo;
         }
 
         // GET: /api/OrganizationProgram/publicprograms
@@ -40,7 +41,7 @@ namespace WillBeThere.Backend.Controllers.WillBeThere
         public async Task<IActionResult> GetPublicPrograms()
         {
             List<PublicOrganizationProgram> pop = new List<PublicOrganizationProgram>();
-            if (_mediator is not null)
+            if (_mediator is not null && _publicOrganizationProgramAssambler is not null)
             {
                 //IQueryable<PublicOrganizationProgram>? publicProgramsQuery = _organizationProgramService.GetPublicOrganizationsPrograms();
                 List<PublicOrganizationProgram>? publicProgramsQuery = await _mediator.Send(new GetPublicOrgranizationProgramListQuery());

@@ -97,7 +97,7 @@ namespace WillBeThere.InfrastuctureLayer
         public static void ConfigureServices(this IServiceCollection services)
         {
             services.AddScoped<IOrganizationProgramService, OrganizationProgramService>();
-            services.AddScoped<IOrganizationCategoryService, OrganizationCategoryServices>();
+            services.AddScoped<IBaseOrganizationCategoryService, BaseOrganizationCategoryServices>();
         }
 
         public static void ConfigureCqrs(this IServiceCollection services)
