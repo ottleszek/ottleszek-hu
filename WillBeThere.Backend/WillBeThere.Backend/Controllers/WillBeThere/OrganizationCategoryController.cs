@@ -17,17 +17,17 @@ namespace WillBeThere.Backend.Controllers.WillBeThere
         private readonly IBaseOrganizationCategoryService? _baseOrganizationCategoryService;
 
         public OrganizationCategoryController(
-             IMediator? _mediator,
+             IMediator? mediator,
         OrganizationCategoryAssembler? assambler, 
             IBaseOrganizationCategoryService? baseOrganizationCategoryService,
             IOrganizationCategoryQueryRepo? organizationCategoryQueryRepo
             ) : base(assambler, organizationCategoryQueryRepo)
         {
-            _mediator = _mediator ?? throw new ArgumentNullException(nameof(_mediator));
-            _baseOrganizationCategoryService = _baseOrganizationCategoryService ?? throw new ArgumentNullException(nameof(_baseOrganizationCategoryService));
+            _mediator = mediator ?? throw new ArgumentNullException(nameof(_mediator));
+            _baseOrganizationCategoryService = baseOrganizationCategoryService ?? throw new ArgumentNullException(nameof(_baseOrganizationCategoryService));
         }
 
-        // Get: /api/OrganizationCategory
+        /*// Get: /api/OrganizationCategory
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(List<OrganizationCategoryDto>))]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
@@ -40,6 +40,6 @@ namespace WillBeThere.Backend.Controllers.WillBeThere
                 return Ok(oc.Select(oc => _assambler.ToDto(oc)));
             }
             return NoContent();
-        }
+        }*/
     }
 }

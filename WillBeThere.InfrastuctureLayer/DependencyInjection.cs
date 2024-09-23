@@ -7,6 +7,7 @@ using WillBeThere.ApplicationLayer.Contracts.UnitOfWork;
 using WillBeThere.DomainLayer.Assemblers.ResultModels;
 using WillBeThere.DomainLayer.Services;
 using WillBeThere.InfrastuctureLayer.Context;
+using WillBeThere.InfrastuctureLayer.Handlers.OrganizationCategories;
 using WillBeThere.InfrastuctureLayer.Handlers.OrganizationPrograms;
 using WillBeThere.InfrastuctureLayer.Implementations.Repos.BaseCqrsRepos;
 using WillBeThere.InfrastuctureLayer.Implementations.Repos.UnifOfWorks;
@@ -108,6 +109,7 @@ namespace WillBeThere.InfrastuctureLayer
         public static void ConfigureCqrs(this IServiceCollection services)
         {
             services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(GetPublicOrganizationProgramListHandler).Assembly));
+            services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(GetOrganizationsCategoriesListHandler).Assembly));
         }
     }
 }
