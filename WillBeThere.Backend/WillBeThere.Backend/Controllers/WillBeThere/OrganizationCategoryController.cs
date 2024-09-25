@@ -21,7 +21,7 @@ namespace WillBeThere.Backend.Controllers.WillBeThere
             IBaseOrganizationCategoryService? baseOrganizationCategoryService,
             IOrganizationCategoryQueryRepo? organizationCategoryQueryRepo
             ) : base(assambler, organizationCategoryQueryRepo)
-        {
+        {            
             _mediator = mediator ?? throw new ArgumentNullException(nameof(_mediator));
             _baseOrganizationCategoryService = baseOrganizationCategoryService ?? throw new ArgumentNullException(nameof(_baseOrganizationCategoryService));
         }
