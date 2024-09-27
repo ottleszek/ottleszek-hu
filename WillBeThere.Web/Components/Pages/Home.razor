@@ -4,7 +4,6 @@
 @inject IOrganizationCategoryDataService? _organizationCategoryDataService
 
 <PageTitle>Publikus programok</PageTitle>
-<MudText Typo="Typo.h4 ">Publikus programok</MudText>
 @if (!_isLoaded)
 {
     <MudText>Publikus programok betöltése.</MudText>
@@ -32,7 +31,8 @@ else
         <MudText>Nincs elérhető publikus program!</MudText>
     }
     else
-    {        
+    {
+        <MudText Typo="Typo.h4 ">Publikus programok</MudText>
         <MudDataGrid Items="@_publicPrograms" QuickFilter="@Filtring">
             <ToolBarContent>
                 <MudText Typo="Typo.h6">Publikus programok</MudText>
@@ -60,9 +60,10 @@ else
 
 @code {
 
-    private List<PublicOrganizationProgram> _publicPrograms = new List<PublicOrganizationProgram>();
+    private List<PublicOrganizationProgram>? _publicPrograms;    
+    private List<OrganizationCategory>? _organizationCategories;
+
     private List<PublicOrganizationProgram> _allPublicPrograms = new List<PublicOrganizationProgram>();
-    private List<OrganizationCategory> _organizationCategories = new List<OrganizationCategory>();
 
     private bool _isLoaded => _publicPrograms is not null;
     private int _numberOfPublicPrograms => _publicPrograms is not null ? _publicPrograms.Count : 0;

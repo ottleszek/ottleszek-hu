@@ -26,7 +26,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WillBeThere.DomainLayer", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WillBeThere.InfrastuctureLayer", "WillBeThere.InfrastuctureLayer\WillBeThere.InfrastuctureLayer.csproj", "{2857A0D9-48A9-4A50-92D5-F6A6D222F577}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharedDomainLayer", "SharedDomainLayer\SharedDomainLayer.csproj", "{5F8A23BF-63EB-4C13-97C2-84DF97352908}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SharedDomainLayer", "SharedDomainLayer\SharedDomainLayer.csproj", "{5F8A23BF-63EB-4C13-97C2-84DF97352908}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -1,0 +1,51 @@
+﻿@page "/organizationcategorylist"
+@inject IOrganizationCategoryDataService? _organizationCategoryDataService
+
+<PageTitle>Szervezet kategóriák </PageTitle>
+
+@if (!_isLoaded )
+{
+    <MudText>Szervezeti kategóriák betöltése.</MudText>
+}
+else
+{
+    @if (_organizationCategories is not null)
+    {
+        <MudText>Szervezeti kategóriák</MudText>
+        <MudDataGrid
+                     T="OrganizationCategory" 
+                     Items="_organizationCategories"
+                     ReadOnly="false"
+                     EditMode="DataGridEditMode.Cell"
+                     Dense="true"
+                     Bordered="true"
+        >
+            <Columns>
+                <PropertyColumn Property="pc => pc.Name" Title="Kategória név" Editable="true" />
+                <TemplateColumn CellClass="d-flex justify-end">
+                    <CellTemplate>
+                        <MudIconButton Size="@Size.Small" Icon="@Icons.Material.Outlined.Edit" />
+                    </CellTemplate>
+                </TemplateColumn>
+            </Columns>
+
+        </MudDataGrid>
+        <MudText Class="mt_4">Kategóriák száma: @_organizationCategories.Count</MudText>
+    }
+
+}
+
+@code {
+    private List<OrganizationCategory>? _organizationCategories = new List<OrganizationCategory>();
+
+    private bool _isLoaded => _organizationCategories is not null;
+    private int _numberOfCategories => _organizationCategories is not null ? _organizationCategories.Count : 0;
+
+    protected async override Task OnInitializedAsync()
+    {
+        if (_organizationCategoryDataService is not null)
+        {
+            _organizationCategories = await _organizationCategoryDataService.SelectAsync();
+        }
+    }
+}
