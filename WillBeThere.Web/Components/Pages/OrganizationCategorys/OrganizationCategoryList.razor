@@ -11,23 +11,27 @@ else
 {
     @if (_organizationCategories is not null)
     {
-        <MudText>Szervezeti kategóriák</MudText>
+        <MudText Typo="Typo.h3">Szervezeti kategóriák</MudText>
+        <MudText Class="mt-4">Módosítási lehetőség a táblázatban. Módosítás után nyomjon tabulátort!</MudText>
+        <div class="d-flex flex-wrap">
+            <div class="d-flex justify-start align-center">
+                <p class="mud-typography mud-typography-body1 mud-inherit-text mr-2">Módoítás: kikapcsolva</p>
+            </div>
+            <MudSwitch @bind-Value="_isEditMode">bekapcsolva.</MudSwitch>
+        </div>
         <MudDataGrid
                      T="OrganizationCategory" 
                      Items="_organizationCategories"
-                     ReadOnly="false"
+                     ReadOnly="@_readOnly"
                      EditMode="DataGridEditMode.Cell"
+                     Hover="true"
                      Dense="true"
                      Bordered="true"
+                     CommittedItemChanges="@CommittedItemChanges"
         >
             <Columns>
                 <PropertyColumn Property="pc => pc.Name" Title="Kategória név" Editable="true" />
-                <TemplateColumn CellClass="d-flex justify-end">
-                    <CellTemplate>
-                        <MudIconButton Size="@Size.Small" Icon="@Icons.Material.Outlined.Edit" />
-                    </CellTemplate>
-                </TemplateColumn>
-            </Columns>
+            </Columns> 
 
         </MudDataGrid>
         <MudText Class="mt_4">Kategóriák száma: @_organizationCategories.Count</MudText>
@@ -38,6 +42,9 @@ else
 @code {
     private List<OrganizationCategory>? _organizationCategories = new List<OrganizationCategory>();
 
+    private bool _readOnly => !_isEditMode;
+    private bool _isEditMode =false;
+
     private bool _isLoaded => _organizationCategories is not null;
     private int _numberOfCategories => _organizationCategories is not null ? _organizationCategories.Count : 0;
 
@@ -47,5 +54,15 @@ else
         {
             _organizationCategories = await _organizationCategoryDataService.SelectAsync();
         }
+    }
+
+    void StartedEditingItem(OrganizationCategory item)
+    {
+        
+    }
+
+    void CommittedItemChanges(OrganizationCategory item)
+    {
+        Console.WriteLine(item);
     }
 }
