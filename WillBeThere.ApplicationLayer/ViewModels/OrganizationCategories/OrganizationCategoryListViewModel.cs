@@ -50,15 +50,31 @@ namespace WillBeThere.ApplicationLayer.ViewModels.OrganizationCategories
             {
                 if (!_changedOrganizationCategories.Any(category => category.Id == editedCategory.Id))
                 {
+                    // Ezt a kategóriát még nem szerkeztették
                     _changedOrganizationCategories.Add(editedCategory);
                 }
                 else
                 {
-                    int index = _changedOrganizationCategories.FindIndex(category => category.Id == editedCategory.Id);
-                    if (index != -1)
-                        _changedOrganizationCategories[index] = editedCategory;
+                    // Ezt a kategóriát már szerkesztették
+                    if (IsModifiedCategorySameAsTheOriganl(editedCategory))
+                    {
+
+                    }
+                    else
+                    {
+                        int index = _changedOrganizationCategories.FindIndex(category => category.Id == editedCategory.Id);
+
+                        if (index != -1)
+                            _changedOrganizationCategories[index] = editedCategory;
+                    }
                 }
             }
+        }
+
+        private bool IsModifiedCategorySameAsTheOriganl(OrganizationCategory modifiedCategory)
+        {
+            OrganizationCategory? orginalOrganizationCategory = _organizationCategories?.Find(category => category.Id == modifiedCategory.Id);
+            return orginalOrganizationCategory != null && orginalOrganizationCategory.Equals(modifiedCategory);
         }
     }
 }
