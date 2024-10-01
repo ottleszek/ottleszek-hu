@@ -3,6 +3,7 @@ using WillBeThere.ApplicationLayer.Assemblers;
 using WillBeThere.ApplicationLayer.Contracts.Services.DataService;
 using WillBeThere.ApplicationLayer.Contracts.Services.HttpService;
 using WillBeThere.ApplicationLayer.Contracts.Services.MapperService;
+using WillBeThere.ApplicationLayer.ViewModels.OrganizationCategories;
 using WillBeThere.DomainLayer.Assemblers.ResultModels;
 
 namespace WillBeThere.ApplicationLayer
@@ -14,6 +15,7 @@ namespace WillBeThere.ApplicationLayer
             services.ConfigureHttpCliens();
             services.ConfigureAssamblers();
             services.ConfigureServices();
+            services.ConfigureViewModels();
             return services;
         }
 
@@ -52,6 +54,11 @@ namespace WillBeThere.ApplicationLayer
             // DataService
             services.AddScoped<IOrganizationProgramDataService, OrganizationProgramDataService>();
             services.AddScoped<IOrganizationCategoryDataService, OrganizationCategoryDataService>();
+        }
+
+        public static void ConfigureViewModels(this IServiceCollection services)
+        {
+            services.AddScoped<IOrganizationCategoryListViewModel, OrganizationCategoryListViewModel>();
         }
     }
 }
