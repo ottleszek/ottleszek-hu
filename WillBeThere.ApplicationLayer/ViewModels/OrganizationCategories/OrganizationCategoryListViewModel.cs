@@ -50,18 +50,19 @@ namespace WillBeThere.ApplicationLayer.ViewModels.OrganizationCategories
             {
                 if (!_changedOrganizationCategories.Any(category => category.Id == editedCategory.Id))
                 {
-                    // Ezt a kategóriát még nem szerkeztették
+                    // Ezt a kategóriát még nem lett módosítva
                     _changedOrganizationCategories.Add(editedCategory);
                 }
                 else
                 {
-                    // Ezt a kategóriát már szerkesztették
+                    // Ezt a kategóriát már módosítva lett
                     if (IsModifiedCategorySameAsTheOriganl(editedCategory))
                     {
-
+                        _changedOrganizationCategories.Remove(editedCategory);
                     }
                     else
                     {
+                        // Ez a kategória már módísítva lett és nem egyezik meg az eredetivel
                         int index = _changedOrganizationCategories.FindIndex(category => category.Id == editedCategory.Id);
 
                         if (index != -1)
