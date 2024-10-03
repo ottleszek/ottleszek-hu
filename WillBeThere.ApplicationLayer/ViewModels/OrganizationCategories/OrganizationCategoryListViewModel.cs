@@ -9,12 +9,12 @@ namespace WillBeThere.ApplicationLayer.ViewModels.OrganizationCategories
 
         private OrganizationCategory? _editedCategory;
         private List<OrganizationCategory>? _organizationCategories = new List<OrganizationCategory>();
-        private List<OrganizationCategory> _changedOrganizationCategories = new List<OrganizationCategory>();
+        private List<OrganizationCategory> _modifiedOrganizationCategories = new List<OrganizationCategory>();
 
         private OrganizationCategory? _selectedOrganizationCategory;
 
         private bool _isLoded = false;
-
+        public bool _hasModifiedCategory => _modifiedOrganizationCategories.Any();
         public OrganizationCategoryListViewModel(IOrganizationCategoryDataService? organizationCategoryDataService)
         {
             _organizationCategoryDataService = organizationCategoryDataService;
@@ -23,6 +23,8 @@ namespace WillBeThere.ApplicationLayer.ViewModels.OrganizationCategories
         public bool IsLoded => _isLoded;
         public List<OrganizationCategory> OrganizationCategories => _organizationCategories is not null ? _organizationCategories : new List<OrganizationCategory>();
         public int NumberOfOrganizationCategories => OrganizationCategories.Count; 
+
+        public bool SaveDisabled => !_hasModifiedCategory;
         public async Task GetCategoriesAsync()
         {
             if (_organizationCategoryDataService is not null)
@@ -48,25 +50,25 @@ namespace WillBeThere.ApplicationLayer.ViewModels.OrganizationCategories
                 return;
             else
             {
-                if (!_changedOrganizationCategories.Any(category => category.Id == editedCategory.Id))
+                if (!_modifiedOrganizationCategories.Any(category => category.Id == editedCategory.Id))
                 {
                     // Ezt a kategóriát még nem lett módosítva
-                    _changedOrganizationCategories.Add(editedCategory);
+                    _modifiedOrganizationCategories.Add(editedCategory);
                 }
                 else
                 {
                     // Ezt a kategóriát már módosítva lett
                     if (IsModifiedCategorySameAsTheOriganl(editedCategory))
                     {
-                        _changedOrganizationCategories.Remove(editedCategory);
+                        _modifiedOrganizationCategories.Remove(editedCategory);
                     }
                     else
                     {
                         // Ez a kategória már módísítva lett és nem egyezik meg az eredetivel
-                        int index = _changedOrganizationCategories.FindIndex(category => category.Id == editedCategory.Id);
+                        int index = _modifiedOrganizationCategories.FindIndex(category => category.Id == editedCategory.Id);
 
                         if (index != -1)
-                            _changedOrganizationCategories[index] = editedCategory;
+                            _modifiedOrganizationCategories[index] = editedCategory;
                     }
                 }
             }

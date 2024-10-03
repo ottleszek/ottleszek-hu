@@ -24,6 +24,7 @@ else
                 </div>
                 <MudSwitch @bind-Value="_isEditMode">bekapcsolva.</MudSwitch>
             </div>
+            <MudButton Class="mt-2 mb-4" Variant="Variant.Filled" Color="Color.Primary" Disabled="@_viewModel.SaveDisabled">Mentés</MudButton>
             <MudDataGrid
                          T="OrganizationCategory"
                          Items="@_viewModel.OrganizationCategories"
