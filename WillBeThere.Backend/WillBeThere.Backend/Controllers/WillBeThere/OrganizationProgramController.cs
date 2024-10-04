@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using WillBeThere.ApplicationLayer.Assemblers;
 using WillBeThere.ApplicationLayer.Contracts.Dtos;
-using WillBeThere.ApplicationLayer.Contracts.Queries.OrganizationPrograms;
+using WillBeThere.ApplicationLayer.Queries.OrganizationPrograms;
 using WillBeThere.DomainLayer.Assemblers.ResultModels;
 using WillBeThere.DomainLayer.Entites;
 using WillBeThere.DomainLayer.Entites.ResultModels;

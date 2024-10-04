@@ -1,4 +1,5 @@
 ﻿using SharedDomainLayer.Entities;
+using SharedDomainLayer.Responses;
 using WillBeThere.ApplicationLayer.Assemblers;
 using WillBeThere.ApplicationLayer.Contracts.Services.HttpService;
 
@@ -30,6 +31,16 @@ namespace WillBeThere.ApplicationLayer.Contracts.Services.MapperService
                 return result;
             }
             return new List<TModel>();
+        }
+
+        public async Task<Response> UpdateAsync(TModel entity)
+        {
+            if (_baseHttpService is not null && _assambler is not null)
+            {
+                Response response = await _baseHttpService.UpdateAsync<TModel>(_assambler.ToDto(entity));
+                return response;
+            }
+            return new Response();
         }
     }
 }

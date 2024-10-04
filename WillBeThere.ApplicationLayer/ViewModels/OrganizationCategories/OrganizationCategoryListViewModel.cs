@@ -1,11 +1,14 @@
-﻿using WillBeThere.ApplicationLayer.Contracts.Services.DataService;
+﻿using SharedDomainLayer.Responses;
+using WillBeThere.ApplicationLayer.Commands.OrganizationCategories;
+using WillBeThere.ApplicationLayer.Contracts.Services.DataService;
 using WillBeThere.DomainLayer.Entites;
 
 namespace WillBeThere.ApplicationLayer.ViewModels.OrganizationCategories
 {
     public class OrganizationCategoryListViewModel : IOrganizationCategoryListViewModel
     {
-        private IOrganizationCategoryDataService? _organizationCategoryDataService;
+        private readonly IOrganizationCategoryDataService? _organizationCategoryDataService;
+        private readonly SaveOrganizationCategoriesCommandHandler? _saveOrganizationCategoriesCommandHandler;
 
         private OrganizationCategory? _editedCategory;
         private List<OrganizationCategory>? _organizationCategories = new List<OrganizationCategory>();
@@ -15,9 +18,14 @@ namespace WillBeThere.ApplicationLayer.ViewModels.OrganizationCategories
 
         private bool _isLoded = false;
         public bool _hasModifiedCategory => _modifiedOrganizationCategories.Any();
-        public OrganizationCategoryListViewModel(IOrganizationCategoryDataService? organizationCategoryDataService)
+        public OrganizationCategoryListViewModel
+            (
+                IOrganizationCategoryDataService? organizationCategoryDataService,
+                SaveOrganizationCategoriesCommandHandler? saveOrganizationCategoriesCommandHandler
+            )
         {
             _organizationCategoryDataService = organizationCategoryDataService;
+            _saveOrganizationCategoriesCommandHandler = saveOrganizationCategoriesCommandHandler;
         }
 
         public bool IsLoded => _isLoded;
@@ -73,6 +81,18 @@ namespace WillBeThere.ApplicationLayer.ViewModels.OrganizationCategories
                 }
             }
         }
+        
+        private async Task<Response> SaveOrganizationCategories(List<OrganizationCategory> organizationCategories)
+        {
+            if (_saveOrganizationCategoriesCommandHandler is not null)
+            {
+                CancellationTokenSource cts = new CancellationTokenSource();
+                var command = new SaveOrganizationCategoriesCommand(organizationCategories);
+                Response response = await _saveOrganizationCategoriesCommandHandler.Handle(command, cts.Token);
+                return response;
+            }
+            return new Response();
+        }            
 
         private bool IsModifiedCategorySameAsTheOriganl(OrganizationCategory modifiedCategory)
         {

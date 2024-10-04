@@ -41,16 +41,12 @@ namespace WillBeThere.ApplicationLayer.Contracts.Services.DataService
 
         public async Task<List<TEntity>> SelectAsync()
         {
-            if (_mapperService is not null)
-            {
-                return await _mapperService.SelectAsync();
-            }
-            else { return new List<TEntity>(); }
+            return  await (_mapperService?.SelectAsync() ?? Task.FromResult(new List<TEntity>()));
         }
 
-        public Task<Response> UpdateAsync(TEntity entity)
+        public async Task<Response> UpdateAsync(TEntity entity)
         {
-            throw new NotImplementedException();
+            return await (_mapperService?.UpdateAsync(entity) ?? Task.FromResult(new Response()));
         }
     }
 }

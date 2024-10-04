@@ -1,5 +1,5 @@
 ﻿using MediatR;
-using WillBeThere.ApplicationLayer.Contracts.Queries.OrganizationCategories;
+using WillBeThere.ApplicationLayer.Queries.OrganizationCategories;
 using WillBeThere.DomainLayer.Entites;
 using WillBeThere.DomainLayer.Services;
 
