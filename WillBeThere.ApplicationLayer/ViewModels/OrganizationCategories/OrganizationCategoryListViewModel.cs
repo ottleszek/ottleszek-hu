@@ -1,14 +1,12 @@
 ﻿using SharedDomainLayer.Responses;
-using WillBeThere.ApplicationLayer.Commands.OrganizationCategories;
-using WillBeThere.ApplicationLayer.Contracts.Services.DataService;
+using WillBeThere.ApplicationLayer.Contracts.Repositories;
 using WillBeThere.DomainLayer.Entites;
 
 namespace WillBeThere.ApplicationLayer.ViewModels.OrganizationCategories
 {
     public class OrganizationCategoryListViewModel : IOrganizationCategoryListViewModel
     {
-        private readonly IOrganizationCategoryDataService? _organizationCategoryDataService;
-        private readonly SaveOrganizationCategoriesCommandHandler? _saveOrganizationCategoriesCommandHandler;
+        private readonly IOrganizationCategoryRepository? _organizationCategoryRepository;
 
         private OrganizationCategory? _editedCategory;
         private List<OrganizationCategory>? _organizationCategories = new List<OrganizationCategory>();
@@ -20,12 +18,10 @@ namespace WillBeThere.ApplicationLayer.ViewModels.OrganizationCategories
         public bool _hasModifiedCategory => _modifiedOrganizationCategories.Any();
         public OrganizationCategoryListViewModel
             (
-                IOrganizationCategoryDataService? organizationCategoryDataService,
-                SaveOrganizationCategoriesCommandHandler? saveOrganizationCategoriesCommandHandler
+                IOrganizationCategoryRepository? organizationCategoryRepository
             )
         {
-            _organizationCategoryDataService = organizationCategoryDataService;
-            _saveOrganizationCategoriesCommandHandler = saveOrganizationCategoriesCommandHandler;
+            _organizationCategoryRepository = organizationCategoryRepository;
         }
 
         public bool IsLoded => _isLoded;
@@ -35,9 +31,9 @@ namespace WillBeThere.ApplicationLayer.ViewModels.OrganizationCategories
         public bool SaveDisabled => !_hasModifiedCategory;
         public async Task GetCategoriesAsync()
         {
-            if (_organizationCategoryDataService is not null)
+            if (_organizationCategoryRepository is not null)
             {
-                _organizationCategories = await _organizationCategoryDataService.SelectAsync();
+                _organizationCategories = await _organizationCategoryRepository.SelectAsync();
                 _isLoded = true;
             }
         }
@@ -84,12 +80,9 @@ namespace WillBeThere.ApplicationLayer.ViewModels.OrganizationCategories
         
         private async Task<Response> SaveOrganizationCategories(List<OrganizationCategory> organizationCategories)
         {
-            if (_saveOrganizationCategoriesCommandHandler is not null)
+            if (_organizationCategoryRepository is not null)
             {
-                CancellationTokenSource cts = new CancellationTokenSource();
-                var command = new SaveOrganizationCategoriesCommand(organizationCategories);
-                Response response = await _saveOrganizationCategoriesCommandHandler.Handle(command, cts.Token);
-                return response;
+                Response response = await _organizationCategoryRepository.SaveOrganizationCategories(organizationCategories);
             }
             return new Response();
         }            

@@ -19,6 +19,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Commands\OrganizationCategories\" />
     <Folder Include="Contracts\Responses\" />
     <Folder Include="Contracts\Requests\" />
   </ItemGroup>

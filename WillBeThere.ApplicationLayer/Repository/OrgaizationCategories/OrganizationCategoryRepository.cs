@@ -1,25 +1,26 @@
 ﻿using SharedDomainLayer.Responses;
-using WillBeThere.ApplicationLayer.Contracts.Repositories;
 using WillBeThere.ApplicationLayer.Contracts.Services.DataService;
+using WillBeThere.ApplicationLayer.Contracts.Services.MapperService;
 using WillBeThere.DomainLayer.Entites;
 
 namespace WillBeThere.ApplicationLayer.Repository.OrgaizationCategories
 {
-    public class OrganizationCategoryRepository : IOrganizationCategoryRepository
+    public class OrganizationCategoryRepository : OrganizationCategoryDataService
     {
-        private readonly IOrganizationCategoryDataService? _organizationCategoryDataService;
-        public OrganizationCategoryRepository(IOrganizationCategoryDataService? organizationCategoryDataService)
+        private readonly IOrganizationCategoryMapperService? _organizationCategoryMapperService;
+
+        public OrganizationCategoryRepository(IOrganizationCategoryMapperService? mapperService) : base(mapperService)
         {
-            _organizationCategoryDataService = organizationCategoryDataService;
+            _organizationCategoryMapperService = mapperService;
         }
 
         public async Task<Response> SaveOrganizationCategories(List<OrganizationCategory> organizationCategories)
         {
-            if (_organizationCategoryDataService is not null)
+            if (_organizationCategoryMapperService is not null)
             {
                 foreach (var organizationCategory in organizationCategories)
                 {
-                    Response result = await _organizationCategoryDataService.UpdateAsync(organizationCategory);
+                    Response result = await _organizationCategoryMapperService.UpdateAsync(organizationCategory);
                 }
             }
             return new Response();

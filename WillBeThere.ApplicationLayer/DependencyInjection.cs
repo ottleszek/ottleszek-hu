@@ -47,7 +47,7 @@ namespace WillBeThere.ApplicationLayer
 
         public static void ConfigureRepositories(this IServiceCollection services)
         {
-            services.AddScoped<IOrganizationCategoryRepository, OrganizationCategoryRepository>();            
+            //services.AddScoped<IOrganizationCategoryRepository, OrganizationCategoryRepository>();            
         }
 
         public static void ConfigureServices(this IServiceCollection services)
