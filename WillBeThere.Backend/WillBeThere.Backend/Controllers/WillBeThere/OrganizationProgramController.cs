@@ -2,10 +2,12 @@
 using Microsoft.AspNetCore.Mvc;
 using WillBeThere.ApplicationLayer.Assemblers;
 using WillBeThere.ApplicationLayer.Contracts.Dtos;
+using WillBeThere.ApplicationLayer.Contracts.UnitOfWork;
 using WillBeThere.ApplicationLayer.Queries.OrganizationPrograms;
 using WillBeThere.DomainLayer.Assemblers.ResultModels;
 using WillBeThere.DomainLayer.Entites;
 using WillBeThere.DomainLayer.Entites.ResultModels;
+using WillBeThere.DomainLayer.Repos;
 using WillBeThere.InfrastuctureLayer.Implementations.Repos.WillBeThere.QueryRepos.Interfaces;
 
 namespace WillBeThere.Backend.Controllers.WillBeThere
@@ -22,10 +24,12 @@ namespace WillBeThere.Backend.Controllers.WillBeThere
             IMediator? mediator,
             OrganizationProgramAssembler? assambler, 
             PublicOrganizationProgramAssembler publicOrganizationProgramAssambler,
-            IOrganizationProgramQueryRepo? repo
+            IOrganizationProgramQueryRepo? queryRepo,
+            IOrganizationProgramCommandRepo? commandRepo,
+            IUnitOfWork unitOfWork
             //IOrganizationProgramService? organizationProgramService,
             
-            ) : base(assambler, repo)
+            ) : base(assambler, queryRepo,commandRepo,unitOfWork)
         {
             //_organizationProgramService = organizationProgramService;
             _mediator = mediator ?? throw new ArgumentNullException(nameof(mediator));

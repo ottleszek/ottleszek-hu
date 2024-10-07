@@ -6,7 +6,7 @@ namespace WillBeThere.InfrastuctureLayer.Implementations.Repos.WillBeThere.Comma
 {
     public class RegisteredUserCommandRepo<TDbContext> : BaseCommandRepo<TDbContext>, IRegisteredUserCommandRepo where TDbContext : DbContext
     {
-        public RegisteredUserCommandRepo(DbContext? dbContext) : base(dbContext)
+        public RegisteredUserCommandRepo(TDbContext? dbContext) : base(dbContext)
         {
         }
     }

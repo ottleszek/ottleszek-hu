@@ -6,7 +6,7 @@ namespace WillBeThere.InfrastuctureLayer.Implementations.Repos.WillBeThere.Comma
 {
     public class ProgramOwnerCommandRepo<TDbContext> : BaseCommandRepo<TDbContext>, IProgamOwnerCommandRepo where TDbContext : DbContext
     {
-        public ProgramOwnerCommandRepo(DbContext? dbContext) : base(dbContext)
+        public ProgramOwnerCommandRepo(TDbContext? dbContext) : base(dbContext)
         {
         }
     }

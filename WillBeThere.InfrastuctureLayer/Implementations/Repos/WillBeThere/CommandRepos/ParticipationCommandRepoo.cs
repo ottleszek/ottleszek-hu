@@ -6,7 +6,7 @@ namespace WillBeThere.InfrastuctureLayer.Implementations.Repos.WillBeThere.Comma
 {
     public class ParticipationCommandRepoo<TDbContext> : BaseCommandRepo<TDbContext>, IParticipationCommandRepo where TDbContext : DbContext
     {
-        public ParticipationCommandRepoo(DbContext? dbContext) : base(dbContext)
+        public ParticipationCommandRepoo(TDbContext? dbContext) : base(dbContext)
         {
         }
     }
