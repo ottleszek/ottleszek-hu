@@ -1,6 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using WillBeThere.ApplicationLayer.Assemblers;
-using WillBeThere.ApplicationLayer.Commands.OrganizationCategories;
 using WillBeThere.ApplicationLayer.Contracts.Repositories;
 using WillBeThere.ApplicationLayer.Contracts.Services.DataService;
 using WillBeThere.ApplicationLayer.Contracts.Services.HttpService;
@@ -17,6 +16,7 @@ namespace WillBeThere.ApplicationLayer
         {
             services.ConfigureHttpCliens();
             services.ConfigureAssamblers();
+            services.ConfigureRepositories();
             services.ConfigureServices();
             services.ConfigureViewModels();
             services.ConfigureCqrs();
@@ -47,7 +47,7 @@ namespace WillBeThere.ApplicationLayer
 
         public static void ConfigureRepositories(this IServiceCollection services)
         {
-            //services.AddScoped<IOrganizationCategoryRepository, OrganizationCategoryRepository>();            
+            services.AddScoped<IOrganizationCategoryRepository, OrganizationCategoryRepository>();            
         }
 
         public static void ConfigureServices(this IServiceCollection services)
@@ -72,7 +72,7 @@ namespace WillBeThere.ApplicationLayer
 
         public static void ConfigureCqrs(this IServiceCollection services)
         {
-            services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(SaveOrganizationCategoriesCommandHandler).Assembly));
+            //services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(SaveOrganizationCategoriesCommandHandler).Assembly));
         }
     }
 }

@@ -1,11 +1,12 @@
 ﻿using SharedDomainLayer.Responses;
+using WillBeThere.ApplicationLayer.Contracts.Repositories;
 using WillBeThere.ApplicationLayer.Contracts.Services.DataService;
 using WillBeThere.ApplicationLayer.Contracts.Services.MapperService;
 using WillBeThere.DomainLayer.Entites;
 
 namespace WillBeThere.ApplicationLayer.Repository.OrgaizationCategories
 {
-    public class OrganizationCategoryRepository : OrganizationCategoryDataService
+    public class OrganizationCategoryRepository : OrganizationCategoryDataService, IOrganizationCategoryRepository
     {
         private readonly IOrganizationCategoryMapperService? _organizationCategoryMapperService;
 
