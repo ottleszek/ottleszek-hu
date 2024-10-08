@@ -5,6 +5,7 @@ namespace WillBeThere.ApplicationLayer.ViewModels.OrganizationCategories
     public interface IOrganizationCategoryListViewModel
     {
         List<OrganizationCategory> OrganizationCategories { get; }
+        public Task Save();
         int NumberOfOrganizationCategories { get; }
         bool IsLoded { get; }
         bool SaveDisabled { get; }

@@ -38,6 +38,10 @@ namespace WillBeThere.ApplicationLayer.ViewModels.OrganizationCategories
             }
         }
 
+        public async Task Save()
+        {
+            await SaveModifiedOrganizationCategories();
+        }
         public void SetNewSelectedCategory(OrganizationCategory newSelectedCategory)
         {
             _selectedOrganizationCategory = newSelectedCategory;
@@ -78,11 +82,11 @@ namespace WillBeThere.ApplicationLayer.ViewModels.OrganizationCategories
             }
         }
         
-        private async Task<Response> SaveOrganizationCategories(List<OrganizationCategory> organizationCategories)
+        private async Task<Response> SaveModifiedOrganizationCategories()
         {
             if (_organizationCategoryRepository is not null)
             {
-                Response response = await _organizationCategoryRepository.SaveOrganizationCategories(organizationCategories);
+                Response response = await _organizationCategoryRepository.SaveOrganizationCategories(_modifiedOrganizationCategories);
             }
             return new Response();
         }            
