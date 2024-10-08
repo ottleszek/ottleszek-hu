@@ -49,8 +49,21 @@ namespace WillBeThere.Backend.Controllers
                     response.ClearAndAdd($"{response.Error}");
                 else
                 {
+                    try
+                    {
+                        await _unitOfWork.SaveChangesAsync();
+                    }
+                    catch (SaveChangesException ex) 
+                    { 
+                        Console.WriteLine(ex.Message);
+                        return StatusCode(StatusCodes.Status500InternalServerError, "Nem sikerült menteni az új adatokat!");
 
-                    await _unitOfWork.SaveChangesAsync();
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine(ex.Message);
+                        return StatusCode(StatusCodes.Status500InternalServerError, "Ismeretlen hiba törént!");
+                    }
                     return Ok(response);
                 }
             }
@@ -71,7 +84,21 @@ namespace WillBeThere.Backend.Controllers
                 else
                 {
 
-                    await _unitOfWork.SaveChangesAsync();
+                    try
+                    {
+                        await _unitOfWork.SaveChangesAsync();
+                    }
+                    catch (SaveChangesException ex)
+                    {
+                        Console.WriteLine(ex.Message);
+                        return StatusCode(StatusCodes.Status500InternalServerError, "Nem sikerült frissíteni az új adatokat!");
+
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine(ex.Message);
+                        return StatusCode(StatusCodes.Status500InternalServerError, "Ismeretlen hiba törént!");
+                    }
                     return Ok(response);
                 }
             }
@@ -92,8 +119,21 @@ namespace WillBeThere.Backend.Controllers
                     response.ClearAndAdd($"{response.Error}");
                 else
                 {
+                    try
+                    {
+                        await _unitOfWork.SaveChangesAsync();
+                    }
+                    catch (SaveChangesException ex)
+                    {
+                        Console.WriteLine(ex.Message);
+                        return StatusCode(StatusCodes.Status500InternalServerError, "Nem sikerült törölni az adatokat!");
 
-                    await _unitOfWork.SaveChangesAsync();
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine(ex.Message);
+                        return StatusCode(StatusCodes.Status500InternalServerError, "Ismeretlen hiba törént!");
+                    }
                     return Ok(response);
                 }
             }

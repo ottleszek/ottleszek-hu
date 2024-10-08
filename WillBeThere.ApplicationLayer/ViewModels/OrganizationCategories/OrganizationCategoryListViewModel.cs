@@ -40,7 +40,14 @@ namespace WillBeThere.ApplicationLayer.ViewModels.OrganizationCategories
 
         public async Task Save()
         {
-            await SaveModifiedOrganizationCategories();
+            if (_organizationCategoryRepository is null)
+                throw new Exception("Adatok mentése nem lehetséges!");
+            else
+            {
+                Response response = await _organizationCategoryRepository.SaveOrganizationCategories(_modifiedOrganizationCategories);
+                if (response.HasError)
+                    throw new Exception(response.Error);
+            }            
         }
         public void SetNewSelectedCategory(OrganizationCategory newSelectedCategory)
         {
@@ -80,16 +87,7 @@ namespace WillBeThere.ApplicationLayer.ViewModels.OrganizationCategories
                     }
                 }
             }
-        }
-        
-        private async Task<Response> SaveModifiedOrganizationCategories()
-        {
-            if (_organizationCategoryRepository is not null)
-            {
-                Response response = await _organizationCategoryRepository.SaveOrganizationCategories(_modifiedOrganizationCategories);
-            }
-            return new Response();
-        }            
+        }                  
 
         private bool IsModifiedCategorySameAsTheOriganl(OrganizationCategory modifiedCategory)
         {

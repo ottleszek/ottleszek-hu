@@ -1,5 +1,6 @@
 ﻿@page "/organizationcategorylist"
 @inject IOrganizationCategoryListViewModel? _viewModel
+@inject ISnackbar _snackBar
 
 <PageTitle>Szervezet kategóriák </PageTitle>
 
@@ -24,7 +25,7 @@ else
                 </div>
                 <MudSwitch @bind-Value="_isEditMode">bekapcsolva.</MudSwitch>
             </div>
-            <MudButton OnClick="@_viewModel.Save" Class="mt-2 mb-4" Variant="Variant.Filled" Color="Color.Primary" Disabled="@_viewModel.SaveDisabled">Mentés</MudButton>
+            <MudButton OnClick="@Save" Class="mt-2 mb-4" Variant="Variant.Filled" Color="Color.Primary" Disabled="@_viewModel.SaveDisabled">Mentés</MudButton>
             <MudDataGrid
                          T="OrganizationCategory"
                          Items="@_viewModel.OrganizationCategories"
@@ -57,6 +58,22 @@ else
             await _viewModel.GetCategoriesAsync();
     }
 
+    private async Task Save()
+    {
+        try
+        {
+            if (_viewModel is not null)
+            {
+                await _viewModel.Save();
+                _snackBar.Add("Mentés sikerült!", Severity.Success);
+            }
+        }
+        catch(Exception ex)
+        {
+            _snackBar.Add(ex.Message,Severity.Error);
+        }
+
+    }
     private void OnSelectedItemChanged(OrganizationCategory organizationCategory)
     {
         _viewModel?.SetNewSelectedCategory(organizationCategory);

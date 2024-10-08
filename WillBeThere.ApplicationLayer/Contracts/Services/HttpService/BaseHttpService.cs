@@ -66,6 +66,16 @@ namespace WillBeThere.ApplicationLayer.Contracts.Services.HttpService
                         }
                         else return response;
                     }
+                    else if (httpResponse.StatusCode == HttpStatusCode.InternalServerError)
+                    {
+                        string content = await httpResponse.Content.ReadAsStringAsync();
+                        string? responseMessage = JsonConvert.DeserializeObject<string>(content);
+                        if (responseMessage is null)
+                        {
+                            defaultResponse.ClearAndAdd("A mentés http kérés hibát okozott!");
+                        }
+                        else return new Response(responseMessage);
+                    }
                     else if (!httpResponse.IsSuccessStatusCode)
                     {
                         httpResponse.EnsureSuccessStatusCode();
@@ -76,7 +86,7 @@ namespace WillBeThere.ApplicationLayer.Contracts.Services.HttpService
                         Response? response = JsonConvert.DeserializeObject<Response>(content);
                         if (response is null)
                         {
-                            defaultResponse.ClearAndAdd("A módosítás http kérés hibát okozott!");
+                            defaultResponse.ClearAndAdd("A { http kérés hibát okozott!");
                         }
                         else return response;
                     }
@@ -108,6 +118,16 @@ namespace WillBeThere.ApplicationLayer.Contracts.Services.HttpService
                         }
                         else return response;
                     }
+                    else if (httpResponse.StatusCode==HttpStatusCode.InternalServerError)
+                    {
+                        string content = await httpResponse.Content.ReadAsStringAsync();
+                        string? responseMessage = JsonConvert.DeserializeObject<string>(content);
+                        if (responseMessage is null)
+                        {
+                            defaultResponse.ClearAndAdd("A mentés http kérés hibát okozott!");
+                        }
+                        else return new Response(responseMessage);
+                    }
                     else if (!httpResponse.IsSuccessStatusCode)
                     {
                         httpResponse.EnsureSuccessStatusCode();
@@ -118,7 +138,7 @@ namespace WillBeThere.ApplicationLayer.Contracts.Services.HttpService
                         Response? response = JsonConvert.DeserializeObject<Response>(content);
                         if (response is null)
                         {
-                            defaultResponse.ClearAndAdd("A módosítás http kérés hibát okozott!");
+                            defaultResponse.ClearAndAdd("A mentés http kérés hibát okozott!");
                         }
                         else return response;
                     }
@@ -149,6 +169,16 @@ namespace WillBeThere.ApplicationLayer.Contracts.Services.HttpService
                             defaultResponse.ClearAndAdd("A módosítás http kérés hibát okozott!");
                         }
                         else return response;
+                    }
+                    else if (httpResponse.StatusCode == HttpStatusCode.InternalServerError)
+                    {
+                        string content = await httpResponse.Content.ReadAsStringAsync();
+                        string? responseMessage = JsonConvert.DeserializeObject<string>(content);
+                        if (responseMessage is null)
+                        {
+                            defaultResponse.ClearAndAdd("A mentés http kérés hibát okozott!");
+                        }
+                        else return new Response(responseMessage);
                     }
                     else if (!httpResponse.IsSuccessStatusCode)
                     {

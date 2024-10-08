@@ -50,8 +50,11 @@ namespace WillBeThere.InfrastuctureLayer.Implementations.Repos.UnifOfWorks
             {
                 return await _context.SaveChangesAsync();
             }
-            catch (Exception ex) { }
-            return 0;
+            catch (Exception ex) 
+            { 
+                Rollback();
+                throw new SaveChangesException("Adatbázis mentési hiba történt.", ex);
+            }
         }
 
         public void BeginTransaction()
