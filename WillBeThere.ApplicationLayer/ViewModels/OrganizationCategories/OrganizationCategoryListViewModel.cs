@@ -1,4 +1,6 @@
-﻿using SharedDomainLayer.Responses;
+﻿using MediatR;
+using SharedDomainLayer.Responses;
+using WillBeThere.ApplicationLayer.Commands.OrganizationCategories;
 using WillBeThere.ApplicationLayer.Contracts.Repositories;
 using WillBeThere.DomainLayer.Entites;
 
@@ -7,6 +9,7 @@ namespace WillBeThere.ApplicationLayer.ViewModels.OrganizationCategories
     public class OrganizationCategoryListViewModel : IOrganizationCategoryListViewModel
     {
         private readonly IOrganizationCategoryRepository? _organizationCategoryRepository;
+        private readonly IMediator? _mediator;
 
         private OrganizationCategory? _editedCategory;
         private List<OrganizationCategory>? _organizationCategories = new List<OrganizationCategory>();
@@ -18,10 +21,13 @@ namespace WillBeThere.ApplicationLayer.ViewModels.OrganizationCategories
         public bool _hasModifiedCategory => _modifiedOrganizationCategories.Any();
         public OrganizationCategoryListViewModel
             (
+                IMediator mediator,
                 IOrganizationCategoryRepository? organizationCategoryRepository
+
             )
         {
             _organizationCategoryRepository = organizationCategoryRepository;
+            _mediator = mediator;
         }
 
         public bool IsLoded => _isLoded;
@@ -40,6 +46,7 @@ namespace WillBeThere.ApplicationLayer.ViewModels.OrganizationCategories
 
         public async Task Save()
         {
+            /*
             if (_organizationCategoryRepository is null)
                 throw new Exception("Adatok mentése nem lehetséges!");
             else
@@ -47,7 +54,22 @@ namespace WillBeThere.ApplicationLayer.ViewModels.OrganizationCategories
                 Response response = await _organizationCategoryRepository.SaveOrganizationCategories(_modifiedOrganizationCategories);
                 if (response.HasError)
                     throw new Exception(response.Error);
-            }            
+            } 
+            */
+            if (_mediator is null)
+            {
+                throw new Exception("Adatok mentése nem lehetséges!");
+            }
+            else
+            {
+                var command = new SaveOrganizationCategoriesCommand(_modifiedOrganizationCategories);
+                CancellationTokenSource cts = new CancellationTokenSource();
+                //Response response = await _saveOrganizationCategoriesCommandHandler.Handle(command, cts.Token);
+                Response response = await _mediator.Send(command, cts.Token);
+                if (response.HasError)
+                    throw new Exception(response.Error);
+            }
+
         }
         public void SetNewSelectedCategory(OrganizationCategory newSelectedCategory)
         {
