@@ -2,13 +2,13 @@
 using SharedDomainLayer.Responses;
 using WillBeThere.ApplicationLayer.Commands.OrganizationCategories;
 using WillBeThere.ApplicationLayer.Contracts.Repositories;
+using WillBeThere.ApplicationLayer.Handlers.OrganizationCategories;
 using WillBeThere.DomainLayer.Entites;
 
 namespace WillBeThere.ApplicationLayer.ViewModels.OrganizationCategories
 {
     public class OrganizationCategoryListViewModel : IOrganizationCategoryListViewModel
     {
-        private readonly IOrganizationCategoryRepository? _organizationCategoryRepository;
         private readonly IMediator? _mediator;
 
         private OrganizationCategory? _editedCategory;
@@ -19,14 +19,8 @@ namespace WillBeThere.ApplicationLayer.ViewModels.OrganizationCategories
 
         private bool _isLoded = false;
         public bool _hasModifiedCategory => _modifiedOrganizationCategories.Any();
-        public OrganizationCategoryListViewModel
-            (
-                IMediator mediator,
-                IOrganizationCategoryRepository? organizationCategoryRepository
-
-            )
+        public OrganizationCategoryListViewModel(IMediator mediator)
         {
-            _organizationCategoryRepository = organizationCategoryRepository;
             _mediator = mediator;
         }
 
@@ -37,39 +31,24 @@ namespace WillBeThere.ApplicationLayer.ViewModels.OrganizationCategories
         public bool SaveDisabled => !_hasModifiedCategory;
         public async Task GetCategoriesAsync()
         {
-            if (_organizationCategoryRepository is not null)
+            if (_mediator is not null)
             {
-                _organizationCategories = await _organizationCategoryRepository.SelectAsync();
+                _organizationCategories = await _mediator.Send(new GetOrganizationCategoriesCommand());
                 _isLoded = true;
             }
         }
 
         public async Task Save()
         {
-            /*
-            if (_organizationCategoryRepository is null)
-                throw new Exception("Adatok mentése nem lehetséges!");
-            else
-            {
-                Response response = await _organizationCategoryRepository.SaveOrganizationCategories(_modifiedOrganizationCategories);
-                if (response.HasError)
-                    throw new Exception(response.Error);
-            } 
-            */
             if (_mediator is null)
-            {
                 throw new Exception("Adatok mentése nem lehetséges!");
-            }
             else
             {
                 var command = new SaveOrganizationCategoriesCommand(_modifiedOrganizationCategories);
-                CancellationTokenSource cts = new CancellationTokenSource();
-                //Response response = await _saveOrganizationCategoriesCommandHandler.Handle(command, cts.Token);
-                Response response = await _mediator.Send(command, cts.Token);
+                Response response = await _mediator.Send(command);
                 if (response.HasError)
                     throw new Exception(response.Error);
             }
-
         }
         public void SetNewSelectedCategory(OrganizationCategory newSelectedCategory)
         {

@@ -5,6 +5,7 @@ using WillBeThere.ApplicationLayer.Contracts.Repositories;
 using WillBeThere.ApplicationLayer.Contracts.Services.DataService;
 using WillBeThere.ApplicationLayer.Contracts.Services.HttpService;
 using WillBeThere.ApplicationLayer.Contracts.Services.MapperService;
+using WillBeThere.ApplicationLayer.Handlers.OrganizationCategories;
 using WillBeThere.ApplicationLayer.Repository.OrgaizationCategories;
 using WillBeThere.ApplicationLayer.ViewModels.OrganizationCategories;
 using WillBeThere.DomainLayer.Assemblers.ResultModels;
@@ -73,6 +74,7 @@ namespace WillBeThere.ApplicationLayer
         public static void ConfigureCqrs(this IServiceCollection services)
         {
             services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(SaveOrganizationCategoriesCommandHandler).Assembly));
+            services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(GetOrganizationCategoriesCommand).Assembly));
         }
     }
 }

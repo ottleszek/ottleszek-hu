@@ -1,5 +1,4 @@
 ﻿using MediatR;
-using Microsoft.EntityFrameworkCore;
 using WillBeThere.ApplicationLayer.Queries.OrganizationPrograms;
 using WillBeThere.DomainLayer.Entites.ResultModels;
 using WillBeThere.InfrastuctureLayer.Implementations.Services;
