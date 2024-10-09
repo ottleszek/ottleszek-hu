@@ -17,6 +17,7 @@ namespace WillBeThere.ApplicationLayer.Repository.OrgaizationCategories
 
         public async Task<Response> SaveOrganizationCategories(List<OrganizationCategory> organizationCategories)
         {
+            /*
             if (_organizationCategoryMapperService is not null)
             {
                 foreach (var organizationCategory in organizationCategories)
@@ -24,6 +25,8 @@ namespace WillBeThere.ApplicationLayer.Repository.OrgaizationCategories
                     Response result = await _organizationCategoryMapperService.UpdateAsync(organizationCategory);
                 }
             }
+            */
+
             return new Response();
         }
     }

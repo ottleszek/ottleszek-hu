@@ -1,9 +1,9 @@
-﻿using SharedDomainLayer.Entities;
+﻿using SharedApplicationLayer.Assamblers;
+using SharedDomainLayer.Entities;
 using SharedDomainLayer.Responses;
-using WillBeThere.ApplicationLayer.Assemblers;
-using WillBeThere.ApplicationLayer.Contracts.Services.HttpService;
 
-namespace WillBeThere.ApplicationLayer.Contracts.Services.MapperService
+
+namespace SharedApplicationLayer.Contracts.Services
 {
     public class BaseMapperService<TModel, TDto, TAssembler> : IBaseMapperService<TModel, TDto, TAssembler>
         where TModel : class, IDbEntity<TModel>, new()
@@ -13,9 +13,7 @@ namespace WillBeThere.ApplicationLayer.Contracts.Services.MapperService
         protected readonly IBaseHttpService<TDto>? _baseHttpService;
         protected readonly TAssembler? _assambler;
 
-        public BaseMapperService()
-        {
-        }
+        public BaseMapperService() {}
 
         public BaseMapperService(IBaseHttpService<TDto>? baseHttpService, TAssembler? assambler)
         {

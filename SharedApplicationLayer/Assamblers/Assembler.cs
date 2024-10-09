@@ -1,4 +1,4 @@
-﻿namespace WillBeThere.ApplicationLayer.Assemblers
+﻿namespace SharedApplicationLayer.Assamblers
 {
     public class Assembler<TModel, TDto> : IAssembler<TModel, TDto>
         where TModel : class, new()

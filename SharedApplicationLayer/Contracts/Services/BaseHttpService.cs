@@ -5,7 +5,7 @@ using System.Net;
 using SharedDomainLayer.Entities;
 using SharedDomainLayer.Responses;
 
-namespace WillBeThere.ApplicationLayer.Contracts.Services.HttpService
+namespace SharedApplicationLayer.Contracts.Services
 {
     public class BaseHttpService<TEntityDto> : IBaseHttpService<TEntityDto> where TEntityDto : class, new()
     {

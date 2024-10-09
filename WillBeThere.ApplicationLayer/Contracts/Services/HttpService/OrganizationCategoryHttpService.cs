@@ -1,4 +1,5 @@
-﻿using WillBeThere.ApplicationLayer.Contracts.Dtos;
+﻿using SharedApplicationLayer.Contracts.Services;
+using WillBeThere.ApplicationLayer.Contracts.Dtos;
 
 namespace WillBeThere.ApplicationLayer.Contracts.Services.HttpService
 {

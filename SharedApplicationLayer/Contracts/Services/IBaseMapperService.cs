@@ -1,9 +1,9 @@
-﻿using SharedDomainLayer.Entities;
+﻿using SharedApplicationLayer.Assamblers;
+using SharedDomainLayer.Entities;
 using SharedDomainLayer.Responses;
-using WillBeThere.ApplicationLayer.Assemblers;
 
-namespace WillBeThere.ApplicationLayer.Contracts.Services.MapperService
-{
+namespace SharedApplicationLayer.Contracts.Services
+{ 
     public interface IBaseMapperService<TModel, TDto, TAssembler>
         where TModel : class, IDbEntity<TModel>, new()
         where TDto : class, new()

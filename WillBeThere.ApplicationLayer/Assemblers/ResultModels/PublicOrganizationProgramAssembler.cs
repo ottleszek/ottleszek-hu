@@ -2,6 +2,7 @@
 using WillBeThere.ApplicationLayer.Contracts.Dtos.ResultModels;
 using WillBeThere.ApplicationLayer.Extensions.ModelExtensions;
 using WillBeThere.DomainLayer.Entites.ResultModels;
+using SharedApplicationLayer.Assamblers;
 
 namespace WillBeThere.DomainLayer.Assemblers.ResultModels
 {

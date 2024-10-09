@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using SharedApplicationLayer.Assamblers;
 using SharedDomainLayer.Entities;
 using SharedDomainLayer.Repos.Commands;
 using SharedDomainLayer.Responses;

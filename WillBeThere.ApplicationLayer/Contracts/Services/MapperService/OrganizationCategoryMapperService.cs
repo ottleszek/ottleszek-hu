@@ -2,6 +2,7 @@
 using WillBeThere.ApplicationLayer.Assemblers;
 using WillBeThere.ApplicationLayer.Contracts.Services.HttpService;
 using WillBeThere.ApplicationLayer.Contracts.Dtos;
+using SharedApplicationLayer.Contracts.Services;
 
 namespace WillBeThere.ApplicationLayer.Contracts.Services.MapperService
 {

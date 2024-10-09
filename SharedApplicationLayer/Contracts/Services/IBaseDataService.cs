@@ -1,8 +1,8 @@
-﻿using SharedDomainLayer.Entities;
+﻿using SharedApplicationLayer.Assamblers;
+using SharedDomainLayer.Entities;
 using SharedDomainLayer.Responses;
-using WillBeThere.ApplicationLayer.Assemblers;
 
-namespace WillBeThere.ApplicationLayer.Contracts.Services.DataService
+namespace SharedApplicationLayer.Contracts.Services
 { 
     public interface IBaseDataService<TEntity, TEntityDto, TAssembler>
         where TEntity : class, IDbEntity<TEntity>, new()

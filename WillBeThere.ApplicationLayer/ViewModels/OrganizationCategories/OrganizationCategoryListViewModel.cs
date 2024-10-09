@@ -1,8 +1,7 @@
 ﻿using MediatR;
 using SharedDomainLayer.Responses;
 using WillBeThere.ApplicationLayer.Commands.OrganizationCategories;
-using WillBeThere.ApplicationLayer.Contracts.Repositories;
-using WillBeThere.ApplicationLayer.Handlers.OrganizationCategories;
+using WillBeThere.ApplicationLayer.Queries.OrganizationCategories;
 using WillBeThere.DomainLayer.Entites;
 
 namespace WillBeThere.ApplicationLayer.ViewModels.OrganizationCategories
@@ -33,7 +32,7 @@ namespace WillBeThere.ApplicationLayer.ViewModels.OrganizationCategories
         {
             if (_mediator is not null)
             {
-                _organizationCategories = await _mediator.Send(new GetOrganizationCategoriesCommand());
+                _organizationCategories = await _mediator.Send(new GetOrganizationsCategoriesQuery());
                 _isLoded = true;
             }
         }

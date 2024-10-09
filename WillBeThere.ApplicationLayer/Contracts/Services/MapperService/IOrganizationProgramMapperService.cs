@@ -1,4 +1,5 @@
-﻿using WillBeThere.ApplicationLayer.Assemblers;
+﻿using SharedApplicationLayer.Contracts.Services;
+using WillBeThere.ApplicationLayer.Assemblers;
 using WillBeThere.ApplicationLayer.Contracts.Dtos;
 using WillBeThere.DomainLayer.Entites;
 using WillBeThere.DomainLayer.Entites.ResultModels;

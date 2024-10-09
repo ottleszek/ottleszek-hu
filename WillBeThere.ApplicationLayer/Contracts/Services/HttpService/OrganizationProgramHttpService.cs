@@ -1,4 +1,5 @@
-﻿using System.Diagnostics;
+﻿using SharedApplicationLayer.Contracts.Services;
+using System.Diagnostics;
 using System.Net.Http.Json;
 using WillBeThere.ApplicationLayer.Contracts.Dtos;
 using WillBeThere.ApplicationLayer.Contracts.Dtos.ResultModels;

@@ -1,4 +1,5 @@
-﻿using WillBeThere.ApplicationLayer.Contracts.Dtos;
+﻿using SharedApplicationLayer.Assamblers;
+using WillBeThere.ApplicationLayer.Contracts.Dtos;
 using WillBeThere.ApplicationLayer.Extensions.ModelExtensions;
 using WillBeThere.DomainLayer.Entites;
 
