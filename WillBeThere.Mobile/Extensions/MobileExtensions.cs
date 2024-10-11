@@ -1,9 +1,9 @@
 ﻿using WillBeThere.Mobile.ViewModels;
 using WillBeThere.DomainLayer.Assemblers.ResultModels;
 using WillBeThere.ApplicationLayer.Assemblers;
-using WillBeThere.ApplicationLayer.Contracts.Services.DataService;
-using WillBeThere.ApplicationLayer.Contracts.Services.HttpService;
-using WillBeThere.ApplicationLayer.Contracts.Services.MapperService;
+using WillBeThere.ApplicationLayer.Contracts.Services.Base.HttpServices;
+using WillBeThere.ApplicationLayer.Contracts.Services.Base.MapperServices;
+using WillBeThere.ApplicationLayer.Contracts.Services.Base.DataServices;
 
 namespace WillBeThere.Mobile.Extensions
 {
@@ -37,16 +37,16 @@ namespace WillBeThere.Mobile.Extensions
         public static void ConfigureServices(this IServiceCollection services)
         {
             // HttpService
-            services.AddScoped<IOrganizationProgramHttpService, OrganizationProgramHttpService>();
-            services.AddScoped<IOrganizationCategoryHttpService, OrganizationCategoryHttpService>();
+            services.AddScoped<IBaseOrganizationProgramHttpService, BaseOrganizationProgramHttpService>();
+            services.AddScoped<IBaseOrganizationCategoryHttpService, OrganizationCategoryHttpService>();
 
             // MapperService
-            services.AddScoped<IOrganizationProgramMapperService, OrganizationProgramMapperService>();
-            services.AddScoped<IOrganizationCategoryMapperService, OrganizationCategoryMapperService>();
+            services.AddScoped<IBaseOrganizationProgramMapperService, OrganizationProgramMapperService>();
+            services.AddScoped<IBaseOrganizationCategoryMapperService, OrganizationCategoryMapperService>();
 
             // DataService
-            services.AddScoped<IOrganizationProgramDataService, OrganizationProgramDataService>();
-            services.AddScoped<IOrganizationCategoryDataService, OrganizationCategoryDataService>();
+            services.AddScoped<IBaseOrganizationProgramDataService, BaseOrganizationProgramDataService>();
+            services.AddScoped<IBaseOrganizationCategoryDataService, BaseOrganizationCategoryDataService>();
         }
 
         public static void ConfigureViewModels(this IServiceCollection services)

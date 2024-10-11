@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using SharedApplicationLayer.Repos;
 using SharedDomainLayer.Entities;
-using SharedDomainLayer.Repos;
 
 namespace WillBeThere.InfrastuctureLayer.Implementations.Repos.BaseCqrsRepos
 {

@@ -1,12 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using WillBeThere.ApplicationLayer.Assemblers;
 using WillBeThere.ApplicationLayer.Commands.OrganizationCategories;
-using WillBeThere.ApplicationLayer.Contracts.Repositories;
-using WillBeThere.ApplicationLayer.Contracts.Services.DataService;
-using WillBeThere.ApplicationLayer.Contracts.Services.HttpService;
-using WillBeThere.ApplicationLayer.Contracts.Services.MapperService;
 using WillBeThere.ApplicationLayer.Queries.OrganizationCategories;
-using WillBeThere.ApplicationLayer.Repository.OrgaizationCategories;
 using WillBeThere.ApplicationLayer.ViewModels.OrganizationCategories;
 using WillBeThere.DomainLayer.Assemblers.ResultModels;
 
@@ -19,7 +14,6 @@ namespace WillBeThere.ApplicationLayer
             services.ConfigureHttpCliens();
             services.ConfigureAssamblers();
             services.ConfigureRepositories();
-            services.ConfigureServices();
             services.ConfigureViewModels();
             services.ConfigureCqrs();
             return services;
@@ -48,22 +42,7 @@ namespace WillBeThere.ApplicationLayer
 
         public static void ConfigureRepositories(this IServiceCollection services)
         {
-            services.AddScoped<IOrganizationCategoryRepository, OrganizationCategoryRepository>();            
-        }
-
-        public static void ConfigureServices(this IServiceCollection services)
-        {
-            // HttpService
-            services.AddScoped<IOrganizationProgramHttpService, OrganizationProgramHttpService>();
-            services.AddScoped<IOrganizationCategoryHttpService, OrganizationCategoryHttpService>();
-
-            // MapperService
-            services.AddScoped<IOrganizationProgramMapperService, OrganizationProgramMapperService>();
-            services.AddScoped<IOrganizationCategoryMapperService, OrganizationCategoryMapperService>();
-
-            // DataService
-            services.AddScoped<IOrganizationProgramDataService, OrganizationProgramDataService>();
-            services.AddScoped<IOrganizationCategoryDataService, OrganizationCategoryDataService>();
+            //services.AddScoped<IOrganizationCategoryRepository, OrganizationCategoryRepository>();            
         }
 
         public static void ConfigureViewModels(this IServiceCollection services)

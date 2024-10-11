@@ -7,7 +7,7 @@ using WillBeThere.ApplicationLayer.Queries.OrganizationPrograms;
 using WillBeThere.DomainLayer.Assemblers.ResultModels;
 using WillBeThere.DomainLayer.Entites;
 using WillBeThere.DomainLayer.Entites.ResultModels;
-using WillBeThere.DomainLayer.Repos;
+using WillBeThere.DomainLayer.Repos.Base;
 using WillBeThere.InfrastuctureLayer.Implementations.Repos.WillBeThere.QueryRepos.Interfaces;
 
 namespace WillBeThere.Backend.Controllers.WillBeThere
@@ -25,7 +25,7 @@ namespace WillBeThere.Backend.Controllers.WillBeThere
             OrganizationProgramAssembler? assambler, 
             PublicOrganizationProgramAssembler publicOrganizationProgramAssambler,
             IOrganizationProgramQueryRepo? queryRepo,
-            IOrganizationProgramCommandRepo? commandRepo,
+            IBaseOrganizationProgramCommandRepo? commandRepo,
             IUnitOfWork unitOfWork
             //IOrganizationProgramService? organizationProgramService,
             

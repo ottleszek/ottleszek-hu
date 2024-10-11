@@ -3,14 +3,14 @@ using CommunityToolkit.Mvvm.Input;
 using WillBeThere.Mobile.Controls;
 using WillBeThere.DomainLayer.Entites.ResultModels;
 using WillBeThere.DomainLayer.Entites;
-using WillBeThere.ApplicationLayer.Contracts.Services.DataService;
+using WillBeThere.ApplicationLayer.Contracts.Services.Base.DataServices;
 
 namespace WillBeThere.Mobile.ViewModels
 {
     public partial class MainPageViewModel : ObservableObject
     {
-        private readonly IOrganizationProgramDataService? _organizationProgramDataService;
-        private readonly IOrganizationCategoryDataService? _organizationCategoryDataService;
+        private readonly IBaseOrganizationProgramDataService? _organizationProgramDataService;
+        private readonly IBaseOrganizationCategoryDataService? _organizationCategoryDataService;
         private readonly Task _initTask;
 
         private List<PublicOrganizationProgram> allPublicOrganizationPrograms = new List<PublicOrganizationProgram>();
@@ -28,8 +28,8 @@ namespace WillBeThere.Mobile.ViewModels
         }
 
         public MainPageViewModel(
-            IOrganizationProgramDataService organizationProgramDataService,
-            IOrganizationCategoryDataService organizationCategoryDataService
+            IBaseOrganizationProgramDataService organizationProgramDataService,
+            IBaseOrganizationCategoryDataService organizationCategoryDataService
             )
         {
             _organizationProgramDataService = organizationProgramDataService;

@@ -1,6 +1,5 @@
-﻿using SharedDomainLayer.Entities;
-using SharedDomainLayer.Repos;
-
+﻿using SharedApplicationLayer.Repos;
+using SharedDomainLayer.Entities;
 namespace WillBeThere.ApplicationLayer.Contracts.UnitOfWork
 {
     public interface IRepoStore

@@ -16,14 +16,14 @@ namespace WillBeThere.Backend.Controllers
         where TDto : class, new()
     {
         protected readonly IAssembler<TModel, TDto>? _assambler;
-        protected readonly IBaseCommandRepo? _commandRepo;
+        protected readonly IBaseCommandRepo2? _commandRepo;
         protected readonly IBaseQueryRepo? _queryRepo;
         protected readonly IUnitOfWork? _unitOfWork;
 
         public BaseController(
             IAssembler<TModel, TDto>? assambler,
             IBaseQueryRepo? queryRepo,
-            IBaseCommandRepo? commandRepo, 
+            IBaseCommandRepo2? commandRepo, 
             IUnitOfWork unitOfWork
             )
         {

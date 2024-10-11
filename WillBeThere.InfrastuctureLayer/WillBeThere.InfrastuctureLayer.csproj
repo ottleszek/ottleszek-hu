@@ -19,4 +19,8 @@
     <ProjectReference Include="..\WillBeThere.ApplicationLayer\WillBeThere.ApplicationLayer.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Persistence\Services\FileStore\" />
+  </ItemGroup>
+
 </Project>

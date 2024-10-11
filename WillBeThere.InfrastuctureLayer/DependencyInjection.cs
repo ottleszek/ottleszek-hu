@@ -1,21 +1,27 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using SharedDomainLayer.Repos;
+using SharedApplicationLayer.Repos;
 using WillBeThere.ApplicationLayer.Assemblers;
 using WillBeThere.ApplicationLayer.Contracts.UnitOfWork;
+using WillBeThere.ApplicationLayer.Repos.Base;
 using WillBeThere.DomainLayer.Assemblers.ResultModels;
-using WillBeThere.DomainLayer.Repos;
-using WillBeThere.DomainLayer.Services;
+using WillBeThere.DomainLayer.Repos.Base;
+using WillBeThere.DomainLayer.Services.Base;
 using WillBeThere.InfrastuctureLayer.Context;
 using WillBeThere.InfrastuctureLayer.Handlers.OrganizationCategories;
 using WillBeThere.InfrastuctureLayer.Handlers.OrganizationPrograms;
 using WillBeThere.InfrastuctureLayer.Implementations.Repos.BaseCqrsRepos;
+using WillBeThere.InfrastuctureLayer.Implementations.Repos.BaseCqrsRepos.Commands;
 using WillBeThere.InfrastuctureLayer.Implementations.Repos.UnifOfWorks;
 using WillBeThere.InfrastuctureLayer.Implementations.Repos.WillBeThere.CommandRepos;
 using WillBeThere.InfrastuctureLayer.Implementations.Repos.WillBeThere.QueryRepos;
 using WillBeThere.InfrastuctureLayer.Implementations.Repos.WillBeThere.QueryRepos.Interfaces;
 using WillBeThere.InfrastuctureLayer.Implementations.Repos.WillBeThere.QueryRepos.Repos;
 using WillBeThere.InfrastuctureLayer.Implementations.Services;
+using WillBeThere.InfrastuctureLayer.Persistence.Services.Http;
+using WillBeThere.InfrastuctureLayer.Persistence.Services.Http.Base.DataService;
+using WillBeThere.InfrastuctureLayer.Persistence.Services.Http.Base.HttpService;
+using WillBeThere.InfrastuctureLayer.Persistence.Services.Http.Base.MapperService;
 
 namespace WillBeThere.InfrastuctureLayer
 {
@@ -77,16 +83,16 @@ namespace WillBeThere.InfrastuctureLayer
                 services.AddScoped<IPublicSpaceQueryRepo,PublicSpaceQueryRepo<WillBeThereInMemoryContext>>();
                 services.AddScoped<IRegisteredUserQueryRepo,RegisteredUserQueryRepo<WillBeThereInMemoryContext>>();
 
-                services.AddScoped<IAddressCommandRepo, AddressCommandRepo<WillBeThereInMemoryContext>>();
-                services.AddScoped<IEditorCommandRepo, EditorCommandRepo<WillBeThereInMemoryContext>>();
-                services.AddScoped<IOrganizationCategoryCommandRepo, OrganizationCategoryCommandRepo<WillBeThereInMemoryContext>>();
-                services.AddScoped<IOrganizationEditorCommandRepo, OrganizationEditorCommandRepo<WillBeThereInMemoryContext>>();
-                services.AddScoped<IOrganizationProgramCommandRepo, OrganizationProgramCommandRepo<WillBeThereInMemoryContext>>();
-                services.AddScoped<IOrganizationCommandRepo, OrganizationCommandRepo<WillBeThereInMemoryContext>>();
-                services.AddScoped<IParticipationCommandRepo, ParticipationCommandRepoo<WillBeThereInMemoryContext>>();
-                services.AddScoped<IProgamOwnerCommandRepo, ProgramOwnerCommandRepo<WillBeThereInMemoryContext>>();
-                services.AddScoped<IPublicSpaceCommandRepo, PublicSpaceCommandRepo<WillBeThereInMemoryContext>>();
-                services.AddScoped<IRegisteredUserCommandRepo, RegisteredUserCommandRepo<WillBeThereInMemoryContext>>();
+                services.AddScoped<IBaseAddressCommandRepo, AddressCommandRepo<WillBeThereInMemoryContext>>();
+                services.AddScoped<IBaseEditorCommandRepo, EditorCommandRepo<WillBeThereInMemoryContext>>();
+                services.AddScoped<IBaseOrganizationCategoryCommandRepo, OrganizationCategoryCommandRepo<WillBeThereInMemoryContext>>();
+                services.AddScoped<IBaseOrganizationEditorCommandRepo, OrganizationEditorCommandRepo<WillBeThereInMemoryContext>>();
+                services.AddScoped<IBaseOrganizationProgramCommandRepo, OrganizationProgramCommandRepo<WillBeThereInMemoryContext>>();
+                services.AddScoped<IBaseOrganizationCommandRepo, OrganizationCommandRepo<WillBeThereInMemoryContext>>();
+                services.AddScoped<IBaseParticipationCommandRepo, ParticipationCommandRepoo<WillBeThereInMemoryContext>>();
+                services.AddScoped<IBaseProgamOwnerCommandRepo, ProgramOwnerCommandRepo<WillBeThereInMemoryContext>>();
+                services.AddScoped<IBasePublicSpaceCommandRepo, PublicSpaceCommandRepo<WillBeThereInMemoryContext>>();
+                services.AddScoped<IBaseRegisteredUserCommandRepo, RegisteredUserCommandRepo<WillBeThereInMemoryContext>>();
 
                 services.AddScoped<IWillBeThereWrapQueryUnitOfWork,WillBeThereWrapQueryUnitOfWork<WillBeThereInMemoryContext>>();
                 services.AddScoped<IWrapperUnitOfWork, WrapperUnitOfWork<WillBeThereInMemoryContext>>();
@@ -94,6 +100,8 @@ namespace WillBeThere.InfrastuctureLayer
                 services.AddScoped<IRepoStore,WrapperUnitOfWork<WillBeThereInMemoryContext>>();
 
                 services.AddScoped<IBaseRepo, BaseRepo<WillBeThereInMemoryContext>>();
+                services.AddScoped<IBaseCommandRepo,BaseCommandRepo<WillBeThereInMemoryContext>>();
+
             }
             else
             {
@@ -111,16 +119,32 @@ namespace WillBeThere.InfrastuctureLayer
             }
         }
 
+
         public static void ConfigureServices(this IServiceCollection services)
         {
+            // HttpService
+            services.AddScoped<IBaseOrganizationProgramHttpService, BaseOrganizationProgramHttpService>();
+            services.AddScoped<IBaseOrganizationCategoryHttpService, BaseOrganizationCategoryHttpService>();
+
+            // MapperService
+            services.AddScoped<IBaseOrganizationProgramMapperService, BaseOrganizationProgramMapperService>();
+            services.AddScoped<IBaseOrganizationCategoryMapperService, BaseOrganizationCategoryMapperService>();
+
+            // DataService
+            services.AddScoped<IBaseOrganizationProgramDataService, BaseOrganizationProgramDataService>();
+            services.AddScoped<IBaseOrganizationCategoryDataService, BaseOrganizationCategoryDataService>();
+        
             services.AddScoped<IOrganizationProgramService, OrganizationProgramService>();
             services.AddScoped<IBaseOrganizationCategoryService, BaseOrganizationCategoryServices>();
+
+            //
+            services.AddScoped<IHttpOrganizationCategoryService, HttpOrganizationCategoryService>();
         }
 
         public static void ConfigureCqrs(this IServiceCollection services)
         {
             services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(GetPublicOrganizationProgramListHandler).Assembly));
-            services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(GetOrganizationsCategoriesListHandler).Assembly));
+            services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(GetOrganizationCategoriesListHandler).Assembly));
         }
     }
 }

@@ -15,7 +15,7 @@ namespace WillBeThere.Backend.Controllers
         public IncludedController(
             IAssembler<TModel, TDto>? assambler,
             IBaseQueryRepo? queryRepo,
-            IBaseCommandRepo? commandRepo,
+            IBaseCommandRepo2? commandRepo,
             IUnitOfWork unitOfWork
             ) : base(assambler,queryRepo, commandRepo, unitOfWork)
         {

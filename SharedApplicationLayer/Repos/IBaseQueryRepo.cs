@@ -1,6 +1,4 @@
 ﻿using SharedDomainLayer.Entities;
-using SharedDomainLayer.Responses;
-
 
 namespace SharedApplicationLayer.Repos
 {

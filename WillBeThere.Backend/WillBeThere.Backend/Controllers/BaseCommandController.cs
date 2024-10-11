@@ -15,9 +15,9 @@ namespace WillBeThere.Backend.Controllers
     {
         protected readonly IAssembler<TModel, TDto>? _assambler;
         protected readonly IUnitOfWork _unitOfWork;
-        protected readonly IBaseCommandRepo? _repository;
+        protected readonly IBaseCommandRepo2? _repository;
 
-        public BaseCommandController(IAssembler<TModel, TDto>? assambler, IBaseCommandRepo? repository, IUnitOfWork unitOfWork)
+        public BaseCommandController(IAssembler<TModel, TDto>? assambler, IBaseCommandRepo2? repository, IUnitOfWork unitOfWork)
         {
             _assambler = assambler;
             _unitOfWork = unitOfWork;

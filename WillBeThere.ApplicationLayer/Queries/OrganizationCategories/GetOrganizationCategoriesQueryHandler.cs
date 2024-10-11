@@ -1,21 +1,21 @@
 ﻿using MediatR;
-using WillBeThere.ApplicationLayer.Contracts.Repositories;
+using WillBeThere.ApplicationLayer.Contracts.Services.Base.DataServices;
 using WillBeThere.DomainLayer.Entites;
 
 namespace WillBeThere.ApplicationLayer.Queries.OrganizationCategories
 {
     public class GetOrganizationCategoriesQueryHandler : IRequestHandler<GetOrganizationsCategoriesQuery, List<OrganizationCategory>>
     {
-        private readonly IOrganizationCategoryRepository _organizationCategoryRepository;
-        public GetOrganizationCategoriesQueryHandler(IOrganizationCategoryRepository organizationCategoryRepository)
+        private readonly IBaseOrganizationCategoryDataService _organizationCategoryDataService;
+        public GetOrganizationCategoriesQueryHandler(IBaseOrganizationCategoryDataService organizationCategoryRepository)
         {
-            _organizationCategoryRepository = organizationCategoryRepository;
+            _organizationCategoryDataService = organizationCategoryRepository;
         }
         public async Task<List<OrganizationCategory>> Handle(GetOrganizationsCategoriesQuery request, CancellationToken cancellationToken)
         {
-            if (_organizationCategoryRepository is not null)
+            if (_organizationCategoryDataService is not null)
             {
-                return await _organizationCategoryRepository.SelectAsync();
+                return await _organizationCategoryDataService.SelectAsync();
             }
             return new List<OrganizationCategory>();
         }

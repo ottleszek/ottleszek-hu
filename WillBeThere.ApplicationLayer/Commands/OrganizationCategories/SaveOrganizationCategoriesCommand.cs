@@ -1,14 +1,14 @@
 ﻿using MediatR;
 using SharedDomainLayer.Responses;
-using WillBeThere.DomainLayer.Entites;
+using WillBeThere.ApplicationLayer.Contracts.Dtos;
 
 namespace WillBeThere.ApplicationLayer.Commands.OrganizationCategories
 {
     public class SaveOrganizationCategoriesCommand : IRequest<Response>
     {
-        public List<OrganizationCategory> OrganizationCategories { get; set; }
+        public List<OrganizationCategoryDto> OrganizationCategories { get; set; }
 
-        public SaveOrganizationCategoriesCommand(List<OrganizationCategory> organizationCategories)
+        public SaveOrganizationCategoriesCommand(List<OrganizationCategoryDto> organizationCategories)
         {
             OrganizationCategories = organizationCategories;
         }

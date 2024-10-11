@@ -1,4 +1,4 @@
-﻿using SharedDomainLayer.Repos;
+﻿using SharedApplicationLayer.Repos;
 
 namespace WillBeThere.ApplicationLayer.Contracts.UnitOfWork
 {

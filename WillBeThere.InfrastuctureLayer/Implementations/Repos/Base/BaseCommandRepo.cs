@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using SharedApplicationLayer.Repos;
 using SharedDomainLayer.Entities;
-using SharedDomainLayer.Repos.Commands;
 using SharedDomainLayer.Responses;
 using WillBeThere.InfrastuctureLayer.Implementations.Repos.BaseRepos;
 
@@ -67,7 +67,7 @@ namespace WillBeThere.InfrastuctureLayer.Implementations.Repos.BaseCqrsRepos.Com
                 response.Append($"Az entitás id:{entity.Id}");
             response.Append($"Az entitás törlése nem sikerült!");
             if (response.HasError)
-                response.InsertToBegining($"{nameof(BaseCommandRepo<TDbContext>)} osztály, {nameof(Delete)} metódusban hiba keletkezett");
+                response.InsertToBegining($"{nameof(BaseCommandRepo<TDbContext>)} osztály, {nameof(Delete)} metódusban hiba keletkezett!");
             return response;
         }
 
@@ -84,7 +84,7 @@ namespace WillBeThere.InfrastuctureLayer.Implementations.Repos.BaseCqrsRepos.Com
 
             if (dbSet is null)
             {
-                response.Append($"{nameof(BaseCommandRepo<TDbContext>)} osztály, {nameof(Insert)} metódusban hiba keletkezett");
+                response.Append($"{nameof(BaseCommandRepo<TDbContext>)} osztály, {nameof(Insert)} metódusban hiba keletkezett!");
                 response.Append($"Az adatbázis nem elérhető!");
                 return response;
             }
@@ -99,10 +99,9 @@ namespace WillBeThere.InfrastuctureLayer.Implementations.Repos.BaseCqrsRepos.Com
                 {
                     response.Append(e.Message);
                 }
-
-                response.Append($"{nameof(BaseCommandRepo<TDbContext>)} osztály, {nameof(Insert)} metódusban hiba keletkezett");
-                response.Append($"{entity} osztály hozzáadása az adatbázishoz nem sikerült!");
             }
+            response.Append($"{nameof(BaseCommandRepo<TDbContext>)} osztály, {nameof(Insert)} metódusban hiba keletkezett!");
+            response.Append($"{entity} osztály hozzáadása az adatbázishoz nem sikerült!");
             return response;
         }            
     }

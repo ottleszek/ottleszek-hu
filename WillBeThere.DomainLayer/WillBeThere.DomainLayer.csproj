@@ -10,4 +10,8 @@
     <ProjectReference Include="..\SharedDomainLayer\SharedDomainLayer.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Repos\" />
+  </ItemGroup>
+
 </Project>

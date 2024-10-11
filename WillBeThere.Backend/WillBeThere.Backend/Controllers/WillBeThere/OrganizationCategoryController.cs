@@ -4,8 +4,8 @@ using WillBeThere.ApplicationLayer.Assemblers;
 using WillBeThere.ApplicationLayer.Contracts.Dtos;
 using WillBeThere.ApplicationLayer.Contracts.UnitOfWork;
 using WillBeThere.DomainLayer.Entites;
-using WillBeThere.DomainLayer.Repos;
-using WillBeThere.DomainLayer.Services;
+using WillBeThere.DomainLayer.Repos.Base;
+using WillBeThere.DomainLayer.Services.Base;
 using WillBeThere.InfrastuctureLayer.Implementations.Repos.WillBeThere.QueryRepos.Interfaces;
 
 namespace WillBeThere.Backend.Controllers.WillBeThere
@@ -22,7 +22,7 @@ namespace WillBeThere.Backend.Controllers.WillBeThere
         OrganizationCategoryAssembler? assambler, 
             IBaseOrganizationCategoryService? baseOrganizationCategoryService,
             IOrganizationCategoryQueryRepo? organizationCategoryQueryRepo,
-            IOrganizationCategoryCommandRepo? organizationCategoryCommandRepo,
+            IBaseOrganizationCategoryCommandRepo? organizationCategoryCommandRepo,
             IUnitOfWork unitOfWork
             ) : base(assambler, organizationCategoryQueryRepo,organizationCategoryCommandRepo, unitOfWork)
         {            

@@ -20,9 +20,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Contracts\PersistenceServices\" />
     <Folder Include="Contracts\Responses\" />
     <Folder Include="Contracts\Requests\" />
     <Folder Include="Handlers\OrganizationCategories\" />
+    <Folder Include="Repos\OrgaizationCategories\" />
   </ItemGroup>
 
 </Project>

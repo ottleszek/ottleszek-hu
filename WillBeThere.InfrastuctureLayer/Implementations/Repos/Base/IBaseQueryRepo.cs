@@ -1,6 +1,5 @@
-﻿using SharedDomainLayer.Entities;
-using SharedDomainLayer.Repos;
-using SharedDomainLayer.Repos.Commands;
+﻿using SharedApplicationLayer.Repos;
+using SharedDomainLayer.Entities;
 
 namespace WillBeThere.InfrastuctureLayer.Implementations.Repos.Base
 {

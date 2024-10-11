@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using WillBeThere.DomainLayer.Entites;
-using WillBeThere.DomainLayer.Services;
+using WillBeThere.DomainLayer.Services.Base;
 using WillBeThere.InfrastuctureLayer.Implementations.Repos.WillBeThere.QueryRepos.Interfaces;
 
 namespace WillBeThere.InfrastuctureLayer.Implementations.Services
@@ -9,9 +9,9 @@ namespace WillBeThere.InfrastuctureLayer.Implementations.Services
     {
         private IOrganizationCategoryQueryRepo? _organizationCategoryQueryRepo;
 
-        public BaseOrganizationCategoryServices(IOrganizationCategoryQueryRepo? _organizationCategoryQueryRepo)
+        public BaseOrganizationCategoryServices(IOrganizationCategoryQueryRepo? organizationCategoryQueryRepo)
         {
-            _organizationCategoryQueryRepo = _organizationCategoryQueryRepo;
+            _organizationCategoryQueryRepo = organizationCategoryQueryRepo;
         }
 
         public async Task<List<OrganizationCategory>>  GetOrganizationsCategories()
