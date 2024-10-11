@@ -2,7 +2,7 @@
 using SharedDomainLayer.Responses;
 using System.Linq.Expressions;
 
-namespace WillBeThere.InfrastuctureLayer.Implementations.Repos.Base
+namespace SharedApplicationLayer.Repos
 {
     public interface INoCqrsRepo
     {

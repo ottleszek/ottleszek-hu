@@ -2,6 +2,7 @@
 using SharedApplicationLayer.Contracts.Persistence;
 using SharedDomainLayer.Responses;
 using WillBeThere.ApplicationLayer.Assemblers;
+using WillBeThere.DomainLayer.Entites;
 
 namespace WillBeThere.ApplicationLayer.Commands.OrganizationCategories
 {
@@ -19,7 +20,7 @@ namespace WillBeThere.ApplicationLayer.Commands.OrganizationCategories
         public async Task<Response> Handle(SaveOrganizationCategoriesCommand request, CancellationToken cancellationToken)
         {
 
-            return await _dataPersistenceService.SaveMany(request.OrganizationCategories.Select(oc => _organizationCategoryAssembler.ToModel(oc)));
+            return await _dataPersistenceService.SaveMany<OrganizationCategory>(request.OrganizationCategories.Select(oc => _organizationCategoryAssembler.ToModel(oc)).ToList());
         }
     }
 }
