@@ -1,8 +1,8 @@
 ﻿using MediatR;
 using SharedDomainLayer.Responses;
 using WillBeThere.ApplicationLayer.Commands.OrganizationCategories;
+using WillBeThere.ApplicationLayer.Contracts.Dtos;
 using WillBeThere.ApplicationLayer.Queries.OrganizationCategories;
-using WillBeThere.DomainLayer.Entites;
 
 namespace WillBeThere.ApplicationLayer.ViewModels.OrganizationCategories
 {
@@ -10,11 +10,11 @@ namespace WillBeThere.ApplicationLayer.ViewModels.OrganizationCategories
     {
         private readonly IMediator? _mediator;
 
-        private OrganizationCategory? _editedCategory;
-        private List<OrganizationCategory>? _organizationCategories = new List<OrganizationCategory>();
-        private List<OrganizationCategory> _modifiedOrganizationCategories = new List<OrganizationCategory>();
+        private OrganizationCategoryDto? _editedCategory;
+        private List<OrganizationCategoryDto>? _organizationCategories = new List<OrganizationCategoryDto>();
+        private List<OrganizationCategoryDto> _modifiedOrganizationCategories = new List<OrganizationCategoryDto>();
 
-        private OrganizationCategory? _selectedOrganizationCategory;
+        private OrganizationCategoryDto? _selectedOrganizationCategory;
 
         private bool _isLoded = false;
         public bool _hasModifiedCategory => _modifiedOrganizationCategories.Any();
@@ -24,7 +24,7 @@ namespace WillBeThere.ApplicationLayer.ViewModels.OrganizationCategories
         }
 
         public bool IsLoded => _isLoded;
-        public List<OrganizationCategory> OrganizationCategories => _organizationCategories is not null ? _organizationCategories : new List<OrganizationCategory>();
+        public List<OrganizationCategoryDto> OrganizationCategories => _organizationCategories is not null ? _organizationCategories : new List<OrganizationCategoryDto>();
         public int NumberOfOrganizationCategories => OrganizationCategories.Count; 
 
         public bool SaveDisabled => !_hasModifiedCategory;
@@ -49,17 +49,17 @@ namespace WillBeThere.ApplicationLayer.ViewModels.OrganizationCategories
                     throw new Exception(response.Error);
             }
         }
-        public void SetNewSelectedCategory(OrganizationCategory newSelectedCategory)
+        public void SetNewSelectedCategory(OrganizationCategoryDto newSelectedCategory)
         {
             _selectedOrganizationCategory = newSelectedCategory;
         }
 
-        public void StartEditingCategory(OrganizationCategory editedCategory)
+        public void StartEditingCategory(OrganizationCategoryDto editedCategory)
         {
             _editedCategory = editedCategory;
         }
 
-        public void AddToEditedCategory(OrganizationCategory editedCategory)
+        public void AddToEditedCategory(OrganizationCategoryDto editedCategory)
         {
             if (editedCategory == _editedCategory)
                 return;
@@ -89,9 +89,9 @@ namespace WillBeThere.ApplicationLayer.ViewModels.OrganizationCategories
             }
         }                  
 
-        private bool IsModifiedCategorySameAsTheOriganl(OrganizationCategory modifiedCategory)
+        private bool IsModifiedCategorySameAsTheOriganl(OrganizationCategoryDto modifiedCategory)
         {
-            OrganizationCategory? orginalOrganizationCategory = _organizationCategories?.Find(category => category.Id == modifiedCategory.Id);
+            OrganizationCategoryDto? orginalOrganizationCategory = _organizationCategories?.Find(category => category.Id == modifiedCategory.Id);
             return orginalOrganizationCategory != null && orginalOrganizationCategory.Equals(modifiedCategory);
         }
     }

@@ -11,10 +11,5 @@ namespace WillBeThere.InfrastuctureLayer.Implementations.Repos.WillBeThere.Comma
         public OrganizationCategoryCommandRepo(TDbContext? dbContext) : base(dbContext)
         {
         }
-
-        public Task<Response> Save(List<OrganizationCategory> organizationCategories)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

@@ -1,8 +1,8 @@
 ﻿using WillBeThere.ApplicationLayer.Contracts.Dtos.ResultModels;
 using WillBeThere.DomainLayer.Entites.ResultModels;
 
-namespace WillBeThere.DomainLayer.Extensions.ResultModels
-{
+namespace WillBeThere.ApplicationLayer.Extensions.ResultModels
+{ 
     public static class PublicOrganizationProgramExtension
     {
         public static PublicOrganizationProgramDto ToDto(this PublicOrganizationProgram model)

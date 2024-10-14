@@ -1,13 +1,12 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SharedApplicationLayer.Assamblers;
+using SharedApplicationLayer.Repos;
 using SharedDomainLayer.Entities;
-using SharedDomainLayer.Repos.Commands;
 using SharedDomainLayer.Responses;
-using WillBeThere.ApplicationLayer.Assemblers;
 using WillBeThere.ApplicationLayer.Contracts.UnitOfWork;
 
 
-namespace WillBeThere.Backend.Controllers
+namespace WillBeThere.Backend.Controllers.Base
 {
     public abstract class BaseCommandController<TModel, TDto> : ControllerBase
         where TModel : class, IDbEntity<TModel>, new()
@@ -15,9 +14,9 @@ namespace WillBeThere.Backend.Controllers
     {
         protected readonly IAssembler<TModel, TDto>? _assambler;
         protected readonly IUnitOfWork _unitOfWork;
-        protected readonly IBaseCommandRepo2? _repository;
+        protected readonly IBaseCommandRepo? _repository;
 
-        public BaseCommandController(IAssembler<TModel, TDto>? assambler, IBaseCommandRepo2? repository, IUnitOfWork unitOfWork)
+        public BaseCommandController(IAssembler<TModel, TDto>? assambler, IBaseCommandRepo? repository, IUnitOfWork unitOfWork)
         {
             _assambler = assambler;
             _unitOfWork = unitOfWork;
@@ -43,7 +42,7 @@ namespace WillBeThere.Backend.Controllers
                     await _unitOfWork.SaveChangesAsync();
                     return Ok(response);
                 }
-            }            
+            }
             response.ClearAndAdd("Az új adatok mentése nem lehetséges!");
             return BadRequest(response);
         }

@@ -1,9 +1,10 @@
-﻿using SharedDomainLayer.Responses;
+﻿using SharedDomainLayer.Entities;
+using SharedDomainLayer.Responses;
 
 namespace SharedApplicationLayer.Contracts.Persistence
 {
-    public interface IDataPersistenceService
+    public interface IDataPersistenceService<TDto, TAssembler>
     {
-        public Task<Response> SaveMany<TEntity>(List<TEntity> entities) where TEntity : class,new();
+        public Task<Response> SaveMany<TEntity>(List<TEntity> entities) where TEntity : class, IDbEntity<TEntity>,new();
     }
 }

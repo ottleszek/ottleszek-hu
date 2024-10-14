@@ -7,11 +7,13 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\SharedDomainLayer\SharedDomainLayer.csproj" />
+    <Compile Remove="Repos\**" />
+    <EmbeddedResource Remove="Repos\**" />
+    <None Remove="Repos\**" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Repos\" />
+    <ProjectReference Include="..\SharedDomainLayer\SharedDomainLayer.csproj" />
   </ItemGroup>
 
 </Project>

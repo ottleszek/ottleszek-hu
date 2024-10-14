@@ -1,9 +1,12 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using SharedApplicationLayer.Contracts.Persistence;
 using WillBeThere.ApplicationLayer.Assemblers;
 using WillBeThere.ApplicationLayer.Commands.OrganizationCategories;
+using WillBeThere.ApplicationLayer.Contracts.Dtos.OrganizationCategories;
 using WillBeThere.ApplicationLayer.Queries.OrganizationCategories;
 using WillBeThere.ApplicationLayer.ViewModels.OrganizationCategories;
 using WillBeThere.DomainLayer.Assemblers.ResultModels;
+using WillBeThere.DomainLayer.Entites;
 
 namespace WillBeThere.ApplicationLayer
 {

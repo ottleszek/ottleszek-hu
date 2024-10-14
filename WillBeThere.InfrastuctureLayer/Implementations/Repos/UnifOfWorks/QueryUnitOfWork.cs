@@ -1,11 +1,11 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using SharedDomainLayer.Repos;
+using SharedApplicationLayer.Repos;
 
 namespace WillBeThere.InfrastuctureLayer.Implementations.Repos.UnifOfWorks
 {
     public class QueryUnitOfWork<TDbContext> : UnitOfWork<TDbContext> where TDbContext : DbContext
     {
-        public QueryUnitOfWork(TDbContext context, IBaseRepo repo) : base(context,repo)
+        public QueryUnitOfWork(TDbContext context, IBaseRepo repo) : base(context)
         {
         }
 

@@ -1,8 +1,8 @@
 ﻿using MediatR;
-using WillBeThere.DomainLayer.Entites;
+using WillBeThere.ApplicationLayer.Contracts.Dtos;
 
 namespace WillBeThere.ApplicationLayer.Queries.OrganizationCategories
 {
-    public class GetOrganizationsCategoriesQuery : IRequest<List<OrganizationCategory>> { }
+    public class GetOrganizationsCategoriesQuery : IRequest<List<OrganizationCategoryDto>> { }
 
 }

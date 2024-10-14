@@ -5,7 +5,7 @@ using SharedDomainLayer.Entities;
 using WillBeThere.ApplicationLayer.Assemblers;
 using WillBeThere.InfrastuctureLayer.Implementations.Repos.Base;
 
-namespace WillBeThere.Backend.Controllers
+namespace WillBeThere.Backend.Controllers.Base
 {
     public abstract class BaseQueryController<TModel, TDto> : ControllerBase
         where TModel : class, IDbEntity<TModel>, new()

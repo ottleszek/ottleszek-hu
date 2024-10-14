@@ -1,6 +1,6 @@
 ﻿using MediatR;
 using SharedDomainLayer.Responses;
-using WillBeThere.ApplicationLayer.Contracts.Dtos;
+using WillBeThere.ApplicationLayer.Contracts.Dtos.OrganizationCategories;
 
 namespace WillBeThere.ApplicationLayer.Commands.OrganizationCategories
 {

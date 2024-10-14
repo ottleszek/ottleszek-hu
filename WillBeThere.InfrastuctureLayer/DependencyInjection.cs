@@ -1,10 +1,13 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using SharedApplicationLayer.Contracts.Persistence;
 using SharedApplicationLayer.Repos;
 using WillBeThere.ApplicationLayer.Assemblers;
+using WillBeThere.ApplicationLayer.Contracts.Dtos.OrganizationCategories;
 using WillBeThere.ApplicationLayer.Contracts.UnitOfWork;
 using WillBeThere.ApplicationLayer.Repos.Base;
 using WillBeThere.DomainLayer.Assemblers.ResultModels;
+using WillBeThere.DomainLayer.Entites;
 using WillBeThere.DomainLayer.Repos.Base;
 using WillBeThere.DomainLayer.Services.Base;
 using WillBeThere.InfrastuctureLayer.Context;
@@ -34,6 +37,7 @@ namespace WillBeThere.InfrastuctureLayer
             services.ConfigureAssamblers();
             services.ConfigureRepos();
             services.ConfigureServices();
+            services.ConfigurePersistence();
             services.ConfigureCqrs();
             return services;
         }
@@ -141,6 +145,11 @@ namespace WillBeThere.InfrastuctureLayer
             services.AddScoped<IHttpOrganizationCategoryService, HttpOrganizationCategoryService>();
         }
 
+        public static void ConfigurePersistence(this IServiceCollection services)
+        {
+            services.AddScoped<IDataPersistenceService<OrganizationCategory, OrganizationCategoryDto, OrganizationCategoryAssembler>, HttpOrganizationCategoryService>();
+            ervices.AddScoped<IDataPersistenceService<OrganizationCategory, OrganizationCategoryDto, OrganizationCategoryAssembler>, HttpOrganizationCategoryService>();
+        }
         public static void ConfigureCqrs(this IServiceCollection services)
         {
             services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(GetPublicOrganizationProgramListHandler).Assembly));

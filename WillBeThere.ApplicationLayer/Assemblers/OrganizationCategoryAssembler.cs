@@ -1,7 +1,7 @@
-﻿using WillBeThere.ApplicationLayer.Contracts.Dtos;
-using WillBeThere.DomainLayer.Entites;
+﻿using WillBeThere.DomainLayer.Entites;
 using WillBeThere.DomainLayer.Extensions.ModelExtensions;
 using SharedApplicationLayer.Assamblers;
+using WillBeThere.ApplicationLayer.Contracts.Dtos.OrganizationCategories;
 
 namespace WillBeThere.ApplicationLayer.Assemblers
 {

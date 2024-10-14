@@ -4,34 +4,42 @@ using System.Diagnostics;
 using System.Net.Http.Json;
 using System.Net;
 using SharedApplicationLayer.Contracts.Persistence;
+using SharedApplicationLayer.Assamblers;
+using SharedDomainLayer.Entities;
 
 
 namespace WillBeThere.InfrastuctureLayer.Persistence.Services.Http
 {
-    public abstract class HttpDataPersistenceService : IDataPersistenceService
+    public abstract class HttpDataPersistenceService<TModel, TDto, TAssembler> : IDataPersistenceService<TModel, TDto, TAssembler>
+        where TModel : class, IDbEntity<TModel>, new()
+        where TDto : class, new()
+        where TAssembler : class, IAssembler<TModel, TDto>
     {
         protected readonly HttpClient? _httpClient;
+        protected readonly TAssembler? _assambler;
 
         public HttpDataPersistenceService()
         {
             _httpClient = new HttpClient();
         }
-        public HttpDataPersistenceService(IHttpClientFactory? httpClientFactory)
+        public HttpDataPersistenceService(IHttpClientFactory? httpClientFactory, TAssembler? assambler)
         {
             if (httpClientFactory is not null)
             {
                 _httpClient = httpClientFactory.CreateClient("WillBeThere");
             }
+            _assambler = assambler;
         }
 
-        public async Task<Response> SaveMany<TEntity>(List<TEntity> entities) where TEntity : class,new() 
+        public async Task<Response> SaveMany<TEntity>(List<TModel> entities) where TEntity : class,new() 
         {
             Response defaultResponse = new();
-            if (_httpClient is not null)
+            if (_httpClient is not null && _assambler is not null)
             {
                 try
                 {
-                    HttpResponseMessage httpResponse = await _httpClient.PostAsJsonAsync($"api/{GetApiName<TEntity>()}/bulk", entities);
+                    List<TDto> dtos = entities.Select(e => _assambler.ToDto(e)).ToList();
+                    HttpResponseMessage httpResponse = await _httpClient.PostAsJsonAsync($"api/{GetApiName<TEntity>()}/bulk", dtos);
                     if (httpResponse.StatusCode == HttpStatusCode.BadRequest)
                     {
                         string content = await httpResponse.Content.ReadAsStringAsync();

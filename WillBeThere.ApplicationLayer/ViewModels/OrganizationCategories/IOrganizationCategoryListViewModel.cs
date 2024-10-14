@@ -1,17 +1,18 @@
-﻿using WillBeThere.DomainLayer.Entites;
+﻿using WillBeThere.ApplicationLayer.Contracts.Dtos;
+using WillBeThere.DomainLayer.Entites;
 
 namespace WillBeThere.ApplicationLayer.ViewModels.OrganizationCategories
 {
     public interface IOrganizationCategoryListViewModel
     {
-        List<OrganizationCategory> OrganizationCategories { get; }
+        List<OrganizationCategoryDto> OrganizationCategories { get; }
         public Task Save();
         int NumberOfOrganizationCategories { get; }
         bool IsLoded { get; }
         bool SaveDisabled { get; }
         Task GetCategoriesAsync();
-        void StartEditingCategory(OrganizationCategory editedCategory);
-        void SetNewSelectedCategory(OrganizationCategory newSelectedCategory);
-        void AddToEditedCategory(OrganizationCategory editedCategory);
+        void StartEditingCategory(OrganizationCategoryDto editedCategory);
+        void SetNewSelectedCategory(OrganizationCategoryDto newSelectedCategory);
+        void AddToEditedCategory(OrganizationCategoryDto editedCategory);
     }
 }

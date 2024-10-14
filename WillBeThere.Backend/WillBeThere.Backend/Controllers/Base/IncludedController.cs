@@ -1,12 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SharedApplicationLayer.Assamblers;
+using SharedApplicationLayer.Repos;
 using SharedDomainLayer.Entities;
-using SharedDomainLayer.Repos.Commands;
 using WillBeThere.ApplicationLayer.Contracts.UnitOfWork;
-using WillBeThere.InfrastuctureLayer.Implementations.Repos.Base;
 
-namespace WillBeThere.Backend.Controllers
+namespace WillBeThere.Backend.Controllers.Base
 {
     public class IncludedController<TModel, TDto> : BaseController<TModel, TDto>
         where TModel : class, IDbEntity<TModel>, new()
@@ -15,9 +14,9 @@ namespace WillBeThere.Backend.Controllers
         public IncludedController(
             IAssembler<TModel, TDto>? assambler,
             IBaseQueryRepo? queryRepo,
-            IBaseCommandRepo2? commandRepo,
+            IBaseCommandRepo? commandRepo,
             IUnitOfWork unitOfWork
-            ) : base(assambler,queryRepo, commandRepo, unitOfWork)
+            ) : base(assambler, queryRepo, commandRepo, unitOfWork)
         {
         }
 
@@ -30,7 +29,7 @@ namespace WillBeThere.Backend.Controllers
             if (_queryRepo != null && _assambler is not null)
             {
                 IIncludedQueryRepo includedRepo = (IIncludedQueryRepo)_queryRepo;
-                IQueryable<TModel>? query =  includedRepo.SelectAllInluded<TModel>();
+                IQueryable<TModel>? query = includedRepo.SelectAllInluded<TModel>();
                 if (query != null)
                 {
                     entities = await query.ToListAsync();

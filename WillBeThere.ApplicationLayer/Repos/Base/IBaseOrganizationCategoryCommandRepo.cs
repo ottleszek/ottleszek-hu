@@ -6,6 +6,5 @@ namespace WillBeThere.ApplicationLayer.Repos.Base
 {
     public interface IBaseOrganizationCategoryCommandRepo : IBaseCommandRepo
     {
-        Task<Response> Save(List<OrganizationCategory> organizationCategories);
     }
 }

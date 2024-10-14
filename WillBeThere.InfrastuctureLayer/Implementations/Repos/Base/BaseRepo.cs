@@ -20,7 +20,7 @@ namespace WillBeThere.InfrastuctureLayer.Implementations.Repos.BaseCqrsRepos
                 return _dbContext;
         }
 
-        protected DbSet<TEntity>? GetDbSet<TEntity>() where TEntity : class, IDbEntity<TEntity>, new()
+        public DbSet<TEntity>? GetDbSet<TEntity>() where TEntity : class, IDbEntity<TEntity>, new()
         {
             try
             {

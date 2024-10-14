@@ -1,29 +1,27 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SharedApplicationLayer.Assamblers;
+using SharedApplicationLayer.Repos;
 using SharedDomainLayer.Entities;
-using SharedDomainLayer.Repos.Commands;
 using SharedDomainLayer.Responses;
-using WillBeThere.ApplicationLayer.Assemblers;
 using WillBeThere.ApplicationLayer.Contracts.UnitOfWork;
-using WillBeThere.InfrastuctureLayer.Implementations.Repos.Base;
 using WillBeThere.InfrastuctureLayer.Implementations.Repos.UnifOfWorks;
 
-namespace WillBeThere.Backend.Controllers
+namespace WillBeThere.Backend.Controllers.Base
 {
     public abstract class BaseController<TModel, TDto> : ControllerBase
         where TModel : class, IDbEntity<TModel>, new()
         where TDto : class, new()
     {
         protected readonly IAssembler<TModel, TDto>? _assambler;
-        protected readonly IBaseCommandRepo2? _commandRepo;
+        protected readonly IBaseCommandRepo? _commandRepo;
         protected readonly IBaseQueryRepo? _queryRepo;
         protected readonly IUnitOfWork? _unitOfWork;
 
         public BaseController(
             IAssembler<TModel, TDto>? assambler,
             IBaseQueryRepo? queryRepo,
-            IBaseCommandRepo2? commandRepo, 
+            IBaseCommandRepo? commandRepo,
             IUnitOfWork unitOfWork
             )
         {
@@ -32,7 +30,7 @@ namespace WillBeThere.Backend.Controllers
             _commandRepo = commandRepo;
             if (_commandRepo is not null)
                 unitOfWork.SetRepository(_commandRepo);
-            _queryRepo=queryRepo;
+            _queryRepo = queryRepo;
         }
 
         #region Commands API-s
@@ -54,8 +52,8 @@ namespace WillBeThere.Backend.Controllers
                     {
                         await _unitOfWork.SaveChangesAsync();
                     }
-                    catch (SaveChangesException ex) 
-                    { 
+                    catch (SaveChangesException ex)
+                    {
                         Console.WriteLine(ex.Message);
                         return StatusCode(StatusCodes.Status500InternalServerError, "Nem sikerült menteni az új adatokat!");
 
