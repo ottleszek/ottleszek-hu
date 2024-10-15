@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using SharedApplicationLayer.Repos;
 using SharedDomainLayer.Entities;
-using SharedDomainLayer.Repos.Commands;
 using System.Linq.Expressions;
 using WillBeThere.InfrastuctureLayer.Implementations.Repos.BaseCqrsRepos;
 

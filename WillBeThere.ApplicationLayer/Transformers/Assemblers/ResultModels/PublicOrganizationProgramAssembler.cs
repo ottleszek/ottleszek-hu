@@ -2,9 +2,9 @@
 using WillBeThere.ApplicationLayer.Contracts.Dtos.ResultModels;
 using WillBeThere.ApplicationLayer.Extensions.ModelExtensions;
 using WillBeThere.DomainLayer.Entites.ResultModels;
-using SharedApplicationLayer.Assamblers;
+using SharedApplicationLayer.Transformers;
 
-namespace WillBeThere.DomainLayer.Assemblers.ResultModels
+namespace WillBeThere.ApplicationLayer.Transformers.Assemblers.ResultModels
 {
     public class PublicOrganizationProgramAssembler : IAssembler<PublicOrganizationProgram, PublicOrganizationProgramDto>
     {

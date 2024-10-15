@@ -1,5 +1,5 @@
 ﻿using SharedApplicationLayer.Contracts.Services;
-using WillBeThere.ApplicationLayer.Contracts.Dtos;
+using WillBeThere.ApplicationLayer.Contracts.Dtos.OrganizationCategories;
 
 namespace WillBeThere.ApplicationLayer.Contracts.Services.Base.HttpServices
 {

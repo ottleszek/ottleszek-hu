@@ -1,8 +1,8 @@
 ﻿using MediatR;
 using SharedApplicationLayer.Contracts.Persistence;
 using SharedDomainLayer.Responses;
-using WillBeThere.ApplicationLayer.Assemblers;
 using WillBeThere.ApplicationLayer.Contracts.Dtos.OrganizationCategories;
+using WillBeThere.ApplicationLayer.Transformers.Assemblers;
 using WillBeThere.DomainLayer.Entites;
 
 namespace WillBeThere.ApplicationLayer.Commands.OrganizationCategories

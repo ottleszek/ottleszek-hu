@@ -1,9 +1,9 @@
-﻿using SharedApplicationLayer.Assamblers;
+﻿using SharedApplicationLayer.Transformers;
 using WillBeThere.ApplicationLayer.Contracts.Dtos;
+using WillBeThere.ApplicationLayer.Extensions.ModelExtensions;
 using WillBeThere.DomainLayer.Entites;
-using WillBeThere.DomainLayer.Extensions.ModelExtensions;
 
-namespace WillBeThere.ApplicationLayer.Assemblers
+namespace WillBeThere.ApplicationLayer.Transformers.Assemblers
 {
     public class AddressAssembler : IAssembler<Address, AddressDto>
     {
@@ -12,7 +12,7 @@ namespace WillBeThere.ApplicationLayer.Assemblers
             return model.ToDto();
         }
 
-        public  Address ToModel(AddressDto dto)
+        public Address ToModel(AddressDto dto)
         {
             return dto.ToModel();
         }

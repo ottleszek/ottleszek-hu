@@ -1,6 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Mysqlx.Crud;
-using SharedApplicationLayer.Assamblers;
 using SharedApplicationLayer.Contracts.Persistence;
 using SharedApplicationLayer.Repos;
 using SharedDomainLayer.Entities;
@@ -9,12 +7,8 @@ using WillBeThere.ApplicationLayer.Contracts.UnitOfWork;
 
 namespace WillBeThere.InfrastuctureLayer.Persistence.Services.DataBase
 {
-    public class DbDataPersistenceService<TModel, TDto, TAssembler> : IDataPersistenceService<TDto, TAssembler>
-        where TModel : class, IDbEntity<TModel>, new ()
-        where TDto : class, new ()
-        where TAssembler : class, IAssembler<TModel, TDto>
+    public class DbDataPersistenceService : IDataPersistenceService
     {
-
         private readonly IUnitOfWork? _unitOfWork;
         private readonly IBaseRepo? _baseRepo;
 
@@ -31,7 +25,7 @@ namespace WillBeThere.InfrastuctureLayer.Persistence.Services.DataBase
 
             if (_baseRepo is null)
             {
-                response.Append($"{nameof(DbDataPersistenceService<TModel, TDto, TAssembler>)} osztály, {nameof(SaveMany)} metódusban hiba keletkezett!");
+                response.Append($"{nameof(DbDataPersistenceService)} osztály, {nameof(SaveMany)} metódusban hiba keletkezett!");
                 response.Append($"Az adatbázis nem elérhető!");
                 return Task.FromResult(response);
             }
@@ -41,7 +35,7 @@ namespace WillBeThere.InfrastuctureLayer.Persistence.Services.DataBase
                 dbSet = _baseRepo.GetDbSet<TEntity>();
                 if (dbSet is null)
                 {
-                    response.Append($"{nameof(DbDataPersistenceService<TModel, TDto, TAssembler>)} osztály, {nameof(SaveMany)} metódusban hiba keletkezett!");
+                    response.Append($"{nameof(DbDataPersistenceService)} osztály, {nameof(SaveMany)} metódusban hiba keletkezett!");
                     response.Append($"Az adatbázis nem elérhető!");
                     return Task.FromResult(response);
                 }
@@ -58,7 +52,7 @@ namespace WillBeThere.InfrastuctureLayer.Persistence.Services.DataBase
                     }
                 }
             }
-            response.Append($"{nameof(DbDataPersistenceService<TModel, TDto, TAssembler>)} osztály, {nameof(SaveMany)} metódusban hiba keletkezett!");
+            response.Append($"{nameof(DbDataPersistenceService)} osztály, {nameof(SaveMany)} metódusban hiba keletkezett!");
             response.Append($"{entities.Count} db {nameof(TEntity)} objektum hozzáadása az adatbázishoz nem sikerült!");
             return Task.FromResult(response);
         }

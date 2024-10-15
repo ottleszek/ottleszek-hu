@@ -1,9 +1,8 @@
 ﻿using WillBeThere.ApplicationLayer.Contracts.Dtos;
 using WillBeThere.DomainLayer.Entites;
-using WillBeThere.DomainLayer.Extensions.ModelExtensions;
-using SharedApplicationLayer.Assamblers;
+using SharedApplicationLayer.Transformers;
 
-namespace WillBeThere.ApplicationLayer.Assemblers
+namespace WillBeThere.ApplicationLayer.Transformers.Assemblers
 {
     public class OrganizationAssembler : IAssembler<Organization, OrganizationDto>
     {

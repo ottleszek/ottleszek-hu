@@ -3,10 +3,11 @@ using SharedDomainLayer.Responses;
 
 namespace SharedApplicationLayer.Repos
 {
-    public interface IBaseCommandRepo<TEntityDto> where TEntityDto : class, new()
+    public interface IBaseCommandRepo : IBaseRepo, IRepositoryBase
     {
-        Task<Response> InsertAsync<TEntity>(TEntityDto entityDto) where TEntity : class, IDbEntity<TEntity>, new();
-        Task<Response> UpdateAsync<TEntity>(TEntityDto entityDto) where TEntity : class, IDbEntity<TEntity>, new();
-        Task<Response> DeleteAsync<TEntity>(Guid id) where TEntity : class, IDbEntity<TEntity>, new();
+        public Response Update<TEntity>(TEntity entity) where TEntity : class, IDbEntity<TEntity>, new();
+        public Response Delete<TEntity>(TEntity? entity) where TEntity : class, IDbEntity<TEntity>, new();
+        public Response Delete<TEntity>(Guid id) where TEntity : class, IDbEntity<TEntity>, new();
+        public Response Insert<TEntity>(TEntity entity) where TEntity : class, IDbEntity<TEntity>, new();
     }
 }

@@ -1,6 +1,8 @@
-﻿namespace WillBeThere.ApplicationLayer.Contracts.Dtos
+﻿using SharedDomainLayer.Entities;
+
+namespace WillBeThere.ApplicationLayer.Contracts.Dtos
 {
-    public class AddressDto
+    public class AddressDto : IDbEntity<AddressDto>
     {
         public Guid Id { get; set; } = Guid.Empty;
         public Guid PublicScapeID { get; set; } = Guid.Empty;

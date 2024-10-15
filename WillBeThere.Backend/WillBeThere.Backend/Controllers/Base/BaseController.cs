@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using SharedApplicationLayer.Assamblers;
+using SharedApplicationLayer.Transformers;
 using SharedApplicationLayer.Repos;
 using SharedDomainLayer.Entities;
 using SharedDomainLayer.Responses;
@@ -152,7 +152,7 @@ namespace WillBeThere.Backend.Controllers.Base
 
             if (_queryRepo != null && _assambler is not null)
             {
-                entities = await _queryRepo.SelectAll<TModel>().ToListAsync();
+                entities = await _queryRepo.SelectAllAsync<TModel>();
                 return Ok(entities.Select(entity => _assambler.ToDto(entity)));
             }
             return NoContent();
@@ -165,7 +165,7 @@ namespace WillBeThere.Backend.Controllers.Base
             TModel? entity = new();
             if (_queryRepo is not null && _assambler is not null)
             {
-                entity = await Task.FromResult(_queryRepo.GetById<TModel>(id));
+                entity = await _queryRepo.GetByIdAsync<TModel>(id);
                 if (entity != null)
                     return Ok(_assambler.ToDto(entity));
                 else

@@ -1,9 +1,9 @@
-﻿using SharedApplicationLayer.Assamblers;
+﻿using SharedApplicationLayer.Transformers;
 using WillBeThere.ApplicationLayer.Contracts.Dtos;
 using WillBeThere.DomainLayer.Entites;
 using WillBeThere.DomainLayer.Extensions.ModelExtensions;
 
-namespace WillBeThere.ApplicationLayer.Assemblers
+namespace WillBeThere.ApplicationLayer.Transformers.Assemblers
 {
     public class OrganizationProgramAssembler : IAssembler<OrganizationProgram, OrganizationProgramDto>
     {

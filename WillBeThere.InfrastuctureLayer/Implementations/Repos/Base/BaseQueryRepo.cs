@@ -1,10 +1,11 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using SharedApplicationLayer.Repos;
 using SharedDomainLayer.Entities;
 using WillBeThere.InfrastuctureLayer.Implementations.Repos.BaseRepos;
 
 namespace WillBeThere.InfrastuctureLayer.Implementations.Repos.Base
 {
-    public class BaseQueryRepo<TDbContext> : RepositoryBase<DbContext>, IBaseQueryRepo where TDbContext : DbContext
+    public class BaseQueryRepo<TDbContext> : RepositoryBase<DbContext> , IBaseQueryRepo where TDbContext : DbContext
     {
 
         public BaseQueryRepo(DbContext? dbContext) : base(dbContext) { }

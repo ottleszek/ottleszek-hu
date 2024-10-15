@@ -6,10 +6,9 @@ using System.Diagnostics;
 using System.Net.Http.Json;
 using System.Net;
 
-
 namespace WillBeThere.InfrastuctureLayer.Persistence.Services.Http.Base
 {
-    public class BaseHttpService<TEntityDto> : IBaseHttpService<TEntityDto> where TEntityDto : class, new()
+    public class BaseHttpService : IBaseService
     {
         protected readonly HttpClient? _httpClient;
 
@@ -25,13 +24,18 @@ namespace WillBeThere.InfrastuctureLayer.Persistence.Services.Http.Base
             }
         }
 
-        public async Task<List<TEntityDto>> SelectAllAsync<TEntity>() where TEntity : class, IDbEntity<TEntity>, new()
+        public Task<TEntityDto?> GetByIdAsync<TEntityDto>(Guid id) where TEntityDto : class, IDbEntity<TEntityDto>, new()
+        {
+            throw new NotImplementedException();
+        }
+
+        public async Task<List<TEntityDto>> SelectAllAsync<TEntityDto>() where TEntityDto : class, IDbEntity<TEntityDto>, new()
         {
             if (_httpClient is not null)
             {
                 try
                 {
-                    List<TEntityDto>? resultDto = await _httpClient.GetFromJsonAsync<List<TEntityDto>>($"api/{GetApiName<TEntity>()}");
+                    List<TEntityDto>? resultDto = await _httpClient.GetFromJsonAsync<List<TEntityDto>>($"api/{GetApiName<TEntityDto>()}");
                     if (resultDto is not null)
                     {
                         return resultDto;
@@ -45,12 +49,12 @@ namespace WillBeThere.InfrastuctureLayer.Persistence.Services.Http.Base
             return new List<TEntityDto>();
         }
 
-        public Task<TEntityDto?> GetByIdAsync<TEntity>(Guid id) where TEntity : class, IDbEntity<TEntity>, new()
+        public async Task<Response> DeleteAsync<TEntityDto>(TEntityDto? entity) where TEntityDto : class, IDbEntity<TEntityDto>, new()
         {
-            throw new NotImplementedException();
+            return await Task.FromResult(new Response());
         }
 
-        public async Task<Response> DeleteAsync<TEntity>(Guid id) where TEntity : class, IDbEntity<TEntity>, new()
+        public async Task<Response> DeleteAsync<TEntityDto>(Guid id) where TEntityDto : class, IDbEntity<TEntityDto>, new()
         {
             Response defaultResponse = new();
             if (_httpClient is not null)
@@ -102,14 +106,14 @@ namespace WillBeThere.InfrastuctureLayer.Persistence.Services.Http.Base
             return defaultResponse;
         }
 
-        public async Task<Response> InsertAsync<TEntity>(TEntityDto entityDto) where TEntity : class, IDbEntity<TEntity>, new()
+        public async Task<Response> InsertAsync<TEntityDto>(TEntityDto entityDto) where TEntityDto : class, IDbEntity<TEntityDto>, new()
         {
             Response defaultResponse = new();
             if (_httpClient is not null)
             {
                 try
                 {
-                    HttpResponseMessage httpResponse = await _httpClient.PostAsJsonAsync($"api/{GetApiName<TEntity>()}", entityDto);
+                    HttpResponseMessage httpResponse = await _httpClient.PostAsJsonAsync($"api/{GetApiName<TEntityDto>()}", entityDto);
                     if (httpResponse.StatusCode == HttpStatusCode.BadRequest)
                     {
                         string content = await httpResponse.Content.ReadAsStringAsync();
@@ -154,14 +158,14 @@ namespace WillBeThere.InfrastuctureLayer.Persistence.Services.Http.Base
             return defaultResponse;
         }
 
-        public async Task<Response> UpdateAsync<TEntity>(TEntityDto entityDto) where TEntity : class, IDbEntity<TEntity>, new()
+        public async Task<Response> UpdateAsync<TEntityDto>(TEntityDto entityDto) where TEntityDto : class, IDbEntity<TEntityDto>, new()
         {
             Response defaultResponse = new();
             if (_httpClient is not null)
             {
                 try
                 {
-                    HttpResponseMessage httpResponse = await _httpClient.PutAsJsonAsync($"api/{GetApiName<TEntity>()}", entityDto);
+                    HttpResponseMessage httpResponse = await _httpClient.PutAsJsonAsync($"api/{GetApiName<TEntityDto>()}", entityDto);
                     if (httpResponse.StatusCode == HttpStatusCode.BadRequest)
                     {
                         string content = await httpResponse.Content.ReadAsStringAsync();
@@ -207,9 +211,13 @@ namespace WillBeThere.InfrastuctureLayer.Persistence.Services.Http.Base
             return defaultResponse;
         }
 
-        private static string GetApiName<TEntity>() where TEntity : class, new()
+        private object GetApiName<TEntityDto>() where TEntityDto : class, IDbEntity<TEntityDto>, new()
         {
-            return new TEntity().GetType().Name;
+            string result = typeof(TEntityDto).Name;
+            if (result.Length<3)
+                return result;
+            else
+                return result.Remove(result.Length - 3);
         }
     }
 }

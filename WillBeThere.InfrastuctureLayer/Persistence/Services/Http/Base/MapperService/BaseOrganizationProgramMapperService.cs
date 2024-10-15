@@ -1,11 +1,11 @@
-﻿using WillBeThere.DomainLayer.Assemblers.ResultModels;
-using WillBeThere.DomainLayer.Entites.ResultModels;
+﻿using WillBeThere.DomainLayer.Entites.ResultModels;
 using WillBeThere.DomainLayer.Entites;
-using WillBeThere.ApplicationLayer.Assemblers;
 using WillBeThere.ApplicationLayer.Contracts.Dtos;
 using WillBeThere.ApplicationLayer.Contracts.Dtos.ResultModels;
 using WillBeThere.ApplicationLayer.Contracts.Services.Base.MapperServices;
 using WillBeThere.ApplicationLayer.Contracts.Services.Base.HttpServices;
+using WillBeThere.ApplicationLayer.Transformers.Assemblers;
+using WillBeThere.ApplicationLayer.Transformers.Assemblers.ResultModels;
 
 namespace WillBeThere.InfrastuctureLayer.Persistence.Services.Http.Base.MapperService
 {

@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using SharedApplicationLayer.Repos;
 using SharedDomainLayer.Entities;
 
 namespace WillBeThere.InfrastuctureLayer.Implementations.Repos.Base

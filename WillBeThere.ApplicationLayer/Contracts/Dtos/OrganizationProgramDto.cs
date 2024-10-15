@@ -1,6 +1,8 @@
-﻿namespace WillBeThere.ApplicationLayer.Contracts.Dtos
+﻿using SharedDomainLayer.Entities;
+
+namespace WillBeThere.ApplicationLayer.Contracts.Dtos
 {
-    public class OrganizationProgramDto
+    public class OrganizationProgramDto : IDbEntity<OrganizationProgramDto>
     {
         public Guid Id { get; set; } = Guid.Empty;
         public string Title { get; set; } = string.Empty;

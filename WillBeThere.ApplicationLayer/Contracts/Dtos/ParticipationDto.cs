@@ -1,6 +1,8 @@
-﻿namespace WillBeThere.ApplicationLayer.Contracts.Dtos
+﻿using SharedDomainLayer.Entities;
+
+namespace WillBeThere.ApplicationLayer.Contracts.Dtos
 {
-    public class ParticipationDto
+    public class ParticipationDto : IDbEntity<ParticipationDto>
     {
         public Guid Id { get; set; } = Guid.Empty;
         public Guid RegisteredUserId { get; set; } = Guid.Empty;

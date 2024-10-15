@@ -1,4 +1,4 @@
-﻿using SharedApplicationLayer.Assamblers;
+﻿using SharedApplicationLayer.Transformers;
 using SharedApplicationLayer.Contracts.Services;
 using SharedDomainLayer.Entities;
 using SharedDomainLayer.Responses;
@@ -7,15 +7,15 @@ namespace WillBeThere.InfrastuctureLayer.Persistence.Services.Http.Base
 {
     public class BaseMapperService<TModel, TDto, TAssembler> : IBaseMapperService<TModel, TDto, TAssembler>
         where TModel : class, IDbEntity<TModel>, new()
-        where TDto : class, new()
+        where TDto : class, IDbEntity<TDto>, new()
         where TAssembler : class, IAssembler<TModel, TDto>
     {
-        protected readonly IBaseHttpService<TDto>? _baseHttpService;
+        protected readonly IBaseHttpService? _baseHttpService;
         protected readonly TAssembler? _assambler;
 
         public BaseMapperService() { }
 
-        public BaseMapperService(IBaseHttpService<TDto>? baseHttpService, TAssembler? assambler)
+        public BaseMapperService(IBaseHttpService? baseHttpService, TAssembler? assambler)
         {
             _baseHttpService = baseHttpService;
             _assambler = assambler;
@@ -24,7 +24,7 @@ namespace WillBeThere.InfrastuctureLayer.Persistence.Services.Http.Base
         {
             if (_baseHttpService is not null && _assambler is not null)
             {
-                List<TDto> entityDtos = await _baseHttpService.SelectAllAsync<TModel>();
+                List<TDto> entityDtos = await _baseHttpService.SelectAllAsync<TDto>();
                 List<TModel> result = entityDtos.Select(entityDto => _assambler.ToModel(entityDto)).ToList();
                 return result;
             }
@@ -35,7 +35,7 @@ namespace WillBeThere.InfrastuctureLayer.Persistence.Services.Http.Base
         {
             if (_baseHttpService is not null && _assambler is not null)
             {
-                Response response = await _baseHttpService.UpdateAsync<TModel>(_assambler.ToDto(entity));
+                Response response = await _baseHttpService.UpdateAsync<TDto>(_assambler.ToDto(entity));
                 return response;
             }
             return new Response();

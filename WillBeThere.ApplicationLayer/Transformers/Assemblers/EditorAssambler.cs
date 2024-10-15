@@ -1,9 +1,9 @@
-﻿using SharedApplicationLayer.Assamblers;
+﻿using SharedApplicationLayer.Transformers;
 using WillBeThere.ApplicationLayer.Contracts.Dtos;
 using WillBeThere.ApplicationLayer.Extensions.ModelExtensions;
 using WillBeThere.DomainLayer.Entites;
 
-namespace WillBeThere.ApplicationLayer.Assemblers
+namespace WillBeThere.ApplicationLayer.Transformers.Assemblers
 {
     public class EditorAssambler : IAssembler<Editor, EditorDto>
     {

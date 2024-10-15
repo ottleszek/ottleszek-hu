@@ -1,12 +1,11 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using SharedApplicationLayer.Transformers;
 using SharedApplicationLayer.Contracts.Persistence;
 using SharedApplicationLayer.Repos;
-using WillBeThere.ApplicationLayer.Assemblers;
 using WillBeThere.ApplicationLayer.Contracts.Dtos.OrganizationCategories;
 using WillBeThere.ApplicationLayer.Contracts.UnitOfWork;
 using WillBeThere.ApplicationLayer.Repos.Base;
-using WillBeThere.DomainLayer.Assemblers.ResultModels;
 using WillBeThere.DomainLayer.Entites;
 using WillBeThere.DomainLayer.Repos.Base;
 using WillBeThere.DomainLayer.Services.Base;
@@ -25,6 +24,8 @@ using WillBeThere.InfrastuctureLayer.Persistence.Services.Http;
 using WillBeThere.InfrastuctureLayer.Persistence.Services.Http.Base.DataService;
 using WillBeThere.InfrastuctureLayer.Persistence.Services.Http.Base.HttpService;
 using WillBeThere.InfrastuctureLayer.Persistence.Services.Http.Base.MapperService;
+using WillBeThere.ApplicationLayer.Transformers.Assemblers;
+using WillBeThere.ApplicationLayer.Transformers.Assemblers.ResultModels;
 
 namespace WillBeThere.InfrastuctureLayer
 {
@@ -70,6 +71,8 @@ namespace WillBeThere.InfrastuctureLayer
             services.AddScoped<ProgramOwnerAssembler>();
             services.AddScoped<PublicOrganizationProgramAssembler>();
             services.AddScoped<RegisteredUserAssembler>();
+
+            services.AddScoped<IDomainDtoConterter<OrganizationCategory, OrganizationCategoryDto>, DomainDtoConverter<OrganizationCategory, OrganizationCategoryDto, OrganizationCategoryAssembler>>();
         }
 
         public static void ConfigureRepos(this IServiceCollection services)
@@ -142,13 +145,13 @@ namespace WillBeThere.InfrastuctureLayer
             services.AddScoped<IBaseOrganizationCategoryService, BaseOrganizationCategoryServices>();
 
             //
-            services.AddScoped<IHttpOrganizationCategoryService, HttpOrganizationCategoryService>();
+            services.AddScoped<IHttpOrganizationCategoryService, OrganizationCategoryDataPersistenceService>();
         }
 
         public static void ConfigurePersistence(this IServiceCollection services)
         {
-            services.AddScoped<IDataPersistenceService<OrganizationCategory, OrganizationCategoryDto, OrganizationCategoryAssembler>, HttpOrganizationCategoryService>();
-            ervices.AddScoped<IDataPersistenceService<OrganizationCategory, OrganizationCategoryDto, OrganizationCategoryAssembler>, HttpOrganizationCategoryService>();
+            services.AddScoped<IOrganizationCategoryDataPersistenceService, OrganizationCategoryDataPersistenceService>();
+            ervices.AddScoped<IDataPersistenceService<OrganizationCategory, OrganizationCategoryDto, OrganizationCategoryAssembler>, OrganizationCategoryDataPersistenceService>();
         }
         public static void ConfigureCqrs(this IServiceCollection services)
         {

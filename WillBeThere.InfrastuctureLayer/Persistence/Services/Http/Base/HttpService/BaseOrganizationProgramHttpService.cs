@@ -14,7 +14,6 @@ namespace WillBeThere.InfrastuctureLayer.Persistence.Services.Http.Base.HttpServ
 
         public async Task<List<PublicOrganizationProgramDto>> GetAllPublicOrganizationProgramsAsync()
         {
-
             if (_httpClient is not null)
             {
                 try
@@ -32,5 +31,6 @@ namespace WillBeThere.InfrastuctureLayer.Persistence.Services.Http.Base.HttpServ
             }
             return new List<PublicOrganizationProgramDto>();
         }
+
     }
 }

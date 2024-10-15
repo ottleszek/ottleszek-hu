@@ -1,4 +1,4 @@
-﻿namespace SharedApplicationLayer.Assamblers
+﻿namespace SharedApplicationLayer.Transformers
 {
     public class Assembler<TModel, TDto> : IAssembler<TModel, TDto>
         where TModel : class, new()

@@ -1,9 +1,9 @@
 ﻿using WillBeThere.DomainLayer.Entites;
-using WillBeThere.DomainLayer.Extensions.ModelExtensions;
-using SharedApplicationLayer.Assamblers;
+using SharedApplicationLayer.Transformers;
 using WillBeThere.ApplicationLayer.Contracts.Dtos.OrganizationCategories;
+using WillBeThere.ApplicationLayer.Extensions.ModelExtensions;
 
-namespace WillBeThere.ApplicationLayer.Assemblers
+namespace WillBeThere.ApplicationLayer.Transformers.Assemblers
 {
     public class OrganizationCategoryAssembler : IAssembler<OrganizationCategory, OrganizationCategoryDto>
     {
