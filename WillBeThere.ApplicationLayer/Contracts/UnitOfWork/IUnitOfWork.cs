@@ -4,8 +4,8 @@ namespace WillBeThere.ApplicationLayer.Contracts.UnitOfWork
 {
     public interface IUnitOfWork : IDisposable
     {
-        public IBaseRepo Repository { get; }
-        public void SetRepository(IBaseRepo repository);
+        //public IBaseCommandRepo? Repository { get; }
+        //public void SetRepository(IBaseCommandRepo? repository);
         void Commit();
         Task<int> SaveChangesAsync();
         void BeginTransaction();

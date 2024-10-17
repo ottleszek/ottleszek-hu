@@ -5,19 +5,14 @@ using SharedApplicationLayer.Contracts.Persistence;
 using SharedApplicationLayer.Repos;
 using WillBeThere.ApplicationLayer.Contracts.Dtos.OrganizationCategories;
 using WillBeThere.ApplicationLayer.Contracts.UnitOfWork;
-using WillBeThere.ApplicationLayer.Repos.Base;
 using WillBeThere.DomainLayer.Entites;
-using WillBeThere.DomainLayer.Repos.Base;
 using WillBeThere.DomainLayer.Services.Base;
 using WillBeThere.InfrastuctureLayer.Context;
 using WillBeThere.InfrastuctureLayer.Handlers.OrganizationCategories;
 using WillBeThere.InfrastuctureLayer.Handlers.OrganizationPrograms;
-using WillBeThere.InfrastuctureLayer.Implementations.Repos.BaseCqrsRepos;
-using WillBeThere.InfrastuctureLayer.Implementations.Repos.BaseCqrsRepos.Commands;
 using WillBeThere.InfrastuctureLayer.Implementations.Repos.UnifOfWorks;
 using WillBeThere.InfrastuctureLayer.Implementations.Repos.WillBeThere.CommandRepos;
 using WillBeThere.InfrastuctureLayer.Implementations.Repos.WillBeThere.QueryRepos;
-using WillBeThere.InfrastuctureLayer.Implementations.Repos.WillBeThere.QueryRepos.Interfaces;
 using WillBeThere.InfrastuctureLayer.Implementations.Repos.WillBeThere.QueryRepos.Repos;
 using WillBeThere.InfrastuctureLayer.Implementations.Services;
 using WillBeThere.InfrastuctureLayer.Persistence.Services.Http;
@@ -26,6 +21,13 @@ using WillBeThere.InfrastuctureLayer.Persistence.Services.Http.Base.HttpService;
 using WillBeThere.InfrastuctureLayer.Persistence.Services.Http.Base.MapperService;
 using WillBeThere.ApplicationLayer.Transformers.Assemblers;
 using WillBeThere.ApplicationLayer.Transformers.Assemblers.ResultModels;
+using WillBeThere.ApplicationLayer.Contracts.Services.Base.HttpServices;
+using WillBeThere.ApplicationLayer.Contracts.Services.Base.DataServices;
+using WillBeThere.ApplicationLayer.Contracts.Services.Base.MapperServices;
+using WillBeThere.ApplicationLayer.Transformers.Converters;
+using WillBeThere.InfrastuctureLayer.Implementations.Repos.Base;
+using WillBeThere.ApplicationLayer.Repos.CommandRepo;
+using WillBeThere.ApplicationLayer.Repos.QueryRepo;
 
 namespace WillBeThere.InfrastuctureLayer
 {
@@ -143,15 +145,12 @@ namespace WillBeThere.InfrastuctureLayer
         
             services.AddScoped<IOrganizationProgramService, OrganizationProgramService>();
             services.AddScoped<IBaseOrganizationCategoryService, BaseOrganizationCategoryServices>();
-
-            //
-            services.AddScoped<IHttpOrganizationCategoryService, OrganizationCategoryDataPersistenceService>();
         }
 
         public static void ConfigurePersistence(this IServiceCollection services)
         {
-            services.AddScoped<IOrganizationCategoryDataPersistenceService, OrganizationCategoryDataPersistenceService>();
-            ervices.AddScoped<IDataPersistenceService<OrganizationCategory, OrganizationCategoryDto, OrganizationCategoryAssembler>, OrganizationCategoryDataPersistenceService>();
+            services.AddScoped<IDataPersistenceService<OrganizationCategory>, GenericDataPersistenceService<OrganizationCategory, OrganizationCategoryDto, OrganizationCategoryDomainDtoConverter>>();
+            services.AddScoped<IHttpPersistenceService, HttpPersistenceService>();
         }
         public static void ConfigureCqrs(this IServiceCollection services)
         {

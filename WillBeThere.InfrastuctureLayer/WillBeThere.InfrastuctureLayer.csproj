@@ -20,6 +20,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Implementations\Repos\WillBeThere\QueryRepos\Interfaces\" />
     <Folder Include="Persistence\Services\FileStore\" />
   </ItemGroup>
 

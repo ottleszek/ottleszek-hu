@@ -1,5 +1,5 @@
 ﻿using MediatR;
-using WillBeThere.ApplicationLayer.Contracts.Dtos;
+using WillBeThere.ApplicationLayer.Contracts.Dtos.OrganizationCategories;
 
 namespace WillBeThere.ApplicationLayer.Queries.OrganizationCategories
 {

@@ -2,7 +2,7 @@
 using SharedApplicationLayer.Repos;
 using SharedDomainLayer.Entities;
 
-namespace WillBeThere.InfrastuctureLayer.Implementations.Repos.BaseCqrsRepos
+namespace WillBeThere.InfrastuctureLayer.Implementations.Repos.Base
 {
     public class BaseRepo<TDbContext> : IBaseRepo where TDbContext : DbContext 
     {
@@ -31,6 +31,30 @@ namespace WillBeThere.InfrastuctureLayer.Implementations.Repos.BaseCqrsRepos
             catch (Exception) { }
             return null;
         }
+
+        public IQueryable<TEntity>? GetQuery<TEntity>() where TEntity : class, IDbEntity<TEntity>, new()
+        {
+            try
+            {
+                if (_dbContext is null)
+                    return null;
+                return _dbContext.Set<TEntity>();
+            }
+            catch (Exception) { }
+            return null;
+        }
+
+        public IQueryable<TEntity> Select<TEntity>() where TEntity : class, IDbEntity<TEntity>, new()
+        {
+            try
+            {
+                if (_dbContext is not null)
+                    return _dbContext.Set<TEntity>();
+            }
+            catch (Exception) { }
+            return Enumerable.Empty<TEntity>().AsQueryable().AsNoTracking();
+        }
+
 
     }
 }

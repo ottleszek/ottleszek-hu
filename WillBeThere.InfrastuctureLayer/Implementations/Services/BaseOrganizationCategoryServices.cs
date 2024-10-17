@@ -1,7 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using WillBeThere.ApplicationLayer.Repos.QueryRepo;
 using WillBeThere.DomainLayer.Entites;
 using WillBeThere.DomainLayer.Services.Base;
-using WillBeThere.InfrastuctureLayer.Implementations.Repos.WillBeThere.QueryRepos.Interfaces;
 
 namespace WillBeThere.InfrastuctureLayer.Implementations.Services
 {
@@ -18,7 +17,7 @@ namespace WillBeThere.InfrastuctureLayer.Implementations.Services
         {
             if (_organizationCategoryQueryRepo is null)
                 return new List<OrganizationCategory>();
-            return await _organizationCategoryQueryRepo.SelectAll<OrganizationCategory>().ToListAsync();
+            return await _organizationCategoryQueryRepo.SelectAllAsync<OrganizationCategory>();
             
         }
     }

@@ -36,17 +36,7 @@ namespace WillBeThere.Mobile.Extensions
 
         public static void ConfigureServices(this IServiceCollection services)
         {
-            // HttpService
-            services.AddScoped<IBaseOrganizationProgramHttpService, BaseOrganizationProgramHttpService>();
-            services.AddScoped<IBaseOrganizationCategoryHttpService, OrganizationCategoryHttpService>();
 
-            // MapperService
-            services.AddScoped<IBaseOrganizationProgramMapperService, OrganizationProgramMapperService>();
-            services.AddScoped<IBaseOrganizationCategoryMapperService, OrganizationCategoryMapperService>();
-
-            // DataService
-            services.AddScoped<IBaseOrganizationProgramDataService, BaseOrganizationProgramDataService>();
-            services.AddScoped<IBaseOrganizationCategoryDataService, BaseOrganizationCategoryDataService>();
         }
 
         public static void ConfigureViewModels(this IServiceCollection services)

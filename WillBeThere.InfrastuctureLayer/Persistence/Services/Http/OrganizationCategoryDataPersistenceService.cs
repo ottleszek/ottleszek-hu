@@ -5,7 +5,7 @@ using WillBeThere.DomainLayer.Entites;
 
 namespace WillBeThere.InfrastuctureLayer.Persistence.Services.Http
 {
-    public class OrganizationCategoryDataPersistenceService : DataPersistenceService<OrganizationCategory, OrganizationCategoryDto, OrganizationCategoryDomainDtoConverter>, IOrganizationCategoryDataPersistenceService
+    public class OrganizationCategoryDataPersistenceService : GenericDataPersistenceService<OrganizationCategory, OrganizationCategoryDto, OrganizationCategoryDomainDtoConverter>, IOrganizationCategoryDataPersistenceService
     {
         public OrganizationCategoryDataPersistenceService(OrganizationCategoryDomainDtoConverter? converter, IHttpPersistenceService httpPersistenceService) : base(converter, httpPersistenceService)
         {

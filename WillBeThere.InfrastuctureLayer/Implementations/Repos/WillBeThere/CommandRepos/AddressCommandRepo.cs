@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using WillBeThere.ApplicationLayer.Repos.Base;
-using WillBeThere.InfrastuctureLayer.Implementations.Repos.BaseCqrsRepos.Commands;
+using WillBeThere.ApplicationLayer.Repos.CommandRepo;
+using WillBeThere.InfrastuctureLayer.Implementations.Repos.Base;
+
 
 namespace WillBeThere.InfrastuctureLayer.Implementations.Repos.WillBeThere.CommandRepos
 {

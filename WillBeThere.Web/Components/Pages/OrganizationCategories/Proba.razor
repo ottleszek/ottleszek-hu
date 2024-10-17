@@ -1,5 +1,5 @@
 ﻿@page "/organizationcategorylist2"
-@inject IOrganizationCategoryDataService? _organizationCategoryDataService
+@inject IBaseOrganizationCategoryDataService? _organizationCategoryDataService
 
 
 <MudDataGrid SelectedItem="@_selectedItem" SelectedItemChanged="@OnSelectedItemChanged" T="Item" Items="@items" RowStyleFunc="@((row,index) => GetRowStyle(row,index))"

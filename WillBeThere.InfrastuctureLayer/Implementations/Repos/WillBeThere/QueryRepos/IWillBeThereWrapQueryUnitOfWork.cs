@@ -1,4 +1,4 @@
-﻿using WillBeThere.InfrastuctureLayer.Implementations.Repos.WillBeThere.QueryRepos.Interfaces;
+﻿using WillBeThere.ApplicationLayer.Repos.QueryRepo;
 
 namespace WillBeThere.InfrastuctureLayer.Implementations.Repos.WillBeThere.QueryRepos
 {

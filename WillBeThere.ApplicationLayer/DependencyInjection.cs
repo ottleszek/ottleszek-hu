@@ -6,7 +6,7 @@ using WillBeThere.ApplicationLayer.Queries.OrganizationCategories;
 using WillBeThere.ApplicationLayer.Transformers.Assemblers;
 using WillBeThere.ApplicationLayer.Transformers.Assemblers.ResultModels;
 using WillBeThere.ApplicationLayer.ViewModels.OrganizationCategories;
-using WillBeThere.DomainLayer.Entites;
+
 
 namespace WillBeThere.ApplicationLayer
 {

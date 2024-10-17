@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using SharedDomainLayer.Repos;
+using SharedApplicationLayer.Repos;
+using WillBeThere.ApplicationLayer.Repos.CommandRepo;
 using WillBeThere.DomainLayer.Entites;
-using WillBeThere.DomainLayer.Repos.Base;
 using WillBeThere.InfrastuctureLayer.Implementations.Repos.UnifOfWorks;
 
 namespace WillBeThere.InfrastuctureLayer.Implementations.Repos.WillBeThere.CommandRepos
@@ -38,7 +38,7 @@ namespace WillBeThere.InfrastuctureLayer.Implementations.Repos.WillBeThere.Comma
             AddRepository<IBaseRegisteredUserCommandRepo, RegisteredUser>(registeredUserCommandRepo);
         }
 
-        public override IBaseRepo Repository => base.Repository;
+        //public override IBaseRepo Repository => base.Repository;
         public IBaseAddressCommandRepo AddressCommandRepo => GetRepository<IBaseAddressCommandRepo, Address>() ?? new AddressCommandRepo<TDbContext>(_dbContext);
         public IBaseEditorCommandRepo EditorCommandRepo => GetRepository<IBaseEditorCommandRepo, Editor>() ?? new EditorCommandRepo<TDbContext>(_dbContext);
         public IBaseOrganizationCategoryCommandRepo OrganizationCategoryCommandRepo => GetRepository<IBaseOrganizationCategoryCommandRepo, OrganizationCategory>() ?? new OrganizationCategoryCommandRepo<TDbContext>(_dbContext);

@@ -1,4 +1,7 @@
-﻿namespace WillBeThere.Backend.Extensions
+﻿using SharedApplicationLayer.Contracts.Persistence;
+using WillBeThere.InfrastuctureLayer.Persistence.Services.DataBase;
+
+namespace WillBeThere.Backend.Extensions
 {
     public static class BackendExtensions
     {
@@ -15,6 +18,11 @@
                      }
                  )
             );
+        }
+
+        public static void ConfigureBackendServices(this IServiceCollection services)
+        {
+            services.AddScoped<IDataPersistenceService, DbDataPersistenceService>();
         }
     }
 }

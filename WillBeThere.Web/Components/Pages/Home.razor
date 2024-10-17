@@ -1,7 +1,7 @@
 ﻿@page "/"
 @attribute [StreamRendering]
-@inject IOrganizationProgramDataService? _organizationProgramDataService
-@inject IOrganizationCategoryDataService? _organizationCategoryDataService
+@inject IBaseOrganizationProgramDataService? _organizationProgramDataService
+@inject IBaseOrganizationCategoryDataService? _organizationCategoryDataService
 
 <PageTitle>Publikus programok</PageTitle>
 @if (!_isLoaded)

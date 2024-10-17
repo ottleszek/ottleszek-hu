@@ -28,8 +28,8 @@ namespace WillBeThere.Backend.Controllers.Base
             _assambler = assambler;
             _unitOfWork = unitOfWork;
             _commandRepo = commandRepo;
-            if (_commandRepo is not null)
-                unitOfWork.SetRepository(_commandRepo);
+            /*if (_commandRepo is not null)
+                unitOfWork.SetRepository(_commandRepo);*/
             _queryRepo = queryRepo;
         }
 

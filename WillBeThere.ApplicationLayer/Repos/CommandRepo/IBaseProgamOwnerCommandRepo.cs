@@ -1,6 +1,6 @@
 ﻿using SharedApplicationLayer.Repos;
 
-namespace WillBeThere.DomainLayer.Repos.Base
+namespace WillBeThere.ApplicationLayer.Repos.CommandRepo
 {
     public interface IBaseProgamOwnerCommandRepo : IBaseCommandRepo
     {

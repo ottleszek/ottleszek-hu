@@ -1,7 +1,7 @@
 ﻿using SharedApplicationLayer.Transformers;
 using WillBeThere.ApplicationLayer.Contracts.Dtos;
+using WillBeThere.ApplicationLayer.Extensions.ModelExtensions;
 using WillBeThere.DomainLayer.Entites;
-using WillBeThere.DomainLayer.Extensions.ModelExtensions;
 
 namespace WillBeThere.ApplicationLayer.Transformers.Assemblers
 {

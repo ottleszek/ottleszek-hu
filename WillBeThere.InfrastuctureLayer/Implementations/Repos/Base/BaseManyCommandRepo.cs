@@ -1,9 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SharedApplicationLayer.Contracts.Persistence;
+using SharedDomainLayer.Entities;
 using SharedDomainLayer.Responses;
 
 namespace WillBeThere.InfrastuctureLayer.Implementations.Repos.Base
-{
+{ 
     public class BaseManyCommandRepo<TDbContext> : IDataPersistenceService where TDbContext : DbContext
     {
         protected readonly TDbContext? _dbContext;
@@ -11,7 +12,7 @@ namespace WillBeThere.InfrastuctureLayer.Implementations.Repos.Base
         {
             _dbContext = dbContext;
         }
-        public Task<Response> SaveMany<TEntity>(List<TEntity> entities) where TEntity : class,new()
+        public Task<Response> SaveMany<TEntity>(List<TEntity> entities) where TEntity : class, IDbEntity<TEntity>, new()
         {
             Response response = new();
 

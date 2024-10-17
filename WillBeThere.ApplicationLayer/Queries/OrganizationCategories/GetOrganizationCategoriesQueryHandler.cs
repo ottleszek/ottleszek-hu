@@ -1,5 +1,5 @@
 ﻿using MediatR;
-using WillBeThere.ApplicationLayer.Contracts.Dtos;
+using WillBeThere.ApplicationLayer.Contracts.Dtos.OrganizationCategories;
 using WillBeThere.ApplicationLayer.Contracts.Services.Base.DataServices;
 using WillBeThere.ApplicationLayer.Transformers.Assemblers;
 using WillBeThere.DomainLayer.Entites;

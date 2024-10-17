@@ -1,26 +1,25 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SharedApplicationLayer.Repos;
 using SharedDomainLayer.Entities;
-using WillBeThere.InfrastuctureLayer.Implementations.Repos.BaseRepos;
 
 namespace WillBeThere.InfrastuctureLayer.Implementations.Repos.Base
 {
-    public class BaseQueryRepo<TDbContext> : RepositoryBase<DbContext> , IBaseQueryRepo where TDbContext : DbContext
+    public class BaseQueryRepo<TDbContext> : BaseRepo<DbContext> , IBaseQueryRepo where TDbContext : DbContext
     {
 
         public BaseQueryRepo(DbContext? dbContext) : base(dbContext) { }
 
-        public IQueryable<TEntity> SelectAll<TEntity>() where TEntity : class, IDbEntity<TEntity>, new() => FindAll<TEntity>();
+        public async Task<List<TEntity>> SelectAllAsync<TEntity>() where TEntity : class, IDbEntity<TEntity>, new() => await GetQuery<TEntity>().FindAll().ToListAsync();
 
-        public TEntity? GetById<TEntity>(Guid id) where TEntity : class, IDbEntity<TEntity>, new() =>  FindByCondition<TEntity>(entity => entity.Id == id).FirstOrDefault();
+        public async Task<TEntity?> GetByIdAsync<TEntity>(Guid id) where TEntity : class, IDbEntity<TEntity>, new() => await GetQuery<TEntity>().FindByCondition<        TEntity>(entity => entity.Id == id).FirstOrDefaultAsync();
 
-        public  bool IsExsist<TEntity>(Guid id) where TEntity : class, IDbEntity<TEntity>, new()
+        public async Task<bool> IsExsistAsync<TEntity>(Guid id) where TEntity : class, IDbEntity<TEntity>, new()
         {
             DbSet<TEntity>? dbSet = GetDbSet<TEntity>();
             if (dbSet is null)
-                return false;
+                return await Task.FromResult(false);
             else
-                return  dbSet.Any(entity => entity.Id == id);
+                return  await Task.FromResult(dbSet.Any(entity => entity.Id == id));
         }
     }
 }

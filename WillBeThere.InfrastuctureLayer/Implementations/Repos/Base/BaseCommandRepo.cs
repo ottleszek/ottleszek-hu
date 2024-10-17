@@ -2,13 +2,16 @@
 using SharedApplicationLayer.Repos;
 using SharedDomainLayer.Entities;
 using SharedDomainLayer.Responses;
-using WillBeThere.InfrastuctureLayer.Implementations.Repos.BaseRepos;
 
-namespace WillBeThere.InfrastuctureLayer.Implementations.Repos.BaseCqrsRepos.Commands
+namespace WillBeThere.InfrastuctureLayer.Implementations.Repos.Base
 {
-    public class BaseCommandRepo<TDbContext> : RepositoryBase<DbContext>, IBaseCommandRepo where TDbContext : DbContext
-    {    
-        public BaseCommandRepo(DbContext? dbContext) : base(dbContext) { }
+    public class BaseCommandRepo<TDbContext> : IBaseCommandRepo where TDbContext : DbContext
+    {
+        private readonly TDbContext? _dbContext;
+        public BaseCommandRepo(TDbContext? dbContext)
+        {
+            _dbContext = dbContext;
+        }
 
         public Response Update<TEntity>(TEntity entity) where TEntity : class, IDbEntity<TEntity>, new()
         {
@@ -73,7 +76,7 @@ namespace WillBeThere.InfrastuctureLayer.Implementations.Repos.BaseCqrsRepos.Com
 
         public Response Delete<TEntity>(Guid id) where TEntity : class, IDbEntity<TEntity>, new()
         {
-            TEntity? entityToDelete = FindByCondition<TEntity>(e => e.Id == id).FirstOrDefault();
+            TEntity? entityToDelete = GetQuery<TEntity>().FindByCondition<TEntity>(e => e.Id == id).FirstOrDefault();
             return Delete<TEntity>(entityToDelete);
         }
         public Response Insert<TEntity>(TEntity entity) where TEntity : class, IDbEntity<TEntity>, new()
@@ -103,6 +106,41 @@ namespace WillBeThere.InfrastuctureLayer.Implementations.Repos.BaseCqrsRepos.Com
             response.Append($"{nameof(BaseCommandRepo<TDbContext>)} osztály, {nameof(Insert)} metódusban hiba keletkezett!");
             response.Append($"{entity} osztály hozzáadása az adatbázishoz nem sikerült!");
             return response;
-        }            
+        }
+
+        public DbSet<TEntity>? GetDbSet<TEntity>() where TEntity : class, IDbEntity<TEntity>, new()
+        {
+            try
+            {
+                if (_dbContext is null)
+                    return null;
+                return _dbContext.Set<TEntity>();
+            }
+            catch (Exception) { }
+            return null;
+        }
+
+        public IQueryable<TEntity>? GetQuery<TEntity>() where TEntity : class, IDbEntity<TEntity>, new()
+        {
+            try
+            {
+                if (_dbContext is null)
+                    return null;
+                return _dbContext.Set<TEntity>();
+            }
+            catch (Exception) { }
+            return null;
+        }
+
+        public IQueryable<TEntity> Select<TEntity>() where TEntity : class, IDbEntity<TEntity>, new()
+        {
+            try
+            {
+                if (_dbContext is not null)
+                    return _dbContext.Set<TEntity>();
+            }
+            catch (Exception) { }
+            return Enumerable.Empty<TEntity>().AsQueryable().AsNoTracking();
+        }
     }
 }

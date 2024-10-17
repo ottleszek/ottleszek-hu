@@ -1,12 +1,11 @@
 ﻿using System.Diagnostics;
 using System.Net.Http.Json;
-using WillBeThere.ApplicationLayer.Contracts.Dtos;
 using WillBeThere.ApplicationLayer.Contracts.Dtos.ResultModels;
 using WillBeThere.ApplicationLayer.Contracts.Services.Base.HttpServices;
 
 namespace WillBeThere.InfrastuctureLayer.Persistence.Services.Http.Base.HttpService
 {
-    public class BaseOrganizationProgramHttpService : BaseHttpService<OrganizationProgramDto>, IBaseOrganizationProgramHttpService
+    public class BaseOrganizationProgramHttpService : BaseHttpService, IBaseOrganizationProgramHttpService
     {
         public BaseOrganizationProgramHttpService(IHttpClientFactory? httpClientFactory) : base(httpClientFactory)
         {

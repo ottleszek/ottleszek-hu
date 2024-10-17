@@ -1,6 +1,6 @@
 ﻿using SharedApplicationLayer.Repos;
 
-namespace WillBeThere.InfrastuctureLayer.Implementations.Repos.WillBeThere.QueryRepos.Interfaces
+namespace WillBeThere.ApplicationLayer.Repos.QueryRepo
 {
     public interface IOrganizationCategoryQueryRepo : IIncludedQueryRepo
     {

@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using SharedApplicationLayer.Repos;
+using WillBeThere.ApplicationLayer.Repos.QueryRepo;
 using WillBeThere.InfrastuctureLayer.Implementations.Repos.Base;
-using WillBeThere.InfrastuctureLayer.Implementations.Repos.WillBeThere.QueryRepos.Interfaces;
 
 namespace WillBeThere.InfrastuctureLayer.Implementations.Repos.WillBeThere.QueryRepos.Repos
 {

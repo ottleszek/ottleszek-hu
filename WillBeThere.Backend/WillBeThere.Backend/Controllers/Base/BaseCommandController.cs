@@ -21,8 +21,8 @@ namespace WillBeThere.Backend.Controllers.Base
             _assambler = assambler;
             _unitOfWork = unitOfWork;
             _repository = repository;
-            if (repository is not null)
-                unitOfWork.SetRepository(repository);
+            /*if (repository is not null)
+                unitOfWork.SetRepository(repository);*/
         }
 
         // POST: api/TModel

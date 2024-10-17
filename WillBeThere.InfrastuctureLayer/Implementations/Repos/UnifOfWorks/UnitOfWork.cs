@@ -8,23 +8,22 @@ namespace WillBeThere.InfrastuctureLayer.Implementations.Repos.UnifOfWorks
     public class UnitOfWork<TDbContext> : IUnitOfWork where TDbContext : DbContext
     {
         private DbContext _context;
-        private IBaseRepo? _baseRepo;
+        private IBaseCommandRepo? _baseCommandRepo;
 
         protected IDbContextTransaction? _transaction;
 
-        public virtual IBaseRepo Repository {get => _baseRepo; set => _baseRepo = value; }
+        //public virtual IBaseCommandRepo? Repository {get => _baseCommandRepo; set => _baseCommandRepo = value; }
 
         public UnitOfWork(TDbContext context) 
         {
             _context = context;
         }
-
-        public void SetRepository(IBaseRepo? baseRepo)
+        /*        public void SetRepository(IBaseCommandRepo? baseCommandRepo)
         {
-            if (baseRepo is not null)
-                _baseRepo = baseRepo;
+            if (baseCommandRepo is not null)
+                _baseCommandRepo = baseCommandRepo;
         }
-
+        */
         public virtual void Commit()
         {
             try

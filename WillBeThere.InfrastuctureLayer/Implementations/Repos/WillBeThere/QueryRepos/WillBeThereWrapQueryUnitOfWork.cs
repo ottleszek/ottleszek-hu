@@ -1,8 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using SharedDomainLayer.Repos;
+using WillBeThere.ApplicationLayer.Repos.QueryRepo;
 using WillBeThere.DomainLayer.Entites;
 using WillBeThere.InfrastuctureLayer.Implementations.Repos.UnifOfWorks;
-using WillBeThere.InfrastuctureLayer.Implementations.Repos.WillBeThere.QueryRepos.Interfaces;
 using WillBeThere.InfrastuctureLayer.Implementations.Repos.WillBeThere.QueryRepos.Repos;
 
 namespace WillBeThere.InfrastuctureLayer.Implementations.Repos.WillBeThere.QueryRepos
@@ -39,7 +38,7 @@ namespace WillBeThere.InfrastuctureLayer.Implementations.Repos.WillBeThere.Query
             AddRepository<IRegisteredUserQueryRepo, RegisteredUser>(registeredUserQueryRepo);
         }
 
-        public override IBaseRepo Repository => base.Repository;
+        //public override IBaseRepo Repository => base.Repository;
 
         public IAddressQueryRepo AddressQueryRepo => GetRepository<IAddressQueryRepo,Address>() ?? new AddressQueryRepo<TDbContext>(dbContext);
         public IEditorQueryRepo EditorQueryRepo => GetRepository<IEditorQueryRepo,Editor>() ?? new EditorQueryRepo<TDbContext>(dbContext);

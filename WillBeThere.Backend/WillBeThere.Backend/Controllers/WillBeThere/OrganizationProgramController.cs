@@ -3,13 +3,13 @@ using Microsoft.AspNetCore.Mvc;
 using WillBeThere.ApplicationLayer.Contracts.Dtos;
 using WillBeThere.ApplicationLayer.Contracts.UnitOfWork;
 using WillBeThere.ApplicationLayer.Queries.OrganizationPrograms;
-using WillBeThere.ApplicationLayer.Repos.Base;
+using WillBeThere.ApplicationLayer.Repos.CommandRepo;
+using WillBeThere.ApplicationLayer.Repos.QueryRepo;
 using WillBeThere.ApplicationLayer.Transformers.Assemblers;
 using WillBeThere.ApplicationLayer.Transformers.Assemblers.ResultModels;
 using WillBeThere.Backend.Controllers.Base;
 using WillBeThere.DomainLayer.Entites;
 using WillBeThere.DomainLayer.Entites.ResultModels;
-using WillBeThere.InfrastuctureLayer.Implementations.Repos.WillBeThere.QueryRepos.Interfaces;
 
 namespace WillBeThere.Backend.Controllers.WillBeThere
 {

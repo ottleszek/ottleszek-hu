@@ -1,5 +1,4 @@
-﻿using WillBeThere.ApplicationLayer.Repos.Base;
-using WillBeThere.DomainLayer.Repos.Base;
+﻿using WillBeThere.ApplicationLayer.Repos.CommandRepo;
 
 namespace WillBeThere.InfrastuctureLayer.Implementations.Repos.WillBeThere.CommandRepos
 {

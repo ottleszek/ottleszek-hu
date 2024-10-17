@@ -27,11 +27,11 @@ namespace WillBeThere.InfrastuctureLayer.Implementations.Services
                 return null;
             else
             {
-                var query = from op in _wrapRepo.OrganizationProgramQueryRepo.FindAll<OrganizationProgram>()
-                            join a in _wrapRepo.AddressQueryRepo.FindAll<Address>() on op.AddressId equals a.Id
-                            join o in _wrapRepo.OrganizationQueryRepo.FindAll<Organization>() on op.OrganizationId equals o.Id
-                            join c in _wrapRepo.OrganizationCategoryQueryRepo.FindAll<OrganizationCategory>() on o.OrganizationCategoryId equals c.Id
-                            join ps in _wrapRepo.PublicSpaceQueryRepo.FindAll<PublicSpace>() on a.PublicScapeId equals ps.Id
+                var query = from op in _wrapRepo.OrganizationProgramQueryRepo.Select<OrganizationProgram>()
+                            join a in _wrapRepo.AddressQueryRepo.Select<Address>() on op.AddressId equals a.Id
+                            join o in _wrapRepo.OrganizationQueryRepo.Select<Organization>() on op.OrganizationId equals o.Id
+                            join c in _wrapRepo.OrganizationCategoryQueryRepo.Select<OrganizationCategory>() on o.OrganizationCategoryId equals c.Id
+                            join ps in _wrapRepo.PublicSpaceQueryRepo.Select<PublicSpace>() on a.PublicScapeId equals ps.Id
                             where op.Start > DateTime.Now && op.IsPublic && !op.IsDeffered
                             orderby op.Start ascending
                             select new PublicOrganizationProgram

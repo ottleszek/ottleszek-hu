@@ -1,13 +1,11 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SharedDomainLayer.Entities;
-using SharedDomainLayer.Repos.Commands;
 using SharedDomainLayer.Responses;
 using System.Linq.Expressions;
-using WillBeThere.InfrastuctureLayer.Implementations.Repos.Base;
 
-namespace WillBeThere.InfrastuctureLayer.Implementations.Repos.BaseRepos
+namespace WillBeThere.InfrastuctureLayer.Implementations.Repos.Base
 {
-    public class NoCqrsRepo<TDbContext> : INoCqrsRepo, IRepositoryBase
+  /*  public class NoCqrsRepo<TDbContext> : INoCqrsRepo, IRepositoryBase
         where TDbContext : DbContext
     {
         private readonly TDbContext? _dbContext;
@@ -148,5 +146,5 @@ namespace WillBeThere.InfrastuctureLayer.Implementations.Repos.BaseRepos
         }
 
 
-    }
+    }*/
 }

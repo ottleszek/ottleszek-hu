@@ -20,6 +20,7 @@ builder.Services.AddControllers().AddJsonOptions(options =>
 });
 
 builder.Services.ConfigureCors();
+builder.Services.ConfigureBackendServices();
 //builder.Services.AddApplication();
 builder.Services.AddInfrastructure();
 

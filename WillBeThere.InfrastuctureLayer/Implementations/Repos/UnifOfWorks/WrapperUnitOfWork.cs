@@ -9,7 +9,7 @@ namespace WillBeThere.InfrastuctureLayer.Implementations.Repos.UnifOfWorks
     {
         protected Dictionary<Type, object> _repositories;
 
-        public WrapperUnitOfWork(TDbContext dbContext, IBaseRepo repository) : base(dbContext,repository)
+        public WrapperUnitOfWork(TDbContext dbContext, IBaseRepo repository) : base(dbContext)
         {
             _repositories = [];
         }

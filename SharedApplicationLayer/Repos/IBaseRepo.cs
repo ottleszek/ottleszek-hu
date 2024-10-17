@@ -5,6 +5,8 @@ namespace SharedApplicationLayer.Repos
 {
     public interface IBaseRepo
     {
-        public DbSet<TEntity>? GetDbSet<TEntity>() where TEntity : class, IDbEntity<TEntity>, new();
+        DbSet<TEntity>? GetDbSet<TEntity>() where TEntity : class, IDbEntity<TEntity>, new();
+        IQueryable<TEntity>? GetQuery<TEntity>() where TEntity : class, IDbEntity<TEntity>, new();
+        IQueryable<TEntity> Select<TEntity>() where TEntity : class, IDbEntity<TEntity>, new();
     }
 }

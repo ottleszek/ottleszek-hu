@@ -1,8 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using SharedDomainLayer.Responses;
-using WillBeThere.ApplicationLayer.Repos.Base;
-using WillBeThere.DomainLayer.Entites;
-using WillBeThere.InfrastuctureLayer.Implementations.Repos.BaseCqrsRepos.Commands;
+using WillBeThere.ApplicationLayer.Repos.CommandRepo;
+using WillBeThere.InfrastuctureLayer.Implementations.Repos.Base;
+
 
 namespace WillBeThere.InfrastuctureLayer.Implementations.Repos.WillBeThere.CommandRepos
 {

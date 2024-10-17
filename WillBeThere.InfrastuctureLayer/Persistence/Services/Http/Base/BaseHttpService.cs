@@ -61,7 +61,7 @@ namespace WillBeThere.InfrastuctureLayer.Persistence.Services.Http.Base
             {
                 try
                 {
-                    HttpResponseMessage httpResponse = await _httpClient.DeleteAsync($"api/{GetApiName<TEntity>()}/{id}");
+                    HttpResponseMessage httpResponse = await _httpClient.DeleteAsync($"api/{GetApiName<TEntityDto>()}/{id}");
                     if (httpResponse.StatusCode == HttpStatusCode.BadRequest)
                     {
                         string content = await httpResponse.Content.ReadAsStringAsync();

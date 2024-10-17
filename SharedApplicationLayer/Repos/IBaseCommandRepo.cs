@@ -3,7 +3,7 @@ using SharedDomainLayer.Responses;
 
 namespace SharedApplicationLayer.Repos
 {
-    public interface IBaseCommandRepo : IBaseRepo, IRepositoryBase
+    public interface IBaseCommandRepo : IBaseRepo
     {
         public Response Update<TEntity>(TEntity entity) where TEntity : class, IDbEntity<TEntity>, new();
         public Response Delete<TEntity>(TEntity? entity) where TEntity : class, IDbEntity<TEntity>, new();

@@ -27,7 +27,7 @@ else
             </div>
             <MudButton OnClick="@Save" Class="mt-2 mb-4" Variant="Variant.Filled" Color="Color.Primary" Disabled="@_viewModel.SaveDisabled">Mentés</MudButton>
             <MudDataGrid
-                         T="OrganizationCategory"
+                         T="OrganizationCategoryDto"
                          Items="@_viewModel.OrganizationCategories"
                          ReadOnly="@_readOnly"
                          EditMode="DataGridEditMode.Cell"
@@ -74,22 +74,22 @@ else
         }
 
     }
-    private void OnSelectedItemChanged(OrganizationCategory organizationCategory)
+    private void OnSelectedItemChanged(OrganizationCategoryDto organizationCategory)
     {
         _viewModel?.SetNewSelectedCategory(organizationCategory);
     }
 
-    private void StartedEditingItem(OrganizationCategory organizationCategory)
+    private void StartedEditingItem(OrganizationCategoryDto organizationCategory)
     {
         _viewModel?.StartEditingCategory(organizationCategory);
     }
 
-    private void CommittedItemChanges(OrganizationCategory organizationCategory)
+    private void CommittedItemChanges(OrganizationCategoryDto organizationCategory)
     {
         _viewModel?.AddToEditedCategory(organizationCategory);
     }
 
-    private void CanceledEditingItem(OrganizationCategory organizationCategory)
+    private void CanceledEditingItem(OrganizationCategoryDto organizationCategory)
     {        
     }
 }
