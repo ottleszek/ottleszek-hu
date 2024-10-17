@@ -8,7 +8,7 @@ using System.Net.Http.Json;
 
 namespace WillBeThere.InfrastuctureLayer.Persistence.Services.Http
 {
-    public abstract class HttpPersistenceService : IHttpPersistenceService
+    public class HttpPersistenceService : IHttpPersistenceService
     {
         protected readonly HttpClient? _httpClient;
         public HttpPersistenceService()

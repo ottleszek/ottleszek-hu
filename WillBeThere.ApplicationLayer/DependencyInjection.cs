@@ -2,6 +2,7 @@
 using SharedApplicationLayer.Contracts.Persistence;
 using WillBeThere.ApplicationLayer.Commands.OrganizationCategories;
 using WillBeThere.ApplicationLayer.Contracts.Dtos.OrganizationCategories;
+using WillBeThere.ApplicationLayer.Contracts.Services.Base.DataServices;
 using WillBeThere.ApplicationLayer.Queries.OrganizationCategories;
 using WillBeThere.ApplicationLayer.Transformers.Assemblers;
 using WillBeThere.ApplicationLayer.Transformers.Assemblers.ResultModels;
@@ -14,7 +15,7 @@ namespace WillBeThere.ApplicationLayer
     {
         public static IServiceCollection AddApplication(this IServiceCollection services)
         {
-            services.ConfigureHttpCliens();
+            services.ConfigureHttpClient();
             services.ConfigureAssamblers();
             services.ConfigureRepositories();
             services.ConfigureViewModels();
@@ -22,7 +23,7 @@ namespace WillBeThere.ApplicationLayer
             return services;
         }
 
-        public static void ConfigureHttpCliens(this IServiceCollection services)
+        public static void ConfigureHttpClient(this IServiceCollection services)
         {
             services.AddHttpClient("WillBeThere", options =>
             {

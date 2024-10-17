@@ -7,6 +7,10 @@ namespace WillBeThere.ApplicationLayer.Transformers.Converters
 {
     public class OrganizationCategoryDomainDtoConverter : DomainDtoConverter<OrganizationCategory, OrganizationCategoryDto, OrganizationCategoryAssembler>
     {
+        public OrganizationCategoryDomainDtoConverter()
+        {
+            
+        }
         public OrganizationCategoryDomainDtoConverter(OrganizationCategoryAssembler assembler) : base(assembler)
         {
         }

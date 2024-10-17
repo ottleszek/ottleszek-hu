@@ -7,6 +7,10 @@
     {
         private readonly TAssembler _assembler;
 
+        public DomainDtoConverter()
+        {
+            _assembler = new TAssembler();
+        }
         public DomainDtoConverter(TAssembler assembler)
         {
             _assembler = assembler;

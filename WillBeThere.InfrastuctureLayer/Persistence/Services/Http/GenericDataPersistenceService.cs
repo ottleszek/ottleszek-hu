@@ -7,15 +7,21 @@ using WillBeThere.InfrastuctureLayer.Persistence.Services.DataBase;
 
 namespace WillBeThere.InfrastuctureLayer.Persistence.Services.Http
 {
-    public abstract class GenericDataPersistenceService<TEntity,TDto, TConverter> : IDataPersistenceService<TEntity>
+    public class GenericDataPersistenceService<TEntity,TDto, TConverter> : IDataPersistenceService<TEntity>
         where TEntity : class, IDbEntity<TEntity>, new()
         where TDto : class, IDbEntity<TDto>, new()
-        where TConverter : class, IDomainDtoConterter<TEntity, TDto>
+        where TConverter : class, IDomainDtoConterter<TEntity, TDto>, new()
     {
         protected readonly HttpClient? _httpClient;
         protected readonly TConverter? _converter;
         protected readonly IHttpPersistenceService _httpPersistenceService;
 
+        public GenericDataPersistenceService()
+        {
+            _httpClient = new HttpClient();
+            _converter= new TConverter();
+            _httpPersistenceService = new HttpPersistenceService();
+        }
 
         public GenericDataPersistenceService(TConverter? converter, IHttpPersistenceService httpPersistenceService )
         {

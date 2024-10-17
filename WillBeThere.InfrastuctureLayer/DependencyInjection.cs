@@ -35,6 +35,7 @@ namespace WillBeThere.InfrastuctureLayer
     {
         public static IServiceCollection AddInfrastructure(this IServiceCollection services)
         {
+            services.ConfigureHttpClient();
             services.ConfigureInMemoryContext();
             services.ConfigureMysqlContext();
             services.ConfigureAssamblers();
@@ -45,7 +46,13 @@ namespace WillBeThere.InfrastuctureLayer
             return services;
         }
 
-
+        public static void ConfigureHttpClient(this IServiceCollection services)
+        {
+            services.AddHttpClient("WillBeThere", options =>
+            {
+                options.BaseAddress = new Uri("https://localhost:7080/");
+            });
+        }
 
         public static void ConfigureInMemoryContext(this IServiceCollection services)
         {
@@ -145,6 +152,7 @@ namespace WillBeThere.InfrastuctureLayer
         
             services.AddScoped<IOrganizationProgramService, OrganizationProgramService>();
             services.AddScoped<IBaseOrganizationCategoryService, BaseOrganizationCategoryServices>();
+            services.AddScoped<IBaseOrganizationCategoryDataService, BaseOrganizationCategoryDataService>();
         }
 
         public static void ConfigurePersistence(this IServiceCollection services)

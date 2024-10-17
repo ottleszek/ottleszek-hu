@@ -1,5 +1,7 @@
 ﻿using SharedApplicationLayer.Contracts.Persistence;
+using WillBeThere.ApplicationLayer.Contracts.Services.Base.DataServices;
 using WillBeThere.InfrastuctureLayer.Persistence.Services.DataBase;
+using WillBeThere.InfrastuctureLayer.Persistence.Services.Http.Base.DataService;
 
 namespace WillBeThere.Backend.Extensions
 {
@@ -23,6 +25,9 @@ namespace WillBeThere.Backend.Extensions
         public static void ConfigureBackendServices(this IServiceCollection services)
         {
             services.AddScoped<IDataPersistenceService, DbDataPersistenceService>();
+            services.AddScoped<IBaseOrganizationCategoryDataService, BaseOrganizationCategoryDataService>();
         }
+
+ 
     }
 }
