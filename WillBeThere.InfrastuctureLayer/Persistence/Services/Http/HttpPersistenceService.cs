@@ -11,10 +11,10 @@ namespace WillBeThere.InfrastuctureLayer.Persistence.Services.Http
     public class HttpPersistenceService : IHttpPersistenceService
     {
         protected readonly HttpClient? _httpClient;
-        public HttpPersistenceService()
+       /* public HttpPersistenceService()
         {
             _httpClient = new HttpClient();
-        }
+        }*/
 
 
         public HttpPersistenceService(IHttpClientFactory? httpClientFactory)
@@ -31,14 +31,22 @@ namespace WillBeThere.InfrastuctureLayer.Persistence.Services.Http
             {
                 try
                 {
-                    HttpResponseMessage httpResponse = await _httpClient.PostAsJsonAsync($"api/{GetApiName<TEntityDto>()}/bulk", dtoEntities);
+                    string apiName=GetApiName<TEntityDto>();
+                    if (string.IsNullOrEmpty(apiName))
+                    {
+                        Debug.WriteLine($"{nameof(HttpPersistenceService)} osztály, {nameof(SaveMany)} metódusa {nameof(TEntityDto)} osztály esetén hiba történt!");
+                        Debug.WriteLine($"Api név elkészítése api híváshoz nem sikerült!");
+                    }
+                    HttpResponseMessage httpResponse = await _httpClient.PostAsJsonAsync($"api/{apiName}/bulk", dtoEntities);
                     if (httpResponse.StatusCode == HttpStatusCode.BadRequest)
                     {
                         string content = await httpResponse.Content.ReadAsStringAsync();
                         Response? response = JsonConvert.DeserializeObject<Response>(content);
                         if (response is null)
                         {
-                            defaultResponse.ClearAndAdd("A tömeges mentés http kérés hibát okozott!");
+                            Debug.WriteLine($"{nameof(HttpPersistenceService)} osztály, {nameof(SaveMany)} metódusa {nameof(TEntityDto)} osztály esetén hiba történt!");
+                            Debug.WriteLine($"Api válasz nem jött meg!");
+                            defaultResponse.ClearAndAdd("A mentés nem sikerült");
                         }
                         else return response;
                     }
@@ -48,12 +56,16 @@ namespace WillBeThere.InfrastuctureLayer.Persistence.Services.Http
                         string? responseMessage = JsonConvert.DeserializeObject<string>(content);
                         if (responseMessage is null)
                         {
-                            defaultResponse.ClearAndAdd("A tömeges mentés http kérés hibát okozott!");
+                            Debug.WriteLine($"{nameof(HttpPersistenceService)} osztály, {nameof(SaveMany)} metódusa {nameof(TEntityDto)} osztály esetén hiba történt!");
+                            Debug.WriteLine($"{nameof(HttpStatusCode.InternalServerError)} hiba keletkezett!");
+                            Debug.WriteLine($"{responseMessage}");
+                            defaultResponse.ClearAndAdd("A mentés nem sikerült");
                         }
-                        else return new Response(responseMessage);
                     }
                     else if (!httpResponse.IsSuccessStatusCode)
                     {
+                        Debug.WriteLine($"{nameof(HttpPersistenceService)} osztály, {nameof(SaveMany)} metódusa {nameof(TEntityDto)} osztály esetén hiba történt!");
+                        Debug.WriteLine($"{nameof(httpResponse.StatusCode)} hiba keletkezett!");
                         httpResponse.EnsureSuccessStatusCode();
                     }
                     else
@@ -62,9 +74,16 @@ namespace WillBeThere.InfrastuctureLayer.Persistence.Services.Http
                         Response? response = JsonConvert.DeserializeObject<Response>(content);
                         if (response is null)
                         {
-                            defaultResponse.ClearAndAdd("A tömeges mentés http kérés hibát okozott!");
+                            Debug.WriteLine($"{nameof(HttpPersistenceService)} osztály, {nameof(SaveMany)} metódusa {nameof(TEntityDto)} osztály esetén hiba történt!");
+                            Debug.WriteLine($"A RestApi válasz elérhetetlen (null)!");
                         }
-                        else return response;
+                        else if (response.IsSuccess)
+                            return response;
+                        else
+                        {
+                            Debug.WriteLine($"A RestApi hibát adott!");
+                            Debug.WriteLine($"{response.Error}");
+                        }
                     }
                 }
                 catch (Exception ex)
@@ -72,13 +91,17 @@ namespace WillBeThere.InfrastuctureLayer.Persistence.Services.Http
                     Debug.WriteLine(ex.Message);
                 }
             }
-            defaultResponse.ClearAndAdd("Az adatok mentése nem lehetséges!");
+            defaultResponse.ClearAndAdd("A mentés nem sikerült");
             return defaultResponse;
         }
 
         private static string GetApiName<TEntity>() where TEntity : class, new()
         {
-            return new TEntity().GetType().Name;
+            string apiNameWithDto = new TEntity().GetType().Name;
+            if (apiNameWithDto.Length < 3)
+                return string.Empty;
+            else
+                return apiNameWithDto.Remove(apiNameWithDto.Length-3);
         }
     }
 }

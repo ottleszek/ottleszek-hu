@@ -14,14 +14,7 @@ namespace WillBeThere.InfrastuctureLayer.Persistence.Services.Http
     {
         protected readonly HttpClient? _httpClient;
         protected readonly TConverter? _converter;
-        protected readonly IHttpPersistenceService _httpPersistenceService;
-
-        public GenericDataPersistenceService()
-        {
-            _httpClient = new HttpClient();
-            _converter= new TConverter();
-            _httpPersistenceService = new HttpPersistenceService();
-        }
+        protected readonly IHttpPersistenceService? _httpPersistenceService;
 
         public GenericDataPersistenceService(TConverter? converter, IHttpPersistenceService httpPersistenceService )
         {

@@ -153,6 +153,8 @@ namespace WillBeThere.InfrastuctureLayer
             services.AddScoped<IOrganizationProgramService, OrganizationProgramService>();
             services.AddScoped<IBaseOrganizationCategoryService, BaseOrganizationCategoryServices>();
             services.AddScoped<IBaseOrganizationCategoryDataService, BaseOrganizationCategoryDataService>();
+
+
         }
 
         public static void ConfigurePersistence(this IServiceCollection services)
