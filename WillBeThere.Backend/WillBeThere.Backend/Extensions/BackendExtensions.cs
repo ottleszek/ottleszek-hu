@@ -25,7 +25,7 @@ namespace WillBeThere.Backend.Extensions
         public static void ConfigureBackendServices(this IServiceCollection services)
         {
             services.AddScoped<IDataPersistenceService, DbDataPersistenceService>();
-            services.AddScoped<IBaseOrganizationCategoryDataService, BaseOrganizationCategoryDataService>();
+            //services.AddScoped<IBaseOrganizationCategoryDataService, BaseOrganizationCategoryDataService>();
         }
 
  

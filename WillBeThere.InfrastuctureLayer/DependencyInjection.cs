@@ -8,8 +8,6 @@ using WillBeThere.ApplicationLayer.Contracts.UnitOfWork;
 using WillBeThere.DomainLayer.Entites;
 using WillBeThere.DomainLayer.Services.Base;
 using WillBeThere.InfrastuctureLayer.Context;
-using WillBeThere.InfrastuctureLayer.Handlers.OrganizationCategories;
-using WillBeThere.InfrastuctureLayer.Handlers.OrganizationPrograms;
 using WillBeThere.InfrastuctureLayer.Implementations.Repos.UnifOfWorks;
 using WillBeThere.InfrastuctureLayer.Implementations.Repos.WillBeThere.CommandRepos;
 using WillBeThere.InfrastuctureLayer.Implementations.Repos.WillBeThere.QueryRepos;
@@ -25,9 +23,9 @@ using WillBeThere.ApplicationLayer.Contracts.Services.Base.HttpServices;
 using WillBeThere.ApplicationLayer.Contracts.Services.Base.DataServices;
 using WillBeThere.ApplicationLayer.Contracts.Services.Base.MapperServices;
 using WillBeThere.ApplicationLayer.Transformers.Converters;
-using WillBeThere.InfrastuctureLayer.Implementations.Repos.Base;
 using WillBeThere.ApplicationLayer.Repos.CommandRepo;
 using WillBeThere.ApplicationLayer.Repos.QueryRepo;
+using WillBeThere.InfrastuctureLayer.Implementations.Repos.Base;
 
 namespace WillBeThere.InfrastuctureLayer
 {
@@ -39,10 +37,10 @@ namespace WillBeThere.InfrastuctureLayer
             services.ConfigureInMemoryContext();
             services.ConfigureMysqlContext();
             services.ConfigureAssamblers();
+            services.ConfigureConverters();
             services.ConfigureRepos();
             services.ConfigureServices();
             services.ConfigurePersistence();
-            services.ConfigureCqrs();
             return services;
         }
 
@@ -80,8 +78,12 @@ namespace WillBeThere.InfrastuctureLayer
             services.AddScoped<ProgramOwnerAssembler>();
             services.AddScoped<PublicOrganizationProgramAssembler>();
             services.AddScoped<RegisteredUserAssembler>();
+        }
 
+        public static void ConfigureConverters(this IServiceCollection services)
+        {
             services.AddScoped<IDomainDtoConterter<OrganizationCategory, OrganizationCategoryDto>, DomainDtoConverter<OrganizationCategory, OrganizationCategoryDto, OrganizationCategoryAssembler>>();
+            services.AddScoped<OrganizationCategoryDomainDtoConverter>();
         }
 
         public static void ConfigureRepos(this IServiceCollection services)
@@ -159,13 +161,9 @@ namespace WillBeThere.InfrastuctureLayer
 
         public static void ConfigurePersistence(this IServiceCollection services)
         {
-            services.AddScoped<IDataPersistenceService<OrganizationCategory>, GenericDataPersistenceService<OrganizationCategory, OrganizationCategoryDto, OrganizationCategoryDomainDtoConverter>>();
             services.AddScoped<IHttpPersistenceService, HttpPersistenceService>();
-        }
-        public static void ConfigureCqrs(this IServiceCollection services)
-        {
-            services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(GetPublicOrganizationProgramListHandler).Assembly));
-            services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(GetOrganizationCategoriesListHandler).Assembly));
+            services.AddScoped<IDataPersistenceService<OrganizationCategory>, GenericDataPersistenceService<OrganizationCategory, OrganizationCategoryDto, OrganizationCategoryDomainDtoConverter>>();
+
         }
     }
 }

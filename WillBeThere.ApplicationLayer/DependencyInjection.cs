@@ -1,8 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using SharedApplicationLayer.Contracts.Persistence;
 using WillBeThere.ApplicationLayer.Commands.OrganizationCategories;
-using WillBeThere.ApplicationLayer.Contracts.Dtos.OrganizationCategories;
-using WillBeThere.ApplicationLayer.Contracts.Services.Base.DataServices;
 using WillBeThere.ApplicationLayer.Queries.OrganizationCategories;
 using WillBeThere.ApplicationLayer.Transformers.Assemblers;
 using WillBeThere.ApplicationLayer.Transformers.Assemblers.ResultModels;

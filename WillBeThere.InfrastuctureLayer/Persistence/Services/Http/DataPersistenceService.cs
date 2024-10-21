@@ -1,6 +1,7 @@
 ﻿using SharedApplicationLayer.Contracts.Persistence;
 using SharedDomainLayer.Entities;
 using SharedDomainLayer.Responses;
+using WillBeThere.ApplicationLayer.Contracts.Dtos.OrganizationCategories;
 using WillBeThere.DomainLayer.Entites;
 
 namespace WillBeThere.InfrastuctureLayer.Persistence.Services.Http
@@ -8,11 +9,11 @@ namespace WillBeThere.InfrastuctureLayer.Persistence.Services.Http
     public class DataPersistenceService : IDataPersistenceService
     {
 
-        IDataPersistenceService<OrganizationCategory>? _organizationCategoryDataPersistenceSerivce;
+        IDataPersistenceService<OrganizationCategory>? _organizationCategoryGenericDataPersistenceSerivce;
 
         public DataPersistenceService(IDataPersistenceService<OrganizationCategory>? organizationCategoryDataPersistenceSerivce)
         {
-            _organizationCategoryDataPersistenceSerivce = organizationCategoryDataPersistenceSerivce;
+            _organizationCategoryGenericDataPersistenceSerivce = organizationCategoryDataPersistenceSerivce;
         }
 
         public Task<Response> SaveMany<TEntity>(List<TEntity> entities) where TEntity: class, IDbEntity<TEntity>,new ()
@@ -21,14 +22,14 @@ namespace WillBeThere.InfrastuctureLayer.Persistence.Services.Http
             {
                 try
                 {
-                    if (_organizationCategoryDataPersistenceSerivce is not null)
-                        return _organizationCategoryDataPersistenceSerivce.SaveMany(entities.Cast<OrganizationCategory>().ToList());
+                    if (_organizationCategoryGenericDataPersistenceSerivce is not null)
+                        return _organizationCategoryGenericDataPersistenceSerivce.SaveMany(entities.Cast<OrganizationCategory>().ToList());
                 } 
-                catch (InvalidCastException e)
+                catch (InvalidCastException)
                 {
                     Task.FromResult(new Response($"A {nameof(OrganizationCategory)} típus esetén nem lehetséges az adatok együttes mentése!"));
                 }
-                catch (Exception e) 
+                catch (Exception) 
                 {
                     Task.FromResult(new Response($"A {nameof(OrganizationCategory)} típus esetén hiba történt!"));
                 }

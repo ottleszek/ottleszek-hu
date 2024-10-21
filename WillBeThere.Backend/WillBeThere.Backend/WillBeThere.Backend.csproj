@@ -29,6 +29,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\SharedApplicationLayer\SharedApplicationLayer.csproj" />
     <ProjectReference Include="..\..\WillBeThere.ApplicationLayer\WillBeThere.ApplicationLayer.csproj" />
     <ProjectReference Include="..\..\WillBeThere.InfrastuctureLayer\WillBeThere.InfrastuctureLayer.csproj" />
   </ItemGroup>

@@ -1,6 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
-using SharedApplicationLayer.Repos;
 using WillBeThere.ApplicationLayer.Contracts.UnitOfWork;
 
 namespace WillBeThere.InfrastuctureLayer.Implementations.Repos.UnifOfWorks
@@ -8,22 +7,14 @@ namespace WillBeThere.InfrastuctureLayer.Implementations.Repos.UnifOfWorks
     public class UnitOfWork<TDbContext> : IUnitOfWork where TDbContext : DbContext
     {
         private DbContext _context;
-        private IBaseCommandRepo? _baseCommandRepo;
 
         protected IDbContextTransaction? _transaction;
-
-        //public virtual IBaseCommandRepo? Repository {get => _baseCommandRepo; set => _baseCommandRepo = value; }
 
         public UnitOfWork(TDbContext context) 
         {
             _context = context;
         }
-        /*        public void SetRepository(IBaseCommandRepo? baseCommandRepo)
-        {
-            if (baseCommandRepo is not null)
-                _baseCommandRepo = baseCommandRepo;
-        }
-        */
+
         public virtual void Commit()
         {
             try

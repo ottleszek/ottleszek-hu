@@ -16,9 +16,5 @@ namespace WillBeThere.InfrastuctureLayer.Implementations.Repos.UnifOfWorks
         public SaveChangesException(string? message, Exception? innerException) : base(message, innerException)
         {
         }
-
-        protected SaveChangesException(SerializationInfo info, StreamingContext context) : base(info, context)
-        {
-        }
     }
 }

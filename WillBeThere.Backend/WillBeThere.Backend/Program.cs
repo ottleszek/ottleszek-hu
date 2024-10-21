@@ -3,6 +3,7 @@ using WillBeThere.Backend.Extensions;
 using WillBeThere.InfrastuctureLayer.Context;
 using WillBeThere.InfrastuctureLayer;
 using WillBeThere.Backend.Extensions.Middleware;
+using WillBeThere.ApplicationLayer;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -21,7 +22,7 @@ builder.Services.AddControllers().AddJsonOptions(options =>
 
 builder.Services.ConfigureCors();
 builder.Services.ConfigureBackendServices();
-//builder.Services.AddApplication();
+builder.Services.AddApplication();
 builder.Services.AddInfrastructure();
 
 var app = builder.Build();
