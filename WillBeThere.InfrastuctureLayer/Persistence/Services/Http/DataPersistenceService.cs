@@ -16,7 +16,7 @@ namespace WillBeThere.InfrastuctureLayer.Persistence.Services.Http
             _organizationCategoryGenericDataPersistenceSerivce = organizationCategoryDataPersistenceSerivce;
         }
 
-        public Task<Response> SaveMany<TEntity>(List<TEntity> entities) where TEntity: class, IDbEntity<TEntity>,new ()
+        public Task<Response> UpdateMany<TEntity>(List<TEntity> entities) where TEntity: class, IDbEntity<TEntity>,new ()
         {
             if (typeof(TEntity) == typeof(OrganizationCategory))
             {

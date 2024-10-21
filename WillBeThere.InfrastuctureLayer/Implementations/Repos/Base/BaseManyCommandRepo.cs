@@ -12,14 +12,14 @@ namespace WillBeThere.InfrastuctureLayer.Implementations.Repos.Base
         {
             _dbContext = dbContext;
         }
-        public Task<Response> SaveMany<TEntity>(List<TEntity> entities) where TEntity : class, IDbEntity<TEntity>, new()
+        public Task<Response> UpdateMany<TEntity>(List<TEntity> entities) where TEntity : class, IDbEntity<TEntity>, new()
         {
             Response response = new();
 
             DbSet<TEntity>? dbSet = GetDbSet<TEntity>();
             if (dbSet is null)
             {
-                response.Append($"{nameof(BaseManyCommandRepo<TDbContext>)} osztály, {nameof(SaveMany)} metódusban hiba keletkezett!");
+                response.Append($"{nameof(BaseManyCommandRepo<TDbContext>)} osztály, {nameof(UpdateMany)} metódusban hiba keletkezett!");
                 response.Append($"Az adatbázis nem elérhető!");
                 return Task.FromResult(response);
             }
@@ -35,7 +35,7 @@ namespace WillBeThere.InfrastuctureLayer.Implementations.Repos.Base
                     response.Append(e.Message);
                 }
             }
-            response.Append($"{nameof(BaseManyCommandRepo<TDbContext>)} osztály, {nameof(SaveMany)} metódusban hiba keletkezett!");
+            response.Append($"{nameof(BaseManyCommandRepo<TDbContext>)} osztály, {nameof(UpdateMany)} metódusban hiba keletkezett!");
             response.Append($"{nameof(TEntity)} típusú és {entities.Count} db elem mentése az adatbázisba nem sikerült!");
             return Task.FromResult(response);
         }

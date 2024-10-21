@@ -51,6 +51,11 @@ namespace WillBeThere.InfrastuctureLayer.Implementations.Repos.UnifOfWorks
             _transaction = _context.Database.BeginTransaction();
         }
 
+        public async Task BeginTransactionAsync()
+        {
+            _transaction = await _context.Database.BeginTransactionAsync();
+        }
+
         public void Rollback()
         {
             _transaction?.Rollback();

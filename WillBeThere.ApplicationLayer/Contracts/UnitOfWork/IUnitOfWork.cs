@@ -9,6 +9,7 @@ namespace WillBeThere.ApplicationLayer.Contracts.UnitOfWork
         void Commit();
         Task<int> SaveChangesAsync();
         void BeginTransaction();
+        public Task BeginTransactionAsync();
         public void Rollback();
 
     }

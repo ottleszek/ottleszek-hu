@@ -21,7 +21,7 @@ namespace WillBeThere.ApplicationLayer.Commands.OrganizationCategories
         {
             if (_dataPersistenceService is null)
                 return new Response("Kategoróiák mentése nem lehetséges!");
-            return await _dataPersistenceService.SaveMany<OrganizationCategory>(request.OrganizationCategories.Select(oc => _organizationCategoryAssembler.ToModel(oc)).ToList());
+            return await _dataPersistenceService.UpdateMany<OrganizationCategory>(request.OrganizationCategories.Select(oc => _organizationCategoryAssembler.ToModel(oc)).ToList());
 
         }
     }

@@ -31,14 +31,14 @@ namespace WillBeThere.InfrastuctureLayer.Persistence.Services.Http
             Response response = new Response();
             if (_converter is null || _httpPersistenceService is null)
             {
-                response.Append($"{nameof(DbDataPersistenceService)} osztály, {nameof(IDataPersistenceService.SaveMany)} metódusban hiba keletkezett!");
+                response.Append($"{nameof(DbDataPersistenceService)} osztály, {nameof(IDataPersistenceService.UpdateMany)} metódusban hiba keletkezett!");
                 response.Append($"{entities.Count} db {nameof(TEntity)} objektum hozzáadása az adatbázishoz nem sikerült!");
                 return new Response("Több adat együttes mentése nem sikerült.");
             }
             else
             {
                 List<TDto> dtos = _converter.ToDto(entities);                
-                return await _httpPersistenceService.SaveMany<TDto>(dtos);
+                return await _httpPersistenceService.UpdateMany<TDto>(dtos);
             }
         }
     }

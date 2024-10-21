@@ -10,41 +10,57 @@ namespace WillBeThere.InfrastuctureLayer.Persistence.Services.DataBase
     public class DbDataPersistenceService : IDataPersistenceService
     {
         private readonly IUnitOfWork? _unitOfWork;
-        private readonly IBaseRepo? _baseRepo;
+        private readonly IBaseCommandRepo? _baseCommandRepo;
 
-        public DbDataPersistenceService(IUnitOfWork? unitOfWork, IBaseRepo? baseRepo)
+        public DbDataPersistenceService(IUnitOfWork? unitOfWork, IBaseCommandRepo? baseRepo)
         {
             _unitOfWork = unitOfWork;
-            _baseRepo = baseRepo;
+            _baseCommandRepo = baseRepo;
         }
 
-        public Task<Response> SaveMany<TEntity>(List<TEntity> entities) where TEntity : class,IDbEntity<TEntity>,  new()
+        public async Task<Response> UpdateMany<TEntity>(List<TEntity> entities) where TEntity : class,IDbEntity<TEntity>,  new()
         {
             Response response = new();
             DbSet<TEntity>? dbSet;
 
-            if (_baseRepo is null)
+            if (_baseCommandRepo is null || _unitOfWork is null)
             {
-                response.Append($"{nameof(DbDataPersistenceService)} osztály, {nameof(SaveMany)} metódusban hiba keletkezett!");
+                response.Append($"{nameof(DbDataPersistenceService)} osztály, {nameof(UpdateMany)} metódusban hiba keletkezett!");
                 response.Append($"Az adatbázis nem elérhető!");
-                return Task.FromResult(response);
+                return response;
             }
             else
             {
 
-                dbSet = _baseRepo.GetDbSet<TEntity>();
+                dbSet = _baseCommandRepo.GetDbSet<TEntity>();
                 if (dbSet is null)
                 {
-                    response.Append($"{nameof(DbDataPersistenceService)} osztály, {nameof(SaveMany)} metódusban hiba keletkezett!");
+                    response.Append($"{nameof(DbDataPersistenceService)} osztály, {nameof(UpdateMany)} metódusban hiba keletkezett!");
                     response.Append($"Az adatbázis nem elérhető!");
-                    return Task.FromResult(response);
+                    return response;
                 }
                 else
                 {
                     try
                     {
-                        dbSet.AddRange(entities);
-                        return Task.FromResult(response);
+
+                        await _unitOfWork.BeginTransactionAsync();
+                        {
+                            try
+                            {
+                                foreach (var entity in entities)
+                                {
+                                    _baseCommandRepo.Update(entity);
+                                }
+                                await _unitOfWork.SaveChangesAsync();
+                                _unitOfWork.Commit();
+                            }
+                            catch
+                            {
+                                _unitOfWork.Rollback();
+                                throw;
+                            }
+                        }
                     }
                     catch (Exception e)
                     {
@@ -52,9 +68,9 @@ namespace WillBeThere.InfrastuctureLayer.Persistence.Services.DataBase
                     }
                 }
             }
-            response.Append($"{nameof(DbDataPersistenceService)} osztály, {nameof(SaveMany)} metódusban hiba keletkezett!");
+            response.Append($"{nameof(DbDataPersistenceService)} osztály, {nameof(UpdateMany)} metódusban hiba keletkezett!");
             response.Append($"{entities.Count} db {nameof(TEntity)} objektum hozzáadása az adatbázishoz nem sikerült!");
-            return Task.FromResult(response);
+            return response;
         }
     }
 }

@@ -18,7 +18,8 @@ namespace WillBeThere.InfrastuctureLayer.Implementations.Repos.Base
             Response response = new();
             try
             {
-                if (_dbContext is null)
+                DbSet<TEntity>? dbSet = GetDbSet<TEntity>();
+                if (_dbContext is null || dbSet is null)
                 {
                     response.Append($"{nameof(BaseCommandRepo<TDbContext>)} osztály, {nameof(Update)} metódusban hiba keletkezett!");
                     response.Append($"Az adatbázis nem elérhető!");
@@ -26,8 +27,9 @@ namespace WillBeThere.InfrastuctureLayer.Implementations.Repos.Base
                 }
                 else
                 {
-                    _dbContext.ChangeTracker.Clear();
-                    _dbContext.Entry(entity).State = EntityState.Modified;
+                    var existingEntity = dbSet.Find(entity.Id);
+                    if (existingEntity != null)                    
+                        _dbContext.Entry(existingEntity).CurrentValues.SetValues(entity);                    
                     return response;
                 }
             }
