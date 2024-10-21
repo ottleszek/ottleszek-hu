@@ -55,10 +55,12 @@ namespace WillBeThere.InfrastuctureLayer.Persistence.Services.DataBase
                                 await _unitOfWork.SaveChangesAsync();
                                 _unitOfWork.Commit();
                             }
-                            catch
+                            catch (Exception ex) 
                             {
                                 _unitOfWork.Rollback();
-                                throw;
+                                return new Response { Error = ex.Message };
+
+                                
                             }
                         }
                     }

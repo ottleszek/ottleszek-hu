@@ -12,6 +12,6 @@ namespace SharedApplicationLayer.Contracts.Persistence
     public interface IDataPersistenceService<TEntity>
         where TEntity : class, IDbEntity<TEntity>, new()
     {
-        Task<Response> SaveMany(List<TEntity> entities);
+        Task<Response> UpdateMany(List<TEntity> entities);
     }
 }

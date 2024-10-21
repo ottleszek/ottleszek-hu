@@ -26,9 +26,9 @@ namespace WillBeThere.InfrastuctureLayer.Persistence.Services.Http
             _httpPersistenceService = httpPersistenceService ?? throw new ArgumentNullException(nameof(httpPersistenceService));
         }
 
-        public async Task<Response> SaveMany(List<TEntity> entities)
+        public async Task<Response> UpdateMany(List<TEntity> entities)
         {
-            Response response = new Response();
+            Response response = new();
             if (_converter is null || _httpPersistenceService is null)
             {
                 response.Append($"{nameof(DbDataPersistenceService)} osztály, {nameof(IDataPersistenceService.UpdateMany)} metódusban hiba keletkezett!");

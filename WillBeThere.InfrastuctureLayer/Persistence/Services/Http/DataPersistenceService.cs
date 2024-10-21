@@ -1,7 +1,6 @@
 ﻿using SharedApplicationLayer.Contracts.Persistence;
 using SharedDomainLayer.Entities;
 using SharedDomainLayer.Responses;
-using WillBeThere.ApplicationLayer.Contracts.Dtos.OrganizationCategories;
 using WillBeThere.DomainLayer.Entites;
 
 namespace WillBeThere.InfrastuctureLayer.Persistence.Services.Http
@@ -9,7 +8,7 @@ namespace WillBeThere.InfrastuctureLayer.Persistence.Services.Http
     public class DataPersistenceService : IDataPersistenceService
     {
 
-        IDataPersistenceService<OrganizationCategory>? _organizationCategoryGenericDataPersistenceSerivce;
+        private readonly IDataPersistenceService<OrganizationCategory>? _organizationCategoryGenericDataPersistenceSerivce;
 
         public DataPersistenceService(IDataPersistenceService<OrganizationCategory>? organizationCategoryDataPersistenceSerivce)
         {
@@ -23,7 +22,7 @@ namespace WillBeThere.InfrastuctureLayer.Persistence.Services.Http
                 try
                 {
                     if (_organizationCategoryGenericDataPersistenceSerivce is not null)
-                        return _organizationCategoryGenericDataPersistenceSerivce.SaveMany(entities.Cast<OrganizationCategory>().ToList());
+                        return _organizationCategoryGenericDataPersistenceSerivce.UpdateMany(entities.Cast<OrganizationCategory>().ToList());
                 } 
                 catch (InvalidCastException)
                 {
