@@ -2,17 +2,16 @@
 using System.Diagnostics;
 using WillBeThere.ApplicationLayer.Contracts.Dtos.ResultModels;
 using WillBeThere.ApplicationLayer.Extensions.ModelExtensions;
-using WillBeThere.ApplicationLayer.Queries.OrganizationPrograms;
 using WillBeThere.DomainLayer.Entites.ResultModels;
 using WillBeThere.DomainLayer.Repos;
 
-namespace WillBeThere.InfrastuctureLayer.Handlers.OrganizationPrograms
+namespace WillBeThere.ApplicationLayer.Queries.OrganizationPrograms
 {
-    public class GetPublicOrganizationProgramListHandler : IRequestHandler<GetPublicOrgranizationProgramListQuery, List<PublicOrganizationProgramDto>>
+    public class GetPublicOrganizationProgramListQueryHandler : IRequestHandler<GetPublicOrgranizationProgramListQuery, List<PublicOrganizationProgramDto>>
     {
         private readonly IOrganizationProgramRepo _organizationProgramRepo;
 
-        public GetPublicOrganizationProgramListHandler(IOrganizationProgramRepo organizationProgramService)
+        public GetPublicOrganizationProgramListQueryHandler(IOrganizationProgramRepo organizationProgramService)
         {
             this._organizationProgramRepo = organizationProgramService;
         }

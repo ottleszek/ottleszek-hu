@@ -3,6 +3,6 @@ using WillBeThere.ApplicationLayer.Contracts.Dtos.OrganizationCategories;
 
 namespace WillBeThere.ApplicationLayer.Queries.OrganizationCategories
 {
-    public class GetOrganizationsCategoriesQuery : IRequest<List<OrganizationCategoryDto>> { }
+    public class GetOrganizationsCategoriesListQuery : IRequest<List<OrganizationCategoryDto>> { }
 
 }

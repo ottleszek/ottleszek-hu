@@ -14,8 +14,7 @@ builder.Services.AddMudServices();
 
 builder.Services.AddApplication();
 builder.Services.AddInfrastructure();
-
-builder.Services.ConfigureWebServices();
+builder.Services.AddWebServices();
 
 var app = builder.Build();
 

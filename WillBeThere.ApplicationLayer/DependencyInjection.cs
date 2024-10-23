@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using WillBeThere.ApplicationLayer.Commands.OrganizationCategories;
 using WillBeThere.ApplicationLayer.Queries.OrganizationCategories;
+using WillBeThere.ApplicationLayer.Queries.OrganizationPrograms;
 using WillBeThere.ApplicationLayer.Transformers.Assemblers;
 using WillBeThere.ApplicationLayer.Transformers.Assemblers.ResultModels;
 using WillBeThere.ApplicationLayer.ViewModels.OrganizationCategories;
@@ -14,7 +15,7 @@ namespace WillBeThere.ApplicationLayer
         {
             services.ConfigureHttpClient();
             services.ConfigureAssamblers();
-            services.ConfigureRepositories();
+            services.ConfigureRepos();
             services.ConfigureViewModels();
             services.ConfigureCqrs();
             return services;
@@ -41,7 +42,7 @@ namespace WillBeThere.ApplicationLayer
             services.AddScoped<PublicOrganizationProgramAssembler>();
         }
 
-        public static void ConfigureRepositories(this IServiceCollection services)
+        public static void ConfigureRepos(this IServiceCollection services)
         {
             //services.AddScoped<IOrganizationCategoryRepository, OrganizationCategoryRepository>();            
         }
@@ -54,7 +55,9 @@ namespace WillBeThere.ApplicationLayer
         public static void ConfigureCqrs(this IServiceCollection services)
         {
             services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(SaveOrganizationCategoriesCommandHandler).Assembly));
-            services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(GetOrganizationsCategoriesQuery).Assembly));
+
+            services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(GetOrganizationCategoriesListQueryHandler).Assembly));
+            services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(GetPublicOrganizationProgramListQueryHandler).Assembly));
         }
     }
 }

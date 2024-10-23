@@ -1,19 +1,17 @@
 ﻿using MediatR;
 using SharedApplicationLayer.Transformers;
 using WillBeThere.ApplicationLayer.Contracts.Dtos.OrganizationCategories;
-using WillBeThere.ApplicationLayer.Queries.OrganizationCategories;
-using WillBeThere.ApplicationLayer.Transformers.Converters;
 using WillBeThere.DomainLayer.Entites;
 using WillBeThere.DomainLayer.Repos.Base;
 
-namespace WillBeThere.InfrastuctureLayer.Handlers.OrganizationCategories
+namespace WillBeThere.ApplicationLayer.Queries.OrganizationCategories
 {
-    public class GetOrganizationCategoriesListHandler : IRequestHandler<GetOrganizationsCategoriesQuery, List<OrganizationCategoryDto>>
+    public class GetOrganizationCategoriesListQueryHandler : IRequestHandler<GetOrganizationsCategoriesListQuery, List<OrganizationCategoryDto>>
     {
         private readonly IBaseOrganizationCategoryRepo? _organizationCategoryService;
         private readonly IDomainDtoConterter<OrganizationCategory, OrganizationCategoryDto>? _organizationCategoryDomainDtoConverter;
 
-        public GetOrganizationCategoriesListHandler(
+        public GetOrganizationCategoriesListQueryHandler(
             IBaseOrganizationCategoryRepo? organizationCategoryService,
             IDomainDtoConterter<OrganizationCategory, OrganizationCategoryDto>? organizationCategoryDomainDtoConverter
             )
@@ -22,7 +20,7 @@ namespace WillBeThere.InfrastuctureLayer.Handlers.OrganizationCategories
             _organizationCategoryDomainDtoConverter= organizationCategoryDomainDtoConverter;
         }
 
-        public async Task<List<OrganizationCategoryDto>> Handle(GetOrganizationsCategoriesQuery request, CancellationToken cancellationToken)
+        public async Task<List<OrganizationCategoryDto>> Handle(GetOrganizationsCategoriesListQuery request, CancellationToken cancellationToken)
         {
             if (_organizationCategoryService is not null && _organizationCategoryDomainDtoConverter is not null)
             {

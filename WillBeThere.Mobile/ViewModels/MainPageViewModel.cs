@@ -23,11 +23,12 @@ namespace WillBeThere.Mobile.ViewModels
         [ObservableProperty] private string _searchProgramTite=string.Empty;
         [ObservableProperty] private bool _isBusy=false;
 
+        /*
         public MainPageViewModel()
         {
             _initTask = InitializeData();
         }
-
+        */
         public MainPageViewModel(IMediator? mediator)
         {
             _mediator = mediator ?? throw new ArgumentException(nameof(mediator), $"{nameof(MainPageViewModel)} osztályban a mediator inicializálása nem sikerült." );
@@ -38,7 +39,7 @@ namespace WillBeThere.Mobile.ViewModels
         {
             IsBusy = true;
 
-            OrganizationCategories = await _mediator.Send(new GetOrganizationsCategoriesQuery());
+            OrganizationCategories = await _mediator.Send(new GetOrganizationsCategoriesListQuery());
             allPublicOrganizationPrograms = await _mediator.Send(new GetPublicOrgranizationProgramListQuery());
             SelectedPublicOrganizationPrograms = new List<PublicOrganizationProgramDto>(allPublicOrganizationPrograms);
             IsBusy = false;

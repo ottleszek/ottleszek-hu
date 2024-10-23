@@ -26,8 +26,6 @@ using WillBeThere.ApplicationLayer.Transformers.Converters;
 using WillBeThere.ApplicationLayer.Repos.CommandRepo;
 using WillBeThere.ApplicationLayer.Repos.QueryRepo;
 using WillBeThere.InfrastuctureLayer.Implementations.Repos.Base;
-using WillBeThere.InfrastuctureLayer.Persistence.Repos.DataBase;
-using WillBeThere.DomainLayer.Repos;
 
 namespace WillBeThere.InfrastuctureLayer
 {
