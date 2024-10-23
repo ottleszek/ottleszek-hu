@@ -8,7 +8,7 @@ using WillBeThere.ApplicationLayer.Repos.QueryRepo;
 using WillBeThere.ApplicationLayer.Transformers.Assemblers;
 using WillBeThere.Backend.Controllers.Base;
 using WillBeThere.DomainLayer.Entites;
-using WillBeThere.DomainLayer.Services.Base;
+using WillBeThere.DomainLayer.Repos.Base;
 
 namespace WillBeThere.Backend.Controllers.WillBeThere
 {
@@ -17,12 +17,12 @@ namespace WillBeThere.Backend.Controllers.WillBeThere
     public class OrganizationCategoryController : IncludedController<OrganizationCategory, OrganizationCategoryDto>
     {
         private readonly IMediator? _mediator;
-        private readonly IBaseOrganizationCategoryService? _baseOrganizationCategoryService;
+        private readonly IBaseOrganizationCategoryRepo? _baseOrganizationCategoryService;
 
         public OrganizationCategoryController(
             IMediator? mediator,
             OrganizationCategoryAssembler? assambler, 
-            IBaseOrganizationCategoryService? baseOrganizationCategoryService,
+            IBaseOrganizationCategoryRepo? baseOrganizationCategoryService,
             IOrganizationCategoryQueryRepo? organizationCategoryQueryRepo,
             IBaseOrganizationCategoryCommandRepo? organizationCategoryCommandRepo,
             IUnitOfWork unitOfWork

@@ -1,7 +1,7 @@
 ﻿using SharedApplicationLayer.Contracts.Persistence;
-using WillBeThere.ApplicationLayer.Contracts.Services.Base.DataServices;
+using WillBeThere.DomainLayer.Repos;
+using WillBeThere.InfrastuctureLayer.Persistence.Repos.DataBase;
 using WillBeThere.InfrastuctureLayer.Persistence.Services.DataBase;
-using WillBeThere.InfrastuctureLayer.Persistence.Services.Http.Base.DataService;
 
 namespace WillBeThere.Backend.Extensions
 {
@@ -20,6 +20,11 @@ namespace WillBeThere.Backend.Extensions
                      }
                  )
             );
+        }
+
+        public static void ConfigureBackendRepos(this IServiceCollection services)
+        {
+            services.AddScoped<IOrganizationProgramRepo, DbOrganizationProgramRepo>();
         }
 
         public static void ConfigureBackendServices(this IServiceCollection services)

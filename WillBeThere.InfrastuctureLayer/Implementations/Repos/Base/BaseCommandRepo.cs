@@ -134,7 +134,7 @@ namespace WillBeThere.InfrastuctureLayer.Implementations.Repos.Base
             return null;
         }
 
-        public IQueryable<TEntity> Select<TEntity>() where TEntity : class, IDbEntity<TEntity>, new()
+        public IQueryable<TEntity> SelectAll<TEntity>() where TEntity : class, IDbEntity<TEntity>, new()
         {
             try
             {

@@ -4,17 +4,17 @@ using WillBeThere.ApplicationLayer.Contracts.Dtos.OrganizationCategories;
 using WillBeThere.ApplicationLayer.Queries.OrganizationCategories;
 using WillBeThere.ApplicationLayer.Transformers.Converters;
 using WillBeThere.DomainLayer.Entites;
-using WillBeThere.DomainLayer.Services.Base;
+using WillBeThere.DomainLayer.Repos.Base;
 
 namespace WillBeThere.InfrastuctureLayer.Handlers.OrganizationCategories
 {
     public class GetOrganizationCategoriesListHandler : IRequestHandler<GetOrganizationsCategoriesQuery, List<OrganizationCategoryDto>>
     {
-        private readonly IBaseOrganizationCategoryService? _organizationCategoryService;
+        private readonly IBaseOrganizationCategoryRepo? _organizationCategoryService;
         private readonly IDomainDtoConterter<OrganizationCategory, OrganizationCategoryDto>? _organizationCategoryDomainDtoConverter;
 
         public GetOrganizationCategoriesListHandler(
-            IBaseOrganizationCategoryService? organizationCategoryService,
+            IBaseOrganizationCategoryRepo? organizationCategoryService,
             IDomainDtoConterter<OrganizationCategory, OrganizationCategoryDto>? organizationCategoryDomainDtoConverter
             )
         {

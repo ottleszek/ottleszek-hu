@@ -13,10 +13,10 @@ namespace WillBeThere.InfrastuctureLayer.Persistence.Services.Http
     {
         protected readonly HttpClient? _httpClient;
         protected readonly TConverter? _converter;
-        protected readonly IHttpPersistenceService? _httpPersistenceService;
+        protected readonly IHttpDataPersistenceService? _httpPersistenceService;
 
 
-        public GenericDataPersistenceService(IHttpClientFactory? httpClientFactory, IHttpPersistenceService? httpPersistenceService, TConverter? converter)
+        public GenericDataPersistenceService(IHttpClientFactory? httpClientFactory, IHttpDataPersistenceService? httpPersistenceService, TConverter? converter)
         {
             if (httpClientFactory is not null)
             {

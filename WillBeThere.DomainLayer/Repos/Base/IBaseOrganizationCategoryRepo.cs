@@ -1,8 +1,8 @@
 ﻿using WillBeThere.DomainLayer.Entites;
 
-namespace WillBeThere.DomainLayer.Services.Base
+namespace WillBeThere.DomainLayer.Repos.Base
 {
-    public interface IBaseOrganizationCategoryService
+    public interface IBaseOrganizationCategoryRepo
     {
         Task<List<OrganizationCategory>> GetOrganizationsCategories();
     }

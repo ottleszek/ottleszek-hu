@@ -1,7 +1,7 @@
 ﻿
 namespace SharedApplicationLayer.Contracts.Persistence
 {
-    public interface IHttpPersistenceService : IDataPersistenceService
+    public interface IHttpDataPersistenceService : IDataPersistenceService
     {
     }
 }

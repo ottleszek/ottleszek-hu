@@ -8,17 +8,23 @@
 
   <ItemGroup>
     <Compile Remove="Contracts\PersistenceServices\**" />
+    <Compile Remove="Contracts\Persistence\**" />
     <Compile Remove="Contracts\Requests\**" />
     <Compile Remove="Contracts\Responses\**" />
     <Compile Remove="Handlers\**" />
+    <Compile Remove="Transformers\Assemblers\Converters\**" />
     <EmbeddedResource Remove="Contracts\PersistenceServices\**" />
+    <EmbeddedResource Remove="Contracts\Persistence\**" />
     <EmbeddedResource Remove="Contracts\Requests\**" />
     <EmbeddedResource Remove="Contracts\Responses\**" />
     <EmbeddedResource Remove="Handlers\**" />
+    <EmbeddedResource Remove="Transformers\Assemblers\Converters\**" />
     <None Remove="Contracts\PersistenceServices\**" />
+    <None Remove="Contracts\Persistence\**" />
     <None Remove="Contracts\Requests\**" />
     <None Remove="Contracts\Responses\**" />
     <None Remove="Handlers\**" />
+    <None Remove="Transformers\Assemblers\Converters\**" />
   </ItemGroup>
 
   <ItemGroup>
@@ -35,9 +41,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Contracts\Persistence\" />
     <Folder Include="Repos\Base\" />
-    <Folder Include="Transformers\Assemblers\Converters\" />
     <Folder Include="Repos\OrgaizationCategories\" />
   </ItemGroup>
 

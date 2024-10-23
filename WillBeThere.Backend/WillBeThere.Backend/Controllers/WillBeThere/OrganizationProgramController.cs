@@ -1,6 +1,7 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using WillBeThere.ApplicationLayer.Contracts.Dtos;
+using WillBeThere.ApplicationLayer.Contracts.Dtos.ResultModels;
 using WillBeThere.ApplicationLayer.Contracts.UnitOfWork;
 using WillBeThere.ApplicationLayer.Queries.OrganizationPrograms;
 using WillBeThere.ApplicationLayer.Repos.CommandRepo;
@@ -9,7 +10,7 @@ using WillBeThere.ApplicationLayer.Transformers.Assemblers;
 using WillBeThere.ApplicationLayer.Transformers.Assemblers.ResultModels;
 using WillBeThere.Backend.Controllers.Base;
 using WillBeThere.DomainLayer.Entites;
-using WillBeThere.DomainLayer.Entites.ResultModels;
+
 
 namespace WillBeThere.Backend.Controllers.WillBeThere
 {
@@ -43,11 +44,10 @@ namespace WillBeThere.Backend.Controllers.WillBeThere
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         public async Task<IActionResult> GetPublicPrograms()
         {
-            List<PublicOrganizationProgram> pop = new List<PublicOrganizationProgram>();
             if (_mediator is not null && _publicOrganizationProgramAssambler is not null)
             {
-                pop = await _mediator.Send(new GetPublicOrgranizationProgramListQuery());
-                return Ok(pop.Select(pop =>_publicOrganizationProgramAssambler.ToDto(pop)));
+                List<PublicOrganizationProgramDto> pop = await _mediator.Send(new GetPublicOrgranizationProgramListQuery());
+                return Ok(pop);
             }
             return NoContent();
         }

@@ -6,7 +6,7 @@ using SharedApplicationLayer.Repos;
 using WillBeThere.ApplicationLayer.Contracts.Dtos.OrganizationCategories;
 using WillBeThere.ApplicationLayer.Contracts.UnitOfWork;
 using WillBeThere.DomainLayer.Entites;
-using WillBeThere.DomainLayer.Services.Base;
+using WillBeThere.DomainLayer.Repos.Base;
 using WillBeThere.InfrastuctureLayer.Context;
 using WillBeThere.InfrastuctureLayer.Implementations.Repos.UnifOfWorks;
 using WillBeThere.InfrastuctureLayer.Implementations.Repos.WillBeThere.CommandRepos;
@@ -26,6 +26,8 @@ using WillBeThere.ApplicationLayer.Transformers.Converters;
 using WillBeThere.ApplicationLayer.Repos.CommandRepo;
 using WillBeThere.ApplicationLayer.Repos.QueryRepo;
 using WillBeThere.InfrastuctureLayer.Implementations.Repos.Base;
+using WillBeThere.InfrastuctureLayer.Persistence.Repos.DataBase;
+using WillBeThere.DomainLayer.Repos;
 
 namespace WillBeThere.InfrastuctureLayer
 {
@@ -152,8 +154,8 @@ namespace WillBeThere.InfrastuctureLayer
             services.AddScoped<IBaseOrganizationProgramDataService, BaseOrganizationProgramDataService>();
             services.AddScoped<IBaseOrganizationCategoryDataService, BaseOrganizationCategoryDataService>();
         
-            services.AddScoped<IOrganizationProgramService, OrganizationProgramService>();
-            services.AddScoped<IBaseOrganizationCategoryService, BaseOrganizationCategoryServices>();
+            
+            services.AddScoped<IBaseOrganizationCategoryRepo, BaseOrganizationCategoryServices>();
             services.AddScoped<IBaseOrganizationCategoryDataService, BaseOrganizationCategoryDataService>();
 
 
@@ -161,7 +163,7 @@ namespace WillBeThere.InfrastuctureLayer
 
         public static void ConfigurePersistence(this IServiceCollection services)
         {
-            services.AddScoped<IHttpPersistenceService, HttpPersistenceService>();
+            services.AddScoped<IHttpDataPersistenceService, HttpDataPersistenceService>();
             services.AddScoped<IDataPersistenceService<OrganizationCategory>, GenericDataPersistenceService<OrganizationCategory, OrganizationCategoryDto, OrganizationCategoryDomainDtoConverter>>();
 
         }

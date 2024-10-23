@@ -7,6 +7,6 @@ namespace SharedApplicationLayer.Repos
     {
         DbSet<TEntity>? GetDbSet<TEntity>() where TEntity : class, IDbEntity<TEntity>, new();
         IQueryable<TEntity>? GetQuery<TEntity>() where TEntity : class, IDbEntity<TEntity>, new();
-        IQueryable<TEntity> Select<TEntity>() where TEntity : class, IDbEntity<TEntity>, new();
+        IQueryable<TEntity> SelectAll<TEntity>() where TEntity : class, IDbEntity<TEntity>, new();
     }
 }

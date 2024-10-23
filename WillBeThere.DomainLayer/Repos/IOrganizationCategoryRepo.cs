@@ -1,9 +1,9 @@
 ﻿using SharedDomainLayer.Responses;
 using WillBeThere.DomainLayer.Entites;
 
-namespace WillBeThere.DomainLayer.Services
+namespace WillBeThere.DomainLayer.Repos
 {
-    public interface IOrganizationCategoryServices
+    public interface IOrganizationCategoryRepo
     {
         public Task<Response> SaveOrganizationCategories(List<OrganizationCategory> organizationCategories);
     }

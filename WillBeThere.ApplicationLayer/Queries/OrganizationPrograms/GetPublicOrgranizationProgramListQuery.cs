@@ -1,8 +1,8 @@
 ﻿using MediatR;
-using WillBeThere.DomainLayer.Entites.ResultModels;
+using WillBeThere.ApplicationLayer.Contracts.Dtos.ResultModels;
 
 namespace WillBeThere.ApplicationLayer.Queries.OrganizationPrograms
 {
-    public class GetPublicOrgranizationProgramListQuery : IRequest<List<PublicOrganizationProgram>> { }
+    public class GetPublicOrgranizationProgramListQuery : IRequest<List<PublicOrganizationProgramDto>> { }
 
 }

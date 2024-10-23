@@ -1,10 +1,10 @@
 ﻿using WillBeThere.ApplicationLayer.Repos.QueryRepo;
 using WillBeThere.DomainLayer.Entites;
-using WillBeThere.DomainLayer.Services.Base;
+using WillBeThere.DomainLayer.Repos.Base;
 
 namespace WillBeThere.InfrastuctureLayer.Implementations.Services
 {
-    public class BaseOrganizationCategoryServices : IBaseOrganizationCategoryService 
+    public class BaseOrganizationCategoryServices : IBaseOrganizationCategoryRepo 
     {
         private IOrganizationCategoryQueryRepo? _organizationCategoryQueryRepo;
 
