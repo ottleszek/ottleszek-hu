@@ -1,4 +1,4 @@
-﻿using SharedDomainLayer.Entities;
+﻿using Shared.DomainLayer.Entities;
 using System.ComponentModel.DataAnnotations;
 
 namespace WillBeThere.DomainLayer.Entites
@@ -27,7 +27,7 @@ namespace WillBeThere.DomainLayer.Entites
         public bool Equals(OrganizationCategory? other)
         {
             if (other == null) return false;
-            return Name==other.Name;
-        }
+            return Name == other.Name;
+        }        
     }
 }

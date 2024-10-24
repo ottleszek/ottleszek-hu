@@ -4,6 +4,8 @@ using SharedApplicationLayer.Transformers;
 using SharedApplicationLayer.Repos;
 using SharedDomainLayer.Entities;
 using WillBeThere.ApplicationLayer.Contracts.UnitOfWork;
+using SharedApplicationLayer.Repos.Commands;
+using SharedApplicationLayer.Repos.Queries;
 
 namespace WillBeThere.Backend.Controllers.Base
 {
@@ -13,8 +15,8 @@ namespace WillBeThere.Backend.Controllers.Base
     {
         public IncludedController(
             IAssembler<TModel, TDto>? assambler,
-            IBaseQueryRepo? queryRepo,
-            IBaseCommandRepo? commandRepo,
+            IQueryGenericMethodRepo? queryRepo,
+            ICommandGenericMethodRepo? commandRepo,
             IUnitOfWork unitOfWork
             ) : base(assambler, queryRepo, commandRepo, unitOfWork)
         {

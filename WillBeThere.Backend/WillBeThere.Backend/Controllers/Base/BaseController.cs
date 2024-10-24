@@ -1,11 +1,12 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SharedApplicationLayer.Transformers;
-using SharedApplicationLayer.Repos;
 using SharedDomainLayer.Entities;
 using SharedDomainLayer.Responses;
 using WillBeThere.ApplicationLayer.Contracts.UnitOfWork;
-using WillBeThere.InfrastuctureLayer.Implementations.Repos.UnifOfWorks;
+using WillBeThere.InfrastuctureLayer.Persistence.Repos.UnifOfWorks;
+using SharedApplicationLayer.Repos.Commands;
+using SharedApplicationLayer.Repos.Queries;
 
 namespace WillBeThere.Backend.Controllers.Base
 {
@@ -14,14 +15,14 @@ namespace WillBeThere.Backend.Controllers.Base
         where TDto : class, new()
     {
         protected readonly IAssembler<TModel, TDto>? _assambler;
-        protected readonly IBaseCommandRepo? _commandRepo;
-        protected readonly IBaseQueryRepo? _queryRepo;
+        protected readonly ICommandGenericMethodRepo? _commandRepo;
+        protected readonly IQueryGenericMethodRepo? _queryRepo;
         protected readonly IUnitOfWork? _unitOfWork;
 
         public BaseController(
             IAssembler<TModel, TDto>? assambler,
-            IBaseQueryRepo? queryRepo,
-            IBaseCommandRepo? commandRepo,
+            IQueryGenericMethodRepo? queryRepo,
+            ICommandGenericMethodRepo? commandRepo,
             IUnitOfWork unitOfWork
             )
         {
@@ -152,7 +153,7 @@ namespace WillBeThere.Backend.Controllers.Base
 
             if (_queryRepo != null && _assambler is not null)
             {
-                entities = await _queryRepo.SelectAllAsync<TModel>();
+                entities = await _queryRepo.GetAllAsync<TModel>();
                 return Ok(entities.Select(entity => _assambler.ToDto(entity)));
             }
             return NoContent();

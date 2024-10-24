@@ -1,7 +1,7 @@
 ﻿using WillBeThere.ApplicationLayer.Contracts.Dtos.ResultModels;
 using WillBeThere.ApplicationLayer.Extensions.ModelExtensions;
 using WillBeThere.DomainLayer.Entites.ResultModels;
-using SharedApplicationLayer.Transformers;
+using Shared.ApplicationLayer.Transformers;
 
 namespace WillBeThere.ApplicationLayer.Transformers.Assemblers.ResultModels
 {

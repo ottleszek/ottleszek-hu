@@ -1,6 +1,6 @@
 ﻿using WillBeThere.ApplicationLayer.Contracts.Dtos;
 using WillBeThere.DomainLayer.Entites;
-using SharedApplicationLayer.Transformers;
+using Shared.ApplicationLayer.Transformers;
 using WWillBeThere.ApplicationLayer.Extensions.ModelExtensions;
 
 namespace WillBeThere.ApplicationLayer.Transformers.Assemblers

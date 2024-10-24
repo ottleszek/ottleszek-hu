@@ -2,7 +2,7 @@
 using WillBeThere.DomainLayer.Entites;
 using WillBeThere.DomainLayer.Entites.ResultModels;
 using WillBeThere.DomainLayer.Repos;
-using WillBeThere.InfrastuctureLayer.Implementations.Repos.WillBeThere.QueryRepos;
+using WillBeThere.InfrastuctureLayer.Persistence.Repos.DataBase.WillBeThere.QueryRepos;
 
 namespace WillBeThere.InfrastuctureLayer.Persistence.Repos.DataBase
 {

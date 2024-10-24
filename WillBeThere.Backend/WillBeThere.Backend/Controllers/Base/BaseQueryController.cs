@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using SharedApplicationLayer.Repos;
+using SharedApplicationLayer.Repos.Queries;
 using SharedApplicationLayer.Transformers;
 using SharedDomainLayer.Entities;
 using WillBeThere.InfrastuctureLayer.Implementations.Repos.Base;
@@ -12,9 +12,9 @@ namespace WillBeThere.Backend.Controllers.Base
         where TDto : class, new()
     {
         protected readonly IAssembler<TModel, TDto>? _assambler;
-        protected readonly IBaseQueryRepo? _baseRepo;
+        protected readonly IQueryGenericMethodRepo? _baseRepo;
 
-        public BaseQueryController(IAssembler<TModel, TDto>? assambler, IBaseQueryRepo? repo)
+        public BaseQueryController(IAssembler<TModel, TDto>? assambler, IQueryGenericMethodRepo? repo)
         {
             _assambler = assambler;
             _baseRepo = repo;
@@ -30,7 +30,7 @@ namespace WillBeThere.Backend.Controllers.Base
 
             if (_baseRepo != null && _assambler is not null)
             {
-                entities = await _baseRepo.SelectAllAsync<TModel>();
+                entities = await _baseRepo.GetAllAsync<TModel>();
                 return Ok(entities.Select(entity => _assambler.ToDto(entity)));
             }
             return NoContent();

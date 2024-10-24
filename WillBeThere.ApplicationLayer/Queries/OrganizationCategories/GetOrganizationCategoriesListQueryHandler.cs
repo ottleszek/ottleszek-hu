@@ -1,18 +1,18 @@
 ﻿using MediatR;
-using SharedApplicationLayer.Transformers;
+using Shared.ApplicationLayer.Transformers;
 using WillBeThere.ApplicationLayer.Contracts.Dtos.OrganizationCategories;
+using WillBeThere.ApplicationLayer.Repos.QueryRepo;
 using WillBeThere.DomainLayer.Entites;
-using WillBeThere.DomainLayer.Repos.Base;
 
 namespace WillBeThere.ApplicationLayer.Queries.OrganizationCategories
 {
     public class GetOrganizationCategoriesListQueryHandler : IRequestHandler<GetOrganizationsCategoriesListQuery, List<OrganizationCategoryDto>>
     {
-        private readonly IBaseOrganizationCategoryRepo? _organizationCategoryService;
+        private readonly IOrganizationCategoryQueryRepo? _organizationCategoryService;
         private readonly IDomainDtoConterter<OrganizationCategory, OrganizationCategoryDto>? _organizationCategoryDomainDtoConverter;
 
         public GetOrganizationCategoriesListQueryHandler(
-            IBaseOrganizationCategoryRepo? organizationCategoryService,
+            IOrganizationCategoryQueryRepo? organizationCategoryService,
             IDomainDtoConterter<OrganizationCategory, OrganizationCategoryDto>? organizationCategoryDomainDtoConverter
             )
         {
@@ -24,7 +24,7 @@ namespace WillBeThere.ApplicationLayer.Queries.OrganizationCategories
         {
             if (_organizationCategoryService is not null && _organizationCategoryDomainDtoConverter is not null)
             {
-                List<OrganizationCategory> categories = await _organizationCategoryService.GetOrganizationsCategories();
+                List<OrganizationCategory> categories = await _organizationCategoryService.GetAllAsync<OrganizationCategory>();
                 return _organizationCategoryDomainDtoConverter.ToDto(categories);
             }
             return new List<OrganizationCategoryDto>();

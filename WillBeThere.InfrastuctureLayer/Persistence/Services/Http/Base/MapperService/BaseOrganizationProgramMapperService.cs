@@ -7,7 +7,7 @@ using WillBeThere.ApplicationLayer.Transformers.Assemblers.ResultModels;
 
 namespace WillBeThere.InfrastuctureLayer.Persistence.Services.Http.Base.MapperService
 {
-    public class BaseOrganizationProgramMapperService : BaseMapperService<OrganizationProgram, OrganizationProgramDto, OrganizationProgramAssembler>, IBaseOrganizationProgramMapperService
+    public class BaseOrganizationProgramMapperService : BaseMapperRepo<OrganizationProgram, OrganizationProgramDto, OrganizationProgramAssembler>, IBaseOrganizationProgramMapperService
     {
         private readonly IBaseOrganizationProgramHttpService? _organizationProgramHttpService;
         private readonly PublicOrganizationProgramAssembler? _publicOrganizationProgramAssembler;

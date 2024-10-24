@@ -1,9 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SharedApplicationLayer.Transformers;
-using SharedApplicationLayer.Repos;
 using SharedDomainLayer.Entities;
 using SharedDomainLayer.Responses;
 using WillBeThere.ApplicationLayer.Contracts.UnitOfWork;
+using SharedApplicationLayer.Repos.Commands;
 
 
 namespace WillBeThere.Backend.Controllers.Base
@@ -14,9 +14,9 @@ namespace WillBeThere.Backend.Controllers.Base
     {
         protected readonly IAssembler<TModel, TDto>? _assambler;
         protected readonly IUnitOfWork _unitOfWork;
-        protected readonly IBaseCommandRepo? _repository;
+        protected readonly ICommandGenericMethodRepo? _repository;
 
-        public BaseCommandController(IAssembler<TModel, TDto>? assambler, IBaseCommandRepo? repository, IUnitOfWork unitOfWork)
+        public BaseCommandController(IAssembler<TModel, TDto>? assambler, ICommandGenericMethodRepo? repository, IUnitOfWork unitOfWork)
         {
             _assambler = assambler;
             _unitOfWork = unitOfWork;

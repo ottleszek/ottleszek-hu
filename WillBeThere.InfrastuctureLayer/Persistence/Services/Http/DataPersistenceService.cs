@@ -1,11 +1,12 @@
-﻿using SharedApplicationLayer.Contracts.Persistence;
-using SharedDomainLayer.Entities;
-using SharedDomainLayer.Responses;
+﻿using Shared.ApplicationLayer.Contracts.Persistence;
+using Shared.DomainLayer.Entities;
+using Shared.DomainLayer.Responses;
 using WillBeThere.DomainLayer.Entites;
+using WillBeThere.InfrastuctureLayer.Persistence.Services.DataBase;
 
 namespace WillBeThere.InfrastuctureLayer.Persistence.Services.Http
 {
-    public class DataPersistenceService : IDataPersistenceService
+    public class DataPersistenceService : DbDataPersistenceService
     {
 
         private readonly IDataPersistenceService<OrganizationCategory>? _organizationCategoryGenericDataPersistenceSerivce;

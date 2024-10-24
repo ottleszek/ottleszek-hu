@@ -1,4 +1,4 @@
-﻿using SharedDomainLayer.Responses;
+﻿using Shared.DomainLayer.Responses;
 using WillBeThere.DomainLayer.Entites;
 
 namespace WillBeThere.DomainLayer.Repos

@@ -1,5 +1,5 @@
 ﻿using WillBeThere.DomainLayer.Entites;
-using SharedApplicationLayer.Transformers;
+using Shared.ApplicationLayer.Transformers;
 using WillBeThere.ApplicationLayer.Contracts.Dtos.OrganizationCategories;
 using WillBeThere.ApplicationLayer.Extensions.ModelExtensions;
 

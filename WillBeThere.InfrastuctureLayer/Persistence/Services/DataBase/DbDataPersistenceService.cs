@@ -1,8 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using SharedApplicationLayer.Contracts.Persistence;
-using SharedApplicationLayer.Repos;
-using SharedDomainLayer.Entities;
-using SharedDomainLayer.Responses;
+using Shared.ApplicationLayer.Contracts.Persistence;
+using Shared.ApplicationLayer.Repos.Commands;
+using Shared.DomainLayer.Entities;
+using Shared.DomainLayer.Responses;
 using WillBeThere.ApplicationLayer.Contracts.UnitOfWork;
 
 namespace WillBeThere.InfrastuctureLayer.Persistence.Services.DataBase
@@ -10,9 +10,9 @@ namespace WillBeThere.InfrastuctureLayer.Persistence.Services.DataBase
     public class DbDataPersistenceService : IDataPersistenceService
     {
         private readonly IUnitOfWork? _unitOfWork;
-        private readonly IBaseCommandRepo? _baseCommandRepo;
+        private readonly ICommandGenericMethodRepo? _baseCommandRepo;
 
-        public DbDataPersistenceService(IUnitOfWork? unitOfWork, IBaseCommandRepo? baseRepo)
+        public DbDataPersistenceService(IUnitOfWork? unitOfWork, ICommandGenericMethodRepo? baseRepo)
         {
             _unitOfWork = unitOfWork;
             _baseCommandRepo = baseRepo;

@@ -1,4 +1,4 @@
-﻿using SharedDomainLayer.Entities;
+﻿using Shared.DomainLayer.Entities;
 
 namespace WillBeThere.ApplicationLayer.Contracts.Dtos.OrganizationCategories
 {

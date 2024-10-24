@@ -1,6 +1,6 @@
 ﻿using MediatR;
-using SharedApplicationLayer.Contracts.Persistence;
-using SharedDomainLayer.Responses;
+using Shared.ApplicationLayer.Contracts.Persistence;
+using Shared.DomainLayer.Responses;
 using WillBeThere.ApplicationLayer.Transformers.Assemblers;
 using WillBeThere.DomainLayer.Entites;
 

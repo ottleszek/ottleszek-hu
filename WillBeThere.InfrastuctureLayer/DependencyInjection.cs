@@ -6,13 +6,7 @@ using SharedApplicationLayer.Repos;
 using WillBeThere.ApplicationLayer.Contracts.Dtos.OrganizationCategories;
 using WillBeThere.ApplicationLayer.Contracts.UnitOfWork;
 using WillBeThere.DomainLayer.Entites;
-using WillBeThere.DomainLayer.Repos.Base;
 using WillBeThere.InfrastuctureLayer.Context;
-using WillBeThere.InfrastuctureLayer.Implementations.Repos.UnifOfWorks;
-using WillBeThere.InfrastuctureLayer.Implementations.Repos.WillBeThere.CommandRepos;
-using WillBeThere.InfrastuctureLayer.Implementations.Repos.WillBeThere.QueryRepos;
-using WillBeThere.InfrastuctureLayer.Implementations.Repos.WillBeThere.QueryRepos.Repos;
-using WillBeThere.InfrastuctureLayer.Implementations.Services;
 using WillBeThere.InfrastuctureLayer.Persistence.Services.Http;
 using WillBeThere.InfrastuctureLayer.Persistence.Services.Http.Base.DataService;
 using WillBeThere.InfrastuctureLayer.Persistence.Services.Http.Base.HttpService;
@@ -25,7 +19,13 @@ using WillBeThere.ApplicationLayer.Contracts.Services.Base.MapperServices;
 using WillBeThere.ApplicationLayer.Transformers.Converters;
 using WillBeThere.ApplicationLayer.Repos.CommandRepo;
 using WillBeThere.ApplicationLayer.Repos.QueryRepo;
-using WillBeThere.InfrastuctureLayer.Implementations.Repos.Base;
+using WillBeThere.InfrastuctureLayer.Persistence.Repos.DataBase.WillBeThere.CommandRepos;
+using WillBeThere.InfrastuctureLayer.Persistence.Repos.DataBase.WillBeThere.QueryRepos;
+using WillBeThere.InfrastuctureLayer.Persistence.Repos.DataBase.WillBeThere.QueryRepos.Repos.DataBase;
+using WillBeThere.InfrastuctureLayer.Persistence.Repos.UnifOfWorks;
+using SharedApplicationLayer.Repos.Commands;
+using WillBeThere.InfrastuctureLayer.Persistence.DataBase;
+using WillBeThere.InfrastuctureLayer.Persistence.DataBase.Commands;
 
 namespace WillBeThere.InfrastuctureLayer
 {
@@ -90,16 +90,16 @@ namespace WillBeThere.InfrastuctureLayer
         {
             if (true)
             {
-                services.AddScoped<IAddressQueryRepo,AddressQueryRepo<WillBeThereInMemoryContext>>();
-                services.AddScoped<IEditorQueryRepo,EditorQueryRepo<WillBeThereInMemoryContext>>();
-                services.AddScoped<IOrganizationCategoryQueryRepo,OrganizationCategoryQueryRepo<WillBeThereInMemoryContext>>();
-                services.AddScoped<IOrganizationEditorQueryRepo,OrganizationEditorQueryRepo<WillBeThereInMemoryContext>>();
-                services.AddScoped<IOrganizationProgramQueryRepo,OrganizationProgramQueryRepo<WillBeThereInMemoryContext>>();
-                services.AddScoped<IOrganizationQueryRepo,OrganizationQueryRepo<WillBeThereInMemoryContext>>();
+                services.AddScoped<IAddressQueryRepo,DbAddressQueryRepo<WillBeThereInMemoryContext>>();
+                services.AddScoped<IEditorQueryRepo,DbEditorQueryRepo<WillBeThereInMemoryContext>>();
+                services.AddScoped<IOrganizationCategoryQueryRepo,DbOrganizationCategoryQueryRepo<WillBeThereInMemoryContext>>();
+                services.AddScoped<IOrganizationEditorQueryRepo,DbOrganizationEditorQueryRepo<WillBeThereInMemoryContext>>();
+                services.AddScoped<IOrganizationProgramQueryRepo,DbOrganizationProgramQueryRepo<WillBeThereInMemoryContext>>();
+                services.AddScoped<IOrganizationQueryRepo,DbOrganizationQueryRepo<WillBeThereInMemoryContext>>();
                 services.AddScoped<IParticipationQueryRepo,ParticipationQueryRepoo<WillBeThereInMemoryContext>>();
-                services.AddScoped<IProgamOwnerQueryRepo,ProgramOwnerQueryRepo<WillBeThereInMemoryContext>>();
-                services.AddScoped<IPublicSpaceQueryRepo,PublicSpaceQueryRepo<WillBeThereInMemoryContext>>();
-                services.AddScoped<IRegisteredUserQueryRepo,RegisteredUserQueryRepo<WillBeThereInMemoryContext>>();
+                services.AddScoped<IProgamOwnerQueryRepo,DbProgramOwnerQueryRepo<WillBeThereInMemoryContext>>();
+                services.AddScoped<IPublicSpaceQueryRepo,DbPublicSpaceQueryRepo<WillBeThereInMemoryContext>>();
+                services.AddScoped<IRegisteredUserQueryRepo,DbRegisteredUserQueryRepo<WillBeThereInMemoryContext>>();
 
                 services.AddScoped<IBaseAddressCommandRepo, AddressCommandRepo<WillBeThereInMemoryContext>>();
                 services.AddScoped<IBaseEditorCommandRepo, EditorCommandRepo<WillBeThereInMemoryContext>>();
@@ -117,8 +117,8 @@ namespace WillBeThere.InfrastuctureLayer
                 services.AddScoped<IUnitOfWork, UnitOfWork<WillBeThereInMemoryContext>>();
                 services.AddScoped<IRepoStore,WrapperUnitOfWork<WillBeThereInMemoryContext>>();
 
-                services.AddScoped<IBaseRepo, BaseRepo<WillBeThereInMemoryContext>>();
-                services.AddScoped<IBaseCommandRepo,BaseCommandRepo<WillBeThereInMemoryContext>>();
+                services.AddScoped<IBaseDbRepo, BaseDbRepo<WillBeThereInMemoryContext>>();
+                services.AddScoped<ICommandGenericMethodRepo,BaseCommandRepo<WillBeThereInMemoryContext>>();
 
             }
             else
@@ -151,9 +151,7 @@ namespace WillBeThere.InfrastuctureLayer
             // DataService
             services.AddScoped<IBaseOrganizationProgramDataService, BaseOrganizationProgramDataService>();
             services.AddScoped<IBaseOrganizationCategoryDataService, BaseOrganizationCategoryDataService>();
-        
-            
-            services.AddScoped<IBaseOrganizationCategoryRepo, BaseOrganizationCategoryServices>();
+                   
             services.AddScoped<IBaseOrganizationCategoryDataService, BaseOrganizationCategoryDataService>();
 
 

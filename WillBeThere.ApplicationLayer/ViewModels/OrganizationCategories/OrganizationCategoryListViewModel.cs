@@ -1,5 +1,5 @@
 ﻿using MediatR;
-using SharedDomainLayer.Responses;
+using Shared.DomainLayer.Responses;
 using WillBeThere.ApplicationLayer.Commands.OrganizationCategories;
 using WillBeThere.ApplicationLayer.Contracts.Dtos.OrganizationCategories;
 using WillBeThere.ApplicationLayer.Queries.OrganizationCategories;

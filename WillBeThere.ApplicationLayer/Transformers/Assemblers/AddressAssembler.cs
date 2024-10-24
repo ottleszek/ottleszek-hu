@@ -1,4 +1,4 @@
-﻿using SharedApplicationLayer.Transformers;
+﻿using Shared.ApplicationLayer.Transformers;
 using WillBeThere.ApplicationLayer.Contracts.Dtos;
 using WillBeThere.ApplicationLayer.Extensions.ModelExtensions;
 using WillBeThere.DomainLayer.Entites;

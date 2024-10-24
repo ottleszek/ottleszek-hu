@@ -7,9 +7,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Implementations\Repos\WillBeThere\QueryRepos\Interfaces\**" />
-    <EmbeddedResource Remove="Implementations\Repos\WillBeThere\QueryRepos\Interfaces\**" />
-    <None Remove="Implementations\Repos\WillBeThere\QueryRepos\Interfaces\**" />
+    <Compile Remove="Persistence\Repos\DataBase\WillBeThere\QueryRepos\Interfaces\**" />
+    <EmbeddedResource Remove="Persistence\Repos\DataBase\WillBeThere\QueryRepos\Interfaces\**" />
+    <None Remove="Persistence\Repos\DataBase\WillBeThere\QueryRepos\Interfaces\**" />
   </ItemGroup>
 
   <ItemGroup>
@@ -22,10 +22,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Shared.InfrastuctureLayer\Shared.InfrastuctureLayer.csproj" />
     <ProjectReference Include="..\WillBeThere.ApplicationLayer\WillBeThere.ApplicationLayer.csproj" />
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Persistence\Repos\DataBase\WillBeThere\QueryRepos\Repos\Http\" />
     <Folder Include="Persistence\Services\FileStore\" />
   </ItemGroup>
 

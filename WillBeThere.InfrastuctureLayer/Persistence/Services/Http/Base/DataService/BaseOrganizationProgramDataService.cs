@@ -5,7 +5,7 @@ using WillBeThere.ApplicationLayer.Contracts.Services.Base.MapperServices;
 using WillBeThere.ApplicationLayer.Transformers.Assemblers;
 namespace WillBeThere.InfrastuctureLayer.Persistence.Services.Http.Base.DataService
 {
-    public class BaseOrganizationProgramDataService : BaseDataService<OrganizationProgram, OrganizationProgramDto, OrganizationProgramAssembler>, IBaseOrganizationProgramDataService
+    public class BaseOrganizationProgramDataService : BaseDataRepo<OrganizationProgram, OrganizationProgramDto, OrganizationProgramAssembler>, IBaseOrganizationProgramDataService
     {
         private readonly IBaseOrganizationProgramMapperService? _organizationProgramMapperService;
 

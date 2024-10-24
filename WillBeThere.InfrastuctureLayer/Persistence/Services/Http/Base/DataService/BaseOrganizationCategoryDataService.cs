@@ -6,7 +6,7 @@ using WillBeThere.ApplicationLayer.Contracts.Dtos.OrganizationCategories;
 
 namespace WillBeThere.InfrastuctureLayer.Persistence.Services.Http.Base.DataService
 {
-    public class BaseOrganizationCategoryDataService : BaseDataService<OrganizationCategory, OrganizationCategoryDto, OrganizationCategoryAssembler>, IBaseOrganizationCategoryDataService
+    public class BaseOrganizationCategoryDataService : BaseDataRepo<OrganizationCategory, OrganizationCategoryDto, OrganizationCategoryAssembler>, IBaseOrganizationCategoryDataService
     {
         public BaseOrganizationCategoryDataService(IBaseOrganizationCategoryMapperService? mapperService) : base(mapperService)
         {
