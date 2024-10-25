@@ -2,7 +2,7 @@
 
 namespace WillBeThere.InfrastuctureLayer.Persistence.Services.Http.Base.HttpService
 {
-    public class BaseOrganizationProgramHttpService : BaseHttpRepo, IBaseOrganizationProgramHttpService
+    public class BaseOrganizationProgramHttpService : QueryHttpRepo, IBaseOrganizationProgramHttpService
     {
         public BaseOrganizationProgramHttpService(IHttpClientFactory? httpClientFactory) : base(httpClientFactory)
         {

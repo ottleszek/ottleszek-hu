@@ -1,6 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using SharedApplicationLayer.Repos;
-using SharedDomainLayer.Entities;
+using Shared.DomainLayer.Entities;
 using WillBeThere.ApplicationLayer.Contracts.UnitOfWork;
 
 namespace WillBeThere.InfrastuctureLayer.Persistence.Repos.UnifOfWorks
@@ -14,7 +13,7 @@ namespace WillBeThere.InfrastuctureLayer.Persistence.Repos.UnifOfWorks
             _repositories = [];
         }
 
-        public TRepository? AddRepository<TRepository, TEntity>(TRepository? repository) where TRepository : IBaseDbRepo where TEntity : class, IDbEntity<TEntity>, new()
+        public TRepository? AddRepository<TRepository, TEntity>(TRepository? repository) where TRepository : BaseCommandDbRepo where TEntity : class, IDbEntity<TEntity>, new()
         {
             if (repository is not null)
             {

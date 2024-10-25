@@ -4,9 +4,9 @@ using Shared.DomainLayer.Responses;
 
 namespace Shared.InfrastuctureLayer.Repos.DataBase.Commands
 {
-    public class BaseManyCommandRepo<TDbContext> : BaseDbRepo<TDbContext> where TDbContext : DbContext
+    public class BaseManyCommandDbRepo<TDbContext> : BaseDbRepo<TDbContext> where TDbContext : DbContext
     {
-        public BaseManyCommandRepo(TDbContext? dbContext) : base(dbContext) { }
+        public BaseManyCommandDbRepo(TDbContext? dbContext) : base(dbContext) { }
         public Task<Response> UpdateMany<TEntity>(List<TEntity> entities) where TEntity : class, IDbEntity<TEntity>, new()
         {
             Response response = new();
@@ -14,7 +14,7 @@ namespace Shared.InfrastuctureLayer.Repos.DataBase.Commands
             DbSet<TEntity>? dbSet = GetDbSet<TEntity>();
             if (dbSet is null)
             {
-                response.Append($"{nameof(BaseManyCommandRepo<TDbContext>)} osztály, {nameof(UpdateMany)} metódusban hiba keletkezett!");
+                response.Append($"{nameof(BaseManyCommandDbRepo<TDbContext>)} osztály, {nameof(UpdateMany)} metódusban hiba keletkezett!");
                 response.Append($"Az adatbázis nem elérhető!");
                 return Task.FromResult(response);
             }
@@ -30,7 +30,7 @@ namespace Shared.InfrastuctureLayer.Repos.DataBase.Commands
                     response.Append(e.Message);
                 }
             }
-            response.Append($"{nameof(BaseManyCommandRepo<TDbContext>)} osztály, {nameof(UpdateMany)} metódusban hiba keletkezett!");
+            response.Append($"{nameof(BaseManyCommandDbRepo<TDbContext>)} osztály, {nameof(UpdateMany)} metódusban hiba keletkezett!");
             response.Append($"{nameof(TEntity)} típusú és {entities.Count} db elem mentése az adatbázisba nem sikerült!");
             return Task.FromResult(response);
         }

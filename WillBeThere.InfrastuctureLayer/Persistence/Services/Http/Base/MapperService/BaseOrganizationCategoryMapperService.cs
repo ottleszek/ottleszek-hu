@@ -1,6 +1,5 @@
 ﻿using WillBeThere.DomainLayer.Entites;
-using WillBeThere.ApplicationLayer.Contracts.Services.Base.MapperServices;
-using WillBeThere.ApplicationLayer.Contracts.Services.Base.HttpServices;
+
 using WillBeThere.ApplicationLayer.Transformers.Assemblers;
 using WillBeThere.ApplicationLayer.Contracts.Dtos.OrganizationCategories;
 

@@ -1,8 +1,6 @@
-﻿using SharedDomainLayer.Responses;
-using SharedApplicationLayer.Contracts.Persistence;
-using SharedDomainLayer.Entities;
-using SharedApplicationLayer.Transformers;
-using WillBeThere.InfrastuctureLayer.Persistence.Services.DataBase;
+﻿using WillBeThere.InfrastuctureLayer.Persistence.Services.DataBase;
+using Shared.DomainLayer.Entities;
+using Shared.DomainLayer.Responses;
 
 namespace WillBeThere.InfrastuctureLayer.Persistence.Services.Http
 {

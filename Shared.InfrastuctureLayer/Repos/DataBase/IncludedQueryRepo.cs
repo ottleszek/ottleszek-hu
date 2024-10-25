@@ -5,7 +5,7 @@ using Shared.InfrastuctureLayer.Repos.DataBase.Queries;
 
 namespace Shared.InfrastuctureLayer.Repos.DataBase
 {
-    public abstract class IncludedQueryRepo<TDbContext> : BaseQueryRepo<TDbContext>, IIncludedQueryRepo where TDbContext : DbContext
+    public abstract class IncludedQueryRepo<TDbContext> : BaseQueryDbRepo<TDbContext>, IIncludedQueryRepo where TDbContext : DbContext
     {
         protected IncludedQueryRepo(DbContext? dbContext) : base(dbContext) { }
 

@@ -4,10 +4,10 @@ using Shared.DomainLayer.Entities;
 
 namespace Shared.InfrastuctureLayer.Repos.DataBase.Queries
 {
-    public class BaseQueryRepo<TDbContext> : BaseDbRepo<DbContext>, IQueryGenericMethodRepo where TDbContext : DbContext
+    public class BaseQueryDbRepo<TDbContext> : BaseDbRepo<DbContext>, IQueryGenericMethodRepo where TDbContext : DbContext
     {
 
-        public BaseQueryRepo(DbContext? dbContext) : base(dbContext) { }
+        public BaseQueryDbRepo(DbContext? dbContext) : base(dbContext) { }
 
         public async Task<List<TEntity>> GetAllAsync<TEntity>() where TEntity : class, IDbEntity<TEntity>, new() => await GetQuery<TEntity>().FindAll().ToListAsync();
 

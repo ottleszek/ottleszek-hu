@@ -1,7 +1,6 @@
-﻿using SharedApplicationLayer.Transformers;
-using SharedApplicationLayer.Contracts.Services;
-using SharedDomainLayer.Entities;
-using SharedDomainLayer.Responses;
+﻿using Shared.ApplicationLayer.Transformers;
+using Shared.DomainLayer.Entities;
+using Shared.DomainLayer.Responses;
 
 namespace WillBeThere.InfrastuctureLayer.Persistence.Services.Http.Base
 {

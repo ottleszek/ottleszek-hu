@@ -1,5 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using SharedApplicationLayer.Repos;
 
 namespace WillBeThere.InfrastuctureLayer.Persistence.Repos.UnifOfWorks
 {

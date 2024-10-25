@@ -1,7 +1,6 @@
 ﻿using Newtonsoft.Json;
-using SharedApplicationLayer.Contracts.Persistence;
-using SharedDomainLayer.Entities;
-using SharedDomainLayer.Responses;
+using Shared.DomainLayer.Entities;
+using Shared.DomainLayer.Responses;
 using System.Diagnostics;
 using System.Net;
 using System.Net.Http.Json;

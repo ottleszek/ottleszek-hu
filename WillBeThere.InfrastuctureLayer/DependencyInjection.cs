@@ -1,8 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using SharedApplicationLayer.Transformers;
-using SharedApplicationLayer.Contracts.Persistence;
-using SharedApplicationLayer.Repos;
 using WillBeThere.ApplicationLayer.Contracts.Dtos.OrganizationCategories;
 using WillBeThere.ApplicationLayer.Contracts.UnitOfWork;
 using WillBeThere.DomainLayer.Entites;
@@ -13,9 +10,6 @@ using WillBeThere.InfrastuctureLayer.Persistence.Services.Http.Base.HttpService;
 using WillBeThere.InfrastuctureLayer.Persistence.Services.Http.Base.MapperService;
 using WillBeThere.ApplicationLayer.Transformers.Assemblers;
 using WillBeThere.ApplicationLayer.Transformers.Assemblers.ResultModels;
-using WillBeThere.ApplicationLayer.Contracts.Services.Base.HttpServices;
-using WillBeThere.ApplicationLayer.Contracts.Services.Base.DataServices;
-using WillBeThere.ApplicationLayer.Contracts.Services.Base.MapperServices;
 using WillBeThere.ApplicationLayer.Transformers.Converters;
 using WillBeThere.ApplicationLayer.Repos.CommandRepo;
 using WillBeThere.ApplicationLayer.Repos.QueryRepo;
@@ -23,9 +17,6 @@ using WillBeThere.InfrastuctureLayer.Persistence.Repos.DataBase.WillBeThere.Comm
 using WillBeThere.InfrastuctureLayer.Persistence.Repos.DataBase.WillBeThere.QueryRepos;
 using WillBeThere.InfrastuctureLayer.Persistence.Repos.DataBase.WillBeThere.QueryRepos.Repos.DataBase;
 using WillBeThere.InfrastuctureLayer.Persistence.Repos.UnifOfWorks;
-using SharedApplicationLayer.Repos.Commands;
-using WillBeThere.InfrastuctureLayer.Persistence.DataBase;
-using WillBeThere.InfrastuctureLayer.Persistence.DataBase.Commands;
 
 namespace WillBeThere.InfrastuctureLayer
 {

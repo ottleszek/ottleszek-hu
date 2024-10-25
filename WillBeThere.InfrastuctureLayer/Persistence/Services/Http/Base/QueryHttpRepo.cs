@@ -1,22 +1,21 @@
 ﻿using Newtonsoft.Json;
-using SharedApplicationLayer.Contracts.Services;
-using SharedDomainLayer.Entities;
-using SharedDomainLayer.Responses;
 using System.Diagnostics;
 using System.Net.Http.Json;
 using System.Net;
+using Shared.DomainLayer.Entities;
+using Shared.DomainLayer.Responses;
 
 namespace WillBeThere.InfrastuctureLayer.Persistence.Services.Http.Base
 {
-    public class BaseHttpRepo : IBaseService
+    public class QueryHttpRepo : IGeneri
     {
         protected readonly HttpClient? _httpClient;
 
-        public BaseHttpRepo()
+        public QueryHttpRepo()
         {
             _httpClient = new HttpClient();
         }
-        public BaseHttpRepo(IHttpClientFactory? httpClientFactory)
+        public QueryHttpRepo(IHttpClientFactory? httpClientFactory)
         {
             if (httpClientFactory is not null)
             {

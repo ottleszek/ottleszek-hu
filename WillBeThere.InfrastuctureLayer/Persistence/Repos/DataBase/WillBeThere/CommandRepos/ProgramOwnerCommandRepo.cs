@@ -4,7 +4,7 @@ using WillBeThere.ApplicationLayer.Repos.CommandRepo;
 
 namespace WillBeThere.InfrastuctureLayer.Persistence.Repos.DataBase.WillBeThere.CommandRepos
 {
-    public class ProgramOwnerCommandRepo<TDbContext> : BaseCommandRepo<TDbContext>, IBaseProgamOwnerCommandRepo where TDbContext : DbContext
+    public class ProgramOwnerCommandRepo<TDbContext> : BaseCommandDbRepo<TDbContext>, IBaseProgamOwnerCommandRepo where TDbContext : DbContext
     {
         public ProgramOwnerCommandRepo(TDbContext? dbContext) : base(dbContext)
         {

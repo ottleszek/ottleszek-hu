@@ -5,11 +5,11 @@ using Shared.DomainLayer.Responses;
 
 namespace Shared.InfrastuctureLayer.Repos.DataBase.Commands
 {
-    public class BaseCommandRepo<TDbContext> : BaseDbRepo<TDbContext>, ICommandGenericMethodRepo where TDbContext : DbContext
+    public class BaseCommandDbRepo<TDbContext> : BaseDbRepo<TDbContext>, ICommandGenericMethodRepo where TDbContext : DbContext
     {
-        public BaseCommandRepo(TDbContext? dbContext) : base(dbContext) { }
+        public BaseCommandDbRepo(TDbContext? dbContext) : base(dbContext) { }
 
-        public Response Update<TEntity>(TEntity entity) where TEntity : class, IDbEntity<TEntity>, new()
+        public Task<Response> UpdateAsync<TEntity>(TEntity entity) where TEntity : class, IDbEntity<TEntity>, new()
         {
             Response response = new();
             try
@@ -17,29 +17,29 @@ namespace Shared.InfrastuctureLayer.Repos.DataBase.Commands
                 DbSet<TEntity>? dbSet = GetDbSet<TEntity>();
                 if (_dbContext is null || dbSet is null)
                 {
-                    response.Append($"{nameof(BaseCommandRepo<TDbContext>)} osztály, {nameof(Update)} metódusban hiba keletkezett!");
+                    response.Append($"{nameof(BaseCommandDbRepo<TDbContext>)} osztály, {nameof(UpdateAsync)} metódusban hiba keletkezett!");
                     response.Append($"Az adatbázis nem elérhető!");
-                    return response;
+                    return Task.FromResult(response);
                 }
                 else
                 {
                     var existingEntity = dbSet.Find(entity.Id);
                     if (existingEntity != null)
                         _dbContext.Entry(existingEntity).CurrentValues.SetValues(entity);
-                    return response;
+                    return Task.FromResult(response);
                 }
             }
             catch (Exception e)
             {
                 response.Append(e.Message);
             }
-            response.Append($"{nameof(BaseCommandRepo<TDbContext>)} osztály, {nameof(Update)} metódusban hiba keletkezett!");
+            response.Append($"{nameof(BaseCommandDbRepo<TDbContext>)} osztály, {nameof(UpdateAsync)} metódusban hiba keletkezett!");
             response.Append($"{entity} frissítése nem sikerült!");
-            return response;
+            return Task.FromResult(response);
         }
 
 
-        public Response Delete<TEntity>(TEntity? entity) where TEntity : class, IDbEntity<TEntity>, new()
+        public Task<Response> DeleteAsync<TEntity>(TEntity? entity) where TEntity : class, IDbEntity<TEntity>, new()
         {
             Response response = new();
             if (entity is null)
@@ -55,7 +55,7 @@ namespace Shared.InfrastuctureLayer.Repos.DataBase.Commands
                     else
                     {
                         _dbContext.Entry(entity).State = EntityState.Deleted;
-                        return response;
+                        return Task.FromResult(response);
                     }
 
                 }
@@ -68,16 +68,16 @@ namespace Shared.InfrastuctureLayer.Repos.DataBase.Commands
                 response.Append($"Az entitás id:{entity.Id}");
             response.Append($"Az entitás törlése nem sikerült!");
             if (response.HasError)
-                response.InsertToBegining($"{nameof(BaseCommandRepo<TDbContext>)} osztály, {nameof(Delete)} metódusban hiba keletkezett!");
-            return response;
+                response.InsertToBegining($"{nameof(BaseCommandDbRepo<TDbContext>)} osztály, {nameof(DeleteAsync)} metódusban hiba keletkezett!");
+            return Task.FromResult(response);
         }
 
-        public Response Delete<TEntity>(Guid id) where TEntity : class, IDbEntity<TEntity>, new()
+        public Task<Response> DeleteAsync<TEntity>(Guid id) where TEntity : class, IDbEntity<TEntity>, new()
         {
             TEntity? entityToDelete = GetQuery<TEntity>().FindByCondition(e => e.Id == id).FirstOrDefault();
-            return Delete(entityToDelete);
+            return DeleteAsync(entityToDelete);
         }
-        public Response Insert<TEntity>(TEntity entity) where TEntity : class, IDbEntity<TEntity>, new()
+        public Task<Response> InsertAsync<TEntity>(TEntity entity) where TEntity : class, IDbEntity<TEntity>, new()
         {
             Response response = new();
 
@@ -85,25 +85,25 @@ namespace Shared.InfrastuctureLayer.Repos.DataBase.Commands
 
             if (dbSet is null)
             {
-                response.Append($"{nameof(BaseCommandRepo<TDbContext>)} osztály, {nameof(Insert)} metódusban hiba keletkezett!");
+                response.Append($"{nameof(BaseCommandDbRepo<TDbContext>)} osztály, {nameof(InsertAsync)} metódusban hiba keletkezett!");
                 response.Append($"Az adatbázis nem elérhető!");
-                return response;
+                return Task.FromResult(response);
             }
             else
             {
                 try
                 {
                     dbSet.Add(entity);
-                    return response;
+                    return Task.FromResult(response);
                 }
                 catch (Exception e)
                 {
                     response.Append(e.Message);
                 }
             }
-            response.Append($"{nameof(BaseCommandRepo<TDbContext>)} osztály, {nameof(Insert)} metódusban hiba keletkezett!");
+            response.Append($"{nameof(BaseCommandDbRepo<TDbContext>)} osztály, {nameof(InsertAsync)} metódusban hiba keletkezett!");
             response.Append($"{entity} osztály hozzáadása az adatbázishoz nem sikerült!");
-            return response;
+            return Task.FromResult(response);
         }
     }
 }

@@ -50,7 +50,7 @@ namespace WillBeThere.InfrastuctureLayer.Persistence.Services.DataBase
                             {
                                 foreach (var entity in entities)
                                 {
-                                    _baseCommandRepo.Update(entity);
+                                    _baseCommandRepo.UpdateAsync(entity);
                                 }
                                 await _unitOfWork.SaveChangesAsync();
                                 _unitOfWork.Commit();
