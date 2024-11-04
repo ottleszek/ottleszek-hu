@@ -42,7 +42,7 @@ namespace WillBeThere.InfrastuctureLayer.Persistence.Repos.DataBase.WillBeThere.
         //public override IBaseRepo Repository => base.Repository;
         public IBaseAddressCommandRepo AddressCommandRepo => GetRepository<IBaseAddressCommandRepo, Address>() ?? new AddressDbCommandRepo<TDbContext>(_dbContext);
         public IBaseEditorCommandRepo EditorCommandRepo => GetRepository<IBaseEditorCommandRepo, Editor>() ?? new EditorDbCommandRepo<TDbContext>(_dbContext);
-        public IBaseOrganizationCategoryCommandRepo OrganizationCategoryCommandRepo => GetRepository<IBaseOrganizationCategoryCommandRepo, OrganizationCategory>() ?? new OrganizationDbCategoryCommandRepo<TDbContext>(_dbContext);
+        public IBaseOrganizationCategoryCommandRepo OrganizationCategoryCommandRepo => GetRepository<IBaseOrganizationCategoryCommandRepo, OrganizationCategory>() ?? new OrganizationCategoryDbCommandRepo<TDbContext>(_dbContext);
         public IBaseOrganizationEditorCommandRepo OrganizationEditorCommandRepo => GetRepository<IBaseOrganizationEditorCommandRepo, OrganizationEditor>() ?? new OrganizationEditorDbCommandRepo<TDbContext>(_dbContext);
         public IBaseOrganizationProgramCommandRepo OrganizationProgramCommandRepo => GetRepository<IBaseOrganizationProgramCommandRepo, OrganizationProgram>() ?? new OrganizationProgramDbCommandRepo<TDbContext>(_dbContext);
         public IBaseOrganizationCommandRepo OrganizationCommandRepo => GetRepository<IBaseOrganizationCommandRepo, Organization>() ?? new OrganizationDbCommandRepo<TDbContext>(_dbContext);

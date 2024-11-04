@@ -4,18 +4,18 @@ using Shared.DomainLayer.Responses;
 using Shared.ApplicationLayer.Transformers;
 using Shared.ApplicationLayer.Persistence;
 
-namespace WillBeThere.InfrastuctureLayer.Persistence.Services.Http
+namespace WillBeThere.InfrastuctureLayer.Persistence.Services
 {
-    public class ManyGenericDataPersistenceService<TEntity,TDto> : IManyDataPersistenceService<TEntity>
+    public class ManyGenericDataPersistenceService<TEntity, TDto> : IManyDataPersistenceService<TEntity>
         where TEntity : class, IDbEntity<TEntity>, new()
         where TDto : class, IDbEntity<TDto>, new()
     {
         protected readonly HttpClient? _httpClient;
         protected readonly IDomainDtoConterter<TEntity, TDto>? _converter;
-        protected readonly IHttpManyDataPersistenceService? _httpPersistenceService;
+        protected readonly IManyDataPersistenceService? _httpPersistenceService;
 
 
-        public ManyGenericDataPersistenceService(IHttpClientFactory? httpClientFactory, IHttpManyDataPersistenceService? httpPersistenceService, IDomainDtoConterter<TEntity, TDto> converter)
+        public ManyGenericDataPersistenceService(IHttpClientFactory? httpClientFactory, IManyDataPersistenceService? httpPersistenceService, IDomainDtoConterter<TEntity, TDto> converter)
         {
             if (httpClientFactory is not null)
             {
@@ -36,8 +36,8 @@ namespace WillBeThere.InfrastuctureLayer.Persistence.Services.Http
             }
             else
             {
-                List<TDto> dtos = _converter.ToDto(entities);                
-                return await _httpPersistenceService.UpdateMany<TDto>(dtos);
+                List<TDto> dtos = _converter.ToDto(entities);
+                return await _httpPersistenceService.UpdateMany(dtos);
             }
         }
     }

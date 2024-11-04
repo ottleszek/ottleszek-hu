@@ -25,6 +25,11 @@ using WillBeThere.ApplicationLayer.Repos.QueryRepo.ModelRepo;
 using Shared.ApplicationLayer.Persistence;
 using Shared.ApplicationLayer.Repos.UnitOfWork;
 using WillBeThere.ApplicationLayer.Contracts.UnitOfWork;
+using Shared.InfrastuctureLayer.Repos.DataBase.Commands;
+using WillBeThere.ApplicationLayer.Contracts.Dtos;
+using WillBeThere.ApplicationLayer.Contracts.Dtos.ResultModels;
+using WillBeThere.DomainLayer.Entites.ResultModels;
+using WillBeThere.InfrastuctureLayer.Persistence.Services;
 
 namespace WillBeThere.InfrastuctureLayer
 {
@@ -43,14 +48,6 @@ namespace WillBeThere.InfrastuctureLayer
             return services;
         }
 
-        public static void ConfigureHttpClient(this IServiceCollection services)
-        {
-            services.AddHttpClient("WillBeThere", options =>
-            {
-                options.BaseAddress = new Uri("https://localhost:7080/");
-            });
-        }
-
         public static void ConfigureInMemoryContext(this IServiceCollection services)
         {
             string dbName = "WillBeThere" + Guid.NewGuid();
@@ -65,18 +62,26 @@ namespace WillBeThere.InfrastuctureLayer
             services.AddDbContext<WillBeThereMysqlContext>(options => options.UseMySQL(connectionString));
         }
 
+        public static void ConfigureHttpClient(this IServiceCollection services)
+        {
+            services.AddHttpClient("WillBeThere", options =>
+            {
+                options.BaseAddress = new Uri("https://localhost:7080/");
+            });
+        }
+
         public static void ConfigureAssamblers(this IServiceCollection services)
         {
-            services.AddScoped<AddressAssembler>();
-            services.AddScoped<EditorAssambler>();
-            services.AddScoped<OrganizationAssembler>();
-            services.AddScoped<OrganizationCategoryAssembler>();
-            services.AddScoped<OrganizationProgramAssembler>();
-            services.AddScoped<PartipationAssembler>();
-            services.AddScoped<PublicSpaceAssembler>();
-            services.AddScoped<ProgramOwnerAssembler>();
-            services.AddScoped<PublicOrganizationProgramAssembler>();
-            services.AddScoped<RegisteredUserAssembler>();
+            services.AddScoped<IAssembler<Address, AddressDto>,AddressAssembler>();
+            services.AddScoped<IAssembler<Editor, EditorDto>, EditorAssambler>();
+            services.AddScoped<IAssembler<Organization, OrganizationDto>, OrganizationAssembler>();
+            services.AddScoped<IAssembler<OrganizationCategory, OrganizationCategoryDto>, OrganizationCategoryAssembler >();
+            services.AddScoped<IAssembler<OrganizationProgram, OrganizationProgramDto>, OrganizationProgramAssembler>();
+            services.AddScoped<IAssembler<Participation, ParticipationDto>, PartipationAssembler>();
+            services.AddScoped<IAssembler<PublicSpace, PublicSpaceDto>, PublicSpaceAssembler>();
+            services.AddScoped<IAssembler<ProgramOwner, ProgramOwnerDto>, ProgramOwnerAssembler>();
+            services.AddScoped<IAssembler<PublicOrganizationProgram, PublicOrganizationProgramDto>, PublicOrganizationProgramAssembler>();
+            services.AddScoped<IAssembler<RegisteredUser, RegisteredUserDto>,RegisteredUserAssembler>();
         }
 
         public static void ConfigureConverters(this IServiceCollection services)
@@ -89,6 +94,9 @@ namespace WillBeThere.InfrastuctureLayer
         {
             if (true)
             {
+                services.AddScoped<IBaseDbRepo, BaseDbRepo<WillBeThereInMemoryContext>>();
+                services.AddScoped<IBaseCommandDbRepo, BaseCommandDbRepo<WillBeThereInMemoryContext>>();
+
                 services.AddScoped<IAddressQueryRepo,AddressDbQueryRepo<WillBeThereInMemoryContext>>();
                 services.AddScoped<IEditorQueryRepo,EditorDbQueryRepo<WillBeThereInMemoryContext>>();
                 services.AddScoped<IOrganizationCategoryQueryRepo,OrganizationCategoryDbQueryRepo<WillBeThereInMemoryContext>>();
@@ -102,7 +110,7 @@ namespace WillBeThere.InfrastuctureLayer
 
                 services.AddScoped<IBaseAddressCommandRepo, AddressDbCommandRepo<WillBeThereInMemoryContext>>();
                 services.AddScoped<IBaseEditorCommandRepo, EditorDbCommandRepo<WillBeThereInMemoryContext>>();
-                services.AddScoped<IBaseOrganizationCategoryCommandRepo, OrganizationDbCategoryCommandRepo<WillBeThereInMemoryContext>>();
+                services.AddScoped<IBaseOrganizationCategoryCommandRepo, OrganizationCategoryDbCommandRepo<WillBeThereInMemoryContext>>();
                 services.AddScoped<IBaseOrganizationEditorCommandRepo, OrganizationEditorDbCommandRepo<WillBeThereInMemoryContext>>();
                 services.AddScoped<IBaseOrganizationProgramCommandRepo, OrganizationProgramDbCommandRepo<WillBeThereInMemoryContext>>();
                 services.AddScoped<IBaseOrganizationCommandRepo, OrganizationDbCommandRepo<WillBeThereInMemoryContext>>();
@@ -116,8 +124,6 @@ namespace WillBeThere.InfrastuctureLayer
                 //services.AddScoped<IWrapperUnitOfWork, WrapperUnitOfWork<WillBeThereInMemoryContext>>();
 
                 services.AddScoped<IWillBeThereWrapQueryUnitOfWork,WillBeThereWrapQueryUnitOfWork<WillBeThereInMemoryContext>>();
-                services.AddScoped<IBaseDbRepo, BaseDbRepo<WillBeThereInMemoryContext>>();
-
 
             }
             else
@@ -159,7 +165,6 @@ namespace WillBeThere.InfrastuctureLayer
         {
             services.AddScoped<IManyDataPersistenceService, ManyDataHttpPersistenceService>();
             services.AddScoped<IManyDataPersistenceService<OrganizationCategory>, ManyGenericDataPersistenceService<OrganizationCategory, OrganizationCategoryDto>>();
-
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using Shared.ApplicationLayer.Persistence;
+﻿using Microsoft.EntityFrameworkCore;
+using Shared.ApplicationLayer.Persistence;
 using WillBeThere.ApplicationLayer.Repos.QueryRepo;
 using WillBeThere.DomainLayer.Repos;
 using WillBeThere.InfrastuctureLayer.Context;
@@ -12,10 +13,14 @@ namespace WillBeThere.Backend.Extensions
     {
         public static void AddBackendServices(this IServiceCollection services) 
         {
+            services.ConfigureCors();
+            //services.ConfigureMysqlContext();
+            //services.ConfigureInMemoryContext();
             services.ConfigureBackendRepos();
             services.ConfigureBackendServices();
 
         }
+        
         public static void ConfigureCors(this IServiceCollection services)
         {
 
@@ -30,11 +35,10 @@ namespace WillBeThere.Backend.Extensions
                  )
             );
         }
-
+        
         public static void ConfigureBackendRepos(this IServiceCollection services)
         {
             services.AddScoped<IOrganizationCategoryQueryRepo, OrganizationCategoryDbQueryRepo<WillBeThereInMemoryContext>>();
-;
             services.AddScoped<IOrganizationProgramRepo, DbOrganizationProgramRepo>();
         }
 

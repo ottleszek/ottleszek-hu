@@ -20,10 +20,10 @@ builder.Services.AddControllers().AddJsonOptions(options =>
     options.JsonSerializerOptions.WriteIndented = true;
 });
 
-builder.Services.ConfigureCors();
-builder.Services.AddBackendServices();
-builder.Services.AddApplication();
 builder.Services.AddInfrastructure();
+builder.Services.AddApplication();
+builder.Services.AddBackendServices();
+
 
 var app = builder.Build();
 

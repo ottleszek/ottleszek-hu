@@ -1,11 +1,11 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Shared.ApplicationLayer.Repos.Commands;
+using Shared.ApplicationLayer.Repos;
 using Shared.DomainLayer.Entities;
 using Shared.DomainLayer.Responses;
 
 namespace Shared.InfrastuctureLayer.Repos.DataBase.Commands
 {
-    public class BaseCommandDbRepo<TDbContext> : BaseDbRepo<TDbContext>, ICommandGenericMethodRepo where TDbContext : DbContext
+    public class BaseCommandDbRepo<TDbContext> : BaseDbRepo<TDbContext>, IBaseCommandDbRepo where TDbContext : DbContext
     {
         public BaseCommandDbRepo(TDbContext? dbContext) : base(dbContext) { }
 
