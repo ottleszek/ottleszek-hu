@@ -1,9 +1,6 @@
 ﻿using Moq;
 using WillBeThere.DomainLayer.Entites;
 using WillBeThere.DomainLayer.Entites.ResultModels;
-using WillBeThere.InfrastuctureLayer.Implementations.Repos.WillBeThere;
-using WillBeThere.InfrastuctureLayer.Implementations.Repos.WillBeThere.QueryRepos;
-using WillBeThere.InfrastuctureLayer.Implementations.Services;
 
 namespace WillBeThereTest.Backend.Services
 {

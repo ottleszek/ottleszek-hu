@@ -1,8 +1,8 @@
-﻿using Shared.ApplicationLayer.Repos.Commands;
+﻿using Shared.ApplicationLayer.Repos;
 
 namespace WillBeThere.ApplicationLayer.Repos.CommandRepo
 {
-    public interface IBaseOrganizationCommandRepo : ICommandGenericMethodRepo
+    public interface IBaseOrganizationCommandRepo : IBaseCommandDbRepo
     {
 
     }

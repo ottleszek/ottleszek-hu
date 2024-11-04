@@ -1,4 +1,4 @@
-﻿using SharedApplicationLayer.Contracts.Persistence;
+﻿using Shared.ApplicationLayer.Persistence;
 using WillBeThere.DomainLayer.Repos;
 using WillBeThere.InfrastuctureLayer.Persistence.Repos.Http;
 using WillBeThere.InfrastuctureLayer.Persistence.Services.Http;
@@ -14,11 +14,11 @@ namespace WillBeThere.Web.Extensions
         }
         public static void ConfigureWebRepos(this IServiceCollection services)
         {
-            services.AddScoped<IOrganizationProgramRepo, HttpOrganizationProgramRepo>();
+            services.AddScoped<IOrganizationProgramRepo, OrganizationProgramHttpRepo>();
         }
         public static void ConfigureWebServices(this IServiceCollection services)
         {           
-            services.AddScoped<IDataPersistenceService, DataPersistenceService>();            
+            services.AddScoped<IManyDataPersistenceService, ManyDataPersistenceService>();            
         }
     }
 }

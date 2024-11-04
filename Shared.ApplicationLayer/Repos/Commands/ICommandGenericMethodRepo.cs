@@ -3,7 +3,7 @@ using Shared.DomainLayer.Responses;
 
 namespace Shared.ApplicationLayer.Repos.Commands
 {
-    public interface ICommandGenericMethodRepo 
+    public interface ICommandGenericMethodRepo
     {
         public Task<Response> UpdateAsync<TEntity>(TEntity entity) where TEntity : class, IDbEntity<TEntity>, new();
         public Task<Response> DeleteAsync<TEntity>(TEntity? entity) where TEntity : class, IDbEntity<TEntity>, new();

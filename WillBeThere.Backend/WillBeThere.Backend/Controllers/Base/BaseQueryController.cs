@@ -1,9 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using SharedApplicationLayer.Repos.Queries;
-using SharedApplicationLayer.Transformers;
-using SharedDomainLayer.Entities;
-using WillBeThere.InfrastuctureLayer.Implementations.Repos.Base;
+using Shared.ApplicationLayer.Repos.Queries;
+using Shared.ApplicationLayer.Transformers;
+using Shared.DomainLayer.Entities;
 
 namespace WillBeThere.Backend.Controllers.Base
 {

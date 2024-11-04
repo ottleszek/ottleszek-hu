@@ -1,5 +1,5 @@
 ﻿@page "/organizationcategorylist2"
-@inject IBaseOrganizationCategoryDataService? _organizationCategoryDataService
+@inject IOrganizationCategoryQueryModelRepo? _organizationCategoryQueryModelRepo
 
 
 <MudDataGrid SelectedItem="@_selectedItem" SelectedItemChanged="@OnSelectedItemChanged" T="Item" Items="@items" RowStyleFunc="@((row,index) => GetRowStyle(row,index))"
@@ -52,6 +52,6 @@
     public class Item
     {
         public int Id { get; set; }
-        public string Name { get; set; }
+        public string Name { get; set; } = string.Empty;
     }
 }

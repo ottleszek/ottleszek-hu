@@ -1,10 +1,9 @@
-﻿using SharedApplicationLayer.Contracts.Persistence;
-using WillBeThere.ApplicationLayer.Repos.CommandRepo;
+﻿using Shared.ApplicationLayer.Persistence;
 using WillBeThere.ApplicationLayer.Repos.QueryRepo;
 using WillBeThere.DomainLayer.Repos;
 using WillBeThere.InfrastuctureLayer.Context;
 using WillBeThere.InfrastuctureLayer.Persistence.Repos.DataBase;
-using WillBeThere.InfrastuctureLayer.Persistence.Repos.DataBase.WillBeThere.QueryRepos.Repos.DataBase;
+using WillBeThere.InfrastuctureLayer.Persistence.Repos.DataBase.WillBeThere.QueryRepos;
 using WillBeThere.InfrastuctureLayer.Persistence.Services.DataBase;
 
 namespace WillBeThere.Backend.Extensions
@@ -34,14 +33,14 @@ namespace WillBeThere.Backend.Extensions
 
         public static void ConfigureBackendRepos(this IServiceCollection services)
         {
-            services.AddScoped<IOrganizationCategoryQueryRepo, DbOrganizationCategoryQueryRepo<WillBeThereInMemoryContext>>();
+            services.AddScoped<IOrganizationCategoryQueryRepo, OrganizationCategoryDbQueryRepo<WillBeThereInMemoryContext>>();
 ;
             services.AddScoped<IOrganizationProgramRepo, DbOrganizationProgramRepo>();
         }
 
         public static void ConfigureBackendServices(this IServiceCollection services)
         {
-            services.AddScoped<IDataPersistenceService, DbDataPersistenceService>();
+            services.AddScoped<IManyDataPersistenceService, DbManyDataPersistenceService>();
             //services.AddScoped<IBaseOrganizationCategoryDataService, BaseOrganizationCategoryDataService>();
         }
 

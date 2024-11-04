@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using WillBeThere.ApplicationLayer.Contracts.UnitOfWork;
 using WillBeThere.ApplicationLayer.Repos.QueryRepo;
 using WillBeThere.DomainLayer.Entites;
-using WillBeThere.InfrastuctureLayer.Implementations.Repos.WillBeThere.QueryRepos.Repos;
 using WillBeThere.InfrastuctureLayer.Persistence.Repos.UnifOfWorks;
 
 namespace WillBeThere.InfrastuctureLayer.Persistence.Repos.DataBase.WillBeThere.QueryRepos
@@ -38,17 +38,15 @@ namespace WillBeThere.InfrastuctureLayer.Persistence.Repos.DataBase.WillBeThere.
             AddRepository<IRegisteredUserQueryRepo, RegisteredUser>(registeredUserQueryRepo);
         }
 
-        //public override IBaseRepo Repository => base.Repository;
-
-        public IAddressQueryRepo AddressQueryRepo => GetRepository<IAddressQueryRepo, Address>() ?? new AddressQueryRepo<TDbContext>(dbContext);
-        public IEditorQueryRepo EditorQueryRepo => GetRepository<IEditorQueryRepo, Editor>() ?? new EditorQueryRepo<TDbContext>(dbContext);
-        public IOrganizationCategoryQueryRepo OrganizationCategoryQueryRepo => GetRepository<IOrganizationCategoryQueryRepo, OrganizationCategory>() ?? new OrganizationCategoryQueryRepo<TDbContext>(dbContext);
-        public IOrganizationEditorQueryRepo OrganizationEditorQueryRepo => GetRepository<IOrganizationEditorQueryRepo, OrganizationEditor>() ?? new OrganizationEditorQueryRepo<TDbContext>(dbContext);
-        public IOrganizationProgramQueryRepo OrganizationProgramQueryRepo => GetRepository<IOrganizationProgramQueryRepo, OrganizationProgram>() ?? new OrganizationProgramQueryRepo<TDbContext>(dbContext);
-        public IOrganizationQueryRepo OrganizationQueryRepo => GetRepository<IOrganizationQueryRepo, Organization>() ?? new OrganizationQueryRepo<TDbContext>(dbContext);
-        public IParticipationQueryRepo ParticipationQueryRepo => GetRepository<IParticipationQueryRepo, Participation>() ?? new ParticipationQueryRepoo<TDbContext>(dbContext);
-        public IProgamOwnerQueryRepo ProgramOwnerQueryRepo => GetRepository<IProgamOwnerQueryRepo, ProgramOwner>() ?? new ProgramOwnerQueryRepo<TDbContext>(dbContext);
-        public IPublicSpaceQueryRepo PublicSpaceQueryRepo => GetRepository<IPublicSpaceQueryRepo, PublicSpace>() ?? new PublicSpaceQueryRepo<TDbContext>(dbContext);
-        public IRegisteredUserQueryRepo RegisteredUserQueryRepo => GetRepository<IRegisteredUserQueryRepo, RegisteredUser>() ?? new RegisteredUserQueryRepo<TDbContext>(dbContext);
+        public IAddressQueryRepo AddressQueryRepo => GetRepository<IAddressQueryRepo, Address>() ?? new AddressDbQueryRepo<TDbContext>(dbContext);
+        public IEditorQueryRepo EditorQueryRepo => GetRepository<IEditorQueryRepo, Editor>() ?? new EditorDbQueryRepo<TDbContext>(dbContext);
+        public IOrganizationCategoryQueryRepo OrganizationCategoryQueryRepo => GetRepository<IOrganizationCategoryQueryRepo, OrganizationCategory>() ?? new OrganizationCategoryDbQueryRepo<TDbContext>(dbContext);
+        public IOrganizationEditorQueryRepo OrganizationEditorQueryRepo => GetRepository<IOrganizationEditorQueryRepo, OrganizationEditor>() ?? new OrganizationEditorDbQueryRepo<TDbContext>(dbContext);
+        public IOrganizationProgramQueryRepo OrganizationProgramQueryRepo => GetRepository<IOrganizationProgramQueryRepo, OrganizationProgram>() ?? new OrganizationProgramDbQueryRepo<TDbContext>(dbContext);
+        public IOrganizationQueryRepo OrganizationQueryRepo => GetRepository<IOrganizationQueryRepo, Organization>() ?? new OrganizationDbQueryRepo<TDbContext>(dbContext);
+        public IParticipationQueryRepo ParticipationQueryRepo => GetRepository<IParticipationQueryRepo, Participation>() ?? new ParticipationDbQueryRepo<TDbContext>(dbContext);
+        public IProgamOwnerQueryRepo ProgramOwnerQueryRepo => GetRepository<IProgamOwnerQueryRepo, ProgramOwner>() ?? new ProgramOwnerDbQueryRepo<TDbContext>(dbContext);
+        public IPublicSpaceQueryRepo PublicSpaceQueryRepo => GetRepository<IPublicSpaceQueryRepo, PublicSpace>() ?? new PublicSpaceDbQueryRepo<TDbContext>(dbContext);
+        public IRegisteredUserQueryRepo RegisteredUserQueryRepo => GetRepository<IRegisteredUserQueryRepo, RegisteredUser>() ?? new RegisteredDbUserQueryRepo<TDbContext>(dbContext);
     }
 }

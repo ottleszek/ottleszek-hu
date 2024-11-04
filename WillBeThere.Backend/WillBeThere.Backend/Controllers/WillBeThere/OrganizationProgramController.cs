@@ -1,8 +1,8 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using Shared.ApplicationLayer.Repos.UnitOfWork;
 using WillBeThere.ApplicationLayer.Contracts.Dtos;
 using WillBeThere.ApplicationLayer.Contracts.Dtos.ResultModels;
-using WillBeThere.ApplicationLayer.Contracts.UnitOfWork;
 using WillBeThere.ApplicationLayer.Queries.OrganizationPrograms;
 using WillBeThere.ApplicationLayer.Repos.CommandRepo;
 using WillBeThere.ApplicationLayer.Repos.QueryRepo;
@@ -31,7 +31,7 @@ namespace WillBeThere.Backend.Controllers.WillBeThere
             IUnitOfWork unitOfWork
             //IOrganizationProgramService? organizationProgramService,
             
-            ) : base(assambler, queryRepo,commandRepo,unitOfWork)
+            ) : base(assambler, queryRepo)
         {
             //_organizationProgramService = organizationProgramService;
             _mediator = mediator ?? throw new ArgumentNullException(nameof(mediator));

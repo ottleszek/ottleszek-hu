@@ -1,24 +1,21 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using SharedApplicationLayer.Transformers;
-using SharedApplicationLayer.Repos;
-using SharedDomainLayer.Entities;
-using WillBeThere.ApplicationLayer.Contracts.UnitOfWork;
-using SharedApplicationLayer.Repos.Commands;
-using SharedApplicationLayer.Repos.Queries;
+using Shared.ApplicationLayer.Repos;
+using Shared.ApplicationLayer.Repos.Queries;
+using Shared.ApplicationLayer.Transformers;
+using Shared.DomainLayer.Entities;
 
 namespace WillBeThere.Backend.Controllers.Base
 {
-    public class IncludedController<TModel, TDto> : BaseController<TModel, TDto>
+    public class IncludedController<TModel, TDto> : BaseQueryController<TModel, TDto>
         where TModel : class, IDbEntity<TModel>, new()
         where TDto : class, new()
     {
+
         public IncludedController(
             IAssembler<TModel, TDto>? assambler,
-            IQueryGenericMethodRepo? queryRepo,
-            ICommandGenericMethodRepo? commandRepo,
-            IUnitOfWork unitOfWork
-            ) : base(assambler, queryRepo, commandRepo, unitOfWork)
+            IQueryGenericMethodRepo? baseRepo
+            ) : base(assambler, baseRepo)
         {
         }
 
@@ -28,9 +25,9 @@ namespace WillBeThere.Backend.Controllers.Base
         {
             List<TModel>? entities = new();
 
-            if (_queryRepo != null && _assambler is not null)
+            if (_baseRepo != null && _assambler is not null)
             {
-                IIncludedQueryRepo includedRepo = (IIncludedQueryRepo)_queryRepo;
+                IIncludedQueryRepo includedRepo = (IIncludedQueryRepo)_baseRepo;
                 IQueryable<TModel>? query = includedRepo.SelectAllInluded<TModel>();
                 if (query != null)
                 {

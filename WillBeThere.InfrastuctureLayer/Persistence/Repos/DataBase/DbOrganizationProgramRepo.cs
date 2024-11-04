@@ -1,8 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using WillBeThere.ApplicationLayer.Contracts.UnitOfWork;
 using WillBeThere.DomainLayer.Entites;
 using WillBeThere.DomainLayer.Entites.ResultModels;
 using WillBeThere.DomainLayer.Repos;
-using WillBeThere.InfrastuctureLayer.Persistence.Repos.DataBase.WillBeThere.QueryRepos;
 
 namespace WillBeThere.InfrastuctureLayer.Persistence.Repos.DataBase
 {

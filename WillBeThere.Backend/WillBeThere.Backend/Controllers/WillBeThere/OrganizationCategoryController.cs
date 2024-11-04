@@ -1,14 +1,14 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using Shared.ApplicationLayer.Repos.UnitOfWork;
 using WillBeThere.ApplicationLayer.Commands.OrganizationCategories;
 using WillBeThere.ApplicationLayer.Contracts.Dtos.OrganizationCategories;
-using WillBeThere.ApplicationLayer.Contracts.UnitOfWork;
 using WillBeThere.ApplicationLayer.Repos.CommandRepo;
 using WillBeThere.ApplicationLayer.Repos.QueryRepo;
 using WillBeThere.ApplicationLayer.Transformers.Assemblers;
 using WillBeThere.Backend.Controllers.Base;
 using WillBeThere.DomainLayer.Entites;
-using WillBeThere.DomainLayer.Repos.Base;
+using WillBeThere.DomainLayer.Repos;
 
 namespace WillBeThere.Backend.Controllers.WillBeThere
 {
@@ -17,16 +17,16 @@ namespace WillBeThere.Backend.Controllers.WillBeThere
     public class OrganizationCategoryController : IncludedController<OrganizationCategory, OrganizationCategoryDto>
     {
         private readonly IMediator? _mediator;
-        private readonly IBaseOrganizationCategoryRepo? _baseOrganizationCategoryService;
+        private readonly IOrganizationCategoryRepo? _baseOrganizationCategoryService;
 
         public OrganizationCategoryController(
             IMediator? mediator,
-            OrganizationCategoryAssembler? assambler, 
-            IBaseOrganizationCategoryRepo? baseOrganizationCategoryService,
+            OrganizationCategoryAssembler? assambler,
+            IOrganizationCategoryRepo? baseOrganizationCategoryService,
             IOrganizationCategoryQueryRepo? organizationCategoryQueryRepo,
             IBaseOrganizationCategoryCommandRepo? organizationCategoryCommandRepo,
             IUnitOfWork unitOfWork
-            ) : base(assambler, organizationCategoryQueryRepo,organizationCategoryCommandRepo, unitOfWork)
+            ) : base(assambler, organizationCategoryQueryRepo)
         {            
             _mediator = mediator ?? throw new ArgumentNullException(nameof(_mediator));
             _baseOrganizationCategoryService = baseOrganizationCategoryService ?? throw new ArgumentNullException(nameof(_baseOrganizationCategoryService));

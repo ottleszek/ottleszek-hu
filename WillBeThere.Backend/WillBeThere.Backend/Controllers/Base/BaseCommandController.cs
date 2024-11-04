@@ -1,9 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using SharedApplicationLayer.Transformers;
-using SharedDomainLayer.Entities;
-using SharedDomainLayer.Responses;
-using WillBeThere.ApplicationLayer.Contracts.UnitOfWork;
-using SharedApplicationLayer.Repos.Commands;
+using Shared.ApplicationLayer.Repos.Commands;
+using Shared.ApplicationLayer.Repos.UnitOfWork;
+using Shared.ApplicationLayer.Transformers;
+using Shared.DomainLayer.Entities;
+using Shared.DomainLayer.Responses;
 
 
 namespace WillBeThere.Backend.Controllers.Base
@@ -33,7 +33,7 @@ namespace WillBeThere.Backend.Controllers.Base
             if (_unitOfWork is not null && _assambler is not null && _repository != null)
             {
 
-                response = _repository.Insert<TModel>(_assambler.ToModel(entity));
+                response = await _repository.InsertAsync<TModel>(_assambler.ToModel(entity));
                 if (response.HasError)
                     response.ClearAndAdd($"{response.Error}");
                 else
@@ -54,7 +54,7 @@ namespace WillBeThere.Backend.Controllers.Base
             Response response = new();
             if (_unitOfWork is not null && _assambler is not null && _repository != null)
             {
-                response = _repository.Update<TModel>(_assambler.ToModel(entity));
+                response = await _repository.UpdateAsync<TModel>(_assambler.ToModel(entity));
                 if (response.HasError)
                     response.ClearAndAdd($"{response.Error}");
                 else
@@ -76,7 +76,7 @@ namespace WillBeThere.Backend.Controllers.Base
             if (_unitOfWork is not null && _repository != null)
             {
 
-                response = _repository.Delete<TModel>(id);
+                response = await _repository.DeleteAsync<TModel>(id);
                 if (response.HasError)
                     response.ClearAndAdd($"{response.Error}");
                 else

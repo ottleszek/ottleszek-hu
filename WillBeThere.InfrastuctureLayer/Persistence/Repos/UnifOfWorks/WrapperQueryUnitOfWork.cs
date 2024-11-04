@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Shared.ApplicationLayer.Repos;
+using Shared.ApplicationLayer.Repos.UnitOfWork;
 using Shared.DomainLayer.Entities;
-using WillBeThere.ApplicationLayer.Contracts.UnitOfWork;
 
 namespace WillBeThere.InfrastuctureLayer.Persistence.Repos.UnifOfWorks
 {

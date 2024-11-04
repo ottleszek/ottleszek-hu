@@ -8,11 +8,11 @@ namespace WillBeThere.ApplicationLayer.ViewModels.OrganizationCategories
 {
     public class OrganizationCategoryListViewModel : IOrganizationCategoryListViewModel
     {
-        private readonly IMediator _mediator;
+        private readonly IMediator? _mediator;
 
         private OrganizationCategoryDto? _editedCategory;
-        private List<OrganizationCategoryDto>? _organizationCategories = new List<OrganizationCategoryDto>();
-        private List<OrganizationCategoryDto> _modifiedOrganizationCategories = new List<OrganizationCategoryDto>();
+        private List<OrganizationCategoryDto>? _organizationCategories = new ();
+        private List<OrganizationCategoryDto> _modifiedOrganizationCategories = new();
 
         private OrganizationCategoryDto? _selectedOrganizationCategory;
 
@@ -24,7 +24,7 @@ namespace WillBeThere.ApplicationLayer.ViewModels.OrganizationCategories
         }
 
         public bool IsLoded => _isLoded;
-        public List<OrganizationCategoryDto> OrganizationCategories => _organizationCategories is not null ? _organizationCategories : new List<OrganizationCategoryDto>();
+        public List<OrganizationCategoryDto> OrganizationCategories => _organizationCategories is not null ? _organizationCategories : [];
         public int NumberOfOrganizationCategories => OrganizationCategories.Count; 
 
         public bool SaveDisabled => !_hasModifiedCategory;

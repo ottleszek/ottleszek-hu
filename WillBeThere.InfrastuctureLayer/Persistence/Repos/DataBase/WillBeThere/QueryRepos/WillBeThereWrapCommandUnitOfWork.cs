@@ -1,7 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using SharedApplicationLayer.Repos;
+using WillBeThere.ApplicationLayer.Contracts.UnitOfWork;
 using WillBeThere.ApplicationLayer.Repos.CommandRepo;
 using WillBeThere.DomainLayer.Entites;
+using WillBeThere.InfrastuctureLayer.Persistence.Repos.DataBase.WillBeThere.CommandRepos;
 using WillBeThere.InfrastuctureLayer.Persistence.Repos.UnifOfWorks;
 
 namespace WillBeThere.InfrastuctureLayer.Persistence.Repos.DataBase.WillBeThere.QueryRepos
@@ -39,15 +40,15 @@ namespace WillBeThere.InfrastuctureLayer.Persistence.Repos.DataBase.WillBeThere.
         }
 
         //public override IBaseRepo Repository => base.Repository;
-        public IBaseAddressCommandRepo AddressCommandRepo => GetRepository<IBaseAddressCommandRepo, Address>() ?? new AddressCommandRepo<TDbContext>(_dbContext);
-        public IBaseEditorCommandRepo EditorCommandRepo => GetRepository<IBaseEditorCommandRepo, Editor>() ?? new EditorCommandRepo<TDbContext>(_dbContext);
-        public IBaseOrganizationCategoryCommandRepo OrganizationCategoryCommandRepo => GetRepository<IBaseOrganizationCategoryCommandRepo, OrganizationCategory>() ?? new OrganizationCategoryCommandRepo<TDbContext>(_dbContext);
-        public IBaseOrganizationEditorCommandRepo OrganizationEditorCommandRepo => GetRepository<IBaseOrganizationEditorCommandRepo, OrganizationEditor>() ?? new OrganizationEditorCommandRepo<TDbContext>(_dbContext);
-        public IBaseOrganizationProgramCommandRepo OrganizationProgramCommandRepo => GetRepository<IBaseOrganizationProgramCommandRepo, OrganizationProgram>() ?? new OrganizationProgramCommandRepo<TDbContext>(_dbContext);
-        public IBaseOrganizationCommandRepo OrganizationCommandRepo => GetRepository<IBaseOrganizationCommandRepo, Organization>() ?? new OrganizationCommandRepo<TDbContext>(_dbContext);
-        public IBaseParticipationCommandRepo ParticipationCommandRepo => GetRepository<IBaseParticipationCommandRepo, Participation>() ?? new ParticipationCommandRepoo<TDbContext>(_dbContext);
-        public IBaseProgamOwnerCommandRepo ProgramOwnerCommandRepo => GetRepository<IBaseProgamOwnerCommandRepo, ProgramOwner>() ?? new ProgramOwnerCommandRepo<TDbContext>(_dbContext);
-        public IBasePublicSpaceCommandRepo PublicSpaceCommandRepo => GetRepository<IBasePublicSpaceCommandRepo, PublicSpace>() ?? new PublicSpaceCommandRepo<TDbContext>(_dbContext);
-        public IBaseRegisteredUserCommandRepo RegisteredUserCommandRepo => GetRepository<IBaseRegisteredUserCommandRepo, RegisteredUser>() ?? new RegisteredUserCommandRepo<TDbContext>(_dbContext);
+        public IBaseAddressCommandRepo AddressCommandRepo => GetRepository<IBaseAddressCommandRepo, Address>() ?? new AddressDbCommandRepo<TDbContext>(_dbContext);
+        public IBaseEditorCommandRepo EditorCommandRepo => GetRepository<IBaseEditorCommandRepo, Editor>() ?? new EditorDbCommandRepo<TDbContext>(_dbContext);
+        public IBaseOrganizationCategoryCommandRepo OrganizationCategoryCommandRepo => GetRepository<IBaseOrganizationCategoryCommandRepo, OrganizationCategory>() ?? new OrganizationDbCategoryCommandRepo<TDbContext>(_dbContext);
+        public IBaseOrganizationEditorCommandRepo OrganizationEditorCommandRepo => GetRepository<IBaseOrganizationEditorCommandRepo, OrganizationEditor>() ?? new OrganizationEditorDbCommandRepo<TDbContext>(_dbContext);
+        public IBaseOrganizationProgramCommandRepo OrganizationProgramCommandRepo => GetRepository<IBaseOrganizationProgramCommandRepo, OrganizationProgram>() ?? new OrganizationProgramDbCommandRepo<TDbContext>(_dbContext);
+        public IBaseOrganizationCommandRepo OrganizationCommandRepo => GetRepository<IBaseOrganizationCommandRepo, Organization>() ?? new OrganizationDbCommandRepo<TDbContext>(_dbContext);
+        public IBaseParticipationCommandRepo ParticipationCommandRepo => GetRepository<IBaseParticipationCommandRepo, Participation>() ?? new ParticipationCommandDbRepoo<TDbContext>(_dbContext);
+        public IBaseProgamOwnerCommandRepo ProgramOwnerCommandRepo => GetRepository<IBaseProgamOwnerCommandRepo, ProgramOwner>() ?? new ProgramOwnerDbCommandRepo<TDbContext>(_dbContext);
+        public IBasePublicSpaceCommandRepo PublicSpaceCommandRepo => GetRepository<IBasePublicSpaceCommandRepo, PublicSpace>() ?? new PublicSpaceDbCommandRepo<TDbContext>(_dbContext);
+        public IBaseRegisteredUserCommandRepo RegisteredUserCommandRepo => GetRepository<IBaseRegisteredUserCommandRepo, RegisteredUser>() ?? new RegisteredUserDbCommandRepo<TDbContext>(_dbContext);
     }
 }

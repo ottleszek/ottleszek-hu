@@ -1,13 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using WillBeThere.ApplicationLayer.Contracts.Dtos.OrganizationCategories;
-using WillBeThere.ApplicationLayer.Contracts.UnitOfWork;
 using WillBeThere.DomainLayer.Entites;
 using WillBeThere.InfrastuctureLayer.Context;
 using WillBeThere.InfrastuctureLayer.Persistence.Services.Http;
-using WillBeThere.InfrastuctureLayer.Persistence.Services.Http.Base.DataService;
-using WillBeThere.InfrastuctureLayer.Persistence.Services.Http.Base.HttpService;
-using WillBeThere.InfrastuctureLayer.Persistence.Services.Http.Base.MapperService;
 using WillBeThere.ApplicationLayer.Transformers.Assemblers;
 using WillBeThere.ApplicationLayer.Transformers.Assemblers.ResultModels;
 using WillBeThere.ApplicationLayer.Transformers.Converters;
@@ -15,8 +11,20 @@ using WillBeThere.ApplicationLayer.Repos.CommandRepo;
 using WillBeThere.ApplicationLayer.Repos.QueryRepo;
 using WillBeThere.InfrastuctureLayer.Persistence.Repos.DataBase.WillBeThere.CommandRepos;
 using WillBeThere.InfrastuctureLayer.Persistence.Repos.DataBase.WillBeThere.QueryRepos;
-using WillBeThere.InfrastuctureLayer.Persistence.Repos.DataBase.WillBeThere.QueryRepos.Repos.DataBase;
 using WillBeThere.InfrastuctureLayer.Persistence.Repos.UnifOfWorks;
+using WillBeThere.InfrastuctureLayer.Persistence.Repos.Http.HttpRepo.Query;
+using WillBeThere.InfrastuctureLayer.Persistence.Repos.Http.MapperRepo.Query;
+using WillBeThere.InfrastuctureLayer.Persistence.Repos.Http.ModelRepo.Query;
+using Shared.ApplicationLayer.Transformers;
+using Shared.ApplicationLayer.Repos;
+using Shared.InfrastuctureLayer.Repos.DataBase;
+using WillBeThere.ApplicationLayer.Repos.QueryRepo.HttpRepo;
+using WillBeThere.ApplicationLayer.Repos.QueryRepo.MapperRepo;
+using WillBeThere.ApplicationLayer.Repos.QueryRepo.MappreRepo;
+using WillBeThere.ApplicationLayer.Repos.QueryRepo.ModelRepo;
+using Shared.ApplicationLayer.Persistence;
+using Shared.ApplicationLayer.Repos.UnitOfWork;
+using WillBeThere.ApplicationLayer.Contracts.UnitOfWork;
 
 namespace WillBeThere.InfrastuctureLayer
 {
@@ -81,35 +89,35 @@ namespace WillBeThere.InfrastuctureLayer
         {
             if (true)
             {
-                services.AddScoped<IAddressQueryRepo,DbAddressQueryRepo<WillBeThereInMemoryContext>>();
-                services.AddScoped<IEditorQueryRepo,DbEditorQueryRepo<WillBeThereInMemoryContext>>();
-                services.AddScoped<IOrganizationCategoryQueryRepo,DbOrganizationCategoryQueryRepo<WillBeThereInMemoryContext>>();
-                services.AddScoped<IOrganizationEditorQueryRepo,DbOrganizationEditorQueryRepo<WillBeThereInMemoryContext>>();
-                services.AddScoped<IOrganizationProgramQueryRepo,DbOrganizationProgramQueryRepo<WillBeThereInMemoryContext>>();
-                services.AddScoped<IOrganizationQueryRepo,DbOrganizationQueryRepo<WillBeThereInMemoryContext>>();
-                services.AddScoped<IParticipationQueryRepo,ParticipationQueryRepoo<WillBeThereInMemoryContext>>();
-                services.AddScoped<IProgamOwnerQueryRepo,DbProgramOwnerQueryRepo<WillBeThereInMemoryContext>>();
-                services.AddScoped<IPublicSpaceQueryRepo,DbPublicSpaceQueryRepo<WillBeThereInMemoryContext>>();
-                services.AddScoped<IRegisteredUserQueryRepo,DbRegisteredUserQueryRepo<WillBeThereInMemoryContext>>();
+                services.AddScoped<IAddressQueryRepo,AddressDbQueryRepo<WillBeThereInMemoryContext>>();
+                services.AddScoped<IEditorQueryRepo,EditorDbQueryRepo<WillBeThereInMemoryContext>>();
+                services.AddScoped<IOrganizationCategoryQueryRepo,OrganizationCategoryDbQueryRepo<WillBeThereInMemoryContext>>();
+                services.AddScoped<IOrganizationEditorQueryRepo,OrganizationEditorDbQueryRepo<WillBeThereInMemoryContext>>();
+                services.AddScoped<IOrganizationProgramQueryRepo,OrganizationProgramDbQueryRepo<WillBeThereInMemoryContext>>();
+                services.AddScoped<IOrganizationQueryRepo,OrganizationDbQueryRepo<WillBeThereInMemoryContext>>();
+                services.AddScoped<IParticipationQueryRepo,ParticipationDbQueryRepo<WillBeThereInMemoryContext>>();
+                services.AddScoped<IProgamOwnerQueryRepo,ProgramOwnerDbQueryRepo<WillBeThereInMemoryContext>>();
+                services.AddScoped<IPublicSpaceQueryRepo,PublicSpaceDbQueryRepo<WillBeThereInMemoryContext>>();
+                services.AddScoped<IRegisteredUserQueryRepo,RegisteredDbUserQueryRepo<WillBeThereInMemoryContext>>();
 
-                services.AddScoped<IBaseAddressCommandRepo, AddressCommandRepo<WillBeThereInMemoryContext>>();
-                services.AddScoped<IBaseEditorCommandRepo, EditorCommandRepo<WillBeThereInMemoryContext>>();
-                services.AddScoped<IBaseOrganizationCategoryCommandRepo, OrganizationCategoryCommandRepo<WillBeThereInMemoryContext>>();
-                services.AddScoped<IBaseOrganizationEditorCommandRepo, OrganizationEditorCommandRepo<WillBeThereInMemoryContext>>();
-                services.AddScoped<IBaseOrganizationProgramCommandRepo, OrganizationProgramCommandRepo<WillBeThereInMemoryContext>>();
-                services.AddScoped<IBaseOrganizationCommandRepo, OrganizationCommandRepo<WillBeThereInMemoryContext>>();
-                services.AddScoped<IBaseParticipationCommandRepo, ParticipationCommandRepoo<WillBeThereInMemoryContext>>();
-                services.AddScoped<IBaseProgamOwnerCommandRepo, ProgramOwnerCommandRepo<WillBeThereInMemoryContext>>();
-                services.AddScoped<IBasePublicSpaceCommandRepo, PublicSpaceCommandRepo<WillBeThereInMemoryContext>>();
-                services.AddScoped<IBaseRegisteredUserCommandRepo, RegisteredUserCommandRepo<WillBeThereInMemoryContext>>();
+                services.AddScoped<IBaseAddressCommandRepo, AddressDbCommandRepo<WillBeThereInMemoryContext>>();
+                services.AddScoped<IBaseEditorCommandRepo, EditorDbCommandRepo<WillBeThereInMemoryContext>>();
+                services.AddScoped<IBaseOrganizationCategoryCommandRepo, OrganizationDbCategoryCommandRepo<WillBeThereInMemoryContext>>();
+                services.AddScoped<IBaseOrganizationEditorCommandRepo, OrganizationEditorDbCommandRepo<WillBeThereInMemoryContext>>();
+                services.AddScoped<IBaseOrganizationProgramCommandRepo, OrganizationProgramDbCommandRepo<WillBeThereInMemoryContext>>();
+                services.AddScoped<IBaseOrganizationCommandRepo, OrganizationDbCommandRepo<WillBeThereInMemoryContext>>();
+                services.AddScoped<IBaseParticipationCommandRepo, ParticipationCommandDbRepoo<WillBeThereInMemoryContext>>();
+                services.AddScoped<IBaseProgamOwnerCommandRepo, ProgramOwnerDbCommandRepo<WillBeThereInMemoryContext>>();
+                services.AddScoped<IBasePublicSpaceCommandRepo, PublicSpaceDbCommandRepo<WillBeThereInMemoryContext>>();
+                services.AddScoped<IBaseRegisteredUserCommandRepo, RegisteredUserDbCommandRepo<WillBeThereInMemoryContext>>();
+
+                services.AddScoped<IUnitOfWork, UnitOfWork<WillBeThereInMemoryContext>>();
+                //services.AddScoped<IRepoStore, WrapperUnitOfWork<WillBeThereInMemoryContext>>();
+                //services.AddScoped<IWrapperUnitOfWork, WrapperUnitOfWork<WillBeThereInMemoryContext>>();
 
                 services.AddScoped<IWillBeThereWrapQueryUnitOfWork,WillBeThereWrapQueryUnitOfWork<WillBeThereInMemoryContext>>();
-                services.AddScoped<IWrapperUnitOfWork, WrapperUnitOfWork<WillBeThereInMemoryContext>>();
-                services.AddScoped<IUnitOfWork, UnitOfWork<WillBeThereInMemoryContext>>();
-                services.AddScoped<IRepoStore,WrapperUnitOfWork<WillBeThereInMemoryContext>>();
-
                 services.AddScoped<IBaseDbRepo, BaseDbRepo<WillBeThereInMemoryContext>>();
-                services.AddScoped<ICommandGenericMethodRepo,BaseCommandRepo<WillBeThereInMemoryContext>>();
+
 
             }
             else
@@ -132,26 +140,25 @@ namespace WillBeThere.InfrastuctureLayer
         public static void ConfigureServices(this IServiceCollection services)
         {
             // HttpService
-            services.AddScoped<IBaseOrganizationProgramHttpService, BaseOrganizationProgramHttpService>();
-            services.AddScoped<IBaseOrganizationCategoryHttpService, BaseOrganizationCategoryHttpService>();
+            services.AddScoped<IOrganizationProgramQueryHttpRepo, OrganizationProgramQueryHttpRepo>();
+            services.AddScoped<IOrganizationCategoryQueryHttpRepo, OrganizationCategoryQueryHttpRepo>();
 
             // MapperService
-            services.AddScoped<IBaseOrganizationProgramMapperService, BaseOrganizationProgramMapperService>();
-            services.AddScoped<IBaseOrganizationCategoryMapperService, BaseOrganizationCategoryMapperService>();
+            services.AddScoped<IOrganizationProgramQueryMapperRepo, OrganizationProgramQueryMapperRepo>();
+            services.AddScoped<IOrganizationCategoryQueryMapperRepo, OrganizationCategoryQueryMapperRepo>();
 
-            // DataService
-            services.AddScoped<IBaseOrganizationProgramDataService, BaseOrganizationProgramDataService>();
-            services.AddScoped<IBaseOrganizationCategoryDataService, BaseOrganizationCategoryDataService>();
+            // ModelService
+            services.AddScoped<IOrganizationProgramQueryModelRepo, OrganizationProgramQueryModelRepo>();
+            services.AddScoped<IOrganizationCategoryQueryModelRepo, OrganizationCategoryQueryModelRepo>();
                    
-            services.AddScoped<IBaseOrganizationCategoryDataService, BaseOrganizationCategoryDataService>();
 
 
         }
 
         public static void ConfigurePersistence(this IServiceCollection services)
         {
-            services.AddScoped<IHttpDataPersistenceService, HttpDataPersistenceService>();
-            services.AddScoped<IDataPersistenceService<OrganizationCategory>, GenericDataPersistenceService<OrganizationCategory, OrganizationCategoryDto, OrganizationCategoryDomainDtoConverter>>();
+            services.AddScoped<IManyDataPersistenceService, ManyDataHttpPersistenceService>();
+            services.AddScoped<IManyDataPersistenceService<OrganizationCategory>, ManyGenericDataPersistenceService<OrganizationCategory, OrganizationCategoryDto>>();
 
         }
     }

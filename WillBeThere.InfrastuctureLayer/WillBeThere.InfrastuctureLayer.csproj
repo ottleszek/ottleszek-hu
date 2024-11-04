@@ -27,7 +27,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Persistence\Repos\DataBase\WillBeThere\QueryRepos\Repos\Http\" />
     <Folder Include="Persistence\Services\FileStore\" />
   </ItemGroup>
 
