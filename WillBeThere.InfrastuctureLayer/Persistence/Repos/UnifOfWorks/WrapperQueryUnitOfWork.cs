@@ -8,7 +8,7 @@ namespace WillBeThere.InfrastuctureLayer.Persistence.Repos.UnifOfWorks
     public class WrapperQueryUnitOfWork<TDbContext> : QueryUnitOfWork<TDbContext>, IWrapperUnitOfWork where TDbContext : DbContext
     {
         protected Dictionary<Type, object> _repositories;
-        public WrapperQueryUnitOfWork(TDbContext context, IBaseDbRepo repo) : base(context, repo)
+        public WrapperQueryUnitOfWork(TDbContext context) : base(context)
         {
             _repositories = [];
         }

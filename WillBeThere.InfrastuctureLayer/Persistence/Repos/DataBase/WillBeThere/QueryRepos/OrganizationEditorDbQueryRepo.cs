@@ -1,10 +1,10 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Shared.InfrastuctureLayer.Repos.DataBase;
+﻿using Shared.InfrastuctureLayer.Repos.DataBase;
 using WillBeThere.ApplicationLayer.Repos.QueryRepo;
+using WillBeThere.InfrastuctureLayer.Context;
 
 namespace WillBeThere.InfrastuctureLayer.Persistence.Repos.DataBase.WillBeThere.QueryRepos
 {
-    public class OrganizationEditorDbQueryRepo<TDbContext> : IncludedQueryRepo<TDbContext>, IOrganizationEditorQueryRepo where TDbContext : DbContext
+    public class OrganizationEditorDbQueryRepo<TDbContext> : IncludedQueryRepo<TDbContext>, IOrganizationEditorQueryRepo where TDbContext : WillBeThereContext
     {
         public OrganizationEditorDbQueryRepo(TDbContext? dbContext) : base(dbContext)
         {

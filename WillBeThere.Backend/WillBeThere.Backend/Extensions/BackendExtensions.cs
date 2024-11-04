@@ -38,6 +38,7 @@ namespace WillBeThere.Backend.Extensions
         
         public static void ConfigureBackendRepos(this IServiceCollection services)
         {
+            // OrganizationCategoryDbQueryRepo
             services.AddScoped<IOrganizationCategoryQueryRepo, OrganizationCategoryDbQueryRepo<WillBeThereInMemoryContext>>();
             services.AddScoped<IOrganizationProgramRepo, DbOrganizationProgramRepo>();
         }

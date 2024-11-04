@@ -156,14 +156,11 @@ namespace WillBeThere.InfrastuctureLayer
             // ModelService
             services.AddScoped<IOrganizationProgramQueryModelRepo, OrganizationProgramQueryModelRepo>();
             services.AddScoped<IOrganizationCategoryQueryModelRepo, OrganizationCategoryQueryModelRepo>();
-                   
-
-
         }
 
         public static void ConfigurePersistence(this IServiceCollection services)
         {
-            services.AddScoped<IManyDataPersistenceService, ManyDataHttpPersistenceService>();
+            //services.AddScoped<IManyDataPersistenceService, ManyDataHttpPersistenceService>();
             services.AddScoped<IManyDataPersistenceService<OrganizationCategory>, ManyGenericDataPersistenceService<OrganizationCategory, OrganizationCategoryDto>>();
         }
     }

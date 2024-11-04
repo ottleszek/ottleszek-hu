@@ -18,7 +18,7 @@ namespace WillBeThere.Web.Extensions
         }
         public static void ConfigureWebServices(this IServiceCollection services)
         {           
-            services.AddScoped<IManyDataPersistenceService, ManyDataPersistenceService>();            
+            services.AddScoped<IManyDataPersistenceService, ManyDataHttpPersistenceService>();            
         }
     }
 }

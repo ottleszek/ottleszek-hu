@@ -1,5 +1,4 @@
-﻿using Shared.ApplicationLayer.Repos.Queries;
-using Shared.DomainLayer.Entities;
+﻿using Shared.DomainLayer.Entities;
 
 namespace Shared.ApplicationLayer.Repos
 {

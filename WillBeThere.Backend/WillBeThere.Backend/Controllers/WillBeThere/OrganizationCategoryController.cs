@@ -1,9 +1,7 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using Shared.ApplicationLayer.Repos.UnitOfWork;
 using WillBeThere.ApplicationLayer.Commands.OrganizationCategories;
 using WillBeThere.ApplicationLayer.Contracts.Dtos.OrganizationCategories;
-using WillBeThere.ApplicationLayer.Repos.CommandRepo;
 using WillBeThere.ApplicationLayer.Repos.QueryRepo;
 using WillBeThere.ApplicationLayer.Transformers.Assemblers;
 using WillBeThere.Backend.Controllers.Base;
@@ -23,9 +21,7 @@ namespace WillBeThere.Backend.Controllers.WillBeThere
             IMediator? mediator,
             OrganizationCategoryAssembler? assambler,
             IOrganizationCategoryRepo? baseOrganizationCategoryService,
-            IOrganizationCategoryQueryRepo? organizationCategoryQueryRepo,
-            IBaseOrganizationCategoryCommandRepo? organizationCategoryCommandRepo,
-            IUnitOfWork unitOfWork
+            IOrganizationCategoryQueryRepo? organizationCategoryQueryRepo
             ) : base(assambler, organizationCategoryQueryRepo)
         {            
             _mediator = mediator ?? throw new ArgumentNullException(nameof(_mediator));

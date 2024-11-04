@@ -1,13 +1,13 @@
-﻿using Microsoft.EntityFrameworkCore;
-using WillBeThere.ApplicationLayer.Contracts.UnitOfWork;
+﻿using WillBeThere.ApplicationLayer.Contracts.UnitOfWork;
 using WillBeThere.ApplicationLayer.Repos.CommandRepo;
 using WillBeThere.DomainLayer.Entites;
+using WillBeThere.InfrastuctureLayer.Context;
 using WillBeThere.InfrastuctureLayer.Persistence.Repos.DataBase.WillBeThere.CommandRepos;
 using WillBeThere.InfrastuctureLayer.Persistence.Repos.UnifOfWorks;
 
 namespace WillBeThere.InfrastuctureLayer.Persistence.Repos.DataBase.WillBeThere.QueryRepos
 {
-    public class WillBeThereWrapCommandUnitOfWork<TDbContext> : WrapperUnitOfWork<TDbContext>, IWillBeThereWrapCommandUnitOfWork where TDbContext : DbContext
+    public class WillBeThereWrapCommandUnitOfWork<TDbContext> : WrapperUnitOfWork<TDbContext>, IWillBeThereWrapCommandUnitOfWork where TDbContext : WillBeThereContext
     {
         private TDbContext _dbContext;
         public WillBeThereWrapCommandUnitOfWork
@@ -24,7 +24,7 @@ namespace WillBeThere.InfrastuctureLayer.Persistence.Repos.DataBase.WillBeThere.
                 IBasePublicSpaceCommandRepo publicSpaceCommandRepo,
                 IBaseRegisteredUserCommandRepo registeredUserCommandRepo
         )
-            : base(dbContext, organizationCommandRepo)
+            : base(dbContext)
         {
             _dbContext = dbContext;
             AddRepository<IBaseAddressCommandRepo, Address>(addressCommandRepo);

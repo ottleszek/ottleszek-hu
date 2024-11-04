@@ -1,12 +1,12 @@
-﻿using Microsoft.EntityFrameworkCore;
-using WillBeThere.ApplicationLayer.Contracts.UnitOfWork;
+﻿using WillBeThere.ApplicationLayer.Contracts.UnitOfWork;
 using WillBeThere.ApplicationLayer.Repos.QueryRepo;
 using WillBeThere.DomainLayer.Entites;
+using WillBeThere.InfrastuctureLayer.Context;
 using WillBeThere.InfrastuctureLayer.Persistence.Repos.UnifOfWorks;
 
 namespace WillBeThere.InfrastuctureLayer.Persistence.Repos.DataBase.WillBeThere.QueryRepos
 {
-    public class WillBeThereWrapQueryUnitOfWork<TDbContext> : WrapperQueryUnitOfWork<TDbContext>, IWillBeThereWrapQueryUnitOfWork where TDbContext : DbContext
+    public class WillBeThereWrapQueryUnitOfWork<TDbContext> : WrapperQueryUnitOfWork<TDbContext>, IWillBeThereWrapQueryUnitOfWork where TDbContext : WillBeThereContext
     {
         private TDbContext dbContext;
         public WillBeThereWrapQueryUnitOfWork
@@ -23,7 +23,7 @@ namespace WillBeThere.InfrastuctureLayer.Persistence.Repos.DataBase.WillBeThere.
                 IPublicSpaceQueryRepo publicSpaceQueryRepo,
                 IRegisteredUserQueryRepo registeredUserQueryRepo
             )
-            : base(dbContext, organizationQueryRepo)
+            : base(dbContext)
         {
             this.dbContext = dbContext;
             AddRepository<IAddressQueryRepo, Address>(addressQueryRepo);
@@ -31,7 +31,7 @@ namespace WillBeThere.InfrastuctureLayer.Persistence.Repos.DataBase.WillBeThere.
             AddRepository<IOrganizationCategoryQueryRepo, OrganizationCategory>(organizationCategoryQueryRepo);
             AddRepository<IOrganizationEditorQueryRepo, OrganizationEditor>(organizationEditorQueryRepo);
             AddRepository<IOrganizationProgramQueryRepo, OrganizationProgram>(organizationProgramQueryRepo);
-            AddRepository<IOrganizationQueryRepo, OrganizationEditor>(organizationQueryRepo);
+            AddRepository<IOrganizationQueryRepo, Organization>(organizationQueryRepo);
             AddRepository<IParticipationQueryRepo, Participation>(participationQueryRepo);
             AddRepository<IProgamOwnerQueryRepo, ProgramOwner>(progamOwnerQueryRepo);
             AddRepository<IPublicSpaceQueryRepo, PublicSpace>(publicSpaceQueryRepo);

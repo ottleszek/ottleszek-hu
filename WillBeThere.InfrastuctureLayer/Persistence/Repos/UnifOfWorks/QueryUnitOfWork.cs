@@ -5,7 +5,7 @@ namespace WillBeThere.InfrastuctureLayer.Persistence.Repos.UnifOfWorks
 {
     public class QueryUnitOfWork<TDbContext> : UnitOfWork<TDbContext> where TDbContext : DbContext
     {
-        public QueryUnitOfWork(TDbContext context, IBaseDbRepo repo) : base(context)
+        public QueryUnitOfWork(TDbContext context) : base(context)
         {
         }
 
