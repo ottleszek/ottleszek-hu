@@ -13,10 +13,12 @@ namespace WillBeThere.InfrastuctureLayer.Persistence.Repos.UnifOfWorks
             _repositories = [];
         }
 
-        public TRepository? AddRepository<TRepository, TEntity>(TRepository? repository) where TRepository : IBaseDbRepo where TEntity : class, IDbEntity<TEntity>, new()
+        //TRepository? AddRepository<TRepository, TEntity>(TRepository? repository) where TRepository : IBaseRepo where TEntity : class, IDbEntity<TEntity>, new();
+        public IBaseRepo? AddRepository<TRepository, TEntity>(TRepository? repository) where TRepository : IBaseRepo where TEntity : class, IDbEntity<TEntity>, new()
         {
             if (repository is not null)
             {
+
                 TRepository? exsist = GetRepository<TRepository, TEntity>();
                 if (exsist == null)
                 {
@@ -28,7 +30,7 @@ namespace WillBeThere.InfrastuctureLayer.Persistence.Repos.UnifOfWorks
             return default;
         }
 
-        public TRepository? GetRepository<TRepository, TEntity>() where TRepository : IBaseDbRepo where TEntity : class, IDbEntity<TEntity>, new()
+        public IBaseRepo? GetRepository<TRepository, TEntity>() where TRepository : IBaseRepo where TEntity : class, IDbEntity<TEntity>, new()
         {
             var type = typeof(TEntity);
 
@@ -37,6 +39,11 @@ namespace WillBeThere.InfrastuctureLayer.Persistence.Repos.UnifOfWorks
                 return (TRepository)_repositories[type];
             }
             return default;
+        }
+
+        TRepository? IRepoStore.GetRepository<TRepository, TEntity>() where TRepository : default
+        {
+            throw new NotImplementedException();
         }
     }
 }

@@ -5,12 +5,12 @@ using WillBeThere.DomainLayer.Entites;
 
 namespace WillBeThere.InfrastuctureLayer.Persistence.Services
 {
-    public class ManyDataPersistenceService : IManyDataPersistenceService
+    public class OrganizationCategoryManyDataPersistenceService : IManyDataPersistenceService
     {
 
         private readonly IManyDataPersistenceService<OrganizationCategory>? _organizationCategoryGenericDataPersistenceSerivce;
 
-        public ManyDataPersistenceService(IManyDataPersistenceService<OrganizationCategory>? organizationCategoryDataPersistenceSerivce)
+        public OrganizationCategoryManyDataPersistenceService(IManyDataPersistenceService<OrganizationCategory>? organizationCategoryDataPersistenceSerivce)
         {
             _organizationCategoryGenericDataPersistenceSerivce = organizationCategoryDataPersistenceSerivce;
         }

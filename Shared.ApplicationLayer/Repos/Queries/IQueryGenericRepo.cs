@@ -15,6 +15,6 @@ namespace Shared.ApplicationLayer.Repos.Queries
     {
         Task<List<TModel>> GetAllAsync();
         Task<TModel?> GetByIdAsync(Guid id);
-        public Task<bool> IsExsistAsyn(Guid id);
+        public Task<bool> IsExsistAsync(Guid id);
     }
 }

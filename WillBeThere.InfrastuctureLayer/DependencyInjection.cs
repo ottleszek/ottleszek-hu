@@ -27,8 +27,8 @@ using WillBeThere.ApplicationLayer.Contracts.Dtos;
 using WillBeThere.ApplicationLayer.Contracts.Dtos.ResultModels;
 using WillBeThere.DomainLayer.Entites.ResultModels;
 using WillBeThere.InfrastuctureLayer.Persistence.Services;
-using WillBeThere.ApplicationLayer.Repos.QueryRepo.WillBeThere;
 using WillBeThere.InfrastuctureLayer.Persistence.Repos.DataBase.WillBeThere.QueryRepos.WillBeThere;
+using WillBeThere.ApplicationLayer.Repos.QueryRepo;
 
 namespace WillBeThere.InfrastuctureLayer
 {
@@ -37,8 +37,6 @@ namespace WillBeThere.InfrastuctureLayer
         public static IServiceCollection AddInfrastructure(this IServiceCollection services)
         {
             services.ConfigureHttpClient();
-            services.ConfigureInMemoryContext();
-            services.ConfigureMysqlContext();
             services.ConfigureAssamblers();
             services.ConfigureConverters();
             services.ConfigureRepos();
@@ -47,19 +45,7 @@ namespace WillBeThere.InfrastuctureLayer
             return services;
         }
 
-        public static void ConfigureInMemoryContext(this IServiceCollection services)
-        {
-            string dbName = "WillBeThere" + Guid.NewGuid();
-            services.AddDbContext<WillBeThereInMemoryContext>(
-                options => options.UseInMemoryDatabase(databaseName: dbName)
-            );
-        }
 
-        public static void ConfigureMysqlContext(this IServiceCollection services)
-        {
-            string connectionString = "server=localhost;userid=root;password=;database=willbethere;port=3306";
-            services.AddDbContext<WillBeThereMysqlContext>(options => options.UseMySQL(connectionString));
-        }
 
         public static void ConfigureHttpClient(this IServiceCollection services)
         {

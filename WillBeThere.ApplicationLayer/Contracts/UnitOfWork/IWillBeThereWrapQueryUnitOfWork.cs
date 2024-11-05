@@ -1,4 +1,4 @@
-﻿using WillBeThere.ApplicationLayer.Repos.QueryRepo.WillBeThere;
+﻿using WillBeThere.ApplicationLayer.Repos.QueryRepo;
 
 namespace WillBeThere.ApplicationLayer.Contracts.UnitOfWork
 {

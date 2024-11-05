@@ -6,7 +6,7 @@ using WillBeThere.ApplicationLayer.Repos.QueryRepo.MappreRepo;
 
 namespace WillBeThere.InfrastuctureLayer.Persistence.Repos.Http.ModelRepo.Query
 {
-    public class OrganizationCategoryQueryModelRepo : QueryModelRepo<OrganizationCategory, OrganizationCategoryDto>, IOrganizationCategoryQueryModelRepo
+    public class OrganizationCategoryQueryModelRepo :  QueryModelRepo<OrganizationCategory, OrganizationCategoryDto>, IOrganizationCategoryQueryModelRepo
     {
         public OrganizationCategoryQueryModelRepo(IOrganizationCategoryQueryMapperRepo? mapperRepo) : base(mapperRepo)
         {

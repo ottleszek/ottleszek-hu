@@ -16,35 +16,33 @@ else
     }
     else
     {
-
-            <MudText Typo="Typo.h3">Szervezeti kategóriák</MudText>
-            <MudText Class="mt-4">Módosítási lehetőség a táblázatban. Módosítás után nyomjon tabulátort!</MudText>
-            <div class="d-flex flex-wrap">
-                <div class="d-flex justify-start align-center">
-                    <p class="mud-typography mud-typography-body1 mud-inherit-text mr-2">Módoítás: kikapcsolva</p>
-                </div>
-                <MudSwitch @bind-Value="_isEditMode">bekapcsolva.</MudSwitch>
+        <MudText Typo="Typo.h3">Szervezeti kategóriák</MudText>
+        <MudText Class="mt-4">Módosítási lehetőség a táblázatban. Módosítás után nyomjon tabulátort!</MudText>
+        <div class="d-flex flex-wrap">
+            <div class="d-flex justify-start align-center">
+                <p class="mud-typography mud-typography-body1 mud-inherit-text mr-2">Módoítás: kikapcsolva</p>
             </div>
-            <MudButton OnClick="@Save" Class="mt-2 mb-4" Variant="Variant.Filled" Color="Color.Primary" Disabled="@_viewModel.SaveDisabled">Mentés</MudButton>
-            <MudDataGrid
-                         T="OrganizationCategoryDto"
-                         Items="@_viewModel.OrganizationCategories"
-                         ReadOnly="@_readOnly"
-                         EditMode="DataGridEditMode.Cell"
-                         Hover="true"
-                         Dense="true"
-                         Bordered="true"
-                         StartedEditingItem="@StartedEditingItem" 
-                         CanceledEditingItem="@CanceledEditingItem" 
-                         CommittedItemChanges="@CommittedItemChanges"
-            >
-                <Columns>
-                    <PropertyColumn Property="pc => pc.Name" Title="Kategória név" Editable="true" />
-                </Columns> 
+            <MudSwitch @bind-Value="_isEditMode">bekapcsolva.</MudSwitch>
+        </div>
+        <MudButton OnClick="@Save" Class="mt-2 mb-4" Variant="Variant.Filled" Color="Color.Primary" Disabled="@_viewModel.SaveDisabled">Mentés</MudButton>
+        <MudDataGrid
+                        T="OrganizationCategoryDto"
+                        Items="@_viewModel.OrganizationCategories"
+                        ReadOnly="@_readOnly"
+                        EditMode="DataGridEditMode.Cell"
+                        Hover="true"
+                        Dense="true"
+                        Bordered="true"
+                        StartedEditingItem="@StartedEditingItem" 
+                        CanceledEditingItem="@CanceledEditingItem" 
+                        CommittedItemChanges="@CommittedItemChanges"
+        >
+            <Columns>
+                <PropertyColumn Property="pc => pc.Name" Title="Kategória név" Editable="true" />
+            </Columns> 
 
-            </MudDataGrid>
-            <MudText Class="mt_4">Kategóriák száma: @_viewModel.NumberOfOrganizationCategories</MudText>            
-        }
+        </MudDataGrid>
+        <MudText Class="mt_4">Kategóriák száma: @_viewModel.NumberOfOrganizationCategories</MudText>                    
     }
 }
 
@@ -72,7 +70,6 @@ else
         {
             _snackBar.Add(ex.Message,Severity.Error);
         }
-
     }
     private void OnSelectedItemChanged(OrganizationCategoryDto organizationCategory)
     {

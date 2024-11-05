@@ -1,5 +1,5 @@
 ﻿using WillBeThere.ApplicationLayer.Contracts.UnitOfWork;
-using WillBeThere.ApplicationLayer.Repos.QueryRepo.WillBeThere;
+using WillBeThere.ApplicationLayer.Repos.QueryRepo;
 using WillBeThere.DomainLayer.Entites;
 using WillBeThere.InfrastuctureLayer.Context;
 using WillBeThere.InfrastuctureLayer.Persistence.Repos.UnifOfWorks;

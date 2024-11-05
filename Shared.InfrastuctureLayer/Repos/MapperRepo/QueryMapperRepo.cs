@@ -22,7 +22,7 @@ namespace Shared.InfrastuctureLayer.Repos.MapperRepo
             throw new NotImplementedException();
         }
 
-        public Task<bool> IsExsistAsyn(Guid id)
+        public Task<bool> IsExsistAsync(Guid id)
         {
             throw new NotImplementedException();
         }

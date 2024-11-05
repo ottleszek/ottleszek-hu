@@ -4,7 +4,7 @@ using WillBeThere.DomainLayer.Entites;
 
 namespace WillBeThere.ApplicationLayer.Repos.QueryRepo.ModelRepo
 {
-    public interface IOrganizationCategoryQueryModelRepo : IQueryMapperRepo<OrganizationCategory,OrganizationCategoryDto>
+    public interface IOrganizationCategoryQueryModelRepo :  IQueryMapperRepo<OrganizationCategory,OrganizationCategoryDto>
     {
     }
 }

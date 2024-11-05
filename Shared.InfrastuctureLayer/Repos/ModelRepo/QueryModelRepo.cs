@@ -25,7 +25,7 @@ namespace Shared.InfrastuctureLayer.Repos.ModelRepo
         }
 
 
-        public Task<bool> IsExsistAsyn(Guid id)
+        public Task<bool> IsExsistAsync(Guid id)
         {
             throw new NotImplementedException();
         }

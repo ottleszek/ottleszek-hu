@@ -2,7 +2,7 @@
 
 namespace Shared.ApplicationLayer.Repos
 {
-    public interface IBaseQueryDbRepo : IQueryGenericMethodRepo, IBaseDbRepo
+    public interface IBaseQueryDbRepo : IQueryGenericMethodRepo, IBaseDbRepo, IBaseRepo
     {
     }
 }
