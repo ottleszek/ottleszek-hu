@@ -1,7 +1,7 @@
 ﻿using MediatR;
 using Shared.ApplicationLayer.Transformers;
 using WillBeThere.ApplicationLayer.Contracts.Dtos.OrganizationCategories;
-using WillBeThere.ApplicationLayer.Repos.QueryRepo;
+using WillBeThere.ApplicationLayer.Repos.QueryRepo.WillBeThere;
 using WillBeThere.DomainLayer.Entites;
 
 namespace WillBeThere.ApplicationLayer.Queries.OrganizationCategories

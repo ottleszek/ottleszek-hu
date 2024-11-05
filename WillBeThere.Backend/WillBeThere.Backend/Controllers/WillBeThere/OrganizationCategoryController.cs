@@ -2,11 +2,11 @@
 using Microsoft.AspNetCore.Mvc;
 using WillBeThere.ApplicationLayer.Commands.OrganizationCategories;
 using WillBeThere.ApplicationLayer.Contracts.Dtos.OrganizationCategories;
-using WillBeThere.ApplicationLayer.Repos.QueryRepo;
+using WillBeThere.ApplicationLayer.Repos.QueryRepo.WillBeThere;
 using WillBeThere.ApplicationLayer.Transformers.Assemblers;
 using WillBeThere.Backend.Controllers.Base;
 using WillBeThere.DomainLayer.Entites;
-using WillBeThere.DomainLayer.Repos;
+
 
 namespace WillBeThere.Backend.Controllers.WillBeThere
 {
@@ -15,17 +15,14 @@ namespace WillBeThere.Backend.Controllers.WillBeThere
     public class OrganizationCategoryController : IncludedController<OrganizationCategory, OrganizationCategoryDto>
     {
         private readonly IMediator? _mediator;
-        private readonly IOrganizationCategoryRepo? _baseOrganizationCategoryService;
 
         public OrganizationCategoryController(
             IMediator? mediator,
             OrganizationCategoryAssembler? assambler,
-            IOrganizationCategoryRepo? baseOrganizationCategoryService,
             IOrganizationCategoryQueryRepo? organizationCategoryQueryRepo
             ) : base(assambler, organizationCategoryQueryRepo)
         {            
             _mediator = mediator ?? throw new ArgumentNullException(nameof(_mediator));
-            _baseOrganizationCategoryService = baseOrganizationCategoryService ?? throw new ArgumentNullException(nameof(_baseOrganizationCategoryService));
         }
 
         [HttpPost("bulk")]

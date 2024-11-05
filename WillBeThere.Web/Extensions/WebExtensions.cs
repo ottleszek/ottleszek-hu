@@ -1,4 +1,5 @@
 ﻿using Shared.ApplicationLayer.Persistence;
+using WillBeThere.ApplicationLayer.Repos;
 using WillBeThere.DomainLayer.Repos;
 using WillBeThere.InfrastuctureLayer.Persistence.Repos.Http;
 using WillBeThere.InfrastuctureLayer.Persistence.Services.Http;
@@ -14,7 +15,7 @@ namespace WillBeThere.Web.Extensions
         }
         public static void ConfigureWebRepos(this IServiceCollection services)
         {
-            services.AddScoped<IOrganizationProgramRepo, OrganizationProgramHttpRepo>();
+            services.AddScoped<IPublicOrgranizationProgramQueryRepo, PublicOrgranizationProgramHttpQueryRepo>();
         }
         public static void ConfigureWebServices(this IServiceCollection services)
         {           

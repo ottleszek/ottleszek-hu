@@ -43,7 +43,7 @@ namespace WillBeThere.Backend.Extensions.Middleware
                 // return context.Response.WriteAsync("Invalid input provided.");
                 return context.Response.WriteAsJsonAsync(problemDetails);
             }
-
+            Console.WriteLine(exception.Message);
             context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
             return context.Response.WriteAsync("An unexpected error occurred.");
         }

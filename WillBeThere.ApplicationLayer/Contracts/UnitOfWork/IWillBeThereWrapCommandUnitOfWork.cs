@@ -4,15 +4,15 @@ namespace WillBeThere.ApplicationLayer.Contracts.UnitOfWork
 {
     public interface IWillBeThereWrapCommandUnitOfWork
     {
-        public IBaseAddressCommandRepo AddressCommandRepo { get; }
-        public IBaseEditorCommandRepo EditorCommandRepo { get; }
-        public IBaseOrganizationCategoryCommandRepo OrganizationCategoryCommandRepo { get; }
-        public IBaseOrganizationEditorCommandRepo OrganizationEditorCommandRepo { get; }
-        public IBaseOrganizationProgramCommandRepo OrganizationProgramCommandRepo { get; }
-        public IBaseOrganizationCommandRepo OrganizationCommandRepo { get; }
-        public IBaseParticipationCommandRepo ParticipationCommandRepo { get; }
-        public IBaseProgamOwnerCommandRepo ProgramOwnerCommandRepo { get; }
-        public IBasePublicSpaceCommandRepo PublicSpaceCommandRepo { get; }
-        public IBaseRegisteredUserCommandRepo RegisteredUserCommandRepo { get; }
+        public IAddressCommandRepo AddressCommandRepo { get; }
+        public IEditorCommandRepo EditorCommandRepo { get; }
+        public IOrganizationCategoryCommandRepo OrganizationCategoryCommandRepo { get; }
+        public IOrganizationEditorCommandRepo OrganizationEditorCommandRepo { get; }
+        public IOrganizationProgramCommandRepo OrganizationProgramCommandRepo { get; }
+        public IOrganizationCommandRepo OrganizationCommandRepo { get; }
+        public IParticipationCommandRepo ParticipationCommandRepo { get; }
+        public IProgamOwnerCommandRepo ProgramOwnerCommandRepo { get; }
+        public IPublicSpaceCommandRepo PublicSpaceCommandRepo { get; }
+        public IRegisteredUserCommandRepo RegisteredUserCommandRepo { get; }
     }
 }

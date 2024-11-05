@@ -1,10 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Shared.ApplicationLayer.Persistence;
-using WillBeThere.ApplicationLayer.Repos.QueryRepo;
+﻿using Shared.ApplicationLayer.Persistence;
 using WillBeThere.DomainLayer.Repos;
-using WillBeThere.InfrastuctureLayer.Context;
 using WillBeThere.InfrastuctureLayer.Persistence.Repos.DataBase;
-using WillBeThere.InfrastuctureLayer.Persistence.Repos.DataBase.WillBeThere.QueryRepos;
 using WillBeThere.InfrastuctureLayer.Persistence.Services.DataBase;
 
 namespace WillBeThere.Backend.Extensions
@@ -14,8 +10,6 @@ namespace WillBeThere.Backend.Extensions
         public static void AddBackendServices(this IServiceCollection services) 
         {
             services.ConfigureCors();
-            //services.ConfigureMysqlContext();
-            //services.ConfigureInMemoryContext();
             services.ConfigureBackendRepos();
             services.ConfigureBackendServices();
 
@@ -38,17 +32,12 @@ namespace WillBeThere.Backend.Extensions
         
         public static void ConfigureBackendRepos(this IServiceCollection services)
         {
-            // OrganizationCategoryDbQueryRepo
-            services.AddScoped<IOrganizationCategoryQueryRepo, OrganizationCategoryDbQueryRepo<WillBeThereInMemoryContext>>();
-            services.AddScoped<IOrganizationProgramRepo, DbOrganizationProgramRepo>();
+            services.AddScoped<IPublicOrgranizationProgramQueryRepo, PublicOrgranizationProgramDbQueryRepo>();
         }
 
         public static void ConfigureBackendServices(this IServiceCollection services)
         {
             services.AddScoped<IManyDataPersistenceService, DbManyDataPersistenceService>();
-            //services.AddScoped<IBaseOrganizationCategoryDataService, BaseOrganizationCategoryDataService>();
         }
-
- 
     }
 }

@@ -9,19 +9,19 @@ namespace WillBeThere.ApplicationLayer.Queries.OrganizationPrograms
 {
     public class GetPublicOrganizationProgramListQueryHandler : IRequestHandler<GetPublicOrgranizationProgramListQuery, List<PublicOrganizationProgramDto>>
     {
-        private readonly IOrganizationProgramRepo _organizationProgramRepo;
+        private readonly IPublicOrgranizationProgramQueryRepo _publicOrgranizationProgramQueryRepo;
 
-        public GetPublicOrganizationProgramListQueryHandler(IOrganizationProgramRepo organizationProgramService)
+        public GetPublicOrganizationProgramListQueryHandler(IPublicOrgranizationProgramQueryRepo publicOrgranizationProgramQueryRepo)
         {
-            this._organizationProgramRepo = organizationProgramService;
+            _publicOrgranizationProgramQueryRepo = publicOrgranizationProgramQueryRepo;
         }
         public async Task<List<PublicOrganizationProgramDto>> Handle(GetPublicOrgranizationProgramListQuery request, CancellationToken cancellationToken)
         {
-            if (_organizationProgramRepo is not null)
+            if (_publicOrgranizationProgramQueryRepo is not null)
             {
                 try
                 {
-                    List<PublicOrganizationProgram>? pop = await _organizationProgramRepo.GetAllPublicOrganizationsProgramsAsync();
+                    List<PublicOrganizationProgram>? pop = await _publicOrgranizationProgramQueryRepo.GetAllPublicOrganizationsProgramsAsync();
                     if (pop is not null)
                         return pop.Select(pop => pop.ToDto()).ToList();
                 }
