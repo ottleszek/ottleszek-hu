@@ -3,6 +3,7 @@ using WillBeThere.ApplicationLayer.Contracts.UnitOfWork;
 using WillBeThere.DomainLayer.Entites;
 using WillBeThere.DomainLayer.Entites.ResultModels;
 using WillBeThere.DomainLayer.Repos;
+using WillBeThere.InfrastuctureLayer.Persistence.Repos.DataBase.WillBeThere.QueryRepos.WrapRepo;
 
 namespace WillBeThere.InfrastuctureLayer.Persistence.Repos.DataBase
 {
@@ -13,11 +14,11 @@ namespace WillBeThere.InfrastuctureLayer.Persistence.Repos.DataBase
         {
             _wrapRepo = wrapRepo ?? throw new ArgumentNullException(nameof(wrapRepo), "{nameof(DbOrganizationProgramRepo)} osztály konstruktorában wrap repo inicizalizálása nem sikerült!");
             if (
-                _wrapRepo.OrganizationProgramQueryRepo == null ||
-                _wrapRepo.AddressQueryRepo == null ||
-                _wrapRepo.OrganizationQueryRepo == null ||
-                _wrapRepo.PublicSpaceQueryRepo == null ||
-                _wrapRepo.OrganizationCategoryQueryRepo == null)
+                _wrapRepo.OrganizationProgramDbQueryRepo == null ||
+                _wrapRepo.AddressDbQueryRepo == null ||
+                _wrapRepo.OrganizationDbQueryRepo == null ||
+                _wrapRepo.PublicSpaceDbQueryRepo == null ||
+                _wrapRepo.OrganizationCategoryDbQueryRepo == null)
             {
                 throw new ArgumentNullException(nameof(wrapRepo),$"{nameof(PublicOrgranizationProgramDbQueryRepo)} osztály konstruktorában egy vagy több repo null.");
             }
@@ -51,7 +52,7 @@ namespace WillBeThere.InfrastuctureLayer.Persistence.Repos.DataBase
                 return null;
             else
             {
-                IQueryable<OrganizationProgram>? query = _wrapRepo.OrganizationProgramQueryRepo
+                IQueryable<OrganizationProgram>? query = _wrapRepo.OrganizationProgramDbQueryRepo
                                 .SelectAll<OrganizationProgram>()
                                 .Include(op => op.Address)
                                 .Include(op => op.Organization)

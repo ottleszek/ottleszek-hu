@@ -13,8 +13,7 @@ namespace WillBeThere.InfrastuctureLayer.Persistence.Repos.UnifOfWorks
             _repositories = [];
         }
 
-        //TRepository? AddRepository<TRepository, TEntity>(TRepository? repository) where TRepository : IBaseRepo where TEntity : class, IDbEntity<TEntity>, new();
-        public IBaseRepo? AddRepository<TRepository, TEntity>(TRepository? repository) where TRepository : IBaseRepo where TEntity : class, IDbEntity<TEntity>, new()
+        public TRepository? AddRepository<TRepository, TEntity>(TRepository? repository) where TRepository : IBaseRepo where TEntity : class, IDbEntity<TEntity>, new()
         {
             if (repository is not null)
             {
@@ -30,7 +29,7 @@ namespace WillBeThere.InfrastuctureLayer.Persistence.Repos.UnifOfWorks
             return default;
         }
 
-        public IBaseRepo? GetRepository<TRepository, TEntity>() where TRepository : IBaseRepo where TEntity : class, IDbEntity<TEntity>, new()
+        public TRepository? GetRepository<TRepository, TEntity>() where TRepository : IBaseRepo where TEntity : class, IDbEntity<TEntity>, new()
         {
             var type = typeof(TEntity);
 

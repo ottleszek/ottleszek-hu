@@ -2,7 +2,7 @@
 
 namespace Shared.ApplicationLayer.Repos
 {
-    public interface IBaseCommandDbRepo : ICommandGenericMethodRepo, IBaseDbRepo
+    public interface IBaseCommandDbRepo : ICommandGenericMethodRepo, IBaseDbRepo, IBaseRepo
     {
     }
 }

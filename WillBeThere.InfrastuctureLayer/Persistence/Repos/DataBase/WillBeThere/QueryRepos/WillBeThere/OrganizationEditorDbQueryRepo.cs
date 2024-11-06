@@ -1,10 +1,10 @@
 ﻿using Shared.InfrastuctureLayer.Repos.DataBase;
-using WillBeThere.ApplicationLayer.Repos.QueryRepo;
 using WillBeThere.InfrastuctureLayer.Context;
+using WillBeThere.InfrastuctureLayer.Persistence.Repos.DataBase.WillBeThere.QueryRepos.WillBeThere.Backend;
 
 namespace WillBeThere.InfrastuctureLayer.Persistence.Repos.DataBase.WillBeThere.QueryRepos.WillBeThere
 {
-    public class OrganizationEditorDbQueryRepo<TDbContext> : IncludedQueryRepo<TDbContext>, IOrganizationEditorQueryRepo where TDbContext : WillBeThereContext
+    public class OrganizationEditorDbQueryRepo<TDbContext> : IncludedQueryRepo<TDbContext>, IOrganizationEditorDbQueryRepo where TDbContext : WillBeThereContext
     {
         public OrganizationEditorDbQueryRepo(TDbContext? dbContext) : base(dbContext)
         {

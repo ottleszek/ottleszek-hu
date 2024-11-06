@@ -1,16 +1,15 @@
-﻿using Shared.ApplicationLayer.Repos.Queries;
-using Shared.DomainLayer.Entities;
-using WillBeThere.ApplicationLayer.Contracts.Dtos.OrganizationCategories;
+﻿using Shared.DomainLayer.Entities;
 using WillBeThere.ApplicationLayer.Repos.QueryRepo;
+using WillBeThere.ApplicationLayer.Repos.QueryRepo.ModelRepo;
 using WillBeThere.DomainLayer.Entites;
 
 namespace WillBeThere.InfrastuctureLayer.Persistence.Repos.Http.Repos
 {
     public class OrganizationCategoryQueryDataRepo : IOrganizationCategoryQueryRepo
     {
-        private readonly IQueryGenericRepo<OrganizationCategory, OrganizationCategoryDto> _organizationCategoryGenericRepo;
+        private readonly IOrganizationCategoryQueryModelRepo _organizationCategoryGenericRepo;
             
-        public OrganizationCategoryQueryDataRepo(IQueryGenericRepo<OrganizationCategory, OrganizationCategoryDto> organizationCategoryGenericRepo)
+        public OrganizationCategoryQueryDataRepo(IOrganizationCategoryQueryModelRepo organizationCategoryGenericRepo)
         {
             _organizationCategoryGenericRepo = organizationCategoryGenericRepo;
         }

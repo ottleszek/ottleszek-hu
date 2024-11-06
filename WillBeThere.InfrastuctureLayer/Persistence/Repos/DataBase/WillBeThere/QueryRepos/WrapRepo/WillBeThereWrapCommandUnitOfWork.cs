@@ -5,7 +5,7 @@ using WillBeThere.InfrastuctureLayer.Context;
 using WillBeThere.InfrastuctureLayer.Persistence.Repos.DataBase.WillBeThere.CommandRepos;
 using WillBeThere.InfrastuctureLayer.Persistence.Repos.UnifOfWorks;
 
-namespace WillBeThere.InfrastuctureLayer.Persistence.Repos.DataBase.WillBeThere.QueryRepos.WillBeThere
+namespace WillBeThere.InfrastuctureLayer.Persistence.Repos.DataBase.WillBeThere.QueryRepos.WrapRepo
 {
     public class WillBeThereWrapCommandUnitOfWork<TDbContext> : WrapperUnitOfWork<TDbContext>, IWillBeThereWrapCommandUnitOfWork where TDbContext : WillBeThereContext
     {
