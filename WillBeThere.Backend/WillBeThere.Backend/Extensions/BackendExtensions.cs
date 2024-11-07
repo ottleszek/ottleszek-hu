@@ -55,6 +55,7 @@ namespace WillBeThere.Backend.Extensions
             if (true)
             {
                 services.AddScoped<IOrganizationCategoryQueryRepo, OrganizationCategoryDbQueryRepo<WillBeThereInMemoryContext>>();
+                services.AddScoped<IOrganizationProgramQueryRepo, OrganizationProgramDbQueryRepo<WillBeThereInMemoryContext>>();
             }
             services.AddScoped<IPublicOrgranizationProgramQueryRepo, PublicOrgranizationProgramDbQueryRepo>();
         }
