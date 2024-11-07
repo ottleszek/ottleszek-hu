@@ -1,5 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.DependencyInjection;
 using WillBeThere.ApplicationLayer.Contracts.Dtos.OrganizationCategories;
 using WillBeThere.DomainLayer.Entites;
 using WillBeThere.InfrastuctureLayer.Context;
@@ -21,18 +20,15 @@ using WillBeThere.ApplicationLayer.Repos.QueryRepo.MappreRepo;
 using WillBeThere.ApplicationLayer.Repos.QueryRepo.ModelRepo;
 using Shared.ApplicationLayer.Persistence;
 using Shared.ApplicationLayer.Repos.UnitOfWork;
-using WillBeThere.ApplicationLayer.Contracts.UnitOfWork;
 using Shared.InfrastuctureLayer.Repos.DataBase.Commands;
 using WillBeThere.ApplicationLayer.Contracts.Dtos;
 using WillBeThere.ApplicationLayer.Contracts.Dtos.ResultModels;
 using WillBeThere.DomainLayer.Entites.ResultModels;
 using WillBeThere.InfrastuctureLayer.Persistence.Services;
 using WillBeThere.InfrastuctureLayer.Persistence.Repos.DataBase.WillBeThere.QueryRepos.WillBeThere;
-using WillBeThere.ApplicationLayer.Repos.QueryRepo;
-using Shared.ApplicationLayer.Repos.Queries;
-using WillBeThere.InfrastuctureLayer.Persistence.Repos.Http.Repos;
 using WillBeThere.InfrastuctureLayer.Persistence.Repos.DataBase.WillBeThere.QueryRepos.WrapRepo;
 using WillBeThere.InfrastuctureLayer.Persistence.Repos.DataBase.WillBeThere.QueryRepos.WillBeThere.Backend;
+using Microsoft.EntityFrameworkCore;
 
 namespace WillBeThere.InfrastuctureLayer
 {
@@ -46,10 +42,24 @@ namespace WillBeThere.InfrastuctureLayer
             services.ConfigureRepos();
             services.ConfigureServices();
             services.ConfigurePersistence();
+            services.ConfigureInMemoryContext();
+            services.ConfigureMysqlContext();
             return services;
         }
 
+        public static void ConfigureInMemoryContext(this IServiceCollection services)
+        {
+            string dbName = "WillBeThere" + Guid.NewGuid();
+            services.AddDbContext<WillBeThereInMemoryContext>(
+                options => options.UseInMemoryDatabase(databaseName: dbName)
+            );
+        }
 
+        public static void ConfigureMysqlContext(this IServiceCollection services)
+        {
+            string connectionString = "server=localhost;userid=root;password=;database=willbethere;port=3306";
+            services.AddDbContext<WillBeThereMysqlContext>(options => options.UseMySQL(connectionString));
+        }
 
         public static void ConfigureHttpClient(this IServiceCollection services)
         {
@@ -89,17 +99,6 @@ namespace WillBeThere.InfrastuctureLayer
                 services.AddScoped<IBaseDbRepo, BaseDbRepo<WillBeThereInMemoryContext>>();
                 services.AddScoped<IBaseCommandDbRepo, BaseCommandDbRepo<WillBeThereInMemoryContext>>();
 
-                /*services.AddScoped<IAddressQueryRepo,AddressDbQueryRepo<WillBeThereInMemoryContext>>();
-                services.AddScoped<IEditorQueryRepo,EditorDbQueryRepo<WillBeThereInMemoryContext>>();
-                services.AddScoped<IOrganizationCategoryQueryRepo,OrganizationCategoryDbQueryRepo<WillBeThereInMemoryContext>>();
-                services.AddScoped<IOrganizationEditorQueryRepo,OrganizationEditorDbQueryRepo<WillBeThereInMemoryContext>>();
-                services.AddScoped<IOrganizationProgramQueryRepo,OrganizationProgramDbQueryRepo<WillBeThereInMemoryContext>>();
-                services.AddScoped<IOrganizationQueryRepo,OrganizationDbQueryRepo<WillBeThereInMemoryContext>>();
-                services.AddScoped<IParticipationQueryRepo,ParticipationDbQueryRepo<WillBeThereInMemoryContext>>();
-                services.AddScoped<IProgamOwnerQueryRepo,ProgramOwnerDbQueryRepo<WillBeThereInMemoryContext>>();
-                services.AddScoped<IPublicSpaceQueryRepo,PublicSpaceDbQueryRepo<WillBeThereInMemoryContext>>();
-                services.AddScoped<IRegisteredUserQueryRepo,RegisteredUserDbQueryRepo<WillBeThereInMemoryContext>>();*/
-
                 services.AddScoped<IAddressDbQueryRepo, AddressDbQueryRepo<WillBeThereInMemoryContext>>();
                 services.AddScoped<IEditorDbQueryRepo, EditorDbQueryRepo<WillBeThereInMemoryContext>>();
                 services.AddScoped<IOrganizationCategoryDbQueryRepo, OrganizationCategoryDbQueryRepo<WillBeThereInMemoryContext>>();
@@ -123,9 +122,6 @@ namespace WillBeThere.InfrastuctureLayer
                 services.AddScoped<IRegisteredUserCommandRepo, RegisteredUserDbCommandRepo<WillBeThereInMemoryContext>>();
 
                 services.AddScoped<IUnitOfWork, UnitOfWork<WillBeThereInMemoryContext>>();
-                //services.AddScoped<IRepoStore, WrapperUnitOfWork<WillBeThereInMemoryContext>>();
-                //services.AddScoped<IWrapperUnitOfWork, WrapperUnitOfWork<WillBeThereInMemoryContext>>();
-
                 services.AddScoped<IWillBeThereWrapQueryUnitOfWork,WillBeThereWrapQueryUnitOfWork<WillBeThereInMemoryContext>>();
 
 
@@ -165,7 +161,6 @@ namespace WillBeThere.InfrastuctureLayer
 
         public static void ConfigurePersistence(this IServiceCollection services)
         {
-            //services.AddScoped<IManyDataPersistenceService, ManyDataHttpPersistenceService>();
             services.AddScoped<IManyDataPersistenceService<OrganizationCategory>, ManyGenericDataPersistenceService<OrganizationCategory, OrganizationCategoryDto>>();
         }
     }

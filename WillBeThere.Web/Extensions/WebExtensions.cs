@@ -12,12 +12,11 @@ namespace WillBeThere.Web.Extensions
         public static void AddWebServices(this IServiceCollection services)
         {
             services.ConfigureWebRepos();
-            services.ConfigureWebServices();            
+            services.ConfigureWebServices();
         }
         public static void ConfigureWebRepos(this IServiceCollection services)
         {
             services.AddScoped<IOrganizationCategoryQueryRepo, OrganizationCategoryQueryDataRepo>();
-
             services.AddScoped<IPublicOrgranizationProgramQueryRepo, PublicOrgranizationProgramHttpQueryRepo>();
         }
         public static void ConfigureWebServices(this IServiceCollection services)

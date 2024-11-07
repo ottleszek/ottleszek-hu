@@ -16,24 +16,10 @@ namespace WillBeThere.Backend.Extensions
             services.ConfigureCors();
             services.ConfigureBackendRepos();
             services.ConfigureBackendServices();
-            services.ConfigureInMemoryContext();
-            services.ConfigureMysqlContext();
 
         }
 
-        public static void ConfigureInMemoryContext(this IServiceCollection services)
-        {
-            string dbName = "WillBeThere" + Guid.NewGuid();
-            services.AddDbContext<WillBeThereInMemoryContext>(
-                options => options.UseInMemoryDatabase(databaseName: dbName)
-            );
-        }
 
-        public static void ConfigureMysqlContext(this IServiceCollection services)
-        {
-            string connectionString = "server=localhost;userid=root;password=;database=willbethere;port=3306";
-            services.AddDbContext<WillBeThereMysqlContext>(options => options.UseMySQL(connectionString));
-        }
 
         public static void ConfigureCors(this IServiceCollection services)
         {

@@ -1,9 +1,8 @@
-﻿using Shared.ApplicationLayer.Repos;
-using Shared.ApplicationLayer.Repos.Queries;
+﻿using Shared.ApplicationLayer.Repos.Queries;
 
 namespace WillBeThere.ApplicationLayer.Repos.QueryRepo
 {
-    public interface IOrganizationCategoryQueryRepo : IQueryGenericMethodRepo, IBaseRepo
+    public interface IOrganizationCategoryQueryRepo : IQueryGenericMethodRepo
     {
     }
 }
