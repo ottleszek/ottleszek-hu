@@ -1,9 +1,7 @@
 ﻿using MediatR;
-using Shared.ApplicationLayer.Persistence;
-using Shared.ApplicationLayer.Services.OrganizationCategory;
 using Shared.DomainLayer.Responses;
+using WillBeThere.ApplicationLayer.Services.OrganizationCategories;
 using WillBeThere.ApplicationLayer.Transformers.Assemblers;
-using WillBeThere.DomainLayer.Entites;
 
 namespace WillBeThere.ApplicationLayer.Commands.OrganizationCategories
 {
@@ -22,7 +20,7 @@ namespace WillBeThere.ApplicationLayer.Commands.OrganizationCategories
         {
             if (_dataPersistenceService is null)
                 return new Response("Kategoróiák mentése nem lehetséges!");
-            return await _dataPersistenceService.UpdateMany<OrganizationCategory>(request.OrganizationCategories.Select(oc => _organizationCategoryAssembler.ToModel(oc)).ToList());
+            return await _dataPersistenceService.UpdateMany(request.OrganizationCategories.Select(oc => _organizationCategoryAssembler.ToModel(oc)).ToList());
 
         }
     }

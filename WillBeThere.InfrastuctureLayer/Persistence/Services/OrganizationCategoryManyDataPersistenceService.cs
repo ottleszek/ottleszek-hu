@@ -1,6 +1,7 @@
 ﻿using Shared.ApplicationLayer.Persistence;
 using Shared.DomainLayer.Entities;
 using Shared.DomainLayer.Responses;
+using WillBeThere.ApplicationLayer.Services.OrganizationCategories;
 using WillBeThere.DomainLayer.Entites;
 
 namespace WillBeThere.InfrastuctureLayer.Persistence.Services
@@ -8,9 +9,9 @@ namespace WillBeThere.InfrastuctureLayer.Persistence.Services
     public class OrganizationCategoryManyDataPersistenceService : IManyDataPersistenceService
     {
 
-        private readonly IManyDataPersistenceService<OrganizationCategory>? _organizationCategoryGenericDataPersistenceSerivce;
+        private readonly IOrganizationCategoryManyDataPersistenceService? _organizationCategoryGenericDataPersistenceSerivce;
 
-        public OrganizationCategoryManyDataPersistenceService(IManyDataPersistenceService<OrganizationCategory>? organizationCategoryDataPersistenceSerivce)
+        public OrganizationCategoryManyDataPersistenceService(IOrganizationCategoryManyDataPersistenceService? organizationCategoryDataPersistenceSerivce)
         {
             _organizationCategoryGenericDataPersistenceSerivce = organizationCategoryDataPersistenceSerivce;
         }
