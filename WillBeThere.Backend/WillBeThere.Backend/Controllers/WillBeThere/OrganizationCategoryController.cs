@@ -39,7 +39,7 @@ namespace WillBeThere.Backend.Controllers.WillBeThere
             
 
             var result = await _mediator.Send(command);
-                if (result.IsSuccess)
+            if (result.IsSuccess)
             {
                 return Ok(result);
             }

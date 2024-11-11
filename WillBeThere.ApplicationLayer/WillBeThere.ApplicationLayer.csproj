@@ -46,4 +46,9 @@
     <ProjectReference Include="..\WillBeThere.DomainLayer\WillBeThere.DomainLayer.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Contracts\Services\" />
+    <Folder Include="Services\OrganizationCategories\" />
+  </ItemGroup>
+
 </Project>

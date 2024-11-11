@@ -1,16 +1,17 @@
 ﻿using MediatR;
+using Shared.ApplicationLayer.Persistence;
 using Shared.DomainLayer.Responses;
-using WillBeThere.ApplicationLayer.Services.OrganizationCategories;
 using WillBeThere.ApplicationLayer.Transformers.Assemblers;
+using WillBeThere.DomainLayer.Entites;
 
 namespace WillBeThere.ApplicationLayer.Commands.OrganizationCategories
 {
     public class SaveOrganizationCategoriesCommandHandler : IRequestHandler<SaveOrganizationCategoriesCommand,Response>
     {
-        private readonly IOrganizationCategoryManyDataPersistenceService? _dataPersistenceService;
+        private readonly IManyDataPersistenceService<OrganizationCategory>? _dataPersistenceService;
         private readonly OrganizationCategoryAssembler _organizationCategoryAssembler;
 
-        public SaveOrganizationCategoriesCommandHandler(IOrganizationCategoryManyDataPersistenceService? organizationCategoryRepository, OrganizationCategoryAssembler organizationCategoryAssembler)
+        public SaveOrganizationCategoriesCommandHandler(IManyDataPersistenceService<OrganizationCategory>? organizationCategoryRepository, OrganizationCategoryAssembler organizationCategoryAssembler)
         {
             _dataPersistenceService = organizationCategoryRepository;
             _organizationCategoryAssembler = organizationCategoryAssembler;

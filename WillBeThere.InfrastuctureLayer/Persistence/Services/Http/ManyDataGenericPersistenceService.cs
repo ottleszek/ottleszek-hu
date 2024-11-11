@@ -6,7 +6,7 @@ using Shared.ApplicationLayer.Persistence;
 
 namespace WillBeThere.InfrastuctureLayer.Persistence.Services
 {
-    public class ManyGenericDataPersistenceService<TEntity, TDto> : IManyDataPersistenceService<TEntity>
+    public class ManyDataGenericPersistenceService<TEntity, TDto> : IManyDataPersistenceService<TEntity>
         where TEntity : class, IDbEntity<TEntity>, new()
         where TDto : class, IDbEntity<TDto>, new()
     {
@@ -15,12 +15,8 @@ namespace WillBeThere.InfrastuctureLayer.Persistence.Services
         protected readonly IManyDataPersistenceService? _httpPersistenceService;
 
 
-        public ManyGenericDataPersistenceService(IHttpClientFactory? httpClientFactory, IManyDataPersistenceService? httpPersistenceService, IDomainDtoConterter<TEntity, TDto> converter)
+        public ManyDataGenericPersistenceService(IManyDataPersistenceService? httpPersistenceService, IDomainDtoConterter<TEntity, TDto> converter)
         {
-            if (httpClientFactory is not null)
-            {
-                _httpClient = httpClientFactory.CreateClient("WillBeThere");
-            }
             _converter = converter ?? throw new ArgumentNullException(nameof(converter));
             _httpPersistenceService = httpPersistenceService ?? throw new ArgumentNullException(nameof(httpPersistenceService));
         }
@@ -30,7 +26,7 @@ namespace WillBeThere.InfrastuctureLayer.Persistence.Services
             Response response = new();
             if (_converter is null || _httpPersistenceService is null)
             {
-                response.Append($"{nameof(DbManyDataPersistenceService)} osztály, {nameof(IManyDataPersistenceService.UpdateMany)} metódusban hiba keletkezett!");
+                response.Append($"{nameof(ManyDataDbPersistenceService)} osztály, {nameof(IManyDataPersistenceService.UpdateMany)} metódusban hiba keletkezett!");
                 response.Append($"{entities.Count} db {nameof(TEntity)} objektum hozzáadása az adatbázishoz nem sikerült!");
                 return new Response("Több adat együttes mentése nem sikerült.");
             }

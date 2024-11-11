@@ -7,12 +7,12 @@ using Shared.DomainLayer.Responses;
 
 namespace WillBeThere.InfrastuctureLayer.Persistence.Services.DataBase
 {
-    public class DbManyDataPersistenceService : IManyDataPersistenceService
+    public class ManyDataDbPersistenceService : IManyDataPersistenceService
     {
         private readonly IUnitOfWork? _unitOfWork;
         private readonly IBaseCommandDbRepo? _baseCommandRepo;
 
-        public DbManyDataPersistenceService(IUnitOfWork? unitOfWork, IBaseCommandDbRepo? baseRepo)
+        public ManyDataDbPersistenceService(IUnitOfWork? unitOfWork, IBaseCommandDbRepo? baseRepo)
         {
             _unitOfWork = unitOfWork;
             _baseCommandRepo = baseRepo;
@@ -25,7 +25,7 @@ namespace WillBeThere.InfrastuctureLayer.Persistence.Services.DataBase
 
             if (_baseCommandRepo is null || _unitOfWork is null)
             {
-                response.Append($"{nameof(DbManyDataPersistenceService)} osztály, {nameof(UpdateMany)} metódusban hiba keletkezett!");
+                response.Append($"{nameof(ManyDataDbPersistenceService)} osztály, {nameof(UpdateMany)} metódusban hiba keletkezett!");
                 response.Append($"Az adatbázis nem elérhető!");
                 return response;
             }
@@ -35,7 +35,7 @@ namespace WillBeThere.InfrastuctureLayer.Persistence.Services.DataBase
                 dbSet = _baseCommandRepo.GetDbSet<TEntity>();
                 if (dbSet is null)
                 {
-                    response.Append($"{nameof(DbManyDataPersistenceService)} osztály, {nameof(UpdateMany)} metódusban hiba keletkezett!");
+                    response.Append($"{nameof(ManyDataDbPersistenceService)} osztály, {nameof(UpdateMany)} metódusban hiba keletkezett!");
                     response.Append($"Az adatbázis nem elérhető!");
                     return response;
                 }
@@ -70,7 +70,7 @@ namespace WillBeThere.InfrastuctureLayer.Persistence.Services.DataBase
                     }
                 }
             }
-            response.Append($"{nameof(DbManyDataPersistenceService)} osztály, {nameof(UpdateMany)} metódusban hiba keletkezett!");
+            response.Append($"{nameof(ManyDataDbPersistenceService)} osztály, {nameof(UpdateMany)} metódusban hiba keletkezett!");
             response.Append($"{entities.Count} db {nameof(TEntity)} objektum hozzáadása az adatbázishoz nem sikerült!");
             return response;
         }

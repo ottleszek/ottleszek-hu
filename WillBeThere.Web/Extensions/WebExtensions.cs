@@ -1,9 +1,11 @@
 ﻿using Shared.ApplicationLayer.Persistence;
+using WillBeThere.ApplicationLayer.Contracts.Dtos.OrganizationCategories;
 using WillBeThere.ApplicationLayer.Repos.QueryRepo;
-using WillBeThere.ApplicationLayer.Services.OrganizationCategories;
+using WillBeThere.DomainLayer.Entites;
 using WillBeThere.DomainLayer.Repos;
 using WillBeThere.InfrastuctureLayer.Persistence.Repos.Http;
 using WillBeThere.InfrastuctureLayer.Persistence.Repos.Http.Repos;
+using WillBeThere.InfrastuctureLayer.Persistence.Services;
 using WillBeThere.InfrastuctureLayer.Persistence.Services.Http;
 
 namespace WillBeThere.Web.Extensions
@@ -22,8 +24,8 @@ namespace WillBeThere.Web.Extensions
         }
         public static void ConfigureWebServices(this IServiceCollection services)
         {           
-            services.AddScoped<IManyDataPersistenceService, ManyDataHttpPersistenceService>();            
-            services.AddScoped<IOrganizationCategoryManyDataPersistenceService, >
+            services.AddScoped<IManyDataPersistenceService<OrganizationCategory>, ManyDataGenericPersistenceService<OrganizationCategory,OrganizationCategoryDto>>();
+            services.AddScoped<IManyDataPersistenceService, ManyDataHttpPersistenceService>();
         }
     }
 }

@@ -1,7 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Shared.ApplicationLayer.Persistence;
+﻿using Shared.ApplicationLayer.Persistence;
 using WillBeThere.ApplicationLayer.Repos.QueryRepo;
-using WillBeThere.ApplicationLayer.Services.OrganizationCategories;
 using WillBeThere.DomainLayer.Repos;
 using WillBeThere.InfrastuctureLayer.Context;
 using WillBeThere.InfrastuctureLayer.Persistence.Repos.DataBase;
@@ -49,8 +47,7 @@ namespace WillBeThere.Backend.Extensions
 
         public static void ConfigureBackendServices(this IServiceCollection services)
         {
-            services.AddScoped<IManyDataPersistenceService, DbManyDataPersistenceService>();
-            services.AddScoped<IOrganizationCategoryManyDataPersistenceService, >
+            services.AddScoped<IManyDataPersistenceService, ManyDataDbPersistenceService>();
         }
     }
 }
