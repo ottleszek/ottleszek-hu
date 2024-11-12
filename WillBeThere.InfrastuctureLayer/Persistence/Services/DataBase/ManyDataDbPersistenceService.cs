@@ -9,66 +9,39 @@ namespace WillBeThere.InfrastuctureLayer.Persistence.Services.DataBase
 {
     public class ManyDataDbPersistenceService : IManyDataPersistenceService
     {
-        private readonly IUnitOfWork? _unitOfWork;
-        private readonly IBaseCommandDbRepo? _baseCommandRepo;
+        private readonly IUnitOfWork _unitOfWork;
+        private readonly IBaseCommandDbRepo _baseCommandRepo;
 
-        public ManyDataDbPersistenceService(IUnitOfWork? unitOfWork, IBaseCommandDbRepo? baseRepo)
+        public ManyDataDbPersistenceService(IUnitOfWork unitOfWork, IBaseCommandDbRepo baseRepo)
         {
-            _unitOfWork = unitOfWork;
-            _baseCommandRepo = baseRepo;
+            _unitOfWork = unitOfWork ?? throw new ArgumentNullException(nameof(unitOfWork));
+            _baseCommandRepo = baseRepo ?? throw new ArgumentNullException(nameof(baseRepo));
         }
 
         public async Task<Response> UpdateMany<TEntity>(List<TEntity> entities) where TEntity : class,IDbEntity<TEntity>,  new()
         {
             Response response = new();
-            DbSet<TEntity>? dbSet;
+            DbSet<TEntity>? dbSet = _baseCommandRepo.GetDbSet<TEntity>();
 
-            if (_baseCommandRepo is null || _unitOfWork is null)
+            if (dbSet is null)
             {
-                response.Append($"{nameof(ManyDataDbPersistenceService)} osztály, {nameof(UpdateMany)} metódusban hiba keletkezett!");
-                response.Append($"Az adatbázis nem elérhető!");
-                return response;
+                return response.AppendError($"{nameof(ManyDataDbPersistenceService)} osztály, {nameof(UpdateMany)} metódusban hiba keletkezett! Az adatbázis nem elérhető!");
             }
-            else
+            try
             {
-                dbSet = _baseCommandRepo.GetDbSet<TEntity>();
-                if (dbSet is null)
+                await _unitOfWork.BeginTransactionAsync();
                 {
-                    response.Append($"{nameof(ManyDataDbPersistenceService)} osztály, {nameof(UpdateMany)} metódusban hiba keletkezett!");
-                    response.Append($"Az adatbázis nem elérhető!");
-                    return response;
-                }
-                else
-                {
-                    try
-                    {
-                        await _unitOfWork.BeginTransactionAsync();
-                        {
-                            try
-                            {
-                                foreach (var entity in entities)
-                                {
-                                    await _baseCommandRepo.UpdateAsync(entity);
-                                }
-                                await _unitOfWork.SaveChangesAsync();
-                                _unitOfWork.Commit();
-                                return response;
-                            }
-                            catch (Exception ex) 
-                            {
-                                _unitOfWork.Rollback();
-                                return new Response { Error = ex.Message };
-                            }
-                        }
-                    }
-                    catch (Exception e)
-                    {
-                        response.Append(e.Message);
-                    }
+
+                    dbSet.UpdateRange(entities);
+                    await _unitOfWork.SaveChangesAsync();
+                    _unitOfWork.Commit();
                 }
             }
-            response.Append($"{nameof(ManyDataDbPersistenceService)} osztály, {nameof(UpdateMany)} metódusban hiba keletkezett!");
-            response.Append($"{entities.Count} db {nameof(TEntity)} objektum hozzáadása az adatbázishoz nem sikerült!");
+            catch (Exception e)
+            {
+                _unitOfWork.Rollback();
+                return response.AppendError(e.Message);
+            }                      
             return response;
         }
     }

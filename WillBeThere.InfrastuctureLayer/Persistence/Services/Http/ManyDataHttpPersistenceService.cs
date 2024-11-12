@@ -5,89 +5,87 @@ using Shared.DomainLayer.Responses;
 using System.Diagnostics;
 using System.Net;
 using System.Net.Http.Json;
+using WillBeThere.InfrastuctureLayer.Persistence.Services.Http;
 
 namespace WillBeThere.InfrastuctureLayer.Persistence.Services.Http
 {
     public class ManyDataHttpPersistenceService : IManyDataPersistenceService
     {
-        protected readonly HttpClient? _httpClient;
+        protected readonly HttpClient _httpClient;
 
-        public ManyDataHttpPersistenceService(IHttpClientFactory? httpClientFactory)
+        public ManyDataHttpPersistenceService(IHttpClientFactory httpClientFactory)
         {
-            if (httpClientFactory is not null)
-            {
-                _httpClient = httpClientFactory.CreateClient("WillBeThere");
-            }
+            _httpClient = httpClientFactory.CreateClient("WillBeThere") ?? throw new ArgumentNullException(nameof(httpClientFactory));
+
         }
         public async Task<Response> UpdateMany<TEntityDto>(List<TEntityDto> dtoEntities) where TEntityDto : class, IDbEntity<TEntityDto>, new()
         {
-            Response defaultResponse = new();
-            if (_httpClient is not null)
+            Response response = new();
+
+            if (string.IsNullOrEmpty(GetApiName<TEntityDto>()))
             {
-                try
+                Debug.WriteLine($"{nameof(ManyDataHttpPersistenceService)} osztály, {nameof(UpdateMany)} metódusa {nameof(TEntityDto)} osztály esetén hiba történt!");
+                Debug.WriteLine($"Api név elkészítése api híváshoz nem sikerült!");
+            }
+
+            try
+            {
+                HttpResponseMessage httpResponse = await _httpClient.PostAsJsonAsync($"api/{GetApiName<TEntityDto>()}/bulk", dtoEntities);
+                response = await HandleErrorResponse(httpResponse, response);
+
+                string content = await httpResponse.Content.ReadAsStringAsync();
+                response = JsonConvert.DeserializeObject<Response>(content);
+                if (response is null)
                 {
-                    string apiName=GetApiName<TEntityDto>();
-                    if (string.IsNullOrEmpty(apiName))
-                    {
-                        Debug.WriteLine($"{nameof(ManyDataHttpPersistenceService)} osztály, {nameof(UpdateMany)} metódusa {nameof(TEntityDto)} osztály esetén hiba történt!");
-                        Debug.WriteLine($"Api név elkészítése api híváshoz nem sikerült!");
-                    }
-                    HttpResponseMessage httpResponse = await _httpClient.PostAsJsonAsync($"api/{apiName}/bulk", dtoEntities);
-                    if (httpResponse.StatusCode == HttpStatusCode.BadRequest)
-                    {
-                        string content = await httpResponse.Content.ReadAsStringAsync();
-                        Response? response = JsonConvert.DeserializeObject<Response>(content);
-                        if (response is null)
-                        {
-                            Debug.WriteLine($"{nameof(ManyDataHttpPersistenceService)} osztály, {nameof(UpdateMany)} metódusa {nameof(TEntityDto)} osztály esetén hiba történt!");
-                            Debug.WriteLine($"Api válasz nem jött meg!");
-                            defaultResponse.ClearAndAdd("A mentés nem sikerült");
-                        }
-                        else return response;
-                    }
-                    else if (httpResponse.StatusCode == HttpStatusCode.InternalServerError)
-                    {
-                        string content = await httpResponse.Content.ReadAsStringAsync();
-                        string? responseMessage = JsonConvert.DeserializeObject<string>(content);
-                        if (responseMessage is null)
-                        {
-                            Debug.WriteLine($"{nameof(ManyDataHttpPersistenceService)} osztály, {nameof(UpdateMany)} metódusa {nameof(TEntityDto)} osztály esetén hiba történt!");
-                            Debug.WriteLine($"{nameof(HttpStatusCode.InternalServerError)} hiba keletkezett!");
-                            Debug.WriteLine($"{responseMessage}");
-                            defaultResponse.ClearAndAdd("A mentés nem sikerült");
-                        }
-                    }
-                    else if (!httpResponse.IsSuccessStatusCode)
-                    {
-                        Debug.WriteLine($"{nameof(ManyDataHttpPersistenceService)} osztály, {nameof(UpdateMany)} metódusa {nameof(TEntityDto)} osztály esetén hiba történt!");
-                        Debug.WriteLine($"{nameof(httpResponse.StatusCode)} hiba keletkezett!");
-                        httpResponse.EnsureSuccessStatusCode();
-                    }
-                    else
-                    {
-                        string content = await httpResponse.Content.ReadAsStringAsync();
-                        Response? response = JsonConvert.DeserializeObject<Response>(content);
-                        if (response is null)
-                        {
-                            Debug.WriteLine($"{nameof(ManyDataHttpPersistenceService)} osztály, {nameof(UpdateMany)} metódusa {nameof(TEntityDto)} osztály esetén hiba történt!");
-                            Debug.WriteLine($"A RestApi válasz elérhetetlen (null)!");
-                        }
-                        else if (response.IsSuccess)
-                            return response;
-                        else
-                        {
-                            Debug.WriteLine($"A RestApi hibát adott!");
-                            Debug.WriteLine($"{response.Error}");
-                        }
-                    }
+                    Debug.WriteLine($"{nameof(ManyDataHttpPersistenceService)} osztály, {nameof(UpdateMany)} metódusa {nameof(TEntityDto)} osztály esetén hiba történt!");
+                    Debug.WriteLine($"A RestApi válasz elérhetetlen (null)!");
                 }
-                catch (Exception ex)
+                else if (response.IsSuccess)
+                    return response;
+                else
                 {
-                    Debug.WriteLine(ex.Message);
+                    Debug.WriteLine($"A RestApi hibát adott!");
+                    Debug.WriteLine($"{response.Error}");
                 }
             }
-            defaultResponse.ClearAndAdd("A mentés nem sikerült");
-            return defaultResponse;
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.Message);
+            }
+            response.ClearAndAddError("A mentés nem sikerült");
+            return response;
+        }
+
+        private async Task<Response> HandleErrorResponse(HttpResponseMessage httpResponse, Response response)
+        {
+            string content = await httpResponse.Content.ReadAsStringAsync();
+            if (httpResponse.StatusCode == HttpStatusCode.BadRequest)
+            {
+                var badRequestResponse = JsonConvert.DeserializeObject<Response>(content);
+                if (badRequestResponse is null)
+                {
+                    Debug.WriteLine($"{nameof(ManyDataHttpPersistenceService)} osztály, {nameof(UpdateMany)} metódusában hiba történt! A backend válasz nem értelmehzető!");
+                }
+                return badRequestResponse ?? response.ClearAndAddError("A mentés nem sikerült"); ;
+            }
+
+            else if (httpResponse.StatusCode == HttpStatusCode.InternalServerError)
+            {
+                string? responseMessage = JsonConvert.DeserializeObject<string>(content);
+                if (responseMessage is null)
+                {
+                    Debug.WriteLine($"{nameof(ManyDataHttpPersistenceService)} osztály, {nameof(UpdateMany)} metódusa esetén hiba történt! A backend válasz nem értelmezhető!");
+                }
+                Debug.WriteLine($"{nameof(HttpStatusCode.InternalServerError)} hiba keletkezett!");
+                Debug.WriteLine($"{responseMessage}");
+                response.ClearAndAddError("A mentés nem sikerült");
+            }
+            else if (!httpResponse.IsSuccessStatusCode)
+            {
+                Debug.WriteLine($"{nameof(ManyDataHttpPersistenceService)} osztály, {nameof(UpdateMany)} metódusa {nameof(TEntityDto)} osztály esetén hiba történt!");
+                Debug.WriteLine($"{nameof(httpResponse.StatusCode)} hiba keletkezett!");
+                httpResponse.EnsureSuccessStatusCode();
+            }
         }
 
         private static string GetApiName<TEntity>() where TEntity : class, new()
@@ -96,7 +94,7 @@ namespace WillBeThere.InfrastuctureLayer.Persistence.Services.Http
             if (apiNameWithDto.Length < 3)
                 return string.Empty;
             else
-                return apiNameWithDto.Remove(apiNameWithDto.Length-3);
+                return apiNameWithDto.Remove(apiNameWithDto.Length - 3);
         }
     }
 }

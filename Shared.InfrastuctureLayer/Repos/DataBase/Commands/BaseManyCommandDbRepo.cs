@@ -14,8 +14,8 @@ namespace Shared.InfrastuctureLayer.Repos.DataBase.Commands
             DbSet<TEntity>? dbSet = GetDbSet<TEntity>();
             if (dbSet is null)
             {
-                response.Append($"{nameof(BaseManyCommandDbRepo<TDbContext>)} osztály, {nameof(UpdateMany)} metódusban hiba keletkezett!");
-                response.Append($"Az adatbázis nem elérhető!");
+                response.AppendError($"{nameof(BaseManyCommandDbRepo<TDbContext>)} osztály, {nameof(UpdateMany)} metódusban hiba keletkezett!");
+                response.AppendError($"Az adatbázis nem elérhető!");
                 return Task.FromResult(response);
             }
             else
@@ -27,11 +27,11 @@ namespace Shared.InfrastuctureLayer.Repos.DataBase.Commands
                 }
                 catch (Exception e)
                 {
-                    response.Append(e.Message);
+                    response.AppendError(e.Message);
                 }
             }
-            response.Append($"{nameof(BaseManyCommandDbRepo<TDbContext>)} osztály, {nameof(UpdateMany)} metódusban hiba keletkezett!");
-            response.Append($"{nameof(TEntity)} típusú és {entities.Count} db elem mentése az adatbázisba nem sikerült!");
+            response.AppendError($"{nameof(BaseManyCommandDbRepo<TDbContext>)} osztály, {nameof(UpdateMany)} metódusban hiba keletkezett!");
+            response.AppendError($"{nameof(TEntity)} típusú és {entities.Count} db elem mentése az adatbázisba nem sikerült!");
             return Task.FromResult(response);
         }
     }

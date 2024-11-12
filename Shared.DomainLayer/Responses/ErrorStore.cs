@@ -9,21 +9,23 @@
         }
 
         public string Error { get => _error; set => _error = value; }
-        public bool HasError => !string.IsNullOrEmpty(Error);
+        public bool HasError => !_error.Any();
 
         public void Clear()
         {
             _error = string.Empty;
         }
 
-        public void ClearAndAdd(string error)
+        public Response ClearAndAddError(string error)
         {
             _error = error;
+            return (Response)this;
         }
 
-        public void Append(string error)
+        public Response AppendError(string error)
         {
             _error = $"{Error}\n{error}";
+            return (Response)this;
         }
 
         public void InsertToBegining(string error)

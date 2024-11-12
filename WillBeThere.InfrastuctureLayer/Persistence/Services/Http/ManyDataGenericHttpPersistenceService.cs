@@ -1,5 +1,4 @@
-﻿using WillBeThere.InfrastuctureLayer.Persistence.Services.DataBase;
-using Shared.DomainLayer.Entities;
+﻿using Shared.DomainLayer.Entities;
 using Shared.DomainLayer.Responses;
 using Shared.ApplicationLayer.Transformers;
 using Shared.ApplicationLayer.Persistence;
@@ -25,8 +24,8 @@ namespace WillBeThere.InfrastuctureLayer.Persistence.Services
             Response response = new();
             if (_converter is null || _httpPersistenceService is null)
             {
-                response.Append($"{nameof(ManyDataGenericHttpPersistenceService<TEntity, TDto>)} osztály, {nameof(IManyDataPersistenceService.UpdateMany)} metódusban hiba keletkezett!");
-                response.Append($"{entities.Count} db {nameof(TEntity)} objektum hozzáadása az adatbázishoz nem sikerült!");
+                response.AppendError($"{nameof(ManyDataGenericHttpPersistenceService<TEntity, TDto>)} osztály, {nameof(IManyDataPersistenceService.UpdateMany)} metódusban hiba keletkezett!");
+                response.AppendError($"{entities.Count} db {nameof(TEntity)} objektum hozzáadása az adatbázishoz nem sikerült!");
                 return new Response("Több adat együttes mentése nem sikerült.");
             }
             else

@@ -21,8 +21,8 @@ namespace WillBeThere.InfrastuctureLayer.Persistence.Services
             Response response = new();
             if (_httpPersistenceService is null)
             {
-                response.Append($"{nameof(ManyDataGenericDbPersistenceService<TEntity, TDto>)} osztály, {nameof(IManyDataPersistenceService.UpdateMany)} metódusban hiba keletkezett!");
-                response.Append($"{entities.Count} db {nameof(TEntity)} objektum hozzáadása az adatbázishoz nem sikerült!");
+                response.AppendError($"{nameof(ManyDataGenericDbPersistenceService<TEntity, TDto>)} osztály, {nameof(IManyDataPersistenceService.UpdateMany)} metódusban hiba keletkezett!");
+                response.AppendError($"{entities.Count} db {nameof(TEntity)} objektum hozzáadása az adatbázishoz nem sikerült!");
                 return new Response("Több adat együttes mentése nem sikerült.");
             }
             else
