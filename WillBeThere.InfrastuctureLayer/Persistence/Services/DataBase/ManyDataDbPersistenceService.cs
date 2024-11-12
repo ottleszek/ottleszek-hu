@@ -31,7 +31,6 @@ namespace WillBeThere.InfrastuctureLayer.Persistence.Services.DataBase
             }
             else
             {
-
                 dbSet = _baseCommandRepo.GetDbSet<TEntity>();
                 if (dbSet is null)
                 {
@@ -43,7 +42,6 @@ namespace WillBeThere.InfrastuctureLayer.Persistence.Services.DataBase
                 {
                     try
                     {
-
                         await _unitOfWork.BeginTransactionAsync();
                         {
                             try
@@ -54,13 +52,12 @@ namespace WillBeThere.InfrastuctureLayer.Persistence.Services.DataBase
                                 }
                                 await _unitOfWork.SaveChangesAsync();
                                 _unitOfWork.Commit();
+                                return response;
                             }
                             catch (Exception ex) 
                             {
                                 _unitOfWork.Rollback();
                                 return new Response { Error = ex.Message };
-
-                                
                             }
                         }
                     }

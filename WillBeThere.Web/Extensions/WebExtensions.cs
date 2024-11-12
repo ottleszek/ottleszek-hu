@@ -24,7 +24,7 @@ namespace WillBeThere.Web.Extensions
         }
         public static void ConfigureWebServices(this IServiceCollection services)
         {           
-            services.AddScoped<IManyDataPersistenceService<OrganizationCategory>, ManyDataGenericPersistenceService<OrganizationCategory,OrganizationCategoryDto>>();
+            services.AddScoped<IManyDataPersistenceService<OrganizationCategory>, ManyDataGenericHttpPersistenceService<OrganizationCategory,OrganizationCategoryDto>>();
             services.AddScoped<IManyDataPersistenceService, ManyDataHttpPersistenceService>();
         }
     }

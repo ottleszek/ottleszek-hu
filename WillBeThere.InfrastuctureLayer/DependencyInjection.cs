@@ -24,11 +24,11 @@ using Shared.InfrastuctureLayer.Repos.DataBase.Commands;
 using WillBeThere.ApplicationLayer.Contracts.Dtos;
 using WillBeThere.ApplicationLayer.Contracts.Dtos.ResultModels;
 using WillBeThere.DomainLayer.Entites.ResultModels;
-using WillBeThere.InfrastuctureLayer.Persistence.Services;
 using WillBeThere.InfrastuctureLayer.Persistence.Repos.DataBase.WillBeThere.QueryRepos.WillBeThere;
 using WillBeThere.InfrastuctureLayer.Persistence.Repos.DataBase.WillBeThere.QueryRepos.WrapRepo;
 using WillBeThere.InfrastuctureLayer.Persistence.Repos.DataBase.WillBeThere.QueryRepos.WillBeThere.Backend;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Diagnostics;
 
 namespace WillBeThere.InfrastuctureLayer
 {
@@ -51,7 +51,11 @@ namespace WillBeThere.InfrastuctureLayer
         {
             string dbName = "WillBeThere" + Guid.NewGuid();
             services.AddDbContext<WillBeThereInMemoryContext>(
-                options => options.UseInMemoryDatabase(databaseName: dbName)
+                options => 
+                {
+                    options.UseInMemoryDatabase(databaseName: dbName);
+                    options.ConfigureWarnings(x => x.Ignore(InMemoryEventId.TransactionIgnoredWarning));
+                }
             );
         }
 
@@ -150,7 +154,7 @@ namespace WillBeThere.InfrastuctureLayer
 
         public static void ConfigurePersistence(this IServiceCollection services)
         {
-            services.AddScoped<IManyDataPersistenceService<OrganizationCategory>, ManyDataGenericPersistenceService<OrganizationCategory, OrganizationCategoryDto>>();
+            //services.AddScoped<IManyDataPersistenceService<OrganizationCategory>, ManyDataGenericPersistenceService<OrganizationCategory, OrganizationCategoryDto>>();
         }
     }
 }
