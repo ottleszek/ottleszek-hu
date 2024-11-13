@@ -22,7 +22,7 @@ builder.Services.AddControllers().AddJsonOptions(options =>
 
 builder.Services.AddInfrastructure();
 builder.Services.AddApplication();
-builder.Services.AddBackendServices();
+builder.Services.AddBackend();
 
 
 var app = builder.Build();

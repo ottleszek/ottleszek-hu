@@ -1,4 +1,5 @@
-﻿using Shared.ApplicationLayer.Persistence;
+﻿using Microsoft.AspNetCore.Identity;
+using Shared.ApplicationLayer.Persistence;
 using WillBeThere.ApplicationLayer.Contracts.Dtos.OrganizationCategories;
 using WillBeThere.ApplicationLayer.Repos.QueryRepo;
 using WillBeThere.DomainLayer.Entites;
@@ -13,7 +14,7 @@ namespace WillBeThere.Backend.Extensions
 {
     public static class BackendExtensions
     {
-        public static void AddBackendServices(this IServiceCollection services) 
+        public static void AddBackend(this IServiceCollection services) 
         {
             services.ConfigureCors();
             services.ConfigureBackendRepos();
@@ -52,6 +53,12 @@ namespace WillBeThere.Backend.Extensions
         {
             services.AddScoped<IManyDataPersistenceService<OrganizationCategory>, ManyDataGenericDbPersistenceService<OrganizationCategory, OrganizationCategoryDto>>();
             services.AddScoped<IManyDataPersistenceService, ManyDataDbPersistenceService>();
+        }
+
+        public static void AddAuthentication(IServiceCollection services)
+        {
+            services.AddAuthorization();
+            services.AddAuthentication().AddCookie(IdentityConstants.ApplicationScheme);
         }
     }
 }
