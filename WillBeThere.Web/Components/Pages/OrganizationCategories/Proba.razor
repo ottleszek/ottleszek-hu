@@ -1,0 +1,57 @@
+﻿@page "/organizationcategorylist2"
+@inject IOrganizationCategoryQueryModelRepo? _organizationCategoryQueryModelRepo
+
+
+<MudDataGrid SelectedItem="@_selectedItem" SelectedItemChanged="@OnSelectedItemChanged" T="Item" Items="@items" RowStyleFunc="@((row,index) => GetRowStyle(row,index))"
+    ReadOnly="false"
+    EditMode="DataGridEditMode.Cell"
+    >
+    <Columns>
+        <PropertyColumn Property="x => x.Id" Title="Id" />
+        <PropertyColumn Property="x => x.Name" Title="Name" />
+    </Columns>
+</MudDataGrid>
+
+<MudButton OnClick="ChangeRowStyle">Change Row Style</MudButton>
+
+@code {
+    List<Item> items = new List<Item>
+    {
+        new Item { Id = 1, Name = "First" },
+        new Item { Id = 2, Name = "Second" },
+        new Item { Id = 3, Name = "Third" }
+    };
+
+    private Item? _selectedItem;
+
+    private bool highlightRows = false;
+
+    // Esemény a gombnyomásra
+    private void ChangeRowStyle()
+    {
+        highlightRows = !highlightRows;
+    }
+
+    // Kiválasztott sor változásának kezelése
+    private void OnSelectedItemChanged(Item item)
+    {
+        _selectedItem = item;
+        Console.WriteLine($"Selected Item: {item?.Name}");
+    }
+
+    // Dinamikus stílus meghatározása a sorokhoz
+    private string GetRowStyle(Item item, int index)
+    {
+        if (_selectedItem == item)
+            // Ha highlightRows igaz, a sorok háttérszíne sárga, különben normál stílus
+            return highlightRows ? "background-color: yellow;" : "";
+        else
+            return "";
+    }
+
+    public class Item
+    {
+        public int Id { get; set; }
+        public string Name { get; set; } = string.Empty;
+    }
+}

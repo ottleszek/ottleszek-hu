@@ -1,0 +1,92 @@
+﻿@page "/organizationcategorylist"
+@inject IOrganizationCategoryListViewModel? _viewModel
+@inject ISnackbar _snackBar
+
+<PageTitle>Szervezet kategóriák </PageTitle>
+
+@if (_viewModel is null)
+{
+    <MudText Class="mt-4">Az adatok az oldalon elérhetetlenek.</MudText>    
+}
+else
+{
+    if (!_viewModel.IsLoded)
+    {
+        <MudText>Szervezeti kategóriák betöltés alatt...</MudText>
+    }
+    else
+    {
+        <MudText Typo="Typo.h3">Szervezeti kategóriák</MudText>
+        <MudText Class="mt-4">Módosítási lehetőség a táblázatban. Módosítás után nyomjon tabulátort!</MudText>
+        <div class="d-flex flex-wrap">
+            <div class="d-flex justify-start align-center">
+                <p class="mud-typography mud-typography-body1 mud-inherit-text mr-2">Módoítás: kikapcsolva</p>
+            </div>
+            <MudSwitch @bind-Value="_isEditMode">bekapcsolva.</MudSwitch>
+        </div>
+        <MudButton OnClick="@Save" Class="mt-2 mb-4" Variant="Variant.Filled" Color="Color.Primary" Disabled="@_viewModel.SaveDisabled">Mentés</MudButton>
+        <MudDataGrid
+                        T="OrganizationCategoryDto"
+                        Items="@_viewModel.OrganizationCategories"
+                        ReadOnly="@_readOnly"
+                        EditMode="DataGridEditMode.Cell"
+                        Hover="true"
+                        Dense="true"
+                        Bordered="true"
+                        StartedEditingItem="@StartedEditingItem" 
+                        CanceledEditingItem="@CanceledEditingItem" 
+                        CommittedItemChanges="@CommittedItemChanges"
+        >
+            <Columns>
+                <PropertyColumn Property="pc => pc.Name" Title="Kategória név" Editable="true" />
+            </Columns> 
+
+        </MudDataGrid>
+        <MudText Class="mt_4">Kategóriák száma: @_viewModel.NumberOfOrganizationCategories</MudText>                    
+    }
+}
+
+@code {
+    private bool _isEditMode = false;
+    private bool _readOnly => !_isEditMode;
+
+    protected async override Task OnInitializedAsync()
+    {
+        if (_viewModel is not null)
+            await _viewModel.GetCategoriesAsync();
+    }
+
+    private async Task Save()
+    {
+        try
+        {
+            if (_viewModel is not null)
+            {
+                await _viewModel.Save();
+                _snackBar.Add("Mentés sikerült!", Severity.Success);
+            }
+        }
+        catch(Exception ex)
+        {
+            _snackBar.Add(ex.Message,Severity.Error);
+        }
+    }
+    private void OnSelectedItemChanged(OrganizationCategoryDto organizationCategory)
+    {
+        _viewModel?.SetNewSelectedCategory(organizationCategory);
+    }
+
+    private void StartedEditingItem(OrganizationCategoryDto organizationCategory)
+    {
+        _viewModel?.StartEditingCategory(organizationCategory);
+    }
+
+    private void CommittedItemChanges(OrganizationCategoryDto organizationCategory)
+    {
+        _viewModel?.AddToEditedCategory(organizationCategory);
+    }
+
+    private void CanceledEditingItem(OrganizationCategoryDto organizationCategory)
+    {        
+    }
+}

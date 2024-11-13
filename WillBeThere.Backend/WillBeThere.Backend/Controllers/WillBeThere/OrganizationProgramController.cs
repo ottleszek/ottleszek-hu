@@ -1,12 +1,13 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using WillBeThere.ApplicationLayer.Assemblers;
 using WillBeThere.ApplicationLayer.Contracts.Dtos;
-using WillBeThere.ApplicationLayer.Contracts.Queries.OrganizationPrograms;
-using WillBeThere.DomainLayer.Assemblers.ResultModels;
+using WillBeThere.ApplicationLayer.Contracts.Dtos.ResultModels;
+using WillBeThere.ApplicationLayer.Queries.OrganizationPrograms;
+using WillBeThere.ApplicationLayer.Repos.QueryRepo;
+using WillBeThere.ApplicationLayer.Transformers.Assemblers;
+using WillBeThere.Backend.Controllers.Base;
 using WillBeThere.DomainLayer.Entites;
-using WillBeThere.DomainLayer.Entites.ResultModels;
-using WillBeThere.InfrastuctureLayer.Implementations.Repos.WillBeThere.QueryRepos.Interfaces;
+
 
 namespace WillBeThere.Backend.Controllers.WillBeThere
 {
@@ -14,23 +15,16 @@ namespace WillBeThere.Backend.Controllers.WillBeThere
     [Route("api/[controller]")]
     public class OrganizationProgramController : IncludedController<OrganizationProgram, OrganizationProgramDto>
     {
-        //private readonly IOrganizationProgramService? _organizationProgramService;
-        private readonly IMediator _mediator;
-        private readonly PublicOrganizationProgramAssembler _publicOrganizationProgramAssambler;
-        private readonly IOrganizationProgramQueryRepo? repo;
-
+        private readonly IMediator? _mediator;
+        
         public OrganizationProgramController(
+            IMediator? mediator,
             OrganizationProgramAssembler? assambler, 
-            PublicOrganizationProgramAssembler publicOrganizationProgramAssambler,
-            IOrganizationProgramQueryRepo? repo,
-            //IOrganizationProgramService? organizationProgramService,
-            IMediator mediator
-            ) : base(assambler, repo)
+            IOrganizationProgramQueryRepo? queryRepo
+            
+            ) : base(assambler, queryRepo)
         {
-            //_organizationProgramService = organizationProgramService;
-            _mediator = mediator;
-            _publicOrganizationProgramAssambler = publicOrganizationProgramAssambler;
-            this.repo = repo;
+            _mediator = mediator ?? throw new ArgumentNullException(nameof(mediator));
         }
 
         // GET: /api/OrganizationProgram/publicprograms
@@ -39,13 +33,10 @@ namespace WillBeThere.Backend.Controllers.WillBeThere
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         public async Task<IActionResult> GetPublicPrograms()
         {
-            List<PublicOrganizationProgram> pop = new List<PublicOrganizationProgram>();
             if (_mediator is not null)
             {
-                //IQueryable<PublicOrganizationProgram>? publicProgramsQuery = _organizationProgramService.GetPublicOrganizationsPrograms();
-                List<PublicOrganizationProgram>? publicProgramsQuery = await _mediator.Send(new GetPublicOrgranizationProgramListQuery());
-                if (publicProgramsQuery is not null)
-                    return Ok(publicProgramsQuery.Select(pop =>_publicOrganizationProgramAssambler.ToDto(pop)));
+                List<PublicOrganizationProgramDto> pop = await _mediator.Send(new GetPublicOrgranizationProgramListQuery());
+                return Ok(pop);
             }
             return NoContent();
         }

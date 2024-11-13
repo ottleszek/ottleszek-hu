@@ -1,38 +1,39 @@
 ﻿@page "/"
 @attribute [StreamRendering]
-@inject IOrganizationProgramDataService? _organizationProgramDataService
-@inject IOrganizationCategoryDataService? _organizationCategoryDataService
+@inject IMediator _mediator
 
 <PageTitle>Publikus programok</PageTitle>
-<MudText Typo="Typo.h4 ">Publikus programok</MudText>
+
+
 @if (!_isLoaded)
-{
-    <MudText>Publikus programok betöltése.</MudText>
+{   
+    <MudText>Publikus programok betöltése.</MudText>          
 }
 else
 {
     if (_organizationCategories is not null)
-    {
+    {       
         <MudChipSet T="string"
                     SelectedValuesChanged="@FilteringByOrganizationCategory"
                     SelectionMode="SelectionMode.MultiSelection"
                     CheckMark="true" Variant="Variant.Text"
                     Color="Color.Info">
-            @foreach (OrganizationCategory organizationCategory in _organizationCategories)
+            @foreach (OrganizationCategoryDto organizationCategory in _organizationCategories)
             {
                 @if (!string.IsNullOrEmpty(organizationCategory.Name))
                 {
                     <MudChip T="string" Value="@organizationCategory.Name"></MudChip>
                 }
             }
-        </MudChipSet>
+        </MudChipSet>        
     }
     @if (_numberOfPublicPrograms==0)
     {
         <MudText>Nincs elérhető publikus program!</MudText>
     }
     else
-    {        
+    {      
+        <MudText Typo="Typo.h4 ">Publikus programok</MudText>
         <MudDataGrid Items="@_publicPrograms" QuickFilter="@Filtring">
             <ToolBarContent>
                 <MudText Typo="Typo.h6">Publikus programok</MudText>
@@ -40,7 +41,7 @@ else
                 <MudTextField @bind-Value="@_filtringString" Placeholder="Szűrés" Adornment="Adornment.Start" Immediate="true" AdornmentIcon="@Icons.Material.Filled.Search" IconSize="Size.Medium" Class="mt-0" />
             </ToolBarContent>
             <Columns>
-                <HierarchyColumn T="@PublicOrganizationProgram"/>
+                <HierarchyColumn T="@PublicOrganizationProgramDto"/>
                 <PropertyColumn Property="pp => pp.Title" Title="Program címe"  />
                 <PropertyColumn Property="pp => pp.Start " Format="yyyy.MM.dd HH:mm" Title="Kezdete" />
                 <PropertyColumn Property="pp => pp.End" Format="yyyy.MM.dd HH:mm" Title="Vége" />
@@ -50,19 +51,21 @@ else
                 <MudCardContent>
                     <MudText Style="font-size:12px">Program leírása: @context.Item.Description</MudText>
                     <MudText Style="font-size:12px">Cím:</MudText>
-                    <MudText Class="ml-2"  Style="font-size:12px"><MultilineComponent Text="@context.Item.GetHungarianAddress()"></MultilineComponent></MudText>
+                    
             </MudCardContent>
             </ChildRowContent>
         </MudDataGrid>
-        <MudText Class="mt-4">Publikus programok száma: @_numberOfPublicPrograms</MudText>
+        <MudText Class="mt-4">Publikus programok száma: @_numberOfPublicPrograms</MudText>        
     }
 }
 
 @code {
+    //<MudText Class="ml-2"  Style="font-size:12px"><MultilineComponent Text="@context.Item.GetHungarianAddress()"></MultilineComponent></MudText>
 
-    private List<PublicOrganizationProgram> _publicPrograms = new List<PublicOrganizationProgram>();
-    private List<PublicOrganizationProgram> _allPublicPrograms = new List<PublicOrganizationProgram>();
-    private List<OrganizationCategory> _organizationCategories = new List<OrganizationCategory>();
+    private List<PublicOrganizationProgramDto>? _publicPrograms;    
+    private List<OrganizationCategoryDto>? _organizationCategories;
+
+    private List<PublicOrganizationProgramDto> _allPublicPrograms = new List<PublicOrganizationProgramDto>();
 
     private bool _isLoaded => _publicPrograms is not null;
     private int _numberOfPublicPrograms => _publicPrograms is not null ? _publicPrograms.Count : 0;
@@ -70,6 +73,10 @@ else
 
     protected async override Task OnInitializedAsync()
     {
+        
+        _organizationCategories = await _mediator.Send(new GetOrganizationsCategoriesListQuery());
+        _publicPrograms = await _mediator.Send(new GetPublicOrgranizationProgramListQuery());
+        /*
         if (_organizationProgramDataService is not null)
         {
             _publicPrograms = await _organizationProgramDataService.GetAllPublicOrganizationProgramsAsync();
@@ -77,10 +84,11 @@ else
         }
         if (_organizationCategoryDataService is not null)           
             _organizationCategories = await _organizationCategoryDataService.SelectAsync();
+        */
         await base.OnInitializedAsync();
     }
 
-    private Func<PublicOrganizationProgram, bool> Filtring => element =>
+    private Func<PublicOrganizationProgramDto, bool> Filtring => element =>
     {
         if (string.IsNullOrWhiteSpace(_filtringString))
             return true;
@@ -100,7 +108,7 @@ else
             {
                 foreach (string organizationCategoryName in selected)
                 {
-                    List<PublicOrganizationProgram> newPublicOrganizationPrograms = _allPublicPrograms.Where(publicProgram => publicProgram.OrganizationCategory == organizationCategoryName).ToList();
+                    List<PublicOrganizationProgramDto> newPublicOrganizationPrograms = _allPublicPrograms.Where(publicProgram => publicProgram.OrganizationCategory == organizationCategoryName).ToList();
                     _publicPrograms.AddRange(newPublicOrganizationPrograms);
                 }
             }

@@ -2,6 +2,8 @@ using System.Text.Json.Serialization;
 using WillBeThere.Backend.Extensions;
 using WillBeThere.InfrastuctureLayer.Context;
 using WillBeThere.InfrastuctureLayer;
+using WillBeThere.Backend.Extensions.Middleware;
+using WillBeThere.ApplicationLayer;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -18,9 +20,10 @@ builder.Services.AddControllers().AddJsonOptions(options =>
     options.JsonSerializerOptions.WriteIndented = true;
 });
 
-builder.Services.ConfigureCors();
-//builder.Services.AddApplication();
 builder.Services.AddInfrastructure();
+builder.Services.AddApplication();
+builder.Services.AddBackendServices();
+
 
 var app = builder.Build();
 
@@ -41,6 +44,8 @@ if (app.Environment.IsDevelopment())
 }
 
 //app.UseHttpsRedirection();
+
+app.UseMiddleware<ExceptionHandlingMiddleware>();
 
 app.UseAuthorization();
 

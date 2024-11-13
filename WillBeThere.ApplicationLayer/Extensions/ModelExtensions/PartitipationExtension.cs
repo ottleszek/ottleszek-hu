@@ -1,7 +1,7 @@
 ﻿using WillBeThere.ApplicationLayer.Contracts.Dtos;
 using WillBeThere.DomainLayer.Entites;
 
-namespace WillBeThere.DomainLayer.Extensions.ModelExtensions
+namespace WillBeThere.ApplicationLayer.Extensions.ModelExtensions
 {
     public static class PartitipationExtension
     {

@@ -1,9 +1,11 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using WillBeThere.ApplicationLayer.Assemblers;
-using WillBeThere.ApplicationLayer.Contracts.Services.DataService;
-using WillBeThere.ApplicationLayer.Contracts.Services.HttpService;
-using WillBeThere.ApplicationLayer.Contracts.Services.MapperService;
-using WillBeThere.DomainLayer.Assemblers.ResultModels;
+using WillBeThere.ApplicationLayer.Commands.OrganizationCategories;
+using WillBeThere.ApplicationLayer.Queries.OrganizationCategories;
+using WillBeThere.ApplicationLayer.Queries.OrganizationPrograms;
+using WillBeThere.ApplicationLayer.Transformers.Assemblers;
+using WillBeThere.ApplicationLayer.Transformers.Assemblers.ResultModels;
+using WillBeThere.ApplicationLayer.ViewModels.OrganizationCategories;
+
 
 namespace WillBeThere.ApplicationLayer
 {
@@ -11,13 +13,15 @@ namespace WillBeThere.ApplicationLayer
     {
         public static IServiceCollection AddApplication(this IServiceCollection services)
         {
-            services.ConfigureHttpCliens();
+            services.ConfigureHttpClient();
             services.ConfigureAssamblers();
-            services.ConfigureServices();
+            services.ConfigureRepos();
+            services.ConfigureViewModels();
+            services.ConfigureCqrs();
             return services;
         }
 
-        public static void ConfigureHttpCliens(this IServiceCollection services)
+        public static void ConfigureHttpClient(this IServiceCollection services)
         {
             services.AddHttpClient("WillBeThere", options =>
             {
@@ -36,22 +40,24 @@ namespace WillBeThere.ApplicationLayer
             services.AddScoped<RegisteredUserAssembler>();
 
             services.AddScoped<PublicOrganizationProgramAssembler>();
-
         }
 
-        public static void ConfigureServices(this IServiceCollection services)
+        public static void ConfigureRepos(this IServiceCollection services)
         {
-            // HttpService
-            services.AddScoped<IOrganizationProgramHttpService, OrganizationProgramHttpService>();
-            services.AddScoped<IOrganizationCategoryHttpService, OrganizationCategoryHttpService>();
+            //services.AddScoped<IOrganizationCategoryRepository, OrganizationCategoryRepository>();            
+        }
 
-            // MapperService
-            services.AddScoped<IOrganizationProgramMapperService, OrganizationProgramMapperService>();
-            services.AddScoped<IOrganizationCategoryMapperService, OrganizationCategoryMapperService>();
+        public static void ConfigureViewModels(this IServiceCollection services)
+        {
+            services.AddScoped<IOrganizationCategoryListViewModel, OrganizationCategoryListViewModel>();
+        }
 
-            // DataService
-            services.AddScoped<IOrganizationProgramDataService, OrganizationProgramDataService>();
-            services.AddScoped<IOrganizationCategoryDataService, OrganizationCategoryDataService>();
+        public static void ConfigureCqrs(this IServiceCollection services)
+        {
+            services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(SaveOrganizationCategoriesCommandHandler).Assembly));
+
+            services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(GetOrganizationCategoriesListQueryHandler).Assembly));
+            services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(GetPublicOrganizationProgramListQueryHandler).Assembly));
         }
     }
 }

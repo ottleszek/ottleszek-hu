@@ -1,4 +1,4 @@
-﻿using SharedDomainLayer.Entities;
+﻿using Shared.DomainLayer.Entities;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 

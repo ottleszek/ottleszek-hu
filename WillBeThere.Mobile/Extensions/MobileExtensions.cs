@@ -1,9 +1,6 @@
 ﻿using WillBeThere.Mobile.ViewModels;
-using WillBeThere.DomainLayer.Assemblers.ResultModels;
-using WillBeThere.ApplicationLayer.Assemblers;
-using WillBeThere.ApplicationLayer.Contracts.Services.DataService;
-using WillBeThere.ApplicationLayer.Contracts.Services.HttpService;
-using WillBeThere.ApplicationLayer.Contracts.Services.MapperService;
+using WillBeThere.ApplicationLayer.Transformers.Assemblers;
+using WillBeThere.ApplicationLayer.Transformers.Assemblers.ResultModels;
 
 namespace WillBeThere.Mobile.Extensions
 {
@@ -36,17 +33,7 @@ namespace WillBeThere.Mobile.Extensions
 
         public static void ConfigureServices(this IServiceCollection services)
         {
-            // HttpService
-            services.AddScoped<IOrganizationProgramHttpService, OrganizationProgramHttpService>();
-            services.AddScoped<IOrganizationCategoryHttpService, OrganizationCategoryHttpService>();
 
-            // MapperService
-            services.AddScoped<IOrganizationProgramMapperService, OrganizationProgramMapperService>();
-            services.AddScoped<IOrganizationCategoryMapperService, OrganizationCategoryMapperService>();
-
-            // DataService
-            services.AddScoped<IOrganizationProgramDataService, OrganizationProgramDataService>();
-            services.AddScoped<IOrganizationCategoryDataService, OrganizationCategoryDataService>();
         }
 
         public static void ConfigureViewModels(this IServiceCollection services)
