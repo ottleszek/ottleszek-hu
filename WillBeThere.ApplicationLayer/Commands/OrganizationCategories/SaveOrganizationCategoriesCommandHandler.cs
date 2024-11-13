@@ -8,19 +8,17 @@ namespace WillBeThere.ApplicationLayer.Commands.OrganizationCategories
 {
     public class SaveOrganizationCategoriesCommandHandler : IRequestHandler<SaveOrganizationCategoriesCommand,Response>
     {
-        private readonly IManyDataPersistenceService<OrganizationCategory>? _dataPersistenceService;
+        private readonly IManyDataPersistenceService<OrganizationCategory> _dataPersistenceService;
         private readonly OrganizationCategoryAssembler _organizationCategoryAssembler;
 
-        public SaveOrganizationCategoriesCommandHandler(IManyDataPersistenceService<OrganizationCategory>? organizationCategoryRepository, OrganizationCategoryAssembler organizationCategoryAssembler)
+        public SaveOrganizationCategoriesCommandHandler(IManyDataPersistenceService<OrganizationCategory>? organizationCategoryRepository, OrganizationCategoryAssembler? organizationCategoryAssembler)
         {
-            _dataPersistenceService = organizationCategoryRepository;
-            _organizationCategoryAssembler = organizationCategoryAssembler;
+            _dataPersistenceService = organizationCategoryRepository ?? throw new ArgumentException(nameof(organizationCategoryRepository));
+            _organizationCategoryAssembler = organizationCategoryAssembler ?? throw new ArgumentException(nameof(organizationCategoryAssembler));
         }
 
         public async Task<Response> Handle(SaveOrganizationCategoriesCommand request, CancellationToken cancellationToken)
         {
-            if (_dataPersistenceService is null)
-                return new Response("Kategoróiák mentése nem lehetséges!");
             return await _dataPersistenceService.UpdateMany(request.OrganizationCategories.Select(oc => _organizationCategoryAssembler.ToModel(oc)).ToList());
 
         }

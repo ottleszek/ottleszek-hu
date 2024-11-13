@@ -9,11 +9,11 @@ namespace WillBeThere.InfrastuctureLayer.Persistence.Services
         where TEntity : class, IDbEntity<TEntity>, new()
         where TDto : class, IDbEntity<TDto>, new()
     {
-        protected readonly IDomainDtoConterter<TEntity, TDto>? _converter;
-        protected readonly IManyDataPersistenceService? _httpPersistenceService;
+        protected readonly IDomainDtoConterter<TEntity, TDto> _converter;
+        protected readonly IManyDataPersistenceService _httpPersistenceService;
 
 
-        public ManyDataGenericHttpPersistenceService(IManyDataPersistenceService? httpPersistenceService, IDomainDtoConterter<TEntity, TDto> converter)
+        public ManyDataGenericHttpPersistenceService(IManyDataPersistenceService? httpPersistenceService, IDomainDtoConterter<TEntity, TDto>? converter)
         {
             _converter = converter ?? throw new ArgumentNullException(nameof(converter));
             _httpPersistenceService = httpPersistenceService ?? throw new ArgumentNullException(nameof(httpPersistenceService));
@@ -21,18 +21,7 @@ namespace WillBeThere.InfrastuctureLayer.Persistence.Services
 
         public async Task<Response> UpdateMany(List<TEntity> entities)
         {
-            Response response = new();
-            if (_converter is null || _httpPersistenceService is null)
-            {
-                response.AppendError($"{nameof(ManyDataGenericHttpPersistenceService<TEntity, TDto>)} osztály, {nameof(IManyDataPersistenceService.UpdateMany)} metódusban hiba keletkezett!");
-                response.AppendError($"{entities.Count} db {nameof(TEntity)} objektum hozzáadása az adatbázishoz nem sikerült!");
-                return new Response("Több adat együttes mentése nem sikerült.");
-            }
-            else
-            {
-                List<TDto> dtos = _converter.ToDto(entities);
-                return await _httpPersistenceService.UpdateMany(dtos);
-            }
+            return await _httpPersistenceService.UpdateMany(_converter.ToDto(entities));
         }
     }
 }

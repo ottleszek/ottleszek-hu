@@ -8,8 +8,7 @@ namespace WillBeThere.InfrastuctureLayer.Persistence.Services
         where TEntity : class, IDbEntity<TEntity>, new()
         where TDto : class, IDbEntity<TDto>, new()
     {
-        protected readonly IManyDataPersistenceService? _httpPersistenceService;
-
+        protected readonly IManyDataPersistenceService _httpPersistenceService;
 
         public ManyDataGenericDbPersistenceService(IManyDataPersistenceService? httpPersistenceService)
         {
@@ -18,17 +17,7 @@ namespace WillBeThere.InfrastuctureLayer.Persistence.Services
 
         public async Task<Response> UpdateMany(List<TEntity> entities)
         {
-            Response response = new();
-            if (_httpPersistenceService is null)
-            {
-                response.AppendError($"{nameof(ManyDataGenericDbPersistenceService<TEntity, TDto>)} osztály, {nameof(IManyDataPersistenceService.UpdateMany)} metódusban hiba keletkezett!");
-                response.AppendError($"{entities.Count} db {nameof(TEntity)} objektum hozzáadása az adatbázishoz nem sikerült!");
-                return new Response("Több adat együttes mentése nem sikerült.");
-            }
-            else
-            {
-                return await _httpPersistenceService.UpdateMany(entities);
-            }
+            return await _httpPersistenceService.UpdateMany(entities);
         }
     }
 }

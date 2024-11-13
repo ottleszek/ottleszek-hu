@@ -1,6 +1,6 @@
 ﻿namespace Shared.DomainLayer.Responses
 {
-    public class ErrorStore
+    public abstract class ErrorStore
     {
         private string _error;
         public ErrorStore()
