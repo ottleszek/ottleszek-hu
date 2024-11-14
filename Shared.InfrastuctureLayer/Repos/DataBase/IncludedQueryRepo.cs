@@ -7,7 +7,7 @@ namespace Shared.InfrastuctureLayer.Repos.DataBase
 {
     public abstract class IncludedQueryRepo<TDbContext> : BaseQueryDbRepo<TDbContext>, IIncludedQueryRepo where TDbContext : DbContext
     {
-        protected IncludedQueryRepo(DbContext? dbContext) : base(dbContext) { }
+        protected IncludedQueryRepo(TDbContext? dbContext) : base(dbContext) { }
 
 
         public IQueryable<TEntity>? SelectAllInluded<TEntity>() where TEntity : class, IDbEntity<TEntity>, new() => GetAllIncluded<TEntity>();
