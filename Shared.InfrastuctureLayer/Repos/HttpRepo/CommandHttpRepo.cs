@@ -3,8 +3,8 @@ using System.Net.Http.Json;
 using System.Net;
 using Shared.DomainLayer.Entities;
 using Shared.DomainLayer.Responses;
-using Newtonsoft.Json;
 using Shared.ApplicationLayer.Repos.Commands;
+using Newtonsoft.Json;
 
 namespace WillBeThere.InfrastuctureLayer.Persistence.Services.Http.Base
 {

@@ -18,7 +18,6 @@ using WillBeThere.ApplicationLayer.Repos.QueryRepo.HttpRepo;
 using WillBeThere.ApplicationLayer.Repos.QueryRepo.MapperRepo;
 using WillBeThere.ApplicationLayer.Repos.QueryRepo.MappreRepo;
 using WillBeThere.ApplicationLayer.Repos.QueryRepo.ModelRepo;
-using Shared.ApplicationLayer.Persistence;
 using Shared.ApplicationLayer.Repos.UnitOfWork;
 using Shared.InfrastuctureLayer.Repos.DataBase.Commands;
 using WillBeThere.ApplicationLayer.Contracts.Dtos;
@@ -127,9 +126,6 @@ namespace WillBeThere.InfrastuctureLayer
 
                 services.AddScoped<IUnitOfWork, UnitOfWork<WillBeThereInMemoryContext>>();
                 services.AddScoped<IWillBeThereWrapQueryUnitOfWork,WillBeThereWrapQueryUnitOfWork<WillBeThereInMemoryContext>>();
-
-
-
             }
             else
             {
