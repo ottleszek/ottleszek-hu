@@ -1,5 +1,5 @@
-﻿using WillBeThere.ApplicationLayer.Repos.QueryRepo.HttpRepo;
-using WillBeThere.InfrastuctureLayer.Persistence.Services.Http.Base;
+﻿using Shared.InfrastuctureLayer.Adapters.HttpRepo;
+using WillBeThere.ApplicationLayer.Repos.QueryRepo.HttpRepo;
 
 namespace WillBeThere.InfrastuctureLayer.Adapters.Repos.Http.Query
 {

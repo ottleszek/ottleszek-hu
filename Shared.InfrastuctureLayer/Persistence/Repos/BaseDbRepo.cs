@@ -2,7 +2,7 @@
 using Shared.ApplicationLayer.Repos;
 using Shared.DomainLayer.Entities;
 
-namespace Shared.InfrastuctureLayer.Repos.DataBase
+namespace Shared.InfrastuctureLayer.Persistence.Repos
 {
     public class BaseDbRepo<TDbContext> : IBaseDbRepo where TDbContext : DbContext
     {

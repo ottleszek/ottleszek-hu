@@ -2,7 +2,7 @@
 using Shared.DomainLayer.Entities;
 using Shared.DomainLayer.Responses;
 
-namespace Shared.InfrastuctureLayer.Repos.ModelRepo
+namespace Shared.InfrastuctureLayer.Persistence.Repos.ModelRepo
 {
     public class CommandModelRepo<TModel, TDto> : ICommandGenericRepo<TModel, TDto>
            where TModel : class, IDbEntity<TModel>, new()

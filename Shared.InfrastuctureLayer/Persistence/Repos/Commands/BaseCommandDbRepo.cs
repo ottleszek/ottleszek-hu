@@ -2,8 +2,9 @@
 using Shared.ApplicationLayer.Repos;
 using Shared.DomainLayer.Entities;
 using Shared.DomainLayer.Responses;
+using Shared.InfrastuctureLayer.Persistence.Repos;
 
-namespace Shared.InfrastuctureLayer.Repos.DataBase.Commands
+namespace Shared.InfrastuctureLayer.Persistence.Repos.Commands
 {
     public class BaseCommandDbRepo<TDbContext> : BaseDbRepo<TDbContext>, IBaseCommandDbRepo where TDbContext : DbContext
     {

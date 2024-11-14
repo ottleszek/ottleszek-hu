@@ -9,13 +9,11 @@ using WillBeThere.ApplicationLayer.Repos.CommandRepo;
 using WillBeThere.InfrastuctureLayer.Persistence.Repos.DataBase.WillBeThere.CommandRepos;
 using Shared.ApplicationLayer.Transformers;
 using Shared.ApplicationLayer.Repos;
-using Shared.InfrastuctureLayer.Repos.DataBase;
 using WillBeThere.ApplicationLayer.Repos.QueryRepo.HttpRepo;
 using WillBeThere.ApplicationLayer.Repos.QueryRepo.MapperRepo;
 using WillBeThere.ApplicationLayer.Repos.QueryRepo.MappreRepo;
 using WillBeThere.ApplicationLayer.Repos.QueryRepo.ModelRepo;
 using Shared.ApplicationLayer.Repos.UnitOfWork;
-using Shared.InfrastuctureLayer.Repos.DataBase.Commands;
 using WillBeThere.ApplicationLayer.Contracts.Dtos;
 using WillBeThere.ApplicationLayer.Contracts.Dtos.ResultModels;
 using WillBeThere.DomainLayer.Entites.ResultModels;
@@ -28,6 +26,8 @@ using WillBeThere.InfrastuctureLayer.Adapters.Repos.Http.MapperRepo.Query;
 using WillBeThere.InfrastuctureLayer.Adapters.Repos.Http.ModelRepo.Query;
 using WillBeThere.InfrastuctureLayer.Adapters.Repos.Http.Query;
 using WillBeThere.InfrastuctureLayer.Persistence.UnifOfWorks;
+using Shared.InfrastuctureLayer.Persistence.Repos;
+using Shared.InfrastuctureLayer.Persistence.Repos.Commands;
 
 namespace WillBeThere.InfrastuctureLayer
 {

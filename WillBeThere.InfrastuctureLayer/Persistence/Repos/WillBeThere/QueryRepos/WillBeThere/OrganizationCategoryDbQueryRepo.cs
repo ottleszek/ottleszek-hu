@@ -1,5 +1,5 @@
 ﻿using Shared.ApplicationLayer.Repos;
-using Shared.InfrastuctureLayer.Repos.DataBase;
+using Shared.InfrastuctureLayer.Persistence.Repos;
 using WillBeThere.InfrastuctureLayer.Context;
 using WillBeThere.InfrastuctureLayer.Persistence.Repos.DataBase.WillBeThere.QueryRepos.WillBeThere.Backend;
 

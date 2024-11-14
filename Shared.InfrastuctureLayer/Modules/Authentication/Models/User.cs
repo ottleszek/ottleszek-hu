@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNet.Identity.EntityFramework;
 
-namespace WillBeThere.InfrastuctureLayer.Modules.Authentication.Models
+namespace Shared.InfrastuctureLayer.Modules.Authentication.Models
 {
     public class User : IdentityUser
     {

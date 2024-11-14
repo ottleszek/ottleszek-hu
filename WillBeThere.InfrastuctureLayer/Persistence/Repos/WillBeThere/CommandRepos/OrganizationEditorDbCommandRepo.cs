@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Shared.InfrastuctureLayer.Repos.DataBase.Commands;
+using Shared.InfrastuctureLayer.Persistence.Repos.Commands;
 using WillBeThere.ApplicationLayer.Repos.CommandRepo;
 
 namespace WillBeThere.InfrastuctureLayer.Persistence.Repos.DataBase.WillBeThere.CommandRepos

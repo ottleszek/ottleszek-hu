@@ -2,7 +2,7 @@
 using Shared.DomainLayer.Entities;
 using System.Linq.Expressions;
 
-namespace Shared.InfrastuctureLayer.Repos.DataBase
+namespace Shared.InfrastuctureLayer.Persistence.Repos
 {
     public static class QuerybleRepo
     {

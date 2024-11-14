@@ -2,7 +2,7 @@
 using Shared.DomainLayer.Entities;
 
 
-namespace Shared.InfrastuctureLayer.Repos.ModelRepo
+namespace Shared.InfrastuctureLayer.Persistence.Repos.ModelRepo
 {
     public class QueryModelRepo<TModel, TDto> : IQueryGenericRepo<TModel, TDto>
            where TModel : class, IDbEntity<TModel>, new()
@@ -11,7 +11,7 @@ namespace Shared.InfrastuctureLayer.Repos.ModelRepo
         protected IQueryMapperRepo<TModel, TDto>? _mapperRepo;
 
         public QueryModelRepo(IQueryMapperRepo<TModel, TDto>? mapperRepo)
-        {            
+        {
             _mapperRepo = mapperRepo;
         }
         public async Task<List<TModel>> GetAllAsync()

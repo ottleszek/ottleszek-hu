@@ -1,8 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Shared.ApplicationLayer.Repos.Queries;
 using Shared.DomainLayer.Entities;
+using Shared.InfrastuctureLayer.Persistence.Repos;
 
-namespace Shared.InfrastuctureLayer.Repos.DataBase.Queries
+namespace Shared.InfrastuctureLayer.Persistence.Repos.Queries
 {
     public class BaseQueryDbRepo<TDbContext> : BaseDbRepo<DbContext>, IQueryGenericMethodRepo where TDbContext : DbContext
     {

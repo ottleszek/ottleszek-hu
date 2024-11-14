@@ -6,7 +6,7 @@ using Shared.DomainLayer.Responses;
 using Shared.ApplicationLayer.Repos.Commands;
 using Newtonsoft.Json;
 
-namespace WillBeThere.InfrastuctureLayer.Persistence.Services.Http.Base
+namespace Shared.InfrastuctureLayer.Adapters.HttpRepo
 {
     public class CommandHttpRepo : ICommandGenericMethodRepo
     {
@@ -133,7 +133,7 @@ namespace WillBeThere.InfrastuctureLayer.Persistence.Services.Http.Base
         {
             if (entity is null)
                 return new Response("Az adatok törlése nem lehetséges!");
-            return await DeleteAsync<TEntityDto>(entity.Id); 
+            return await DeleteAsync<TEntityDto>(entity.Id);
         }
 
         public async Task<Response> DeleteAsync<TEntityDto>(Guid id) where TEntityDto : class, IDbEntity<TEntityDto>, new()
@@ -191,7 +191,7 @@ namespace WillBeThere.InfrastuctureLayer.Persistence.Services.Http.Base
         private string GetApiName<TEntityDto>() where TEntityDto : class, IDbEntity<TEntityDto>, new()
         {
             string result = typeof(TEntityDto).Name;
-            if (result.Length<3)
+            if (result.Length < 3)
                 return result;
             else
                 return result.Remove(result.Length - 3);

@@ -3,7 +3,7 @@ using System.Net.Http.Json;
 using Shared.DomainLayer.Entities;
 using Shared.ApplicationLayer.Repos.Queries;
 
-namespace WillBeThere.InfrastuctureLayer.Persistence.Services.Http.Base
+namespace Shared.InfrastuctureLayer.Adapters.HttpRepo
 {
     public class QueryHttpRepo : IQueryGenericMethodRepo
     {
@@ -53,7 +53,7 @@ namespace WillBeThere.InfrastuctureLayer.Persistence.Services.Http.Base
         private object GetApiName<TEntityDto>() where TEntityDto : class, IDbEntity<TEntityDto>, new()
         {
             string result = typeof(TEntityDto).Name;
-            if (result.Length<3)
+            if (result.Length < 3)
                 return result;
             else
                 return result.Remove(result.Length - 3);

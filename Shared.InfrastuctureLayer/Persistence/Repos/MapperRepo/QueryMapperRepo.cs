@@ -2,7 +2,7 @@
 using Shared.ApplicationLayer.Transformers;
 using Shared.DomainLayer.Entities;
 
-namespace Shared.InfrastuctureLayer.Repos.MapperRepo
+namespace Shared.InfrastuctureLayer.Persistence.Repos.MapperRepo
 {
     public class QueryMapperRepo<TModel, TDto> : IQueryMapperRepo<TModel, TDto>
         where TModel : class, IDbEntity<TModel>, new()
@@ -11,7 +11,7 @@ namespace Shared.InfrastuctureLayer.Repos.MapperRepo
         protected readonly IQueryGenericMethodRepo? _repo;
         protected readonly IAssembler<TModel, TDto>? _assambler;
 
-        public QueryMapperRepo(IQueryGenericMethodRepo? baseHttpRepo, IAssembler<TModel,TDto>? assambler)
+        public QueryMapperRepo(IQueryGenericMethodRepo? baseHttpRepo, IAssembler<TModel, TDto>? assambler)
         {
             _repo = baseHttpRepo;
             _assambler = assambler;

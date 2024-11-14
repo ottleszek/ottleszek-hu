@@ -1,8 +1,8 @@
 ﻿using WillBeThere.DomainLayer.Entites;
 using WillBeThere.ApplicationLayer.Contracts.Dtos;
-using Shared.InfrastuctureLayer.Repos.ModelRepo;
 using WillBeThere.ApplicationLayer.Repos.QueryRepo.ModelRepo;
 using WillBeThere.ApplicationLayer.Repos.QueryRepo.MapperRepo;
+using Shared.InfrastuctureLayer.Persistence.Repos.ModelRepo;
 
 namespace WillBeThere.InfrastuctureLayer.Adapters.Repos.Http.ModelRepo.Query
 {

@@ -3,7 +3,7 @@ using Shared.ApplicationLayer.Transformers;
 using Shared.DomainLayer.Entities;
 using Shared.DomainLayer.Responses;
 
-namespace Shared.InfrastuctureLayer.Repos.MapperRepo
+namespace Shared.InfrastuctureLayer.Persistence.Repos.MapperRepo
 {
     public class CommandMapperRepo<TModel, TDto> : ICommandMapperRepo<TModel, TDto>
         where TModel : class, IDbEntity<TModel>, new()
@@ -39,7 +39,7 @@ namespace Shared.InfrastuctureLayer.Repos.MapperRepo
         {
             if (_repo is not null && _assambler is not null)
             {
-                Response response = await _repo.UpdateAsync<TDto>(_assambler.ToDto(entity));
+                Response response = await _repo.UpdateAsync(_assambler.ToDto(entity));
                 return response;
             }
             return new Response();
