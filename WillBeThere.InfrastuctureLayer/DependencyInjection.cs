@@ -7,10 +7,6 @@ using WillBeThere.ApplicationLayer.Transformers.Assemblers.ResultModels;
 using WillBeThere.ApplicationLayer.Transformers.Converters;
 using WillBeThere.ApplicationLayer.Repos.CommandRepo;
 using WillBeThere.InfrastuctureLayer.Persistence.Repos.DataBase.WillBeThere.CommandRepos;
-using WillBeThere.InfrastuctureLayer.Persistence.Repos.UnifOfWorks;
-using WillBeThere.InfrastuctureLayer.Persistence.Repos.Http.HttpRepo.Query;
-using WillBeThere.InfrastuctureLayer.Persistence.Repos.Http.MapperRepo.Query;
-using WillBeThere.InfrastuctureLayer.Persistence.Repos.Http.ModelRepo.Query;
 using Shared.ApplicationLayer.Transformers;
 using Shared.ApplicationLayer.Repos;
 using Shared.InfrastuctureLayer.Repos.DataBase;
@@ -28,6 +24,10 @@ using WillBeThere.InfrastuctureLayer.Persistence.Repos.DataBase.WillBeThere.Quer
 using WillBeThere.InfrastuctureLayer.Persistence.Repos.DataBase.WillBeThere.QueryRepos.WillBeThere.Backend;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Diagnostics;
+using WillBeThere.InfrastuctureLayer.Adapters.Repos.Http.MapperRepo.Query;
+using WillBeThere.InfrastuctureLayer.Adapters.Repos.Http.ModelRepo.Query;
+using WillBeThere.InfrastuctureLayer.Adapters.Repos.Http.Query;
+using WillBeThere.InfrastuctureLayer.Persistence.UnifOfWorks;
 
 namespace WillBeThere.InfrastuctureLayer
 {

@@ -6,7 +6,7 @@ using System.Diagnostics;
 using System.Net;
 using System.Net.Http.Json;
 
-namespace WillBeThere.InfrastuctureLayer.Persistence.Services.Http
+namespace WillBeThere.InfrastuctureLayer.Adapters.Services
 {
     public class ManyDataHttpPersistenceService : IManyDataPersistenceService
     {
@@ -45,7 +45,7 @@ namespace WillBeThere.InfrastuctureLayer.Persistence.Services.Http
 
         private async Task<ErrorStorage> HandleErrorResponse(HttpResponseMessage httpResponse)
         {
-            ErrorStorage errorStorage= new ErrorStorage();
+            ErrorStorage errorStorage = new ErrorStorage();
             string content = await httpResponse.Content.ReadAsStringAsync();
             if (httpResponse.StatusCode == HttpStatusCode.BadRequest)
             {

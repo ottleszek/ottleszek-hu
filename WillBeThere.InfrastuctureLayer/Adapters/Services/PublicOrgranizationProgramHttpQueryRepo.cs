@@ -5,7 +5,7 @@ using WillBeThere.ApplicationLayer.Extensions.ModelExtensions;
 using WillBeThere.DomainLayer.Entites.ResultModels;
 using WillBeThere.DomainLayer.Repos;
 
-namespace WillBeThere.InfrastuctureLayer.Persistence.Repos.Http
+namespace WillBeThere.InfrastuctureLayer.Adapters.Services
 {
     public class PublicOrgranizationProgramHttpQueryRepo : IPublicOrgranizationProgramQueryRepo
     {

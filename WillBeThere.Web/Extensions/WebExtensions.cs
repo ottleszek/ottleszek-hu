@@ -3,10 +3,8 @@ using WillBeThere.ApplicationLayer.Contracts.Dtos.OrganizationCategories;
 using WillBeThere.ApplicationLayer.Repos.QueryRepo;
 using WillBeThere.DomainLayer.Entites;
 using WillBeThere.DomainLayer.Repos;
-using WillBeThere.InfrastuctureLayer.Persistence.Repos.Http;
-using WillBeThere.InfrastuctureLayer.Persistence.Repos.Http.Repos;
-using WillBeThere.InfrastuctureLayer.Persistence.Services;
-using WillBeThere.InfrastuctureLayer.Persistence.Services.Http;
+using WillBeThere.InfrastuctureLayer.Adapters.Repos;
+using WillBeThere.InfrastuctureLayer.Adapters.Services;
 
 namespace WillBeThere.Web.Extensions
 {

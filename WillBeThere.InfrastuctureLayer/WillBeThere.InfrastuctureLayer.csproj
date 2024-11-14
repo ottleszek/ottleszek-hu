@@ -7,9 +7,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Persistence\Repos\DataBase\WillBeThere\QueryRepos\Interfaces\**" />
-    <EmbeddedResource Remove="Persistence\Repos\DataBase\WillBeThere\QueryRepos\Interfaces\**" />
-    <None Remove="Persistence\Repos\DataBase\WillBeThere\QueryRepos\Interfaces\**" />
+    <Compile Remove="Persistence\Repos\WillBeThere\QueryRepos\Interfaces\**" />
+    <EmbeddedResource Remove="Persistence\Repos\WillBeThere\QueryRepos\Interfaces\**" />
+    <None Remove="Persistence\Repos\WillBeThere\QueryRepos\Interfaces\**" />
   </ItemGroup>
 
   <ItemGroup>

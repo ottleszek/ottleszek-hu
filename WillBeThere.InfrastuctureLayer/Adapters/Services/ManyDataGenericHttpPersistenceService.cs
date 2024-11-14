@@ -3,7 +3,7 @@ using Shared.DomainLayer.Responses;
 using Shared.ApplicationLayer.Transformers;
 using Shared.ApplicationLayer.Persistence;
 
-namespace WillBeThere.InfrastuctureLayer.Persistence.Services
+namespace WillBeThere.InfrastuctureLayer.Adapters.Services
 {
     public class ManyDataGenericHttpPersistenceService<TEntity, TDto> : IManyDataPersistenceService<TEntity>
         where TEntity : class, IDbEntity<TEntity>, new()

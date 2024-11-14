@@ -5,7 +5,7 @@ using WillBeThere.ApplicationLayer.Repos.QueryRepo.MapperRepo;
 using Shared.ApplicationLayer.Transformers;
 using WillBeThere.ApplicationLayer.Repos.QueryRepo.HttpRepo;
 
-namespace WillBeThere.InfrastuctureLayer.Persistence.Repos.Http.MapperRepo.Query
+namespace WillBeThere.InfrastuctureLayer.Adapters.Repos.Http.MapperRepo.Query
 {
     public class OrganizationProgramQueryMapperRepo : QueryMapperRepo<OrganizationProgram, OrganizationProgramDto>, IOrganizationProgramQueryMapperRepo
     {

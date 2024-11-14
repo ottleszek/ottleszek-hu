@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore.Storage;
 using Shared.ApplicationLayer.Repos.UnitOfWork;
 
-namespace WillBeThere.InfrastuctureLayer.Persistence.Repos.UnifOfWorks
+namespace WillBeThere.InfrastuctureLayer.Persistence.UnifOfWorks
 {
     public class UnitOfWork<TDbContext> : IUnitOfWork where TDbContext : DbContext
     {

@@ -3,12 +3,12 @@ using WillBeThere.ApplicationLayer.Repos.QueryRepo;
 using WillBeThere.ApplicationLayer.Repos.QueryRepo.ModelRepo;
 using WillBeThere.DomainLayer.Entites;
 
-namespace WillBeThere.InfrastuctureLayer.Persistence.Repos.Http.Repos
+namespace WillBeThere.InfrastuctureLayer.Adapters.Repos
 {
     public class OrganizationCategoryQueryDataRepo : IOrganizationCategoryQueryRepo
     {
         private readonly IOrganizationCategoryQueryModelRepo _organizationCategoryGenericRepo;
-            
+
         public OrganizationCategoryQueryDataRepo(IOrganizationCategoryQueryModelRepo organizationCategoryGenericRepo)
         {
             _organizationCategoryGenericRepo = organizationCategoryGenericRepo;
@@ -29,7 +29,7 @@ namespace WillBeThere.InfrastuctureLayer.Persistence.Repos.Http.Repos
             if (typeof(TEntity) == typeof(OrganizationCategory))
             {
                 OrganizationCategory? organizationCategory = await _organizationCategoryGenericRepo.GetByIdAsync(id);
-                return (TEntity?) (object?) organizationCategory;
+                return (TEntity?)(object?)organizationCategory;
             }
             return null;
         }

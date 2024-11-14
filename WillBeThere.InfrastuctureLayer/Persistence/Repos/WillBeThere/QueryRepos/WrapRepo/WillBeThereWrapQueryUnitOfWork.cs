@@ -3,7 +3,7 @@ using WillBeThere.DomainLayer.Entites;
 using WillBeThere.InfrastuctureLayer.Context;
 using WillBeThere.InfrastuctureLayer.Persistence.Repos.DataBase.WillBeThere.QueryRepos.WillBeThere;
 using WillBeThere.InfrastuctureLayer.Persistence.Repos.DataBase.WillBeThere.QueryRepos.WillBeThere.Backend;
-using WillBeThere.InfrastuctureLayer.Persistence.Repos.UnifOfWorks;
+using WillBeThere.InfrastuctureLayer.Persistence.UnifOfWorks;
 
 namespace WillBeThere.InfrastuctureLayer.Persistence.Repos.DataBase.WillBeThere.QueryRepos.WrapRepo
 {
