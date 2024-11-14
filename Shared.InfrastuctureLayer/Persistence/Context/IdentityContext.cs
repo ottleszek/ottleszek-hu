@@ -3,7 +3,7 @@ using Shared.InfrastuctureLayer.Modules.Authentication.Models;
 
 namespace Shared.InfrastuctureLayer.Persistence.Context
 {
-    public class IdentityContext 
+    public class IdentityContext : IdentityDbContext<User>
     {
     }
 }
