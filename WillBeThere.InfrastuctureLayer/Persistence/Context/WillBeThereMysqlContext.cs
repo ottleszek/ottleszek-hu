@@ -4,7 +4,7 @@ namespace WillBeThere.InfrastuctureLayer.Context
 {
     public class WillBeThereMysqlContext : WillBeThereContext
     {
-        public WillBeThereMysqlContext(DbContextOptions<WillBeThereContext> options) : base(options)
+        public WillBeThereMysqlContext(DbContextOptions<WillBeThereMysqlContext> options) : base(options)
         {
         }
 

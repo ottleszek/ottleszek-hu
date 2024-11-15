@@ -28,6 +28,7 @@ using WillBeThere.InfrastuctureLayer.Adapters.Repos.Http.Query;
 using WillBeThere.InfrastuctureLayer.Persistence.UnifOfWorks;
 using Shared.InfrastuctureLayer.Persistence.Repos;
 using Shared.InfrastuctureLayer.Persistence.Repos.Commands;
+using Shared.InfrastuctureLayer.Persistence.Context;
 
 namespace WillBeThere.InfrastuctureLayer
 {
@@ -50,12 +51,21 @@ namespace WillBeThere.InfrastuctureLayer
         {
             string dbName = "WillBeThere" + Guid.NewGuid();
             services.AddDbContext<WillBeThereInMemoryContext>(
-                options => 
+                options =>
                 {
                     options.UseInMemoryDatabase(databaseName: dbName);
                     options.ConfigureWarnings(x => x.Ignore(InMemoryEventId.TransactionIgnoredWarning));
                 }
             );
+
+            services.AddDbContext<IdentityContext>
+                (
+                    options =>
+                    {
+                        options.UseInMemoryDatabase(databaseName: dbName);
+                        options.ConfigureWarnings(x => x.Ignore(InMemoryEventId.TransactionIgnoredWarning));
+                    }
+                );
         }
 
         public static void ConfigureMysqlContext(this IServiceCollection services)

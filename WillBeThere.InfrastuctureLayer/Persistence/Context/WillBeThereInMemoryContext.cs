@@ -4,7 +4,7 @@ namespace WillBeThere.InfrastuctureLayer.Context
 {
     public class WillBeThereInMemoryContext : WillBeThereContext
     {
-        public WillBeThereInMemoryContext(DbContextOptions<WillBeThereContext> options) : base(options)
+        public WillBeThereInMemoryContext(DbContextOptions<WillBeThereInMemoryContext> options) : base(options)
         {
         }
 

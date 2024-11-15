@@ -5,7 +5,7 @@ namespace WillBeThere.InfrastuctureLayer.Context
 {
     public class WillBeThereContext : DbContext
     {
-        public WillBeThereContext(DbContextOptions<WillBeThereContext> options) : base(options)
+        public WillBeThereContext(DbContextOptions options) : base(options)
         {
         }
 
