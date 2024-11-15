@@ -1,14 +1,15 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using WillBeThere.InfrastuctureLayer.Context;
 
+
 namespace WillBeThere.Backend.Extensions
 {
     public static class MigrationExtension
     {
         public static void ApplyDatabaseData(this IApplicationBuilder app)
         {
-            ApplyInMemoryDatabaseTestData(app);
-            ApplyIdentityUserMigration(app);
+            app.ApplyInMemoryDatabaseTestData();
+            app.ApplyIdentityUserMigration();
         }
 
         private static void ApplyInMemoryDatabaseTestData(this IApplicationBuilder app)

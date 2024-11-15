@@ -42,11 +42,23 @@ namespace WillBeThere.InfrastuctureLayer
             services.ConfigureRepos();
             services.ConfigureServices();
             services.ConfigurePersistence();
+
             services.ConfigureInMemoryContext();
-            services.ConfigureMysqlContext();
+            //services.ConfigureMysqlContext();
             return services;
         }
 
+       /* public static void ConfigureSqlliteSharedInMemoryContext(this IServiceCollection services)
+        {
+            var connectionString = "DataSource=willbethereshareddb;mode=memory;cache=shared";
+            var keepAliveConnection = new SqliteConnection(connectionString);
+            keepAliveConnection.Open();
+
+            services.AddDbContext<WillBeThereSqliteSheredInMemoryContext>(options =>
+            {
+                options.UseSqlite(connectionString);
+            });
+        }*/
         public static void ConfigureInMemoryContext(this IServiceCollection services)
         {
             string dbName = "WillBeThere" + Guid.NewGuid();
@@ -67,6 +79,7 @@ namespace WillBeThere.InfrastuctureLayer
                     }
                 );
         }
+
 
         public static void ConfigureMysqlContext(this IServiceCollection services)
         {
