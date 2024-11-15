@@ -29,6 +29,8 @@ using WillBeThere.InfrastuctureLayer.Persistence.UnifOfWorks;
 using Shared.InfrastuctureLayer.Persistence.Repos;
 using Shared.InfrastuctureLayer.Persistence.Repos.Commands;
 using Shared.InfrastuctureLayer.Persistence.Context;
+using Microsoft.Data.Sqlite;
+using System.Xml.Linq;
 
 namespace WillBeThere.InfrastuctureLayer
 {
@@ -43,14 +45,32 @@ namespace WillBeThere.InfrastuctureLayer
             services.ConfigureServices();
             services.ConfigurePersistence();
 
-            services.ConfigureInMemoryContext();
+            //services.ConfigureInMemoryContext();
             //services.ConfigureMysqlContext();
+            services.ConfigureSqlliteSharedInMemoryContext();
             return services;
         }
 
-       /* public static void ConfigureSqlliteSharedInMemoryContext(this IServiceCollection services)
+        public static void ConfigureSqlliteSharedInMemoryContext(this IServiceCollection services)
         {
-            var connectionString = "DataSource=willbethereshareddb;mode=memory;cache=shared";
+            var connectionString = "DataSource=willbethere.db";
+            var keepAliveConnection = new SqliteConnection(connectionString);
+            keepAliveConnection.Open();
+
+            services.AddDbContext<WillBeThereInMemoryContext>(options =>
+            {
+                options.UseSqlite(connectionString);
+            });
+
+            services.AddDbContext<IdentityContext>
+            (
+                options =>
+                {
+                    options.UseSqlite(connectionString);
+                }
+            );
+
+            /*var connectionString = "DataSource=willbethereshareddb;mode=memory;cache=shared";
             var keepAliveConnection = new SqliteConnection(connectionString);
             keepAliveConnection.Open();
 
@@ -58,7 +78,8 @@ namespace WillBeThere.InfrastuctureLayer
             {
                 options.UseSqlite(connectionString);
             });
-        }*/
+            */
+        }
         public static void ConfigureInMemoryContext(this IServiceCollection services)
         {
             string dbName = "WillBeThere" + Guid.NewGuid();
@@ -78,6 +99,7 @@ namespace WillBeThere.InfrastuctureLayer
                         options.ConfigureWarnings(x => x.Ignore(InMemoryEventId.TransactionIgnoredWarning));
                     }
                 );
+
         }
 
 
