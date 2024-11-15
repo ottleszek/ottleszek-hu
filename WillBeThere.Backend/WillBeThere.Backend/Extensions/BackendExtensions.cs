@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Shared.ApplicationLayer.Persistence;
+using Shared.InfrastuctureLayer.Modules.Authentication.Models;
 using WillBeThere.ApplicationLayer.Contracts.Dtos.OrganizationCategories;
 using WillBeThere.ApplicationLayer.Repos.QueryRepo;
 using WillBeThere.DomainLayer.Entites;
@@ -59,6 +61,9 @@ namespace WillBeThere.Backend.Extensions
         {
             services.AddAuthorization();
             services.AddAuthentication().AddCookie(IdentityConstants.ApplicationScheme);
+            services.AddIdentityCore<User>()
+                .AddEntityFrameworkStores<IdentityDbContext>()
+                .AddApiEndpoints();
         }
     }
 }
