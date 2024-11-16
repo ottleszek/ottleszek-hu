@@ -30,7 +30,10 @@ using Shared.InfrastuctureLayer.Persistence.Repos;
 using Shared.InfrastuctureLayer.Persistence.Repos.Commands;
 using Shared.InfrastuctureLayer.Persistence.Context;
 using Microsoft.Data.Sqlite;
-using System.Xml.Linq;
+using WillBeThere.InfrastuctureLayer.Email;
+using Microsoft.AspNetCore.Identity.UI.Services;
+using Shared.InfrastuctureLayer.Modules.Authentication.Models;
+using Microsoft.AspNetCore.Identity;
 
 namespace WillBeThere.InfrastuctureLayer
 {
@@ -191,11 +194,13 @@ namespace WillBeThere.InfrastuctureLayer
             // ModelService
             services.AddScoped<IOrganizationProgramQueryModelRepo, OrganizationProgramQueryModelRepo>();
             services.AddScoped<IOrganizationCategoryQueryModelRepo, OrganizationCategoryQueryModelRepo>();
+
+            services.AddSingleton<IEmailSender, SmtpEmailSender>();
+            services.AddTransient<IEmailSender<User>, UserEmailSender>();
         }
 
         public static void ConfigurePersistence(this IServiceCollection services)
         {
-            //services.AddScoped<IManyDataPersistenceService<OrganizationCategory>, ManyDataGenericPersistenceService<OrganizationCategory, OrganizationCategoryDto>>();
         }
     }
 }

@@ -3,6 +3,7 @@ using WillBeThere.Backend.Extensions;
 using WillBeThere.InfrastuctureLayer;
 using WillBeThere.Backend.Extensions.Middleware;
 using WillBeThere.ApplicationLayer;
+using Shared.InfrastuctureLayer.Modules.Authentication.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -42,5 +43,7 @@ app.UseMiddleware<ExceptionHandlingMiddleware>();
 app.UseAuthorization();
 
 app.MapControllers();
+
+app.MapIdentityApi<User>();
 
 app.Run();

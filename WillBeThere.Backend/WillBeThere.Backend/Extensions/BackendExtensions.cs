@@ -21,7 +21,7 @@ namespace WillBeThere.Backend.Extensions
             services.ConfigureCors();
             services.ConfigureBackendRepos();
             services.ConfigureBackendServices();
-
+            services.AddAuthentication();
         }
 
 
@@ -59,6 +59,7 @@ namespace WillBeThere.Backend.Extensions
 
         public static void AddAuthentication(IServiceCollection services)
         {
+            services.AddSingleton(TimeProvider.System);
             services.AddAuthorization();
             services.AddAuthentication().AddCookie(IdentityConstants.ApplicationScheme);
             services.AddIdentityCore<User>()
