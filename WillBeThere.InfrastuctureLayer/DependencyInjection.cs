@@ -34,6 +34,7 @@ using WillBeThere.InfrastuctureLayer.Email;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Shared.InfrastuctureLayer.Modules.Authentication.Models;
 using Microsoft.AspNetCore.Identity;
+using WillBeThere.InfrastuctureLayer.Persistence.Context;
 
 namespace WillBeThere.InfrastuctureLayer
 {
@@ -48,30 +49,24 @@ namespace WillBeThere.InfrastuctureLayer
             services.ConfigureServices();
             services.ConfigurePersistence();
 
-            //services.ConfigureInMemoryContext();
+            services.ConfigureInMemoryContext();
             //services.ConfigureMysqlContext();
-            services.ConfigureSqlliteSharedInMemoryContext();
+            services.ConfigurMysqlIdentityContext();
             return services;
         }
 
-        public static void ConfigureSqlliteSharedInMemoryContext(this IServiceCollection services)
+       /* public static void ConfigureIdentityContext(this IServiceCollection services)
         {
-            var connectionString = "DataSource=willbethere.db";
+            var connectionString = "DataSource=identity.db";
             var keepAliveConnection = new SqliteConnection(connectionString);
             keepAliveConnection.Open();
 
-            services.AddDbContext<WillBeThereInMemoryContext>(options =>
+            services.AddDbContext<IdentityContext>(options =>
             {
                 options.UseSqlite(connectionString);
             });
 
-            services.AddDbContext<IdentityContext>
-            (
-                options =>
-                {
-                    options.UseSqlite(connectionString);
-                }
-            );
+
 
             /*var connectionString = "DataSource=willbethereshareddb;mode=memory;cache=shared";
             var keepAliveConnection = new SqliteConnection(connectionString);
@@ -82,7 +77,7 @@ namespace WillBeThere.InfrastuctureLayer
                 options.UseSqlite(connectionString);
             });
             */
-        }
+        
         public static void ConfigureInMemoryContext(this IServiceCollection services)
         {
             string dbName = "WillBeThere" + Guid.NewGuid();
@@ -93,23 +88,18 @@ namespace WillBeThere.InfrastuctureLayer
                     options.ConfigureWarnings(x => x.Ignore(InMemoryEventId.TransactionIgnoredWarning));
                 }
             );
-
-            services.AddDbContext<IdentityContext>
-                (
-                    options =>
-                    {
-                        options.UseInMemoryDatabase(databaseName: dbName);
-                        options.ConfigureWarnings(x => x.Ignore(InMemoryEventId.TransactionIgnoredWarning));
-                    }
-                );
-
         }
-
 
         public static void ConfigureMysqlContext(this IServiceCollection services)
         {
             string connectionString = "server=localhost;userid=root;password=;database=willbethere;port=3306";
             services.AddDbContext<WillBeThereMysqlContext>(options => options.UseMySQL(connectionString));
+        }
+
+        public static void ConfigurMysqlIdentityContext(this IServiceCollection services)
+        {
+            string connectionString = "server=localhost;userid=root;password=;database=identity;port=3306";
+            services.AddDbContext<WillBeThereMysqlIdentityContext>(options => options.UseMySQL(connectionString));
         }
 
         public static void ConfigureHttpClient(this IServiceCollection services)

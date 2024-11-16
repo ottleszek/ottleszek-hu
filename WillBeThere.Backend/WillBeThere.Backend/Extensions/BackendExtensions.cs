@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Shared.ApplicationLayer.Persistence;
 using Shared.InfrastuctureLayer.Modules.Authentication.Models;
 using WillBeThere.ApplicationLayer.Contracts.Dtos.OrganizationCategories;
@@ -7,6 +6,7 @@ using WillBeThere.ApplicationLayer.Repos.QueryRepo;
 using WillBeThere.DomainLayer.Entites;
 using WillBeThere.DomainLayer.Repos;
 using WillBeThere.InfrastuctureLayer.Context;
+using WillBeThere.InfrastuctureLayer.Persistence.Context;
 using WillBeThere.InfrastuctureLayer.Persistence.Repos.DataBase;
 using WillBeThere.InfrastuctureLayer.Persistence.Repos.DataBase.WillBeThere.QueryRepos.WillBeThere;
 using WillBeThere.InfrastuctureLayer.Persistence.Services;
@@ -23,9 +23,6 @@ namespace WillBeThere.Backend.Extensions
             services.ConfigureBackendServices();
             services.AddAuthentication();
         }
-
-
-
         public static void ConfigureCors(this IServiceCollection services)
         {
 
@@ -62,9 +59,10 @@ namespace WillBeThere.Backend.Extensions
             services.AddSingleton(TimeProvider.System);
             services.AddAuthorization();
             services.AddAuthentication().AddCookie(IdentityConstants.ApplicationScheme);
-            services.AddIdentityCore<User>()
-                .AddEntityFrameworkStores<IdentityDbContext>()
-                .AddApiEndpoints();
+            services.AddIdentity<User, IdentityRole>()
+                .AddEntityFrameworkStores<WillBeThereMysqlIdentityContext>()
+                //.AddApiEndpoints();
+                .AddDefaultTokenProviders();
         }
     }
 }

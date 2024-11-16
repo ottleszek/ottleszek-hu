@@ -4,9 +4,9 @@ using Shared.InfrastuctureLayer.Modules.Authentication.Models;
 
 namespace Shared.InfrastuctureLayer.Persistence.Context
 {
-    public class IdentityContext : IdentityDbContext<User>
+    public class IdentityContext<TDbContext> : IdentityDbContext<User> where TDbContext : DbContext
     {
-        public IdentityContext(DbContextOptions<IdentityContext> options) : base(options)
+        public IdentityContext(DbContextOptions<TDbContext> options) : base(options)
         {
         }
     }

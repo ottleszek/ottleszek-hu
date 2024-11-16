@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using WillBeThere.InfrastuctureLayer.Context;
+using WillBeThere.InfrastuctureLayer.Persistence.Context;
 
 
 namespace WillBeThere.Backend.Extensions
@@ -25,7 +26,7 @@ namespace WillBeThere.Backend.Extensions
         {
             using (var scope = app.ApplicationServices.CreateAsyncScope())
             {
-                var dbContext = scope.ServiceProvider.GetRequiredService<WillBeThereInMemoryContext>();
+                var dbContext = scope.ServiceProvider.GetRequiredService<WillBeThereMysqlIdentityContext>();
                 dbContext.Database.Migrate();
             }
         }
