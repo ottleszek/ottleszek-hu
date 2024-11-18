@@ -21,7 +21,7 @@ namespace WillBeThere.Backend.Extensions
             services.ConfigureCors();
             services.ConfigureBackendRepos();
             services.ConfigureBackendServices();
-            services.AddAuthentication();
+            services.AddAuthenticationServices();
         }
         public static void ConfigureCors(this IServiceCollection services)
         {
@@ -54,11 +54,11 @@ namespace WillBeThere.Backend.Extensions
             services.AddScoped<IManyDataPersistenceService, ManyDataDbPersistenceService>();
         }
 
-        public static void AddAuthentication(IServiceCollection services)
+        public static void AddAuthenticationServices(this IServiceCollection services)
         {
             services.AddSingleton(TimeProvider.System);
             services.AddAuthorization();
-            services.AddAuthentication().AddCookie(IdentityConstants.ApplicationScheme);
+            //services.AddAuthentication().AddCookie(IdentityConstants.ApplicationScheme);
             services.AddIdentity<User, IdentityRole>()
                 .AddEntityFrameworkStores<WillBeThereMysqlIdentityContext>()
                 //.AddApiEndpoints();
