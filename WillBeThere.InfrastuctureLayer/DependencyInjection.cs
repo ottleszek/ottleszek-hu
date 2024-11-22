@@ -28,8 +28,6 @@ using WillBeThere.InfrastuctureLayer.Adapters.Repos.Http.Query;
 using WillBeThere.InfrastuctureLayer.Persistence.UnifOfWorks;
 using Shared.InfrastuctureLayer.Persistence.Repos;
 using Shared.InfrastuctureLayer.Persistence.Repos.Commands;
-using Shared.InfrastuctureLayer.Persistence.Context;
-using Microsoft.Data.Sqlite;
 using WillBeThere.InfrastuctureLayer.Email;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Shared.InfrastuctureLayer.Modules.Authentication.Models;
