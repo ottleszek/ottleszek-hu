@@ -25,7 +25,7 @@ namespace WillBeThere.InfrastuctureLayer.Adapters.Services
             {
                 Debug.WriteLine($"{nameof(ManyDataHttpPersistenceService)} osztály, {nameof(UpdateMany)} metódusa {nameof(TEntityDto)} osztály esetén hiba történt!");
                 Debug.WriteLine($"Api név elkészítése api híváshoz nem sikerült!");
-                response.ClearAndAddError("A mentés nem sikerült");
+                response.SetNewError("A mentés nem sikerült");
                 return response;
             }
             try
@@ -33,12 +33,12 @@ namespace WillBeThere.InfrastuctureLayer.Adapters.Services
                 HttpResponseMessage httpResponse = await _httpClient.PostAsJsonAsync($"api/{GetApiName<TEntityDto>()}/bulk", dtoEntities);
                 ErrorStorage errorStorage = await HandleErrorResponse(httpResponse);
                 if (errorStorage.HasError)
-                    response.ClearAndAddError("A mentés nem sikerült");
+                    response.SetNewError("A mentés nem sikerült");
             }
             catch (Exception ex)
             {
                 Debug.WriteLine(ex.ToString());
-                response.ClearAndAddError("A mentés nem sikerült");
+                response.SetNewError("A mentés nem sikerült");
             }
             return response;
         }

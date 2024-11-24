@@ -96,7 +96,7 @@ namespace WillBeThere.InfrastuctureLayer
 
         public static void ConfigurMysqlIdentityContext(this IServiceCollection services)
         {
-            string connectionString = "server=localhost;userid=root;password=;database=identity;port=3307";
+            string connectionString = "server=localhost;userid=root;password=;database=identity;port=3306";
             services.AddDbContext<WillBeThereMysqlIdentityContext>(options => options.UseMySQL(connectionString));
         }
 

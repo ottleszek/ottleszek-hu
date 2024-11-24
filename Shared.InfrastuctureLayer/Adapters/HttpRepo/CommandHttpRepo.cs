@@ -38,7 +38,7 @@ namespace Shared.InfrastuctureLayer.Adapters.HttpRepo
                         Response? response = JsonConvert.DeserializeObject<Response>(content);
                         if (response is null)
                         {
-                            defaultResponse.ClearAndAddError("A mentés http kérés hibát okozott!");
+                            defaultResponse.SetNewError("A mentés http kérés hibát okozott!");
                         }
                         else return response;
                     }
@@ -48,7 +48,7 @@ namespace Shared.InfrastuctureLayer.Adapters.HttpRepo
                         string? responseMessage = JsonConvert.DeserializeObject<string>(content);
                         if (responseMessage is null)
                         {
-                            defaultResponse.ClearAndAddError("A mentés http kérés hibát okozott!");
+                            defaultResponse.SetNewError("A mentés http kérés hibát okozott!");
                         }
                         else return new Response(responseMessage);
                     }
@@ -62,7 +62,7 @@ namespace Shared.InfrastuctureLayer.Adapters.HttpRepo
                         Response? response = JsonConvert.DeserializeObject<Response>(content);
                         if (response is null)
                         {
-                            defaultResponse.ClearAndAddError("A mentés http kérés hibát okozott!");
+                            defaultResponse.SetNewError("A mentés http kérés hibát okozott!");
                         }
                         else return response;
                     }
@@ -72,7 +72,7 @@ namespace Shared.InfrastuctureLayer.Adapters.HttpRepo
                     Debug.WriteLine(ex.Message);
                 }
             }
-            defaultResponse.ClearAndAddError("Az adatok mentése nem lehetséges!");
+            defaultResponse.SetNewError("Az adatok mentése nem lehetséges!");
             return defaultResponse;
         }
 
@@ -90,7 +90,7 @@ namespace Shared.InfrastuctureLayer.Adapters.HttpRepo
                         Response? response = JsonConvert.DeserializeObject<Response>(content);
                         if (response is null)
                         {
-                            defaultResponse.ClearAndAddError("A módosítás http kérés hibát okozott!");
+                            defaultResponse.SetNewError("A módosítás http kérés hibát okozott!");
                         }
                         else return response;
                     }
@@ -100,7 +100,7 @@ namespace Shared.InfrastuctureLayer.Adapters.HttpRepo
                         string? responseMessage = JsonConvert.DeserializeObject<string>(content);
                         if (responseMessage is null)
                         {
-                            defaultResponse.ClearAndAddError("A mentés http kérés hibát okozott!");
+                            defaultResponse.SetNewError("A mentés http kérés hibát okozott!");
                         }
                         else return new Response(responseMessage);
                     }
@@ -114,7 +114,7 @@ namespace Shared.InfrastuctureLayer.Adapters.HttpRepo
                         Response? response = JsonConvert.DeserializeObject<Response>(content);
                         if (response is null)
                         {
-                            defaultResponse.ClearAndAddError("A módosítás http kérés hibát okozott!");
+                            defaultResponse.SetNewError("A módosítás http kérés hibát okozott!");
                         }
                         else return response;
                     }
@@ -125,7 +125,7 @@ namespace Shared.InfrastuctureLayer.Adapters.HttpRepo
                     Debug.WriteLine(ex.Message);
                 }
             }
-            defaultResponse.ClearAndAddError("Az adatok frissítés nem lehetséges!");
+            defaultResponse.SetNewError("Az adatok frissítés nem lehetséges!");
             return defaultResponse;
         }
 
@@ -150,7 +150,7 @@ namespace Shared.InfrastuctureLayer.Adapters.HttpRepo
                         Response? response = JsonConvert.DeserializeObject<Response>(content);
                         if (response is null)
                         {
-                            defaultResponse.ClearAndAddError("A törlés http kérés hibát okozott!");
+                            defaultResponse.SetNewError("A törlés http kérés hibát okozott!");
                         }
                         else return response;
                     }
@@ -160,7 +160,7 @@ namespace Shared.InfrastuctureLayer.Adapters.HttpRepo
                         string? responseMessage = JsonConvert.DeserializeObject<string>(content);
                         if (responseMessage is null)
                         {
-                            defaultResponse.ClearAndAddError("A mentés http kérés hibát okozott!");
+                            defaultResponse.SetNewError("A mentés http kérés hibát okozott!");
                         }
                         else return new Response(responseMessage);
                     }
@@ -174,7 +174,7 @@ namespace Shared.InfrastuctureLayer.Adapters.HttpRepo
                         Response? response = JsonConvert.DeserializeObject<Response>(content);
                         if (response is null)
                         {
-                            defaultResponse.ClearAndAddError("A { http kérés hibát okozott!");
+                            defaultResponse.SetNewError("A { http kérés hibát okozott!");
                         }
                         else return response;
                     }
@@ -184,7 +184,7 @@ namespace Shared.InfrastuctureLayer.Adapters.HttpRepo
                     Debug.WriteLine(ex.Message);
                 }
             }
-            defaultResponse.ClearAndAddError("Az adatok törlése nem lehetséges!");
+            defaultResponse.SetNewError("Az adatok törlése nem lehetséges!");
             return defaultResponse;
         }
 

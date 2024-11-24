@@ -5,6 +5,7 @@ using WillBeThere.ApplicationLayer.Contracts.Dtos.OrganizationCategories;
 using WillBeThere.ApplicationLayer.Repos.QueryRepo;
 using WillBeThere.DomainLayer.Entites;
 using WillBeThere.DomainLayer.Repos;
+using WillBeThere.InfrastuctureLayer.Coniguration;
 using WillBeThere.InfrastuctureLayer.Context;
 using WillBeThere.InfrastuctureLayer.Persistence.Context;
 using WillBeThere.InfrastuctureLayer.Persistence.Repos.DataBase;
@@ -19,6 +20,7 @@ namespace WillBeThere.Backend.Extensions
         public static void AddBackend(this IServiceCollection services) 
         {
             services.ConfigureCors();
+            services.ConfigureSmtpServices();
             services.ConfigureBackendRepos();
             services.ConfigureBackendServices();
             services.AddAuthenticationServices();
@@ -52,6 +54,16 @@ namespace WillBeThere.Backend.Extensions
         {
             services.AddScoped<IManyDataPersistenceService<OrganizationCategory>, ManyDataGenericDbPersistenceService<OrganizationCategory, OrganizationCategoryDto>>();
             services.AddScoped<IManyDataPersistenceService, ManyDataDbPersistenceService>();
+        }
+
+        public static void ConfigureSmtpServices(this IServiceCollection services)
+        {
+            var builder = new ConfigurationBuilder()
+                .SetBasePath(Directory.GetCurrentDirectory())
+                .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
+
+            IConfiguration configuration = builder.Build();
+            services.Configure<SmtpSettings>(configuration.GetSection("SmtpSettings"));
         }
 
         public static void AddAuthenticationServices(this IServiceCollection services)
