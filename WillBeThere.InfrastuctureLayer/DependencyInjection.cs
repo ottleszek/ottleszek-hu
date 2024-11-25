@@ -7,20 +7,13 @@ using WillBeThere.ApplicationLayer.Transformers.Assemblers.ResultModels;
 using WillBeThere.ApplicationLayer.Transformers.Converters;
 using WillBeThere.ApplicationLayer.Repos.CommandRepo;
 using WillBeThere.InfrastuctureLayer.Persistence.Repos.DataBase.WillBeThere.CommandRepos;
-using WillBeThere.InfrastuctureLayer.Persistence.Repos.UnifOfWorks;
-using WillBeThere.InfrastuctureLayer.Persistence.Repos.Http.HttpRepo.Query;
-using WillBeThere.InfrastuctureLayer.Persistence.Repos.Http.MapperRepo.Query;
-using WillBeThere.InfrastuctureLayer.Persistence.Repos.Http.ModelRepo.Query;
 using Shared.ApplicationLayer.Transformers;
 using Shared.ApplicationLayer.Repos;
-using Shared.InfrastuctureLayer.Repos.DataBase;
 using WillBeThere.ApplicationLayer.Repos.QueryRepo.HttpRepo;
 using WillBeThere.ApplicationLayer.Repos.QueryRepo.MapperRepo;
 using WillBeThere.ApplicationLayer.Repos.QueryRepo.MappreRepo;
 using WillBeThere.ApplicationLayer.Repos.QueryRepo.ModelRepo;
-using Shared.ApplicationLayer.Persistence;
 using Shared.ApplicationLayer.Repos.UnitOfWork;
-using Shared.InfrastuctureLayer.Repos.DataBase.Commands;
 using WillBeThere.ApplicationLayer.Contracts.Dtos;
 using WillBeThere.ApplicationLayer.Contracts.Dtos.ResultModels;
 using WillBeThere.DomainLayer.Entites.ResultModels;
@@ -29,11 +22,25 @@ using WillBeThere.InfrastuctureLayer.Persistence.Repos.DataBase.WillBeThere.Quer
 using WillBeThere.InfrastuctureLayer.Persistence.Repos.DataBase.WillBeThere.QueryRepos.WillBeThere.Backend;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Diagnostics;
+using WillBeThere.InfrastuctureLayer.Adapters.Repos.Http.MapperRepo.Query;
+using WillBeThere.InfrastuctureLayer.Adapters.Repos.Http.ModelRepo.Query;
+using WillBeThere.InfrastuctureLayer.Adapters.Repos.Http.Query;
+using WillBeThere.InfrastuctureLayer.Persistence.UnifOfWorks;
+using Shared.InfrastuctureLayer.Persistence.Repos;
+using Shared.InfrastuctureLayer.Persistence.Repos.Commands;
+using WillBeThere.InfrastuctureLayer.Email;
+using Microsoft.AspNetCore.Identity.UI.Services;
+using Shared.InfrastuctureLayer.Modules.Authentication.Models;
+using Microsoft.AspNetCore.Identity;
+using WillBeThere.InfrastuctureLayer.Persistence.Context;
+using WillBeThere.InfrastuctureLayer.Persistence;
 
 namespace WillBeThere.InfrastuctureLayer
 {
+    enum SelectedDatabase { InMemory, MySql}
     public static class DependencyInjection
     {
+        private static SelectedDatabase _selectedDatabase = SelectedDatabase.InMemory;
         public static IServiceCollection AddInfrastructure(this IServiceCollection services)
         {
             services.ConfigureHttpClient();
@@ -42,16 +49,62 @@ namespace WillBeThere.InfrastuctureLayer
             services.ConfigureRepos();
             services.ConfigureServices();
             services.ConfigurePersistence();
-            services.ConfigureInMemoryContext();
-            services.ConfigureMysqlContext();
+            
+            switch(_selectedDatabase)
+            {
+                case SelectedDatabase.MySql:
+                    services.ConfigureMysqlContext();
+                    services.ConfigurMysqlIdentityContext();
+                    break;
+                case SelectedDatabase.InMemory:
+                    services.ConfigureInMemoryContext();
+                    services.ConfigureInMemoryIdentityContext();
+                    break;
+            }
+            services.AddAuthenticationServices();
             return services;
         }
 
+       /* public static void ConfigureIdentityContext(this IServiceCollection services)
+        {
+            var connectionString = "DataSource=identity.db";
+            var keepAliveConnection = new SqliteConnection(connectionString);
+            keepAliveConnection.Open();
+
+            services.AddDbContext<IdentityContext>(options =>
+            {
+                options.UseSqlite(connectionString);
+            });
+
+
+
+            /*var connectionString = "DataSource=willbethereshareddb;mode=memory;cache=shared";
+            var keepAliveConnection = new SqliteConnection(connectionString);
+            keepAliveConnection.Open();
+
+            services.AddDbContext<WillBeThereSqliteSheredInMemoryContext>(options =>
+            {
+                options.UseSqlite(connectionString);
+            });
+            */
+        
         public static void ConfigureInMemoryContext(this IServiceCollection services)
         {
             string dbName = "WillBeThere" + Guid.NewGuid();
             services.AddDbContext<WillBeThereInMemoryContext>(
-                options => 
+                options =>
+                {
+                    options.UseInMemoryDatabase(databaseName: dbName);
+                    options.ConfigureWarnings(x => x.Ignore(InMemoryEventId.TransactionIgnoredWarning));
+                }
+            );
+        }
+
+        public static void ConfigureInMemoryIdentityContext(this IServiceCollection services)
+        {
+            string dbName = "WillBeThereIdentity" + Guid.NewGuid();
+            services.AddDbContext<WillBeThereInMemoryIdentityContext>(
+                options =>
                 {
                     options.UseInMemoryDatabase(databaseName: dbName);
                     options.ConfigureWarnings(x => x.Ignore(InMemoryEventId.TransactionIgnoredWarning));
@@ -63,6 +116,12 @@ namespace WillBeThere.InfrastuctureLayer
         {
             string connectionString = "server=localhost;userid=root;password=;database=willbethere;port=3306";
             services.AddDbContext<WillBeThereMysqlContext>(options => options.UseMySQL(connectionString));
+        }
+
+        public static void ConfigurMysqlIdentityContext(this IServiceCollection services)
+        {
+            string connectionString = "server=localhost;userid=root;password=;database=identity;port=3306";
+            services.AddDbContext<WillBeThereMysqlIdentityContext>(options => options.UseMySQL(connectionString));
         }
 
         public static void ConfigureHttpClient(this IServiceCollection services)
@@ -127,9 +186,6 @@ namespace WillBeThere.InfrastuctureLayer
 
                 services.AddScoped<IUnitOfWork, UnitOfWork<WillBeThereInMemoryContext>>();
                 services.AddScoped<IWillBeThereWrapQueryUnitOfWork,WillBeThereWrapQueryUnitOfWork<WillBeThereInMemoryContext>>();
-
-
-
             }
             else
             {
@@ -150,11 +206,39 @@ namespace WillBeThere.InfrastuctureLayer
             // ModelService
             services.AddScoped<IOrganizationProgramQueryModelRepo, OrganizationProgramQueryModelRepo>();
             services.AddScoped<IOrganizationCategoryQueryModelRepo, OrganizationCategoryQueryModelRepo>();
+
+            services.AddSingleton<IEmailSender, SmtpEmailSender>();
+            services.AddTransient<IEmailSender<User>, UserEmailSender>();
         }
 
         public static void ConfigurePersistence(this IServiceCollection services)
         {
-            //services.AddScoped<IManyDataPersistenceService<OrganizationCategory>, ManyDataGenericPersistenceService<OrganizationCategory, OrganizationCategoryDto>>();
+        }
+
+        public static void AddAuthenticationServices(this IServiceCollection services)
+        {
+            if (_selectedDatabase == SelectedDatabase.MySql)
+            {
+                services.AddSingleton(TimeProvider.System);
+                services.AddAuthorization();
+                //services.AddAuthentication().AddCookie(IdentityConstants.ApplicationScheme);
+                services.AddIdentity<User, IdentityRole>()
+                    .AddEntityFrameworkStores<WillBeThereMysqlIdentityContext>()
+                    //.AddApiEndpoints();
+                    .AddDefaultTokenProviders();
+            }
+            else if (_selectedDatabase == SelectedDatabase.InMemory)
+            {
+                services.AddSingleton(TimeProvider.System);
+                services.AddAuthorization();
+                //services.AddAuthentication().AddCookie(IdentityConstants.ApplicationScheme);
+                //services.AddIdentity<User, IdentityRole>()
+                //.AddEntityFrameworkStores<WillBeThereInMemoryIdentityContext>()
+                //.AddApiEndpoints();
+                //.AddDefaultTokenProviders();
+                services.AddIdentityApiEndpoints<User>()
+                    .AddEntityFrameworkStores<WillBeThereInMemoryIdentityContext>();
+            }
         }
     }
 }

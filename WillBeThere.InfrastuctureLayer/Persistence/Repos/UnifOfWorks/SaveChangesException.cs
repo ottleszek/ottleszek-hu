@@ -1,6 +1,6 @@
 ﻿using System.Runtime.Serialization;
 
-namespace WillBeThere.InfrastuctureLayer.Persistence.Repos.UnifOfWorks
+namespace WillBeThere.InfrastuctureLayer.Persistence.UnifOfWorks
 {
     [Serializable]
     public class SaveChangesException : Exception

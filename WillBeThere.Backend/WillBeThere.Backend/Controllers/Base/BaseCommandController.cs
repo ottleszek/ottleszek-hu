@@ -35,7 +35,7 @@ namespace WillBeThere.Backend.Controllers.Base
 
                 response = await _repository.InsertAsync<TModel>(_assambler.ToModel(entity));
                 if (response.HasError)
-                    response.ClearAndAddError($"{response.Error}");
+                    response.SetNewError($"{response.Error}");
                 else
                 {
 
@@ -43,7 +43,7 @@ namespace WillBeThere.Backend.Controllers.Base
                     return Ok(response);
                 }
             }
-            response.ClearAndAddError("Az új adatok mentése nem lehetséges!");
+            response.SetNewError("Az új adatok mentése nem lehetséges!");
             return BadRequest(response);
         }
 
@@ -56,7 +56,7 @@ namespace WillBeThere.Backend.Controllers.Base
             {
                 response = await _repository.UpdateAsync<TModel>(_assambler.ToModel(entity));
                 if (response.HasError)
-                    response.ClearAndAddError($"{response.Error}");
+                    response.SetNewError($"{response.Error}");
                 else
                 {
 
@@ -64,7 +64,7 @@ namespace WillBeThere.Backend.Controllers.Base
                     return Ok(response);
                 }
             }
-            response.ClearAndAddError("Az adatok frissítés nem lehetséges!");
+            response.SetNewError("Az adatok frissítés nem lehetséges!");
             return BadRequest(response);
         }
 
@@ -78,7 +78,7 @@ namespace WillBeThere.Backend.Controllers.Base
 
                 response = await _repository.DeleteAsync<TModel>(id);
                 if (response.HasError)
-                    response.ClearAndAddError($"{response.Error}");
+                    response.SetNewError($"{response.Error}");
                 else
                 {
 
@@ -86,7 +86,7 @@ namespace WillBeThere.Backend.Controllers.Base
                     return Ok(response);
                 }
             }
-            response.ClearAndAddError("Az adatok törlése nem lehetséges!");
+            response.SetNewError("Az adatok törlése nem lehetséges!");
             return BadRequest(response);
         }
     }

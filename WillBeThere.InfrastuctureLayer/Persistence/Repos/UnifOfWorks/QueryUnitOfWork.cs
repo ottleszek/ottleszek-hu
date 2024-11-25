@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Shared.ApplicationLayer.Repos;
 
-namespace WillBeThere.InfrastuctureLayer.Persistence.Repos.UnifOfWorks
+namespace WillBeThere.InfrastuctureLayer.Persistence.UnifOfWorks
 {
     public class QueryUnitOfWork<TDbContext> : UnitOfWork<TDbContext> where TDbContext : DbContext
     {

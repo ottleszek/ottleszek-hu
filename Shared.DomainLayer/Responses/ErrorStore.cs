@@ -3,12 +3,12 @@
     public abstract class ErrorStore
     {
         private string _error;
-        public ErrorStore()
+        public ErrorStore(string error="")
         {
-            _error=string.Empty;
+            _error=error;
         }
 
-        public string Error { get => _error; set => _error = value; }
+        public string Error { get => _error; set => _error = value ?? string.Empty; }
         public bool HasError => !_error.Any();
 
         public void Clear()
@@ -16,7 +16,12 @@
             _error = string.Empty;
         }
 
-        public Response ClearAndAddError(string error)
+        public void ClearError()
+        {
+            _error=string.Empty;
+        }
+
+        public Response SetNewError(string error)
         {
             _error = error;
             return (Response)this;

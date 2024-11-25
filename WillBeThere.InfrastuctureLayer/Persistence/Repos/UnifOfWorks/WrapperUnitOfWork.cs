@@ -3,7 +3,7 @@ using Shared.ApplicationLayer.Repos;
 using Shared.ApplicationLayer.Repos.UnitOfWork;
 using Shared.DomainLayer.Entities;
 
-namespace WillBeThere.InfrastuctureLayer.Persistence.Repos.UnifOfWorks
+namespace WillBeThere.InfrastuctureLayer.Persistence.UnifOfWorks
 {
     public class WrapperUnitOfWork<TDbContext> : UnitOfWork<TDbContext>, IWrapperUnitOfWork where TDbContext : DbContext
     {

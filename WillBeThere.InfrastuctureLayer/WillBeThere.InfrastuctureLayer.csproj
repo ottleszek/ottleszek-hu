@@ -7,21 +7,13 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Persistence\Repos\DataBase\WillBeThere\QueryRepos\Interfaces\**" />
-    <EmbeddedResource Remove="Persistence\Repos\DataBase\WillBeThere\QueryRepos\Interfaces\**" />
-    <None Remove="Persistence\Repos\DataBase\WillBeThere\QueryRepos\Interfaces\**" />
+    <Compile Remove="Persistence\Repos\WillBeThere\QueryRepos\Interfaces\**" />
+    <EmbeddedResource Remove="Persistence\Repos\WillBeThere\QueryRepos\Interfaces\**" />
+    <None Remove="Persistence\Repos\WillBeThere\QueryRepos\Interfaces\**" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.7" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.7" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="8.0.7" />
-    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="8.0.1" />
-    <PackageReference Include="MySql.EntityFrameworkCore" Version="8.0.5" />
-    <PackageReference Include="MediatR" Version="12.4.0" />
-  </ItemGroup>
-
-  <ItemGroup>
+    <ProjectReference Include="..\HelpersProject\HelpersProject.csproj" />
     <ProjectReference Include="..\Shared.InfrastuctureLayer\Shared.InfrastuctureLayer.csproj" />
     <ProjectReference Include="..\WillBeThere.ApplicationLayer\WillBeThere.ApplicationLayer.csproj" />
   </ItemGroup>
@@ -30,4 +22,15 @@
     <Folder Include="Persistence\Services\FileStore\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="8.0.11" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="8.0.11" />
+    <PackageReference Include="Microsoft.Data.Sqlite" Version="8.0.11" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="8.0.11" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="8.0.11" />
+    <PackageReference Include="Microsoft.Extensions.Options" Version="8.0.2" />
+    <PackageReference Include="MySql.EntityFrameworkCore" Version="8.0.8" />
+    <PackageReference Include="System.Text.Json" Version="8.0.5" />
+    <PackageReference Include="NETCore.MailKit" Version="2.1.0" />
+  </ItemGroup>
 </Project>
