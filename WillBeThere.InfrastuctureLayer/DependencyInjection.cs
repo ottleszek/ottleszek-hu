@@ -232,10 +232,12 @@ namespace WillBeThere.InfrastuctureLayer
                 services.AddSingleton(TimeProvider.System);
                 services.AddAuthorization();
                 //services.AddAuthentication().AddCookie(IdentityConstants.ApplicationScheme);
-                services.AddIdentity<User, IdentityRole>()
-                    .AddEntityFrameworkStores<WillBeThereInMemoryIdentityContext>()
-                    //.AddApiEndpoints();
-                    .AddDefaultTokenProviders();
+                //services.AddIdentity<User, IdentityRole>()
+                //.AddEntityFrameworkStores<WillBeThereInMemoryIdentityContext>()
+                //.AddApiEndpoints();
+                //.AddDefaultTokenProviders();
+                services.AddIdentityApiEndpoints<User>()
+                    .AddEntityFrameworkStores<WillBeThereInMemoryIdentityContext>();
             }
         }
     }
