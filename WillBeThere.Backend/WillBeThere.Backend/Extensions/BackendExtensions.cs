@@ -23,7 +23,6 @@ namespace WillBeThere.Backend.Extensions
             services.ConfigureSmtpServices();
             services.ConfigureBackendRepos();
             services.ConfigureBackendServices();
-            services.AddAuthenticationServices();
         }
         public static void ConfigureCors(this IServiceCollection services)
         {
@@ -66,15 +65,6 @@ namespace WillBeThere.Backend.Extensions
             services.Configure<SmtpSettings>(configuration.GetSection("SmtpSettings"));
         }
 
-        public static void AddAuthenticationServices(this IServiceCollection services)
-        {
-            services.AddSingleton(TimeProvider.System);
-            services.AddAuthorization();
-            //services.AddAuthentication().AddCookie(IdentityConstants.ApplicationScheme);
-            services.AddIdentity<User, IdentityRole>()
-                .AddEntityFrameworkStores<WillBeThereMysqlIdentityContext>()
-                //.AddApiEndpoints();
-                .AddDefaultTokenProviders();
-        }
+
     }
 }

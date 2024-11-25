@@ -33,11 +33,14 @@ using Microsoft.AspNetCore.Identity.UI.Services;
 using Shared.InfrastuctureLayer.Modules.Authentication.Models;
 using Microsoft.AspNetCore.Identity;
 using WillBeThere.InfrastuctureLayer.Persistence.Context;
+using WillBeThere.InfrastuctureLayer.Persistence;
 
 namespace WillBeThere.InfrastuctureLayer
 {
+    enum SelectedDatabase { InMemory, MySql}
     public static class DependencyInjection
     {
+        private static SelectedDatabase _selectedDatabase = SelectedDatabase.InMemory;
         public static IServiceCollection AddInfrastructure(this IServiceCollection services)
         {
             services.ConfigureHttpClient();
@@ -46,10 +49,19 @@ namespace WillBeThere.InfrastuctureLayer
             services.ConfigureRepos();
             services.ConfigureServices();
             services.ConfigurePersistence();
-
-            services.ConfigureInMemoryContext();
-            //services.ConfigureMysqlContext();
-            services.ConfigurMysqlIdentityContext();
+            
+            switch(_selectedDatabase)
+            {
+                case SelectedDatabase.MySql:
+                    services.ConfigureMysqlContext();
+                    services.ConfigurMysqlIdentityContext();
+                    break;
+                case SelectedDatabase.InMemory:
+                    services.ConfigureInMemoryContext();
+                    services.ConfigureInMemoryIdentityContext();
+                    break;
+            }
+            services.AddAuthenticationServices();
             return services;
         }
 
@@ -80,6 +92,18 @@ namespace WillBeThere.InfrastuctureLayer
         {
             string dbName = "WillBeThere" + Guid.NewGuid();
             services.AddDbContext<WillBeThereInMemoryContext>(
+                options =>
+                {
+                    options.UseInMemoryDatabase(databaseName: dbName);
+                    options.ConfigureWarnings(x => x.Ignore(InMemoryEventId.TransactionIgnoredWarning));
+                }
+            );
+        }
+
+        public static void ConfigureInMemoryIdentityContext(this IServiceCollection services)
+        {
+            string dbName = "WillBeThereIdentity" + Guid.NewGuid();
+            services.AddDbContext<WillBeThereInMemoryIdentityContext>(
                 options =>
                 {
                     options.UseInMemoryDatabase(databaseName: dbName);
@@ -189,6 +213,30 @@ namespace WillBeThere.InfrastuctureLayer
 
         public static void ConfigurePersistence(this IServiceCollection services)
         {
+        }
+
+        public static void AddAuthenticationServices(this IServiceCollection services)
+        {
+            if (_selectedDatabase == SelectedDatabase.MySql)
+            {
+                services.AddSingleton(TimeProvider.System);
+                services.AddAuthorization();
+                //services.AddAuthentication().AddCookie(IdentityConstants.ApplicationScheme);
+                services.AddIdentity<User, IdentityRole>()
+                    .AddEntityFrameworkStores<WillBeThereMysqlIdentityContext>()
+                    //.AddApiEndpoints();
+                    .AddDefaultTokenProviders();
+            }
+            else if (_selectedDatabase == SelectedDatabase.InMemory)
+            {
+                services.AddSingleton(TimeProvider.System);
+                services.AddAuthorization();
+                //services.AddAuthentication().AddCookie(IdentityConstants.ApplicationScheme);
+                services.AddIdentity<User, IdentityRole>()
+                    .AddEntityFrameworkStores<WillBeThereInMemoryIdentityContext>()
+                    //.AddApiEndpoints();
+                    .AddDefaultTokenProviders();
+            }
         }
     }
 }
