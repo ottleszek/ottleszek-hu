@@ -2,7 +2,7 @@
 using MimeKit;
 using MailKit.Net.Smtp;
 using Shared.InfrastuctureLayer.Modules.Authentication.Models;
-using WillBeThere.InfrastuctureLayer.Coniguration;
+using WillBeThere.InfrastuctureLayer.Configuration;
 using Microsoft.Extensions.Options;
 using Shared.DomainLayer.Responses;
 using HelpersProject.EmailHelpers;

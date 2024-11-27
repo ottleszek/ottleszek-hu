@@ -1,4 +1,4 @@
-﻿namespace WillBeThere.InfrastuctureLayer.Coniguration
+﻿namespace WillBeThere.InfrastuctureLayer.Configuration
 {
     public class SmtpSettings
     {

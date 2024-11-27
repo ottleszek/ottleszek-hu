@@ -5,7 +5,7 @@ using WillBeThere.ApplicationLayer.Contracts.Dtos.OrganizationCategories;
 using WillBeThere.ApplicationLayer.Repos.QueryRepo;
 using WillBeThere.DomainLayer.Entites;
 using WillBeThere.DomainLayer.Repos;
-using WillBeThere.InfrastuctureLayer.Coniguration;
+using WillBeThere.InfrastuctureLayer.Configuration;
 using WillBeThere.InfrastuctureLayer.Context;
 using WillBeThere.InfrastuctureLayer.Persistence.Context;
 using WillBeThere.InfrastuctureLayer.Persistence.Repos.DataBase;
